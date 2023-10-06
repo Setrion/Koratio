@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "down": "koratio:block/decrypting_table_bottom",
+    "east": "koratio:block/decrypting_table_front",
+    "north": "koratio:block/decrypting_table_front",
+    "particle": "koratio:block/decrypting_table_front",
+    "south": "koratio:block/decrypting_table_side",
+    "up": "koratio:block/decrypting_table_top",
+    "west": "koratio:block/decrypting_table_side"
+  }
+}

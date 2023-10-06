@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "half=lower": {
+      "model": "koratio:block/tall_fantasia_grass_bottom"
+    },
+    "half=upper": {
+      "model": "koratio:block/tall_fantasia_grass_top"
+    }
+  }
+}

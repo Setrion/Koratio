@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "koratio:arsoy_block"
+    }
+  ],
+  "result": {
+    "count": 9,
+    "item": "koratio:arsoy_ingot"
+  }
+}

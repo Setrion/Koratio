@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "koratio:block/marshmallow_slab"
+    },
+    "type=double": {
+      "model": "koratio:block/marshmallow_block"
+    },
+    "type=top": {
+      "model": "koratio:block/marshmallow_slab_top"
+    }
+  }
+}

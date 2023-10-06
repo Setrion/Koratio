@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "koratio:block/fantasia_portal_ns"
+    },
+    "axis=z": {
+      "model": "koratio:block/fantasia_portal_ew"
+    }
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_blood_stained_deepslate_bricks": {
+      "conditions": {
+        "items": [
+          {
+            "count": {
+              "min": 4
+            },
+            "items": [
+              "koratio:blood_stained_deepslate_bricks"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "koratio:blood_stained_deepslate_tiles"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_blood_stained_deepslate_bricks",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "koratio:blood_stained_deepslate_tiles"
+    ]
+  },
+  "sends_telemetry_event": false
+}

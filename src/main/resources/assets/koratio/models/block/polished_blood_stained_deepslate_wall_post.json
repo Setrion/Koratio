@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/template_wall_post",
+  "textures": {
+    "wall": "koratio:block/polished_blood_stained_deepslate"
+  }
+}

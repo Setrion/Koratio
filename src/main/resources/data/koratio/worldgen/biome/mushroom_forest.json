@@ -1,0 +1,83 @@
+{
+  "carvers": {
+    "air": [
+      "koratio:fantasia_caves",
+      "koratio:fantasia_crystal_caves"
+    ]
+  },
+  "downfall": 0.5,
+  "effects": {
+    "fog_color": 16735130,
+    "foliage_color": 65535,
+    "grass_color": 16735130,
+    "mood_sound": {
+      "block_search_extent": 8,
+      "offset": 2.0,
+      "sound": "minecraft:ambient.cave",
+      "tick_delay": 6000
+    },
+    "music": {
+      "max_delay": 24000,
+      "min_delay": 12000,
+      "replace_current_music": false,
+      "sound": "minecraft:music.game"
+    },
+    "particle": {
+      "options": {
+        "type": "minecraft:witch"
+      },
+      "probability": 0.025
+    },
+    "sky_color": 2105930,
+    "water_color": 4159204,
+    "water_fog_color": 329011
+  },
+  "features": [
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [
+      "minecraft:disk_sand",
+      "minecraft:disk_clay",
+      "minecraft:disk_gravel",
+      "koratio:ore_arsoy_upper",
+      "koratio:ore_arsoy_middle",
+      "koratio:ore_arsoy_small"
+    ],
+    [],
+    [],
+    [
+      "minecraft:patch_sugar_cane",
+      "koratio:patch_fantasia_grass",
+      "koratio:tree/purple_mushroom",
+      "koratio:tree/green_mushroom",
+      "koratio:purple_mushroom_normal",
+      "koratio:green_mushroom_normal",
+      "koratio:red_mushroom_normal",
+      "koratio:brown_mushroom_normal"
+    ]
+  ],
+  "has_precipitation": true,
+  "spawn_costs": {},
+  "spawners": {
+    "ambient": [],
+    "axolotls": [],
+    "creature": [],
+    "misc": [],
+    "monster": [
+      {
+        "type": "koratio:jumstem",
+        "maxCount": 4,
+        "minCount": 4,
+        "weight": 100
+      }
+    ],
+    "underground_water_creature": [],
+    "water_ambient": [],
+    "water_creature": []
+  },
+  "temperature": 0.5
+}

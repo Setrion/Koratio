@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "koratio:block/nighy_log_horizontal",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "koratio:block/nighy_log"
+    },
+    "axis=z": {
+      "model": "koratio:block/nighy_log_horizontal",
+      "x": 90
+    }
+  }
+}

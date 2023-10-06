@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/cube_bottom_top",
+  "textures": {
+    "bottom": "koratio:block/rugona_barrel_bottom",
+    "side": "koratio:block/rugona_barrel_side",
+    "top": "koratio:block/rugona_barrel_top"
+  }
+}

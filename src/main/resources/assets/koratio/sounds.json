@@ -1,0 +1,65 @@
+{
+  "entity.koratio.crystallize.ambient": {
+    "sounds": [
+      "koratio:mob/crystallize/ambient"
+    ],
+    "subtitle": "subtitles.koratio.entity.crystallize.ambient"
+  },
+  "entity.koratio.crystallize.death": {
+    "sounds": [
+      "koratio:mob/crystallize/death"
+    ],
+    "subtitle": "subtitles.koratio.entity.crystallize.death"
+  },
+  "entity.koratio.crystallize.hurt": {
+    "sounds": [
+      "koratio:mob/crystallize/hurt"
+    ],
+    "subtitle": "subtitles.koratio.entity.crystallize.hurt"
+  },
+  "entity.koratio.crystallize.step": {
+    "sounds": [
+      {
+        "type": "event",
+        "name": "block.glass.step"
+      }
+    ],
+    "subtitle": "subtitles.block.generic.footsteps"
+  },
+  "entity.koratio.spiky_pig.ambient": {
+    "sounds": [
+      {
+        "type": "event",
+        "name": "entity.pig.ambient"
+      }
+    ],
+    "subtitle": "subtitles.koratio.entity.spiky_pig.ambient"
+  },
+  "entity.koratio.spiky_pig.death": {
+    "sounds": [
+      {
+        "type": "event",
+        "name": "entity.pig.death"
+      }
+    ],
+    "subtitle": "subtitles.koratio.entity.spiky_pig.death"
+  },
+  "entity.koratio.spiky_pig.hurt": {
+    "sounds": [
+      {
+        "type": "event",
+        "name": "entity.pig.hurt"
+      }
+    ],
+    "subtitle": "subtitles.koratio.entity.spiky_pig.hurt"
+  },
+  "entity.koratio.spiky_pig.step": {
+    "sounds": [
+      {
+        "type": "event",
+        "name": "entity.pig.step"
+      }
+    ],
+    "subtitle": "subtitles.block.generic.footsteps"
+  }
+}

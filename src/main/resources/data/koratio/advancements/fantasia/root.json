@@ -1,0 +1,32 @@
+{
+  "criteria": {
+    "entered_fantasia": {
+      "conditions": {
+        "to": "koratio:fantasia"
+      },
+      "trigger": "minecraft:changed_dimension"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "background": "koratio:textures/block/pango_planks.png",
+    "description": {
+      "translate": "advancements.fantasia.root.desc"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "koratio:miniature_fantasia_portal"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.fantasia.root.title"
+    }
+  },
+  "requirements": [
+    [
+      "entered_fantasia"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

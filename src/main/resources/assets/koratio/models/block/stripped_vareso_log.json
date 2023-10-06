@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "koratio:block/stripped_vareso_log_top",
+    "side": "koratio:block/stripped_vareso_log"
+  }
+}

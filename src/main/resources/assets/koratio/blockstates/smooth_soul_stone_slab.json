@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "koratio:block/smooth_soul_stone_slab"
+    },
+    "type=double": {
+      "model": "koratio:block/smooth_soul_stone"
+    },
+    "type=top": {
+      "model": "koratio:block/smooth_soul_stone_slab_top"
+    }
+  }
+}

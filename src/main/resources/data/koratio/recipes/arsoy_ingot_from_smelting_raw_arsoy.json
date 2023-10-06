@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:smelting",
+  "category": "misc",
+  "cookingtime": 200,
+  "experience": 0.7,
+  "group": "arsoy_ingot",
+  "ingredient": {
+    "item": "koratio:raw_arsoy"
+  },
+  "result": "koratio:arsoy_ingot"
+}

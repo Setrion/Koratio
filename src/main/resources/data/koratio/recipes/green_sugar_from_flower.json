@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "koratio:green_sugarglass_flower"
+    }
+  ],
+  "result": {
+    "item": "koratio:green_sugar"
+  }
+}

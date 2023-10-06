@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "koratio:block/gingerbread_slab"
+    },
+    "type=double": {
+      "model": "koratio:block/gingerbread_block"
+    },
+    "type=top": {
+      "model": "koratio:block/gingerbread_slab_top"
+    }
+  }
+}

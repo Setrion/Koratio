@@ -1,0 +1,139 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_arsoy_axe": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "koratio:arsoy_axe"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_arsoy_boots": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "koratio:arsoy_boots"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_arsoy_chestplate": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "koratio:arsoy_chestplate"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_arsoy_helmet": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "koratio:arsoy_helmet"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_arsoy_hoe": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "koratio:arsoy_hoe"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_arsoy_leggings": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "koratio:arsoy_leggings"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_arsoy_pickaxe": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "koratio:arsoy_pickaxe"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_arsoy_shovel": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "koratio:arsoy_shovel"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_arsoy_sword": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "koratio:arsoy_sword"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "koratio:arsoy_nugget_from_blasting"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_arsoy_pickaxe",
+      "has_arsoy_shovel",
+      "has_arsoy_axe",
+      "has_arsoy_hoe",
+      "has_arsoy_sword",
+      "has_arsoy_helmet",
+      "has_arsoy_chestplate",
+      "has_arsoy_leggings",
+      "has_arsoy_boots",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "koratio:arsoy_nugget_from_blasting"
+    ]
+  },
+  "sends_telemetry_event": false
+}

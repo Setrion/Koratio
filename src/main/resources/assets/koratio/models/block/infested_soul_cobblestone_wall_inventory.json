@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/wall_inventory",
+  "textures": {
+    "wall": "koratio:block/infested_soul_cobblestone"
+  }
+}

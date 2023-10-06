@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "powered=false": {
+      "model": "koratio:block/vareso_pressure_plate"
+    },
+    "powered=true": {
+      "model": "koratio:block/vareso_pressure_plate_down"
+    }
+  }
+}

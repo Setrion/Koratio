@@ -1,0 +1,77 @@
+{
+  "type": "koratio:fantasia",
+  "generator": {
+    "type": "koratio:fantasia_chunk_generator",
+    "noise_generation_settings": "koratio:fantasia",
+    "wrapped_generator": {
+      "type": "minecraft:noise",
+      "biome_source": {
+        "type": "koratio:fantasia_biomes",
+        "base_factor": 2.5,
+        "base_offset": -1.25,
+        "biome_landscape": [
+          {
+            "biome_layers": {
+              "-1.0": "koratio:candy_cane_valley",
+              "-3.0": "koratio:depths_of_fantasia",
+              "100.0": "koratio:skylands"
+            },
+            "depth": 9.1,
+            "key_biome": "koratio:candy_cane_valley",
+            "scale": 0.2
+          },
+          {
+            "biome_layers": {
+              "-1.0": "koratio:fantasia_fieldlands",
+              "-3.0": "koratio:depths_of_fantasia",
+              "100.0": "koratio:skylands"
+            },
+            "depth": 9.025,
+            "key_biome": "koratio:fantasia_fieldlands",
+            "scale": 0.05
+          },
+          {
+            "biome_layers": {
+              "-1.0": "koratio:gilded_forest",
+              "-3.0": "koratio:depths_of_fantasia",
+              "100.0": "koratio:skylands"
+            },
+            "depth": 9.125,
+            "key_biome": "koratio:gilded_forest",
+            "scale": 0.05
+          },
+          {
+            "biome_layers": {
+              "-1.0": "koratio:mushroom_forest",
+              "-3.0": "koratio:depths_of_fantasia"
+            },
+            "depth": 9.1,
+            "key_biome": "koratio:mushroom_forest",
+            "scale": 0.2
+          },
+          {
+            "biome_layers": {
+              "-1.0": "koratio:river",
+              "-3.0": "koratio:depths_of_fantasia",
+              "100.0": "koratio:skylands"
+            },
+            "depth": 7.35,
+            "key_biome": "koratio:river",
+            "scale": 0.35
+          },
+          {
+            "biome_layers": {
+              "-1.0": "koratio:amethyst_fields",
+              "-3.0": "koratio:depths_of_fantasia",
+              "100.0": "koratio:skylands"
+            },
+            "depth": 9.255,
+            "key_biome": "koratio:amethyst_fields",
+            "scale": 0.125
+          }
+        ]
+      },
+      "settings": "koratio:fantasia"
+    }
+  }
+}

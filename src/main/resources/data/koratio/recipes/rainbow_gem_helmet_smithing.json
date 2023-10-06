@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": {
+    "item": "koratio:rainbow_gem"
+  },
+  "base": {
+    "item": "minecraft:netherite_helmet"
+  },
+  "result": {
+    "item": "koratio:rainbow_gem_helmet"
+  },
+  "template": {
+    "item": "koratio:rainbow_gem_upgrade_smithing_template"
+  }
+}

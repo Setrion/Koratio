@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "group": "wooden_pressure_plate",
+  "key": {
+    "x": {
+      "item": "koratio:vareso_planks"
+    }
+  },
+  "pattern": [
+    "xx"
+  ],
+  "result": {
+    "item": "koratio:vareso_pressure_plate"
+  },
+  "show_notification": true
+}

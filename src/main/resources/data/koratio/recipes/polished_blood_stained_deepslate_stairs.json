@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "x": {
+      "item": "koratio:polished_blood_stained_deepslate"
+    }
+  },
+  "pattern": [
+    "x  ",
+    "xx ",
+    "xxx"
+  ],
+  "result": {
+    "count": 4,
+    "item": "koratio:polished_blood_stained_deepslate_stairs"
+  },
+  "show_notification": true
+}

@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/wall_inventory",
+  "textures": {
+    "wall": "koratio:block/polished_blood_stained_deepslate"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "down": "koratio:block/vareso_planks",
+    "east": "koratio:block/vareso_cartography_table_side3",
+    "north": "koratio:block/vareso_cartography_table_side3",
+    "particle": "koratio:block/vareso_cartography_table_side3",
+    "south": "koratio:block/vareso_cartography_table_side1",
+    "up": "koratio:block/vareso_cartography_table_top",
+    "west": "koratio:block/vareso_cartography_table_side2"
+  }
+}

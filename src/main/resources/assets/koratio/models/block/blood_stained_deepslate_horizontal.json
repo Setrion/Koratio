@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column_horizontal",
+  "textures": {
+    "end": "koratio:block/blood_stained_deepslate_top",
+    "side": "koratio:block/blood_stained_deepslate"
+  }
+}

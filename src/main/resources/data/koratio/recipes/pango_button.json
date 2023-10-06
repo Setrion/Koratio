@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "redstone",
+  "ingredients": [
+    {
+      "item": "koratio:pango_planks"
+    }
+  ],
+  "result": {
+    "item": "koratio:pango_button"
+  }
+}

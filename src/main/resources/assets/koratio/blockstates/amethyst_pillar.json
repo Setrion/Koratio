@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "koratio:block/amethyst_pillar_horizontal",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "koratio:block/amethyst_pillar"
+    },
+    "axis=z": {
+      "model": "koratio:block/amethyst_pillar_horizontal",
+      "x": 90
+    }
+  }
+}

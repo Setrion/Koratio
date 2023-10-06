@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/wall_inventory",
+  "textures": {
+    "wall": "koratio:block/blood_stained_deepslate_bricks"
+  }
+}

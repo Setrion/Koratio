@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab",
+  "textures": {
+    "bottom": "koratio:block/marshmallow_block_bottom",
+    "side": "koratio:block/marshmallow_block_side",
+    "top": "koratio:block/marshmallow_block_bottom"
+  }
+}

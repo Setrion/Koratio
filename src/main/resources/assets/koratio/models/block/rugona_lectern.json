@@ -1,0 +1,11 @@
+{
+  "parent": "minecraft:block/lectern",
+  "textures": {
+    "base": "koratio:block/rugona_lectern_base",
+    "bottom": "koratio:block/rugona_planks",
+    "front": "koratio:block/rugona_lectern_front",
+    "particle": "koratio:block/rugona_lectern_sides",
+    "sides": "koratio:block/rugona_lectern_sides",
+    "top": "koratio:block/rugona_lectern_top"
+  }
+}

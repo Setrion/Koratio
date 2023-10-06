@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "group": "wooden_slab",
+  "key": {
+    "x": {
+      "item": "koratio:polished_blood_stained_deepslate"
+    }
+  },
+  "pattern": [
+    "xxx"
+  ],
+  "result": {
+    "count": 6,
+    "item": "koratio:polished_blood_stained_deepslate_slab"
+  },
+  "show_notification": true
+}

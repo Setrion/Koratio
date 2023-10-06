@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "koratio:block/blood_stained_cobbled_deepslate_slab"
+    },
+    "type=double": {
+      "model": "koratio:block/blood_stained_cobbled_deepslate"
+    },
+    "type=top": {
+      "model": "koratio:block/blood_stained_cobbled_deepslate_slab_top"
+    }
+  }
+}

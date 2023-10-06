@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/outer_stairs",
+  "textures": {
+    "bottom": "koratio:block/rugona_planks",
+    "side": "koratio:block/rugona_planks",
+    "top": "koratio:block/rugona_planks"
+  }
+}

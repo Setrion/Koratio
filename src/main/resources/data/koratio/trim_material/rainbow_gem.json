@@ -1,0 +1,12 @@
+{
+  "asset_name": "rainbow_gem",
+  "description": {
+    "color": "#625859",
+    "translate": "trim_material.koratio.rainbow_gem"
+  },
+  "ingredient": "koratio:rainbow_gem",
+  "item_model_index": 1.0,
+  "override_armor_materials": {
+    "rainbow_gem": "rainbow_gem_darker"
+  }
+}

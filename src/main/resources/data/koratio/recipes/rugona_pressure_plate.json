@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "group": "wooden_pressure_plate",
+  "key": {
+    "x": {
+      "item": "koratio:rugona_planks"
+    }
+  },
+  "pattern": [
+    "xx"
+  ],
+  "result": {
+    "item": "koratio:rugona_pressure_plate"
+  },
+  "show_notification": true
+}

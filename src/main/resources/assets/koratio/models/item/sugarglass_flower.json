@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "koratio:block/sugarglass_flower_item"
+  }
+}

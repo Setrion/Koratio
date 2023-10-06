@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "chests",
+  "key": {
+    "#": {
+      "item": "koratio:vareso_planks"
+    },
+    "x": {
+      "tag": "forge:chests/wooden"
+    }
+  },
+  "pattern": [
+    "###",
+    "#x#",
+    "###"
+  ],
+  "result": {
+    "count": 2,
+    "item": "koratio:vareso_chest"
+  },
+  "show_notification": true
+}

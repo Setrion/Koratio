@@ -1,0 +1,36 @@
+{
+  "variants": {
+    "age=0": {
+      "model": "koratio:block/golden_wheat_stage0",
+      "uvlock": true
+    },
+    "age=1": {
+      "model": "koratio:block/golden_wheat_stage1",
+      "uvlock": true
+    },
+    "age=2": {
+      "model": "koratio:block/golden_wheat_stage2",
+      "uvlock": true
+    },
+    "age=3": {
+      "model": "koratio:block/golden_wheat_stage3",
+      "uvlock": true
+    },
+    "age=4": {
+      "model": "koratio:block/golden_wheat_stage4",
+      "uvlock": true
+    },
+    "age=5": {
+      "model": "koratio:block/golden_wheat_stage5",
+      "uvlock": true
+    },
+    "age=6": {
+      "model": "koratio:block/golden_wheat_stage6",
+      "uvlock": true
+    },
+    "age=7": {
+      "model": "koratio:block/golden_wheat_stage7",
+      "uvlock": true
+    }
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_top",
+  "textures": {
+    "side": "koratio:block/rugona_jukebox_side",
+    "top": "koratio:block/rugona_jukebox_top"
+  }
+}

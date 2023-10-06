@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "koratio:block/rugona_planks",
+    "side": "koratio:block/rugona_bookshelf"
+  }
+}

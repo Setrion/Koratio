@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab",
+  "textures": {
+    "bottom": "koratio:block/vareso_planks",
+    "side": "koratio:block/vareso_planks",
+    "top": "koratio:block/vareso_planks"
+  }
+}

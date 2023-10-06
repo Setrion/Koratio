@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "koratio:block/pango_planks",
+    "side": "koratio:block/pango_bookshelf"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "koratio:block/rugona_lectern",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "koratio:block/rugona_lectern"
+    },
+    "facing=south": {
+      "model": "koratio:block/rugona_lectern",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "koratio:block/rugona_lectern",
+      "y": 270
+    }
+  }
+}

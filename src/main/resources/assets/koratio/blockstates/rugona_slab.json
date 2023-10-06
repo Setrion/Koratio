@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "koratio:block/rugona_slab"
+    },
+    "type=double": {
+      "model": "koratio:block/rugona_planks"
+    },
+    "type=top": {
+      "model": "koratio:block/rugona_slab_top"
+    }
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "parent": "koratio:block/tinted_flower_pot_cross",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "plant": "koratio:block/rainbow_allium_stem",
+    "plant_tinted": "koratio:block/rainbow_allium"
+  }
+}

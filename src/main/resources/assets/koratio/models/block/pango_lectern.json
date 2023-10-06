@@ -1,0 +1,11 @@
+{
+  "parent": "minecraft:block/lectern",
+  "textures": {
+    "base": "koratio:block/pango_lectern_base",
+    "bottom": "koratio:block/pango_planks",
+    "front": "koratio:block/pango_lectern_front",
+    "particle": "koratio:block/pango_lectern_sides",
+    "sides": "koratio:block/pango_lectern_sides",
+    "top": "koratio:block/pango_lectern_top"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab_top",
+  "textures": {
+    "bottom": "koratio:block/raw_gingerbread_bricks",
+    "side": "koratio:block/raw_gingerbread_bricks",
+    "top": "koratio:block/raw_gingerbread_bricks"
+  }
+}

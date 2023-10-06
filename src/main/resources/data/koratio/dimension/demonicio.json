@@ -1,0 +1,45 @@
+{
+  "type": "koratio:demonicio",
+  "generator": {
+    "type": "koratio:demonicio_chunk_generator",
+    "noise_generation_settings": "koratio:demonicio",
+    "wrapped_generator": {
+      "type": "minecraft:noise",
+      "biome_source": {
+        "type": "koratio:demonicio_biomes",
+        "base_factor": 2.5,
+        "base_offset": -1.25,
+        "biome_landscape": [
+          {
+            "biome_layers": {
+              "-1.0": "koratio:skull_desert",
+              "-3.0": "koratio:depths_of_fantasia"
+            },
+            "depth": 9.025,
+            "key_biome": "koratio:skull_desert",
+            "scale": 0.05
+          },
+          {
+            "biome_layers": {
+              "-1.0": "koratio:blood_river",
+              "-3.0": "koratio:depths_of_fantasia"
+            },
+            "depth": 7.35,
+            "key_biome": "koratio:blood_river",
+            "scale": 0.35
+          },
+          {
+            "biome_layers": {
+              "-1.0": "koratio:nightmare_forest",
+              "-3.0": "koratio:depths_of_fantasia"
+            },
+            "depth": 9.05,
+            "key_biome": "koratio:nightmare_forest",
+            "scale": 0.125
+          }
+        ]
+      },
+      "settings": "koratio:demonicio"
+    }
+  }
+}

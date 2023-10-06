@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "down": "koratio:block/rugona_planks",
+    "east": "koratio:block/rugona_cartography_table_side3",
+    "north": "koratio:block/rugona_cartography_table_side3",
+    "particle": "koratio:block/rugona_cartography_table_side3",
+    "south": "koratio:block/rugona_cartography_table_side1",
+    "up": "koratio:block/rugona_cartography_table_top",
+    "west": "koratio:block/rugona_cartography_table_side2"
+  }
+}

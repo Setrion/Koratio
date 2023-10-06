@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_arsoy_ore": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "koratio:arsoy_ore"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "koratio:arsoy_ingot_from_blasting_arsoy_ore"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_arsoy_ore",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "koratio:arsoy_ingot_from_blasting_arsoy_ore"
+    ]
+  },
+  "sends_telemetry_event": false
+}

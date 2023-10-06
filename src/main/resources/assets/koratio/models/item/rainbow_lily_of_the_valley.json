@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "koratio:item/rainbow_lily_of_the_valley"
+  }
+}

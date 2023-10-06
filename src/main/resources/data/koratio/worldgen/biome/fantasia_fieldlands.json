@@ -1,0 +1,76 @@
+{
+  "carvers": {
+    "air": "koratio:fantasia_caves"
+  },
+  "downfall": 0.5,
+  "effects": {
+    "fog_color": 12648408,
+    "foliage_color": 14768987,
+    "grass_color": 5348240,
+    "mood_sound": {
+      "block_search_extent": 8,
+      "offset": 2.0,
+      "sound": "minecraft:ambient.cave",
+      "tick_delay": 6000
+    },
+    "music": {
+      "max_delay": 24000,
+      "min_delay": 12000,
+      "replace_current_music": false,
+      "sound": "minecraft:music.game"
+    },
+    "sky_color": 2105930,
+    "water_color": 4159204,
+    "water_fog_color": 329011
+  },
+  "features": [
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [
+      "minecraft:disk_sand",
+      "minecraft:disk_clay",
+      "minecraft:disk_gravel",
+      "koratio:ore_arsoy_upper",
+      "koratio:ore_arsoy_middle",
+      "koratio:ore_arsoy_small"
+    ],
+    [],
+    [],
+    [
+      "minecraft:patch_sugar_cane",
+      "koratio:patch_fantasia_grass",
+      "koratio:trees_fantasia_fieldlands",
+      "koratio:rainbow_flowers"
+    ]
+  ],
+  "has_precipitation": true,
+  "spawn_costs": {},
+  "spawners": {
+    "ambient": [],
+    "axolotls": [],
+    "creature": [
+      {
+        "type": "koratio:spiky_pig",
+        "maxCount": 4,
+        "minCount": 4,
+        "weight": 10
+      },
+      {
+        "type": "koratio:unicorn_cat",
+        "maxCount": 1,
+        "minCount": 1,
+        "weight": 1
+      }
+    ],
+    "misc": [],
+    "monster": [],
+    "underground_water_creature": [],
+    "water_ambient": [],
+    "water_creature": []
+  },
+  "temperature": 0.8
+}

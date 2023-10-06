@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "koratio:block/chiseled_blood_stained_deepslate"
+  }
+}

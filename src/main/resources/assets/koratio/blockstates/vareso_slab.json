@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "koratio:block/vareso_slab"
+    },
+    "type=double": {
+      "model": "koratio:block/vareso_planks"
+    },
+    "type=top": {
+      "model": "koratio:block/vareso_slab_top"
+    }
+  }
+}

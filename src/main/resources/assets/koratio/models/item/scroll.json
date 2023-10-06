@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "koratio:item/scroll",
+    "layer1": "koratio:item/scroll_overlay"
+  }
+}

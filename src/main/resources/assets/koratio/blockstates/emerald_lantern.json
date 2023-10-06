@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "hanging=false": {
+      "model": "koratio:block/emerald_lantern"
+    },
+    "hanging=true": {
+      "model": "koratio:block/emerald_lantern_hanging"
+    }
+  }
+}

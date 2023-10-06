@@ -1,0 +1,36 @@
+{
+  "type": "minecraft:smelting",
+  "category": "misc",
+  "cookingtime": 200,
+  "experience": 0.1,
+  "ingredient": [
+    {
+      "item": "koratio:arsoy_pickaxe"
+    },
+    {
+      "item": "koratio:arsoy_shovel"
+    },
+    {
+      "item": "koratio:arsoy_axe"
+    },
+    {
+      "item": "koratio:arsoy_hoe"
+    },
+    {
+      "item": "koratio:arsoy_sword"
+    },
+    {
+      "item": "koratio:arsoy_helmet"
+    },
+    {
+      "item": "koratio:arsoy_chestplate"
+    },
+    {
+      "item": "koratio:arsoy_leggings"
+    },
+    {
+      "item": "koratio:arsoy_boots"
+    }
+  ],
+  "result": "koratio:arsoy_nugget"
+}
