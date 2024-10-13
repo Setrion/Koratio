@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "koratio:block/ancient_stone_tile_slab"
+    },
+    "type=double": {
+      "model": "koratio:block/ancient_stone_tiles"
+    },
+    "type=top": {
+      "model": "koratio:block/ancient_stone_tile_slab_top"
+    }
+  }
+}

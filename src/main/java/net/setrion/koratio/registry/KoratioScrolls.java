@@ -1,9 +1,9 @@
 package net.setrion.koratio.registry;
 
+import net.setrion.koratio.scroll.Scroll;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import net.setrion.koratio.scroll.Scroll;
 
 public class KoratioScrolls {
 	
@@ -14,4 +14,5 @@ public class KoratioScrolls {
 	public static final Scroll BASIC = new Scroll("basic", Scroll.ScrollType.NOTE);
 	public static final Scroll EGG = new Scroll("egg", Scroll.ScrollType.EASTER_EGG);
 
+	public static final Scroll FAILURE = new Scroll("failure", Scroll.ScrollType.EASTER_EGG);
 }

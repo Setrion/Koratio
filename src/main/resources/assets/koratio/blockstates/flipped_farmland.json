@@ -1,0 +1,36 @@
+{
+  "variants": {
+    "moisture=0": {
+      "model": "koratio:block/flipped_farmland",
+      "uvlock": true
+    },
+    "moisture=1": {
+      "model": "koratio:block/flipped_farmland",
+      "uvlock": true
+    },
+    "moisture=2": {
+      "model": "koratio:block/flipped_farmland",
+      "uvlock": true
+    },
+    "moisture=3": {
+      "model": "koratio:block/flipped_farmland",
+      "uvlock": true
+    },
+    "moisture=4": {
+      "model": "koratio:block/flipped_farmland",
+      "uvlock": true
+    },
+    "moisture=5": {
+      "model": "koratio:block/flipped_farmland",
+      "uvlock": true
+    },
+    "moisture=6": {
+      "model": "koratio:block/flipped_farmland",
+      "uvlock": true
+    },
+    "moisture=7": {
+      "model": "koratio:block/flipped_farmland_moist",
+      "uvlock": true
+    }
+  }
+}

@@ -1,6 +1,3 @@
 {
-  "parent": "minecraft:item/chest",
-  "textures": {
-    "particle": "koratio:block/vareso_planks"
-  }
+  "parent": "minecraft:item/chest"
 }

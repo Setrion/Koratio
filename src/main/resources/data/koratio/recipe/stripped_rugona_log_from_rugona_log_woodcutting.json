@@ -1,0 +1,10 @@
+{
+  "type": "koratio:woodcutter",
+  "ingredient": {
+    "item": "koratio:rugona_log"
+  },
+  "result": {
+    "count": 1,
+    "id": "koratio:stripped_rugona_log"
+  }
+}

@@ -7,12 +7,12 @@ import net.setrion.koratio.registry.KoratioBlockEntityType;
 
 public class CampfireBlockEntity extends net.minecraft.world.level.block.entity.CampfireBlockEntity {
 
-	public CampfireBlockEntity(BlockPos pos, BlockState state) {
-		super(pos, state);
-	}
+    public CampfireBlockEntity(BlockPos pPos, BlockState pBlockState) {
+        super(pPos, pBlockState);
+    }
 
-	@Override
-	public BlockEntityType<?> getType() {
-		return KoratioBlockEntityType.CAMPFIRE.get();
-	}
+    @Override
+    public BlockEntityType<?> getType() {
+        return KoratioBlockEntityType.CAMPFIRE.get();
+    }
 }

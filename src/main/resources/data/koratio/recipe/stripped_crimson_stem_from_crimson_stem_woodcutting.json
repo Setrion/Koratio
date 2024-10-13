@@ -1,0 +1,10 @@
+{
+  "type": "koratio:woodcutter",
+  "ingredient": {
+    "item": "minecraft:crimson_stem"
+  },
+  "result": {
+    "count": 1,
+    "id": "minecraft:stripped_crimson_stem"
+  }
+}

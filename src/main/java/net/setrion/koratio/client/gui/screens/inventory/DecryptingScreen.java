@@ -4,6 +4,7 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.ImageButton;
+import net.minecraft.client.gui.components.WidgetSprites;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -15,7 +16,10 @@ import net.setrion.koratio.world.item.DecryptingBookItem;
 
 public class DecryptingScreen extends AbstractContainerScreen<DecryptingMenu> {
 	
-	private static final ResourceLocation DECRYPTING_TABLE_LOCATION = new ResourceLocation(Koratio.MOD_ID, "textures/gui/container/decrypting_table.png");
+	private static final ResourceLocation DECRYPTING_TABLE_LOCATION = ResourceLocation.fromNamespaceAndPath(Koratio.MOD_ID, "textures/gui/container/decrypting_table.png");
+	public static final WidgetSprites DECRYPTING_TABLE_SPRITES = new WidgetSprites(
+			ResourceLocation.fromNamespaceAndPath(Koratio.MOD_ID, "container/decrypting_table/button"), ResourceLocation.fromNamespaceAndPath(Koratio.MOD_ID, "container/decrypting_table/button_disabled"), ResourceLocation.fromNamespaceAndPath(Koratio.MOD_ID, "container/decrypting_table/button_highlighted"), ResourceLocation.fromNamespaceAndPath(Koratio.MOD_ID, "container/decrypting_table/button_selected")
+	);
 
 	private float scrollOffs;
 	private boolean scrolling;
@@ -31,25 +35,11 @@ public class DecryptingScreen extends AbstractContainerScreen<DecryptingMenu> {
 	@Override
 	protected void init() {
 		super.init();
-		this.addRenderableWidget(button = new ImageButton(leftPos + 20, height / 2 - 49, 20, 18, 0, 166, 19, DECRYPTING_TABLE_LOCATION, (button) -> {
+		this.addRenderableWidget(button = new ImageButton(leftPos + 20, height / 2 - 49, 20, 18, DECRYPTING_TABLE_SPRITES, (button) -> {
 			if (chance > 0 || minecraft.player.getAbilities().instabuild) {
 				minecraft.gameMode.handleInventoryButtonClick((menu).containerId, levelCost);
 			}
-		}) {
-			@Override
-			public void renderWidget(GuiGraphics graphics, int mouseX, int mouseY, float f) {
-				int j = 0;
-				if (!active) {
-					j += width * 1;
-				} else if (isHovered()) {
-					j += width * 3;
-				} else if (isFocused()) {
-					j += width * 2;
-				}
-
-				graphics.blit(DECRYPTING_TABLE_LOCATION, getX(), getY(), j, 166, width, height);
-			}
-		});
+		}));
 		button.active = false;
 	}
 	
@@ -61,7 +51,7 @@ public class DecryptingScreen extends AbstractContainerScreen<DecryptingMenu> {
 	
 	@Override
 	public void render(GuiGraphics graphics, int mouseX, int mouseY, float f) {
-		renderBackground(graphics);
+		renderBackground(graphics, mouseX, mouseY, f);
 		super.render(graphics, mouseX, mouseY, f);
 		renderTooltip(graphics, mouseX, mouseY);
 		int i = leftPos;
@@ -91,8 +81,11 @@ public class DecryptingScreen extends AbstractContainerScreen<DecryptingMenu> {
 		super.renderTooltip(graphics, mouseX, mouseY);
 		int i = leftPos + 20;
 		int j = height / 2 -49;
+		int chance = menu.getChance();
+		if (minecraft.player.getAbilities().instabuild) chance = 100;
 		if (mouseX >= i && mouseX < i + 20 && mouseY >= j && mouseY < j+18) {
-			graphics.renderTooltip(font, Component.translatable("decrypting.chance").withStyle(ChatFormatting.GRAY).append(Component.literal(""+menu.getChance()+"%").withStyle(ChatFormatting.GREEN)), mouseX, mouseY+20);
+
+			graphics.renderTooltip(font, Component.translatable("decrypting.chance").withStyle(ChatFormatting.GRAY).append(Component.literal(""+chance+"%").withStyle(ChatFormatting.GREEN)), mouseX, mouseY+20);
 		}
 	}
 	
@@ -114,7 +107,7 @@ public class DecryptingScreen extends AbstractContainerScreen<DecryptingMenu> {
 		return super.mouseClicked(mouseX, mouseY, button);
 	}
 
-	public boolean mouseDragged(double mouseX, double mouseY, int p_99324_, double p_99325_, double p_99326_) {
+	public boolean mouseDragged(double mouseX, double mouseY, int k, double dragX, double dragY) {
 		if (scrolling) {
 			int i = topPos + 14;
 			int j = i + 54;
@@ -122,12 +115,12 @@ public class DecryptingScreen extends AbstractContainerScreen<DecryptingMenu> {
 			scrollOffs = Mth.clamp(scrollOffs, 0.0F, 1.0F);
 			return true;
 		} else {
-			return super.mouseDragged(mouseX, mouseY, p_99324_, p_99325_, p_99326_);
+			return super.mouseDragged(mouseX, mouseY, k, dragX, dragY);
 		}
 	}
 
-	public boolean mouseScrolled(double mouseX, double mouseY, double amount) {
-		float f = (float)amount / 10.0F;
+	public boolean mouseScrolled(double mouseX, double mouseY, double scrollX, double scrollY) {
+		float f = (float)scrollY / 10.0F;
 		f = Mth.clamp(this.scrollOffs - f, 0.0F, 1.0F);
 		f *= 10;
 		f = Math.round(f);

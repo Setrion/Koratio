@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:builtin/entity",
+  "textures": {
+    "particle": "koratio:block/stripped_green_elven_log"
+  }
+}

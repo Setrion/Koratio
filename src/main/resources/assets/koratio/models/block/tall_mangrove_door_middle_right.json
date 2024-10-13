@@ -1,0 +1,7 @@
+{
+  "parent": "koratio:block/template/old_door_middle_right",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "middle": "koratio:block/tall_mangrove_door_middle"
+  }
+}

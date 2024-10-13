@@ -1,8 +1,5 @@
 package net.setrion.koratio.world.item;
 
-import java.util.List;
-import java.util.function.Predicate;
-
 import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
@@ -19,6 +16,9 @@ import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 import net.setrion.koratio.world.entity.vehicle.Boat;
 import net.setrion.koratio.world.entity.vehicle.ChestBoat;
+
+import java.util.List;
+import java.util.function.Predicate;
 
 public class BoatItem extends Item {
 	private static final Predicate<Entity> ENTITY_PREDICATE = EntitySelector.NO_SPECTATORS.and(Entity::isPickable);
@@ -52,7 +52,7 @@ public class BoatItem extends Item {
 
 			if (hitresult.getType() == HitResult.Type.BLOCK) {
 				Boat boat = this.getBoat(level, hitresult);
-				boat.setType(this.type);
+				boat.setVariant(this.type);
 				boat.setYRot(player.getYRot());
 				if (!level.noCollision(boat, boat.getBoundingBox())) {
 					return InteractionResultHolder.fail(itemstack);

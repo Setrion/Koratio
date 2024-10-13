@@ -29,21 +29,19 @@ public class Scroll {
 	}
 	
 	public enum ScrollType {
-		NOTE("note", 16777215, ChatFormatting.WHITE, 2, false),
-		EASTER_EGG("easter_egg", 65535, ChatFormatting.YELLOW, 4, true),
-		STORY("story", 16711680, ChatFormatting.GOLD, 6, false);
+		NOTE("note", 16777215, ChatFormatting.WHITE, false),
+		EASTER_EGG("easter_egg", 65535, ChatFormatting.YELLOW, true),
+		STORY("story", 16711680, ChatFormatting.GOLD, false);
 		
 		private final String name;
 		private final int color;
 		private final ChatFormatting text_color;
-		private final int cost;
 		private final boolean isEnchanted;
 		
-		private ScrollType(String name, int color, ChatFormatting text_color, int cost, boolean isEnchanted) {
+		private ScrollType(String name, int color, ChatFormatting text_color,boolean isEnchanted) {
 			this.name = name;
 			this.color = color;
 			this.text_color = text_color;
-			this.cost = cost;
 			this.isEnchanted = isEnchanted;
 		}
 		
@@ -58,11 +56,7 @@ public class Scroll {
 		public ChatFormatting getTextColor() {
 			return text_color;
 		}
-		
-		public int getCost() {
-			return cost;
-		}
-		
+
 		public boolean isEnchanted() {
 			return isEnchanted;
 		}

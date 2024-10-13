@@ -6,7 +6,7 @@
   "effects": {
     "fog_color": 12648408,
     "foliage_color": 16769359,
-    "grass_color": 12632256,
+    "grass_color": 7709636,
     "mood_sound": {
       "block_search_extent": 8,
       "offset": 2.0,
@@ -18,6 +18,12 @@
       "min_delay": 12000,
       "replace_current_music": false,
       "sound": "minecraft:music.game"
+    },
+    "particle": {
+      "options": {
+        "type": "koratio:gold_glint"
+      },
+      "probability": 0.00125
     },
     "sky_color": 2105930,
     "water_color": 4159204,
@@ -33,10 +39,7 @@
     [
       "minecraft:disk_sand",
       "minecraft:disk_clay",
-      "minecraft:disk_gravel",
-      "koratio:ore_arsoy_upper",
-      "koratio:ore_arsoy_middle",
-      "koratio:ore_arsoy_small"
+      "minecraft:disk_gravel"
     ],
     [],
     [],

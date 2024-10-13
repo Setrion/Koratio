@@ -1,18 +1,23 @@
 package net.setrion.koratio.data;
 
-import java.util.Collection;
-
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.BucketItem;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
-import net.minecraftforge.client.model.generators.ItemModelBuilder;
-import net.minecraftforge.client.model.generators.ItemModelProvider;
-import net.minecraftforge.client.model.generators.ModelFile;
-import net.minecraftforge.client.model.generators.loaders.ItemLayerModelBuilder;
-import net.minecraftforge.common.data.ExistingFileHelper;
-import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.RegistryObject;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.material.Fluid;
+import net.neoforged.neoforge.client.model.generators.ItemModelBuilder;
+import net.neoforged.neoforge.client.model.generators.ItemModelProvider;
+import net.neoforged.neoforge.client.model.generators.ModelFile;
+import net.neoforged.neoforge.client.model.generators.loaders.CompositeModelBuilder;
+import net.neoforged.neoforge.client.model.generators.loaders.DynamicFluidContainerModelBuilder;
+import net.neoforged.neoforge.client.model.generators.loaders.ItemLayerModelBuilder;
+import net.neoforged.neoforge.common.data.ExistingFileHelper;
+import net.neoforged.neoforge.internal.versions.neoforge.NeoForgeVersion;
+import net.neoforged.neoforge.registries.DeferredItem;
 import net.setrion.koratio.Koratio;
 import net.setrion.koratio.registry.KoratioBlocks;
 import net.setrion.koratio.registry.KoratioItems;
@@ -25,52 +30,132 @@ public class ItemModelGenerator extends ItemModelProvider {
 	
 	@Override
 	protected void registerModels() {
-		withExistingParent(ForgeRegistries.BLOCKS.getKey(KoratioBlocks.MINIATURE_FANTASIA_PORTAL.get()).getPath(), Koratio.prefix("block/miniature/fantasia_portal"));
+		withExistingParent(BuiltInRegistries.BLOCK.getKey(KoratioBlocks.MINIATURE_FANTASIA_PORTAL.get()).getPath(), Koratio.prefix("block/miniature/fantasia_portal"));
 		
 		basicItem(KoratioItems.RAW_PANGO.get());
 		basicItem(KoratioItems.CRACKED_PANGO.get());
+		basicItem(KoratioItems.FLUFFER.get());
+		basicItem(KoratioItems.COOKED_FLUFFER.get());
 		basicItem(KoratioItems.SPIKED_PORKCHOP.get());
 		basicItem(KoratioItems.COOKED_SPIKED_PORKCHOP.get());
-		basicItem(KoratioItems.GOLDEN_CHICKEN.get());
-		basicItem(KoratioItems.COOKED_GOLDEN_CHICKEN.get());
-		basicItem(KoratioItems.GOLDEN_BREAD.get());
-		basicItem(KoratioItems.GOLDEN_EGG.get());
-		basicItem(KoratioItems.GOLDEN_WHEAT.get());
-		basicItem(KoratioItems.GOLDEN_BABY_CARROTS.get());
-		
-		basicItem(KoratioItems.GOLDEN_WHEAT_SEEDS.get());
-		blockModel(KoratioBlocks.GOLDEN_HAY_BLOCK.get());
-		
+		basicItem(KoratioItems.CEINANA.get());
+		basicItem(KoratioItems.UPNIP.get());
+
+		basicItem(KoratioItems.WHITE_BLUE_CANDY_CANE.get());
+		basicItem(KoratioItems.WHITE_GREEN_CANDY_CANE.get());
+		basicItem(KoratioItems.WHITE_YELLOW_CANDY_CANE.get());
+		basicItem(KoratioItems.WHITE_RED_CANDY_CANE.get());
+
+		basicItem(KoratioItems.BLUE_CANDY_CANE.get());
+		basicItem(KoratioItems.BLUE_WHITE_CANDY_CANE.get());
+		basicItem(KoratioItems.BLUE_GREEN_CANDY_CANE.get());
+		basicItem(KoratioItems.BLUE_YELLOW_CANDY_CANE.get());
+		basicItem(KoratioItems.BLUE_RED_CANDY_CANE.get());
+		basicItem(KoratioItems.BLUE_RAINBOW_CANDY_CANE.get());
+
+		basicItem(KoratioItems.GREEN_CANDY_CANE.get());
+		basicItem(KoratioItems.GREEN_WHITE_CANDY_CANE.get());
+		basicItem(KoratioItems.GREEN_BLUE_CANDY_CANE.get());
+		basicItem(KoratioItems.GREEN_YELLOW_CANDY_CANE.get());
+		basicItem(KoratioItems.GREEN_RED_CANDY_CANE.get());
+		basicItem(KoratioItems.GREEN_RAINBOW_CANDY_CANE.get());
+
+		basicItem(KoratioItems.YELLOW_CANDY_CANE.get());
+		basicItem(KoratioItems.YELLOW_WHITE_CANDY_CANE.get());
+		basicItem(KoratioItems.YELLOW_BLUE_CANDY_CANE.get());
+		basicItem(KoratioItems.YELLOW_GREEN_CANDY_CANE.get());
+		basicItem(KoratioItems.YELLOW_RED_CANDY_CANE.get());
+		basicItem(KoratioItems.YELLOW_RAINBOW_CANDY_CANE.get());
+
+		basicItem(KoratioItems.RED_CANDY_CANE.get());
+		basicItem(KoratioItems.RED_WHITE_CANDY_CANE.get());
+		basicItem(KoratioItems.RED_BLUE_CANDY_CANE.get());
+		basicItem(KoratioItems.RED_GREEN_CANDY_CANE.get());
+		basicItem(KoratioItems.RED_YELLOW_CANDY_CANE.get());
+		basicItem(KoratioItems.RED_RAINBOW_CANDY_CANE.get());
+
+
 		blockModel(KoratioBlocks.DECRYPTING_TABLE.get());
-		basic2LayerItem(KoratioItems.SCROLL.getKey().location());
+		blockModel(KoratioBlocks.CANDY_SHAPER.get());
+		basic2LayerItem(KoratioItems.SCROLL.getId());
 		basicItem(KoratioItems.DECRYPTING_BOOK.get());
 		basicItem(KoratioItems.BETTER_DECRYPTING_BOOK.get());
 		basicItem(KoratioItems.FANTASTIC_DECRYPTING_BOOK.get());
-		
+
+		basicItem(KoratioItems.STICKY_SUGAR_BUCKET.get());
+		basicItem(KoratioItems.STICKY_BLUE_SUGAR_BUCKET.get());
+		basicItem(KoratioItems.STICKY_GREEN_SUGAR_BUCKET.get());
+		basicItem(KoratioItems.STICKY_YELLOW_SUGAR_BUCKET.get());
+		basicItem(KoratioItems.STICKY_RED_SUGAR_BUCKET.get());
+
+
+		bucketItem(KoratioItems.MOLTEN_SUGAR_BUCKET);
+		bucketItem(KoratioItems.MOLTEN_BLUE_SUGAR_BUCKET);
+		bucketItem(KoratioItems.MOLTEN_GREEN_SUGAR_BUCKET);
+		bucketItem(KoratioItems.MOLTEN_YELLOW_SUGAR_BUCKET);
+		bucketItem(KoratioItems.MOLTEN_RED_SUGAR_BUCKET);
+		bucketItem(KoratioItems.CHOCOLATE_MILK_BUCKET);
+		bucketItem(KoratioItems.BLOOD_BUCKET);
+
 		basicItem(KoratioItems.RAINBOW_GEM.get());
 		blockModel(KoratioBlocks.RAINBOW_GEM_BLOCK.get());
-		basicItem(KoratioItems.RAW_ARSOY.get());
-		basicItem(KoratioItems.ARSOY_INGOT.get());
-		basicItem(KoratioItems.ARSOY_NUGGET.get());
-		blockModel(KoratioBlocks.ARSOY_ORE.get());
-		blockModel(KoratioBlocks.DEEPSLATE_ARSOY_ORE.get());
-		blockModel(KoratioBlocks.BLOOD_STAINED_DEEPSLATE_ARSOY_ORE.get());
-		blockModel(KoratioBlocks.RAW_ARSOY_BLOCK.get());
-		blockModel(KoratioBlocks.ARSOY_BLOCK.get());
+		basicItem(KoratioItems.RUBY.get());
+		blockModel(KoratioBlocks.RUBY_BLOCK.get());
+		blockModel(KoratioBlocks.RUBY_ORE.get());
+		blockModel(KoratioBlocks.DEEPSLATE_RUBY_ORE.get());
+		basicItem(KoratioItems.SAPPHIRE.get());
+		blockModel(KoratioBlocks.SAPPHIRE_BLOCK.get());
+		blockModel(KoratioBlocks.SAPPHIRE_ORE.get());
+		blockModel(KoratioBlocks.DEEPSLATE_SAPPHIRE_ORE.get());
+		basicItem(KoratioItems.TOPAZ.get());
+		blockModel(KoratioBlocks.TOPAZ_BLOCK.get());
+		blockModel(KoratioBlocks.TOPAZ_ORE.get());
+		blockModel(KoratioBlocks.DEEPSLATE_TOPAZ_ORE.get());
+		basicItem(KoratioItems.ONYX.get());
+		blockModel(KoratioBlocks.ONYX_BLOCK.get());
+		blockModel(KoratioBlocks.ONYX_ORE.get());
+		blockModel(KoratioBlocks.DEEPSLATE_ONYX_ORE.get());
 		blockModel(KoratioBlocks.COOKIE_ORE.get());
 		blockModel(KoratioBlocks.DEEPSLATE_COOKIE_ORE.get());
-		blockModel(KoratioBlocks.BLOOD_STAINED_DEEPSLATE_COOKIE_ORE.get());
 		basicItem(KoratioItems.WITHER_BONE.get());
 		basicItem(KoratioItems.RED_SUGAR.get());
 		basicItem(KoratioItems.BLUE_SUGAR.get());
 		basicItem(KoratioItems.YELLOW_SUGAR.get());
 		basicItem(KoratioItems.GREEN_SUGAR.get());
 		blockModel(KoratioBlocks.SUGAR_BLOCK.get());
+		blockModel(KoratioBlocks.STICKY_SUGAR_BLOCK.get());
 		blockModel(KoratioBlocks.RED_SUGAR_BLOCK.get());
+		blockModel(KoratioBlocks.STICKY_RED_SUGAR_BLOCK.get());
 		blockModel(KoratioBlocks.BLUE_SUGAR_BLOCK.get());
+		blockModel(KoratioBlocks.STICKY_BLUE_SUGAR_BLOCK.get());
 		blockModel(KoratioBlocks.YELLOW_SUGAR_BLOCK.get());
+		blockModel(KoratioBlocks.STICKY_YELLOW_SUGAR_BLOCK.get());
 		blockModel(KoratioBlocks.GREEN_SUGAR_BLOCK.get());
-		
+		blockModel(KoratioBlocks.STICKY_GREEN_SUGAR_BLOCK.get());
+
+		blockModel(KoratioBlocks.WHITE_CANDY_BLOCK.get());
+		blockModel(KoratioBlocks.BLUE_CANDY_BLOCK.get());
+		blockModel(KoratioBlocks.GREEN_CANDY_BLOCK.get());
+		blockModel(KoratioBlocks.YELLOW_CANDY_BLOCK.get());
+		blockModel(KoratioBlocks.RED_CANDY_BLOCK.get());
+
+		blockModel(KoratioBlocks.WHITE_LEVITATING_WOOL.get());
+		blockModel(KoratioBlocks.ORANGE_LEVITATING_WOOL.get());
+		blockModel(KoratioBlocks.MAGENTA_LEVITATING_WOOL.get());
+		blockModel(KoratioBlocks.LIGHT_BLUE_LEVITATING_WOOL.get());
+		blockModel(KoratioBlocks.YELLOW_LEVITATING_WOOL.get());
+		blockModel(KoratioBlocks.LIME_LEVITATING_WOOL.get());
+		blockModel(KoratioBlocks.PINK_LEVITATING_WOOL.get());
+		blockModel(KoratioBlocks.GRAY_LEVITATING_WOOL.get());
+		blockModel(KoratioBlocks.LIGHT_GRAY_LEVITATING_WOOL.get());
+		blockModel(KoratioBlocks.CYAN_LEVITATING_WOOL.get());
+		blockModel(KoratioBlocks.PURPLE_LEVITATING_WOOL.get());
+		blockModel(KoratioBlocks.BLUE_LEVITATING_WOOL.get());
+		blockModel(KoratioBlocks.BROWN_LEVITATING_WOOL.get());
+		blockModel(KoratioBlocks.GREEN_LEVITATING_WOOL.get());
+		blockModel(KoratioBlocks.RED_LEVITATING_WOOL.get());
+		blockModel(KoratioBlocks.BLACK_LEVITATING_WOOL.get());
+
 		blockModel(KoratioBlocks.RAW_GINGERBREAD_BLOCK.get());
 		blockModel(KoratioBlocks.RAW_GINGERBREAD_STAIRS.get());
 		blockModel(KoratioBlocks.RAW_GINGERBREAD_SLAB.get());
@@ -83,20 +168,34 @@ public class ItemModelGenerator extends ItemModelProvider {
 		blockModel(KoratioBlocks.GINGERBREAD_BRICKS.get());
 		blockModel(KoratioBlocks.GINGERBREAD_BRICK_STAIRS.get());
 		blockModel(KoratioBlocks.GINGERBREAD_BRICK_SLAB.get());
+		blockModel(KoratioBlocks.RAW_LARGE_GINGERBREAD_BRICKS.get());
+		blockModel(KoratioBlocks.RAW_LARGE_GINGERBREAD_BRICK_STAIRS.get());
+		blockModel(KoratioBlocks.RAW_LARGE_GINGERBREAD_BRICK_SLAB.get());
+		blockModel(KoratioBlocks.LARGE_GINGERBREAD_BRICKS.get());
+		blockModel(KoratioBlocks.LARGE_GINGERBREAD_BRICK_STAIRS.get());
+		blockModel(KoratioBlocks.LARGE_GINGERBREAD_BRICK_SLAB.get());
 		blockModel(KoratioBlocks.MARSHMALLOW_BLOCK.get());
 		blockModel(KoratioBlocks.MARSHMALLOW_STAIRS.get());
 		blockModel(KoratioBlocks.MARSHMALLOW_SLAB.get());
-		
-		basicTool(KoratioItems.RAINBOW_GEM_SWORD);
-		basicTool(KoratioItems.RAINBOW_GEM_AXE);
-		basicTool(KoratioItems.RAINBOW_GEM_SHOVEL);
-		basicTool(KoratioItems.RAINBOW_GEM_PICKAXE);
-		basicTool(KoratioItems.RAINBOW_GEM_HOE);
-		basicTool(KoratioItems.ARSOY_SWORD);
-		basicTool(KoratioItems.ARSOY_AXE);
-		basicTool(KoratioItems.ARSOY_SHOVEL);
-		basicTool(KoratioItems.ARSOY_PICKAXE);
-		basicTool(KoratioItems.ARSOY_HOE);
+
+		blockModel(KoratioBlocks.ANCIENT_COBBLESTONE.get());
+		blockModel(KoratioBlocks.ANCIENT_COBBLESTONE_STAIRS.get());
+		blockModel(KoratioBlocks.ANCIENT_COBBLESTONE_SLAB.get());
+		blockModel(KoratioBlocks.ANCIENT_STONE.get());
+		blockModel(KoratioBlocks.ANCIENT_STONE_STAIRS.get());
+		blockModel(KoratioBlocks.ANCIENT_STONE_SLAB.get());
+		blockModel(KoratioBlocks.ANCIENT_STONE_BRICKS.get());
+		blockModel(KoratioBlocks.ANCIENT_STONE_BRICK_STAIRS.get());
+		blockModel(KoratioBlocks.ANCIENT_STONE_BRICK_SLAB.get());
+		blockModel(KoratioBlocks.CRACKED_ANCIENT_STONE_BRICKS.get());
+		blockModel(KoratioBlocks.CHISELED_ANCIENT_STONE_BRICKS.get());
+		blockModel(KoratioBlocks.POLISHED_ANCIENT_STONE.get());
+		blockModel(KoratioBlocks.POLISHED_ANCIENT_STONE_STAIRS.get());
+		blockModel(KoratioBlocks.POLISHED_ANCIENT_STONE_SLAB.get());
+		blockModel(KoratioBlocks.ANCIENT_STONE_TILES.get());
+		blockModel(KoratioBlocks.ANCIENT_STONE_TILE_STAIRS.get());
+		blockModel(KoratioBlocks.ANCIENT_STONE_TILE_SLAB.get());
+
 		basicTool(KoratioItems.WITHER_BONE_SWORD);
 		basicTool(KoratioItems.WITHER_BONE_AXE);
 		basicTool(KoratioItems.WITHER_BONE_SHOVEL);
@@ -107,15 +206,7 @@ public class ItemModelGenerator extends ItemModelProvider {
 		basicTool(KoratioItems.BONE_SHOVEL);
 		basicTool(KoratioItems.BONE_PICKAXE);
 		basicTool(KoratioItems.BONE_HOE);
-		
-		basicItem(KoratioItems.RAINBOW_GEM_HELMET.get());
-		basicItem(KoratioItems.RAINBOW_GEM_CHESTPLATE.get());
-		basicItem(KoratioItems.RAINBOW_GEM_LEGGINGS.get());
-		basicItem(KoratioItems.RAINBOW_GEM_BOOTS.get());
-		basicItem(KoratioItems.ARSOY_HELMET.get());
-		basicItem(KoratioItems.ARSOY_CHESTPLATE.get());
-		basicItem(KoratioItems.ARSOY_LEGGINGS.get());
-		basicItem(KoratioItems.ARSOY_BOOTS.get());
+
 		basicItem(KoratioItems.WITHER_BONE_HELMET.get());
 		basicItem(KoratioItems.WITHER_BONE_CHESTPLATE.get());
 		basicItem(KoratioItems.WITHER_BONE_LEGGINGS.get());
@@ -124,93 +215,52 @@ public class ItemModelGenerator extends ItemModelProvider {
 		basicItem(KoratioItems.BONE_CHESTPLATE.get());
 		basicItem(KoratioItems.BONE_LEGGINGS.get());
 		basicItem(KoratioItems.BONE_BOOTS.get());
-		
-		plantItem(KoratioItems.AMETHYST_GRASS.get());
-		plantItem(KoratioItems.AMETHYST_COBWEB.get());
-		plantItem(KoratioItems.EMERALD_GRASS.get());
-		plantItem(KoratioItems.EMERALD_COBWEB.get());
+
 		basicItem(KoratioItems.RAINBOW_ROSE.get());
 		basicItem(KoratioItems.RAINBOW_ALLIUM.get());
 		basicItem(KoratioItems.RAINBOW_LILY_OF_THE_VALLEY.get());
 		plantItem(KoratioItems.COOKIE_FLOWER.get());
+		plantItem(KoratioItems.GOLDEN_TULIP.get());
+		plantItem(KoratioItems.GOLD_ROSE_BUSH.get(), "_top");
 		plantItem(KoratioItems.WHITE_SUGARGLASS_FLOWER.get(), "_item");
 		plantItem(KoratioItems.BLUE_SUGARGLASS_FLOWER.get(), "_item");
 		plantItem(KoratioItems.GREEN_SUGARGLASS_FLOWER.get(), "_item");
 		plantItem(KoratioItems.YELLOW_SUGARGLASS_FLOWER.get(), "_item");
 		plantItem(KoratioItems.RED_SUGARGLASS_FLOWER.get(), "_item");
-		
-		spawnEggItem(KoratioItems.FIRE_BAT_SPAWN_EGG.get());
-		spawnEggItem(KoratioItems.ICE_BAT_SPAWN_EGG.get());
-		spawnEggItem(KoratioItems.THUNDER_BAT_SPAWN_EGG.get());
-		spawnEggItem(KoratioItems.UNICORN_CAT_SPAWN_EGG.get());
-		spawnEggItem(KoratioItems.SPIKY_PIG_SPAWN_EGG.get());
-		spawnEggItem(KoratioItems.DEMONIC_SOLDIER_SPAWN_EGG.get());
-		spawnEggItem(KoratioItems.JUMSTEM_SPAWN_EGG.get());
-		
-		blockModel(KoratioBlocks.AMETHYST_BRICKS.get());
-		blockModel(KoratioBlocks.AMETHYST_BRICK_STAIRS.get());
-		blockModel(KoratioBlocks.AMETHYST_BRICK_SLAB.get());
-		blockModel(KoratioBlocks.CHISELED_AMETHYST_BLOCK.get());
-		blockModel(KoratioBlocks.AMETHYST_PILLAR.get());
-		blockModel(KoratioBlocks.EMERALD_BRICKS.get());
-		blockModel(KoratioBlocks.EMERALD_BRICK_STAIRS.get());
-		blockModel(KoratioBlocks.EMERALD_BRICK_SLAB.get());
-		blockModel(KoratioBlocks.CHISELED_EMERALD_BLOCK.get());
-		blockModel(KoratioBlocks.EMERALD_PILLAR.get());
-		blockModel(KoratioBlocks.SOUL_STONE.get());
-		blockModel(KoratioBlocks.SOUL_STONE_STAIRS.get());
-		blockModel(KoratioBlocks.SOUL_STONE_SLAB.get());
-		blockModel(KoratioBlocks.SOUL_STONE_PRESSURE_PLATE.get());
-		blockModel(KoratioBlocks.SOUL_STONE_BUTTON.get());
-		withExistingParent(KoratioBlocks.SOUL_STONE_BUTTON.getId().getPath(), "block/button_inventory").texture("texture", Koratio.prefix("block/soul_stone"));
-		blockModel(KoratioBlocks.INFESTED_SOUL_STONE.get());
-		blockModel(KoratioBlocks.INFESTED_SOUL_STONE_STAIRS.get());
-		blockModel(KoratioBlocks.INFESTED_SOUL_STONE_SLAB.get());
-		blockModel(KoratioBlocks.INFESTED_SOUL_STONE_PRESSURE_PLATE.get());
-		withExistingParent(KoratioBlocks.INFESTED_SOUL_STONE_BUTTON.getId().getPath(), "block/button_inventory").texture("texture", Koratio.prefix("block/infested_soul_stone"));
-		blockModel(KoratioBlocks.SOUL_COBBLESTONE.get());
-		blockModel(KoratioBlocks.SOUL_COBBLESTONE_STAIRS.get());
-		blockModel(KoratioBlocks.SOUL_COBBLESTONE_SLAB.get());
-		blockModel(KoratioBlocks.SOUL_COBBLESTONE_WALL.get(), KoratioBlocks.SOUL_COBBLESTONE_WALL.getKey().location().getPath()+"_inventory");
-		blockModel(KoratioBlocks.INFESTED_SOUL_COBBLESTONE.get());
-		blockModel(KoratioBlocks.INFESTED_SOUL_COBBLESTONE_STAIRS.get());
-		blockModel(KoratioBlocks.INFESTED_SOUL_COBBLESTONE_SLAB.get());
-		blockModel(KoratioBlocks.INFESTED_SOUL_COBBLESTONE_WALL.get(), KoratioBlocks.INFESTED_SOUL_COBBLESTONE_WALL.getKey().location().getPath()+"_inventory");
-		blockModel(KoratioBlocks.SMOOTH_SOUL_STONE.get());
-		blockModel(KoratioBlocks.SMOOTH_SOUL_STONE_SLAB.get());
-		blockModel(KoratioBlocks.SOUL_STONE_BRICKS.get());
-		blockModel(KoratioBlocks.CRACKED_SOUL_STONE_BRICKS.get());
-		blockModel(KoratioBlocks.SOUL_STONE_BRICK_STAIRS.get());
-		blockModel(KoratioBlocks.SOUL_STONE_BRICK_SLAB.get());
-		blockModel(KoratioBlocks.SOUL_STONE_BRICK_WALL.get(), KoratioBlocks.SOUL_STONE_BRICK_WALL.getKey().location().getPath()+"_inventory");
-		blockModel(KoratioBlocks.CHISELED_SOUL_STONE_BRICKS.get());
-		blockModel(KoratioBlocks.INFESTED_SOUL_STONE_BRICKS.get());
-		blockModel(KoratioBlocks.CRACKED_INFESTED_SOUL_STONE_BRICKS.get());
-		blockModel(KoratioBlocks.INFESTED_SOUL_STONE_BRICK_STAIRS.get());
-		blockModel(KoratioBlocks.INFESTED_SOUL_STONE_BRICK_SLAB.get());
-		blockModel(KoratioBlocks.INFESTED_SOUL_STONE_BRICK_WALL.get(), KoratioBlocks.INFESTED_SOUL_STONE_BRICK_WALL.getKey().location().getPath()+"_inventory");
-		blockModel(KoratioBlocks.CHISELED_INFESTED_SOUL_STONE_BRICKS.get());
-		
-		blockModel(KoratioBlocks.BLOOD_STAINED_DEEPSLATE.get());
-		blockModel(KoratioBlocks.BLOOD_STAINED_COBBLED_DEEPSLATE.get());
-		blockModel(KoratioBlocks.BLOOD_STAINED_COBBLED_DEEPSLATE_STAIRS.get());
-		blockModel(KoratioBlocks.BLOOD_STAINED_COBBLED_DEEPSLATE_SLAB.get());
-		blockModel(KoratioBlocks.BLOOD_STAINED_COBBLED_DEEPSLATE_WALL.get(), KoratioBlocks.BLOOD_STAINED_COBBLED_DEEPSLATE_WALL.getKey().location().getPath()+"_inventory");
-		blockModel(KoratioBlocks.POLISHED_BLOOD_STAINED_DEEPSLATE.get());
-		blockModel(KoratioBlocks.POLISHED_BLOOD_STAINED_DEEPSLATE_STAIRS.get());
-		blockModel(KoratioBlocks.POLISHED_BLOOD_STAINED_DEEPSLATE_SLAB.get());
-		blockModel(KoratioBlocks.POLISHED_BLOOD_STAINED_DEEPSLATE_WALL.get(), KoratioBlocks.POLISHED_BLOOD_STAINED_DEEPSLATE_WALL.getKey().location().getPath()+"_inventory");
-		blockModel(KoratioBlocks.BLOOD_STAINED_DEEPSLATE_TILES.get());
-		blockModel(KoratioBlocks.BLOOD_STAINED_DEEPSLATE_TILE_STAIRS.get());
-		blockModel(KoratioBlocks.BLOOD_STAINED_DEEPSLATE_TILE_SLAB.get());
-		blockModel(KoratioBlocks.BLOOD_STAINED_DEEPSLATE_TILE_WALL.get(), KoratioBlocks.BLOOD_STAINED_DEEPSLATE_TILE_WALL.getKey().location().getPath()+"_inventory");
-		blockModel(KoratioBlocks.BLOOD_STAINED_DEEPSLATE_BRICKS.get());
-		blockModel(KoratioBlocks.BLOOD_STAINED_DEEPSLATE_BRICK_STAIRS.get());
-		blockModel(KoratioBlocks.BLOOD_STAINED_DEEPSLATE_BRICK_SLAB.get());
-		blockModel(KoratioBlocks.BLOOD_STAINED_DEEPSLATE_BRICK_WALL.get(), KoratioBlocks.BLOOD_STAINED_DEEPSLATE_BRICK_WALL.getKey().location().getPath()+"_inventory");
-		blockModel(KoratioBlocks.CHISELED_BLOOD_STAINED_DEEPSLATE.get());
-		blockModel(KoratioBlocks.CRACKED_BLOOD_STAINED_DEEPSLATE_BRICKS.get());
-		blockModel(KoratioBlocks.CRACKED_BLOOD_STAINED_DEEPSLATE_TILES.get());
+
+		plantItem(KoratioItems.OAK_LEAF_PANE.get(), Blocks.OAK_LEAVES.asItem());
+		plantItem(KoratioItems.SPRUCE_LEAF_PANE.get(), Blocks.SPRUCE_LEAVES.asItem());
+		plantItem(KoratioItems.BIRCH_LEAF_PANE.get(), Blocks.BIRCH_LEAVES.asItem());
+		plantItem(KoratioItems.JUNGLE_LEAF_PANE.get(), Blocks.JUNGLE_LEAVES.asItem());
+		plantItem(KoratioItems.ACACIA_LEAF_PANE.get(), Blocks.ACACIA_LEAVES.asItem());
+		plantItem(KoratioItems.DARK_OAK_LEAF_PANE.get(), Blocks.DARK_OAK_LEAVES.asItem());
+		plantItem(KoratioItems.MANGROVE_LEAF_PANE.get(), Blocks.MANGROVE_LEAVES.asItem());
+		plantItem(KoratioItems.AZALEA_LEAF_PANE.get(), Blocks.AZALEA_LEAVES.asItem());
+		plantItem(KoratioItems.FLOWERING_AZALEA_LEAF_PANE.get(), Blocks.FLOWERING_AZALEA_LEAVES.asItem());
+		plantItem(KoratioItems.CHERRY_LEAF_PANE.get(), Blocks.CHERRY_LEAVES.asItem());
+
+		tallDoorItem(KoratioItems.TALL_OAK_DOOR.getId(), BuiltInRegistries.ITEM.getKey(Items.OAK_DOOR));
+		tallDoorItem(KoratioItems.TALL_SPRUCE_DOOR.getId(), BuiltInRegistries.ITEM.getKey(Items.SPRUCE_DOOR));
+		tallDoorItem(KoratioItems.TALL_BIRCH_DOOR.getId(), BuiltInRegistries.ITEM.getKey(Items.BIRCH_DOOR));
+		tallDoorItem(KoratioItems.TALL_JUNGLE_DOOR.getId(), BuiltInRegistries.ITEM.getKey(Items.JUNGLE_DOOR));
+		tallDoorItem(KoratioItems.TALL_ACACIA_DOOR.getId(), BuiltInRegistries.ITEM.getKey(Items.ACACIA_DOOR));
+		tallDoorItem(KoratioItems.TALL_DARK_OAK_DOOR.getId(), BuiltInRegistries.ITEM.getKey(Items.DARK_OAK_DOOR));
+		tallDoorItem(KoratioItems.TALL_MANGROVE_DOOR.getId(), BuiltInRegistries.ITEM.getKey(Items.MANGROVE_DOOR));
+		tallDoorItem(KoratioItems.TALL_CHERRY_DOOR.getId(), BuiltInRegistries.ITEM.getKey(Items.CHERRY_DOOR));
+		tallDoorItem(KoratioItems.TALL_BAMBOO_DOOR.getId(), BuiltInRegistries.ITEM.getKey(Items.BAMBOO_DOOR));
+		tallDoorItem(KoratioItems.TALL_CRIMSON_DOOR.getId(), BuiltInRegistries.ITEM.getKey(Items.CRIMSON_DOOR));
+		tallDoorItem(KoratioItems.TALL_WARPED_DOOR.getId(), BuiltInRegistries.ITEM.getKey(Items.WARPED_DOOR));
+		tallDoorItem(KoratioItems.TALL_IRON_DOOR.getId(), BuiltInRegistries.ITEM.getKey(Items.IRON_DOOR));
+		tallDoorItem(KoratioItems.TALL_COPPER_DOOR.getId(), BuiltInRegistries.ITEM.getKey(Items.COPPER_DOOR));
+		tallDoorItem(KoratioItems.TALL_EXPOSED_COPPER_DOOR.getId(), BuiltInRegistries.ITEM.getKey(Items.EXPOSED_COPPER_DOOR));
+		tallDoorItem(KoratioItems.TALL_OXIDIZED_COPPER_DOOR.getId(), BuiltInRegistries.ITEM.getKey(Items.OXIDIZED_COPPER_DOOR));
+		tallDoorItem(KoratioItems.TALL_WEATHERED_COPPER_DOOR.getId(), BuiltInRegistries.ITEM.getKey(Items.WEATHERED_COPPER_DOOR));
+		tallDoorItem(KoratioItems.TALL_WAXED_COPPER_DOOR.getId(), BuiltInRegistries.ITEM.getKey(Items.COPPER_DOOR));
+		tallDoorItem(KoratioItems.TALL_WAXED_EXPOSED_COPPER_DOOR.getId(), BuiltInRegistries.ITEM.getKey(Items.EXPOSED_COPPER_DOOR));
+		tallDoorItem(KoratioItems.TALL_WAXED_OXIDIZED_COPPER_DOOR.getId(), BuiltInRegistries.ITEM.getKey(Items.OXIDIZED_COPPER_DOOR));
+		tallDoorItem(KoratioItems.TALL_WAXED_WEATHERED_COPPER_DOOR.getId(), BuiltInRegistries.ITEM.getKey(Items.WEATHERED_COPPER_DOOR));
+
+		blockModel(KoratioBlocks.FLIPPED_FARMLAND.get());
 
 		blockModel(KoratioBlocks.PANGO_PLANKS.get());
 		blockModel(KoratioBlocks.PANGO_LOG.get());
@@ -218,6 +268,7 @@ public class ItemModelGenerator extends ItemModelProvider {
 		blockModel(KoratioBlocks.PANGO_WOOD.get());
 		blockModel(KoratioBlocks.STRIPPED_PANGO_WOOD.get());
 		blockModel(KoratioBlocks.PANGO_LEAVES.get());
+		plantItem(KoratioItems.PANGO_LEAF_PANE.get(), KoratioBlocks.PANGO_LEAVES.get().asItem());
 		blockModel(KoratioBlocks.PANGO_SLAB.get());
 		blockModel(KoratioBlocks.PANGO_STAIRS.get());
 		plantItem(KoratioItems.PANGO_SAPLING.get());
@@ -227,9 +278,12 @@ public class ItemModelGenerator extends ItemModelProvider {
 		withExistingParent(KoratioBlocks.PANGO_BUTTON.getId().getPath(), "block/button_inventory").texture("texture", Koratio.prefix("block/pango_planks"));
 		blockModel(KoratioBlocks.PANGO_PRESSURE_PLATE.get());
 		doorItem(KoratioItems.PANGO_DOOR.get());
+		tallDoorItem(KoratioItems.TALL_PANGO_DOOR.getId(), KoratioItems.PANGO_DOOR.getId());
 		blockModel(KoratioBlocks.PANGO_TRAPDOOR.get(), "pango_trapdoor_bottom");
 		blockModel(KoratioBlocks.PANGO_FENCE_GATE.get());
-		withExistingParent(KoratioBlocks.PANGO_CHEST.getId().toString(), "item/chest").texture("particle", Koratio.prefix("block/pango_planks"));
+		blockModel(KoratioBlocks.PANGO_BOOKSHELF.get());
+		withExistingParent(KoratioBlocks.PANGO_CHEST.getId().toString(), "item/chest");
+		withExistingParent(KoratioBlocks.TRAPPED_PANGO_CHEST.getId().toString(), "item/chest");
 		
 		basicItem(KoratioItems.PANGO_BOAT.get());
 		basicItem(KoratioItems.PANGO_CHEST_BOAT.get());
@@ -240,6 +294,7 @@ public class ItemModelGenerator extends ItemModelProvider {
 		blockModel(KoratioBlocks.RUGONA_WOOD.get());
 		blockModel(KoratioBlocks.STRIPPED_RUGONA_WOOD.get());
 		blockModel(KoratioBlocks.RUGONA_LEAVES.get());
+		plantItem(KoratioItems.RUGONA_LEAF_PANE.get(), KoratioBlocks.RUGONA_LEAVES.get().asItem());
 		blockModel(KoratioBlocks.RUGONA_SLAB.get());
 		blockModel(KoratioBlocks.RUGONA_STAIRS.get());
 		plantItem(KoratioItems.RUGONA_SAPLING.get());
@@ -249,9 +304,12 @@ public class ItemModelGenerator extends ItemModelProvider {
 		withExistingParent(KoratioBlocks.RUGONA_BUTTON.getId().getPath(), "block/button_inventory").texture("texture", Koratio.prefix("block/rugona_planks"));
 		blockModel(KoratioBlocks.RUGONA_PRESSURE_PLATE.get());
 		doorItem(KoratioItems.RUGONA_DOOR.get());
+		tallDoorItem(KoratioItems.TALL_RUGONA_DOOR.getId(), KoratioItems.RUGONA_DOOR.getId());
 		blockModel(KoratioBlocks.RUGONA_TRAPDOOR.get(), "rugona_trapdoor_bottom");
 		blockModel(KoratioBlocks.RUGONA_FENCE_GATE.get());
-		withExistingParent(KoratioBlocks.RUGONA_CHEST.getId().toString(), "item/chest").texture("particle", Koratio.prefix("block/rugona_planks"));
+		blockModel(KoratioBlocks.RUGONA_BOOKSHELF.get());
+		withExistingParent(KoratioBlocks.RUGONA_CHEST.getId().toString(), "item/chest");
+		withExistingParent(KoratioBlocks.TRAPPED_RUGONA_CHEST.getId().toString(), "item/chest");
 		
 		basicItem(KoratioItems.RUGONA_BOAT.get());
 		basicItem(KoratioItems.RUGONA_CHEST_BOAT.get());
@@ -262,6 +320,7 @@ public class ItemModelGenerator extends ItemModelProvider {
 		blockModel(KoratioBlocks.VARESO_WOOD.get());
 		blockModel(KoratioBlocks.STRIPPED_VARESO_WOOD.get());
 		blockModel(KoratioBlocks.VARESO_LEAVES.get());
+		plantItem(KoratioItems.VARESO_LEAF_PANE.get(), KoratioBlocks.VARESO_LEAVES.get().asItem());
 		blockModel(KoratioBlocks.VARESO_SLAB.get());
 		blockModel(KoratioBlocks.VARESO_STAIRS.get());
 		plantItem(KoratioItems.VARESO_SAPLING.get());
@@ -271,34 +330,124 @@ public class ItemModelGenerator extends ItemModelProvider {
 		withExistingParent(KoratioBlocks.VARESO_BUTTON.getId().getPath(), "block/button_inventory").texture("texture", Koratio.prefix("block/vareso_planks"));
 		blockModel(KoratioBlocks.VARESO_PRESSURE_PLATE.get());
 		doorItem(KoratioItems.VARESO_DOOR.get());
+		tallDoorItem(KoratioItems.TALL_VARESO_DOOR.getId(), KoratioItems.VARESO_DOOR.getId());
 		blockModel(KoratioBlocks.VARESO_TRAPDOOR.get(), "vareso_trapdoor_bottom");
 		blockModel(KoratioBlocks.VARESO_FENCE_GATE.get());
-		withExistingParent(KoratioBlocks.VARESO_CHEST.getId().toString(), "item/chest").texture("particle", Koratio.prefix("block/vareso_planks"));
+		blockModel(KoratioBlocks.VARESO_BOOKSHELF.get());
+		withExistingParent(KoratioBlocks.VARESO_CHEST.getId().toString(), "item/chest");
+		withExistingParent(KoratioBlocks.TRAPPED_VARESO_CHEST.getId().toString(), "item/chest");
 		
 		basicItem(KoratioItems.VARESO_BOAT.get());
 		basicItem(KoratioItems.VARESO_CHEST_BOAT.get());
-		
-		blockModel(KoratioBlocks.NIGHY_PLANKS.get());
-		blockModel(KoratioBlocks.NIGHY_LOG.get());
-		blockModel(KoratioBlocks.STRIPPED_NIGHY_LOG.get());
-		blockModel(KoratioBlocks.NIGHY_WOOD.get());
-		blockModel(KoratioBlocks.STRIPPED_NIGHY_WOOD.get());
-		blockModel(KoratioBlocks.NIGHY_LEAVES.get());
-		blockModel(KoratioBlocks.NIGHY_SLAB.get());
-		blockModel(KoratioBlocks.NIGHY_STAIRS.get());
-		plantItem(KoratioItems.NIGHY_SAPLING.get());
-		withExistingParent(KoratioBlocks.NIGHY_FENCE.getId().getPath(), "block/fence_inventory").texture("texture", Koratio.prefix("block/nighy_planks"));
-		signItem(KoratioItems.NIGHY_SIGN.get());
-		signItem(KoratioItems.NIGHY_HANGING_SIGN.get());
-		withExistingParent(KoratioBlocks.NIGHY_BUTTON.getId().getPath(), "block/button_inventory").texture("texture", Koratio.prefix("block/nighy_planks"));
-		blockModel(KoratioBlocks.NIGHY_PRESSURE_PLATE.get());
-		doorItem(KoratioItems.NIGHY_DOOR.get());
-		blockModel(KoratioBlocks.NIGHY_TRAPDOOR.get(), "nighy_trapdoor_bottom");
-		blockModel(KoratioBlocks.NIGHY_FENCE_GATE.get());
-		withExistingParent(KoratioBlocks.NIGHY_CHEST.getId().toString(), "item/chest").texture("particle", Koratio.prefix("block/nighy_planks"));
-		
-		basicItem(KoratioItems.NIGHY_BOAT.get());
-		basicItem(KoratioItems.NIGHY_CHEST_BOAT.get());
+
+		blockModel(KoratioBlocks.CANDY_PLANKS.get());
+		blockModel(KoratioBlocks.CANDY_LOG.get());
+		blockModel(KoratioBlocks.STRIPPED_CANDY_LOG.get());
+		blockModel(KoratioBlocks.CANDY_WOOD.get());
+		blockModel(KoratioBlocks.STRIPPED_CANDY_WOOD.get());
+		blockModel(KoratioBlocks.COTTON_CANDY_LEAVES.get());
+		plantItem(KoratioItems.COTTON_CANDY_LEAF_PANE.get(), KoratioBlocks.COTTON_CANDY_LEAVES.get().asItem());
+		blockModel(KoratioBlocks.CANDY_SLAB.get());
+		blockModel(KoratioBlocks.CANDY_STAIRS.get());
+		plantItem(KoratioItems.CANDY_SAPLING.get());
+		withExistingParent(KoratioBlocks.CANDY_FENCE.getId().getPath(), "block/fence_inventory").texture("texture", Koratio.prefix("block/candy_planks"));
+		signItem(KoratioItems.CANDY_SIGN.get());
+		signItem(KoratioItems.CANDY_HANGING_SIGN.get());
+		withExistingParent(KoratioBlocks.CANDY_BUTTON.getId().getPath(), "block/button_inventory").texture("texture", Koratio.prefix("block/candy_planks"));
+		blockModel(KoratioBlocks.CANDY_PRESSURE_PLATE.get());
+		doorItem(KoratioItems.CANDY_DOOR.get());
+		//tallDoorItem(KoratioItems.TALL_CANDY_DOOR.getId(), KoratioItems.CANDY_DOOR.getId());
+		blockModel(KoratioBlocks.CANDY_TRAPDOOR.get(), "candy_trapdoor_bottom");
+		blockModel(KoratioBlocks.CANDY_FENCE_GATE.get());
+		blockModel(KoratioBlocks.CANDY_BOOKSHELF.get());
+		withExistingParent(KoratioBlocks.CANDY_CHEST.getId().toString(), "item/chest");
+		withExistingParent(KoratioBlocks.TRAPPED_CANDY_CHEST.getId().toString(), "item/chest");
+
+		basicItem(KoratioItems.CANDY_BOAT.get());
+		basicItem(KoratioItems.CANDY_CHEST_BOAT.get());
+
+		blockModel(KoratioBlocks.ELVEN_PLANKS.get());
+		blockModel(KoratioBlocks.BLUE_ELVEN_PLANKS.get());
+		blockModel(KoratioBlocks.CYAN_ELVEN_PLANKS.get());
+		blockModel(KoratioBlocks.GREEN_ELVEN_PLANKS.get());
+		blockModel(KoratioBlocks.ELVEN_LOG.get());
+		blockModel(KoratioBlocks.STRIPPED_ELVEN_LOG.get());
+		blockModel(KoratioBlocks.STRIPPED_BLUE_ELVEN_LOG.get());
+		blockModel(KoratioBlocks.STRIPPED_CYAN_ELVEN_LOG.get());
+		blockModel(KoratioBlocks.STRIPPED_GREEN_ELVEN_LOG.get());
+		blockModel(KoratioBlocks.ELVEN_WOOD.get());
+		blockModel(KoratioBlocks.STRIPPED_ELVEN_WOOD.get());
+		blockModel(KoratioBlocks.STRIPPED_BLUE_ELVEN_WOOD.get());
+		blockModel(KoratioBlocks.STRIPPED_CYAN_ELVEN_WOOD.get());
+		blockModel(KoratioBlocks.STRIPPED_GREEN_ELVEN_WOOD.get());
+		blockModel(KoratioBlocks.ELVEN_LEAVES.get());
+		plantItem(KoratioItems.ELVEN_LEAF_PANE.get(), KoratioBlocks.ELVEN_LEAVES.get().asItem());
+		blockModel(KoratioBlocks.ELVEN_SLAB.get());
+		blockModel(KoratioBlocks.BLUE_ELVEN_SLAB.get());
+		blockModel(KoratioBlocks.CYAN_ELVEN_SLAB.get());
+		blockModel(KoratioBlocks.GREEN_ELVEN_SLAB.get());
+		blockModel(KoratioBlocks.ELVEN_STAIRS.get());
+		blockModel(KoratioBlocks.BLUE_ELVEN_STAIRS.get());
+		blockModel(KoratioBlocks.CYAN_ELVEN_STAIRS.get());
+		blockModel(KoratioBlocks.GREEN_ELVEN_STAIRS.get());
+		plantItem(KoratioItems.ELVEN_SAPLING.get());
+		withExistingParent(KoratioBlocks.ELVEN_FENCE.getId().getPath(), "block/fence_inventory").texture("texture", Koratio.prefix("block/elven_planks"));
+		withExistingParent(KoratioBlocks.BLUE_ELVEN_FENCE.getId().getPath(), "block/fence_inventory").texture("texture", Koratio.prefix("block/blue_elven_planks"));
+		withExistingParent(KoratioBlocks.CYAN_ELVEN_FENCE.getId().getPath(), "block/fence_inventory").texture("texture", Koratio.prefix("block/cyan_elven_planks"));
+		withExistingParent(KoratioBlocks.GREEN_ELVEN_FENCE.getId().getPath(), "block/fence_inventory").texture("texture", Koratio.prefix("block/green_elven_planks"));
+		signItem(KoratioItems.ELVEN_SIGN.get());
+		signItem(KoratioItems.BLUE_ELVEN_SIGN.get());
+		signItem(KoratioItems.CYAN_ELVEN_SIGN.get());
+		signItem(KoratioItems.GREEN_ELVEN_SIGN.get());
+		signItem(KoratioItems.ELVEN_HANGING_SIGN.get());
+		signItem(KoratioItems.BLUE_ELVEN_HANGING_SIGN.get());
+		signItem(KoratioItems.CYAN_ELVEN_HANGING_SIGN.get());
+		signItem(KoratioItems.GREEN_ELVEN_HANGING_SIGN.get());
+		withExistingParent(KoratioBlocks.ELVEN_BUTTON.getId().getPath(), "block/button_inventory").texture("texture", Koratio.prefix("block/elven_planks"));
+		withExistingParent(KoratioBlocks.BLUE_ELVEN_BUTTON.getId().getPath(), "block/button_inventory").texture("texture", Koratio.prefix("block/blue_elven_planks"));
+		withExistingParent(KoratioBlocks.CYAN_ELVEN_BUTTON.getId().getPath(), "block/button_inventory").texture("texture", Koratio.prefix("block/cyan_elven_planks"));
+		withExistingParent(KoratioBlocks.GREEN_ELVEN_BUTTON.getId().getPath(), "block/button_inventory").texture("texture", Koratio.prefix("block/green_elven_planks"));
+		blockModel(KoratioBlocks.ELVEN_PRESSURE_PLATE.get());
+		blockModel(KoratioBlocks.BLUE_ELVEN_PRESSURE_PLATE.get());
+		blockModel(KoratioBlocks.CYAN_ELVEN_PRESSURE_PLATE.get());
+		blockModel(KoratioBlocks.GREEN_ELVEN_PRESSURE_PLATE.get());
+		doorItem(KoratioItems.ELVEN_DOOR.get());
+		tallDoorItem(KoratioItems.TALL_ELVEN_DOOR.getId(), KoratioItems.ELVEN_DOOR.getId());
+		doorItem(KoratioItems.BLUE_ELVEN_DOOR.get());
+		tallDoorItem(KoratioItems.TALL_BLUE_ELVEN_DOOR.getId(), KoratioItems.BLUE_ELVEN_DOOR.getId());
+		doorItem(KoratioItems.CYAN_ELVEN_DOOR.get());
+		tallDoorItem(KoratioItems.TALL_CYAN_ELVEN_DOOR.getId(), KoratioItems.CYAN_ELVEN_DOOR.getId());
+		doorItem(KoratioItems.GREEN_ELVEN_DOOR.get());
+		tallDoorItem(KoratioItems.TALL_GREEN_ELVEN_DOOR.getId(), KoratioItems.GREEN_ELVEN_DOOR.getId());
+		blockModel(KoratioBlocks.ELVEN_TRAPDOOR.get(), "elven_trapdoor_bottom");
+		blockModel(KoratioBlocks.BLUE_ELVEN_TRAPDOOR.get(), "blue_elven_trapdoor_bottom");
+		blockModel(KoratioBlocks.CYAN_ELVEN_TRAPDOOR.get(), "cyan_elven_trapdoor_bottom");
+		blockModel(KoratioBlocks.GREEN_ELVEN_TRAPDOOR.get(), "green_elven_trapdoor_bottom");
+		blockModel(KoratioBlocks.ELVEN_FENCE_GATE.get());
+		blockModel(KoratioBlocks.BLUE_ELVEN_FENCE_GATE.get());
+		blockModel(KoratioBlocks.CYAN_ELVEN_FENCE_GATE.get());
+		blockModel(KoratioBlocks.GREEN_ELVEN_FENCE_GATE.get());
+		blockModel(KoratioBlocks.ELVEN_BOOKSHELF.get());
+		blockModel(KoratioBlocks.BLUE_ELVEN_BOOKSHELF.get());
+		blockModel(KoratioBlocks.CYAN_ELVEN_BOOKSHELF.get());
+		blockModel(KoratioBlocks.GREEN_ELVEN_BOOKSHELF.get());
+		withExistingParent(KoratioBlocks.ELVEN_CHEST.getId().toString(), "item/chest");
+		withExistingParent(KoratioBlocks.TRAPPED_ELVEN_CHEST.getId().toString(), "item/chest");
+		withExistingParent(KoratioBlocks.BLUE_ELVEN_CHEST.getId().toString(), "item/chest");
+		withExistingParent(KoratioBlocks.TRAPPED_BLUE_ELVEN_CHEST.getId().toString(), "item/chest");
+		withExistingParent(KoratioBlocks.CYAN_ELVEN_CHEST.getId().toString(), "item/chest");
+		withExistingParent(KoratioBlocks.TRAPPED_CYAN_ELVEN_CHEST.getId().toString(), "item/chest");
+		withExistingParent(KoratioBlocks.GREEN_ELVEN_CHEST.getId().toString(), "item/chest");
+		withExistingParent(KoratioBlocks.TRAPPED_GREEN_ELVEN_CHEST.getId().toString(), "item/chest");
+
+		basicItem(KoratioItems.ELVEN_BOAT.get());
+		basicItem(KoratioItems.BLUE_ELVEN_BOAT.get());
+		basicItem(KoratioItems.CYAN_ELVEN_BOAT.get());
+		basicItem(KoratioItems.GREEN_ELVEN_BOAT.get());
+		basicItem(KoratioItems.ELVEN_CHEST_BOAT.get());
+		basicItem(KoratioItems.BLUE_ELVEN_CHEST_BOAT.get());
+		basicItem(KoratioItems.CYAN_ELVEN_CHEST_BOAT.get());
+		basicItem(KoratioItems.GREEN_ELVEN_CHEST_BOAT.get());
 		
 		plantItem(KoratioItems.PURPLE_MUSHROOM.get());
 		plantItem(KoratioItems.GREEN_MUSHROOM.get());
@@ -307,9 +456,10 @@ public class ItemModelGenerator extends ItemModelProvider {
 		
 		withExistingParent(KoratioBlocks.PURPLE_MUSHROOM_BLOCK.getId().getPath(), "koratio:block/purple_mushroom_block_inventory");
 		withExistingParent(KoratioBlocks.GREEN_MUSHROOM_BLOCK.getId().getPath(), "koratio:block/green_mushroom_block_inventory");
-		
-		Collection<Item> eggs = KoratioItems.SPAWN_EGGS.getEntries().stream().map(RegistryObject::get).toList();
-		eggs.forEach(this::spawnEggItem);
+
+		KoratioItems.SPAWN_EGGS.getEntries().forEach((item) -> {
+			spawnEggItem(item.get());
+		});
 	}
 	
 	private ItemModelBuilder buildItem(String name, String parent, int emissivity, ResourceLocation... layers) {
@@ -320,8 +470,14 @@ public class ItemModelGenerator extends ItemModelProvider {
 		if (emissivity > 0) builder = builder.customLoader(ItemLayerModelBuilder::begin).emissive(emissivity, emissivity, 0).renderType("forge_entity_unsorted_translucent", 0).end();
 		return builder;
 	}
+
+	private DynamicFluidContainerModelBuilder<?> bucketItem(DeferredItem<BucketItem> bucket) {
+		return withExistingParent(bucket.getId().getPath(), ResourceLocation.fromNamespaceAndPath(NeoForgeVersion.MOD_ID, "item/bucket"))
+				.customLoader(DynamicFluidContainerModelBuilder::begin)
+				.fluid(bucket.get().content);
+	}
 	
-	private ItemModelBuilder basicTool(RegistryObject<Item> item) {
+	private ItemModelBuilder basicTool(DeferredItem<Item> item) {
 		return toolItem(item.getId().getPath(), Koratio.prefix("item/" + item.getId().getPath()));
 	}
 	
@@ -330,27 +486,31 @@ public class ItemModelGenerator extends ItemModelProvider {
 	}
 	
 	private void doorItem(Item item) {
-		withExistingParent(ForgeRegistries.ITEMS.getKey(item).getPath(), "item/generated").texture("layer0", getItemPathInFolder(item, "item"));
+		withExistingParent(BuiltInRegistries.ITEM.getKey(item).getPath(), "item/generated").texture("layer0", getItemPathInFolder(item, "item"));
 	}
 	
 	private void spawnEggItem(Item item) {
-		withExistingParent(ForgeRegistries.ITEMS.getKey(item).getPath(), "minecraft:item/template_spawn_egg");
+		withExistingParent(BuiltInRegistries.ITEM.getKey(item).getPath(), "minecraft:item/template_spawn_egg");
 	}
 	
 	private void plantItem(Item item) {
-		withExistingParent(ForgeRegistries.ITEMS.getKey(item).getPath(), "item/generated").texture("layer0", getItemPathInFolder(item, "block"));
+		withExistingParent(BuiltInRegistries.ITEM.getKey(item).getPath(), "item/generated").texture("layer0", getItemPathInFolder(item, "block"));
+	}
+
+	private void plantItem(Item item, Item texture) {
+		withExistingParent(BuiltInRegistries.ITEM.getKey(item).getPath(), "item/generated").texture("layer0", getItemPathInFolder(texture, "block"));
 	}
 	
 	private void plantItem(Item item, String name) {
-		withExistingParent(ForgeRegistries.ITEMS.getKey(item).getPath(), "item/generated").texture("layer0", getItemPathInFolder(item, "block", name));
+		withExistingParent(BuiltInRegistries.ITEM.getKey(item).getPath(), "item/generated").texture("layer0", getItemPathInFolder(item, "block", name));
 	}
 	
 	private void signItem(Item item) {
-		withExistingParent(ForgeRegistries.ITEMS.getKey(item).getPath(), "item/generated").texture("layer0", getItemPathInFolder(item, "item"));
+		withExistingParent(BuiltInRegistries.ITEM.getKey(item).getPath(), "item/generated").texture("layer0", getItemPathInFolder(item, "item"));
 	}
 	
 	private void blockModel(Block b) {
-		blockModel(b, ForgeRegistries.BLOCKS.getKey(b).getPath());
+		blockModel(b, BuiltInRegistries.BLOCK.getKey(b).getPath());
 	}
 
 	private void blockModel(Block b, String model) {
@@ -358,18 +518,33 @@ public class ItemModelGenerator extends ItemModelProvider {
 	}
 
 	private void blockModel(Block b, ResourceLocation model) {
-		withExistingParent(ForgeRegistries.BLOCKS.getKey(b).getPath(), model);
+		withExistingParent(BuiltInRegistries.BLOCK.getKey(b).getPath(), model);
 	}
 	
-	public ItemModelBuilder basic2LayerItem(ResourceLocation item) {
-		return getBuilder(item.toString())
+	public void basic2LayerItem(ResourceLocation item) {
+		getBuilder(item.toString())
 				.parent(new ModelFile.UncheckedModelFile("item/generated"))
-				.texture("layer0", new ResourceLocation(item.getNamespace(), "item/"+item.getPath()))
-				.texture("layer1", new ResourceLocation(item.getNamespace(), "item/"+item.getPath()+"_overlay"));
-    }
+				.texture("layer0", ResourceLocation.fromNamespaceAndPath(item.getNamespace(), "item/" + item.getPath()))
+				.texture("layer1", ResourceLocation.fromNamespaceAndPath(item.getNamespace(), "item/" + item.getPath() + "_overlay"));
+	}
+
+	public void tallDoorItem(ResourceLocation item) {
+		tallDoorItem(item, item);
+	}
+
+	public void tallDoorItem(ResourceLocation item, ResourceLocation original) {
+		getBuilder(item.toString())
+				.parent(new ModelFile.UncheckedModelFile("item/generated"))
+				.texture("layer0", ResourceLocation.fromNamespaceAndPath(original.getNamespace(), "item/" + original.getPath()))
+				.texture("layer1", Koratio.prefix("item/" + "tall_door_overlay"));
+	}
 	
 	private ResourceLocation getItemPathInFolder(Item item, String folder, String extra) {
-		return Koratio.prefix(folder+"/"+ForgeRegistries.ITEMS.getKey(item).getPath()+extra);
+		if (BuiltInRegistries.ITEM.getKey(item).getNamespace().equals("minecraft")) {
+			return ResourceLocation.withDefaultNamespace(folder+"/"+BuiltInRegistries.ITEM.getKey(item).getPath()+extra);
+		} else {
+			return Koratio.prefix(folder+"/"+BuiltInRegistries.ITEM.getKey(item).getPath()+extra);
+		}
 	}
 	
 	private ResourceLocation getItemPathInFolder(Item item, String folder) {

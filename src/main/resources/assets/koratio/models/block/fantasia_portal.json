@@ -1,0 +1,27 @@
+{
+	"credit": "Made with Blockbench",
+	"render_type": "translucent",
+	"textures": {
+		"0": "koratio:block/fantasia_portal",
+		"particle": "koratio:block/fantasia_portal"
+	},
+	"elements": [
+		{
+			"from": [9, 0, 0],
+			"to": [11, 16, 11],
+			"faces": {
+				"east": {"uv": [0, 0, 11, 16], "texture": "#0"},
+				"south": {"uv": [14, 0, 16, 16], "texture": "#0"},
+				"west": {"uv": [0, 0, 11, 16], "texture": "#0"}
+			}
+		},
+		{
+			"from": [0, 0, 9],
+			"to": [9, 16, 11],
+			"faces": {
+				"north": {"uv": [9, 0, 16, 16], "texture": "#0"},
+				"south": {"uv": [5, 0, 14, 16], "texture": "#0"}
+			}
+		}
+	]
+}

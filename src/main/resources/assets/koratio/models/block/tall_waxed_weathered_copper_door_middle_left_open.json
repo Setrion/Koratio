@@ -1,0 +1,7 @@
+{
+  "parent": "koratio:block/template/old_door_middle_left_open",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "middle": "koratio:block/tall_weathered_copper_door_middle"
+  }
+}

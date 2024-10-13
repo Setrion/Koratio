@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "group": "tall_wooden_door",
+  "key": {
+    "#": {
+      "item": "minecraft:spruce_door"
+    },
+    "x": {
+      "item": "minecraft:spruce_planks"
+    }
+  },
+  "pattern": [
+    "x",
+    "#",
+    "x"
+  ],
+  "result": {
+    "count": 2,
+    "id": "koratio:tall_spruce_door"
+  }
+}

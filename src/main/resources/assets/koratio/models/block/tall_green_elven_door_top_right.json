@@ -1,0 +1,10 @@
+{
+  "parent": "koratio:block/template/door_top_right",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "front_b": "koratio:block/tall_green_elven_door_bottom",
+    "front_t": "koratio:block/tall_green_elven_door_top",
+    "side": "koratio:block/green_elven_door_sides",
+    "top": "koratio:block/green_elven_door_top_bottom"
+  }
+}

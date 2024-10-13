@@ -10,7 +10,7 @@ import net.setrion.koratio.world.entity.monster.GingerbreadMan;
 
 public class GingerbreadManRenderer extends MobRenderer<GingerbreadMan, GingerbreadManModel<GingerbreadMan>> {
 	
-	private static final ResourceLocation TEXTURE_LOCATION = new ResourceLocation(Koratio.MOD_ID, "textures/entity/gingerbread_man.png");
+	private static final ResourceLocation TEXTURE_LOCATION = ResourceLocation.fromNamespaceAndPath(Koratio.MOD_ID, "textures/entity/gingerbread_man.png");
 
 	public GingerbreadManRenderer(Context context) {
 		super(context, new GingerbreadManModel<>(context.bakeLayer(ModelLayers.GINGERBREAD_MAN)), 0.5f);

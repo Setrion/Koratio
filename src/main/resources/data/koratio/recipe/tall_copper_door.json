@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "key": {
+    "#": {
+      "item": "minecraft:copper_door"
+    },
+    "x": {
+      "item": "minecraft:copper_block"
+    }
+  },
+  "pattern": [
+    "x",
+    "#",
+    "x"
+  ],
+  "result": {
+    "count": 2,
+    "id": "koratio:tall_copper_door"
+  }
+}

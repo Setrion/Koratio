@@ -1,10 +1,8 @@
 package net.setrion.koratio.world.entity.vehicle;
 
-import javax.annotation.Nullable;
-
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -23,13 +21,16 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.gameevent.GameEvent;
+import net.minecraft.world.level.storage.loot.LootTable;
 import net.setrion.koratio.registry.KoratioEntityType;
 import net.setrion.koratio.registry.KoratioItems;
+
+import javax.annotation.Nullable;
 
 public class ChestBoat extends Boat implements HasCustomInventoryScreen, ContainerEntity {
 	private NonNullList<ItemStack> itemStacks = NonNullList.withSize(27, ItemStack.EMPTY);
 	@Nullable
-	private ResourceLocation lootTable;
+	private ResourceKey<LootTable> lootTable;
 	private long lootTableSeed;
 
 	public ChestBoat(EntityType<? extends Boat> type, Level level) {
@@ -44,22 +45,18 @@ public class ChestBoat extends Boat implements HasCustomInventoryScreen, Contain
 		this.zo = z;
 	}
 
-	protected float getSinglePassengerXOffset() {
-		return 0.15F;
-	}
-
-	protected int getMaxPassengers() {
+    protected int getMaxPassengers() {
 		return 1;
 	}
 
 	protected void addAdditionalSaveData(CompoundTag tag) {
 		super.addAdditionalSaveData(tag);
-		this.addChestVehicleSaveData(tag);
+		this.addChestVehicleSaveData(tag, this.registryAccess());
 	}
 
 	protected void readAdditionalSaveData(CompoundTag tag) {
 		super.readAdditionalSaveData(tag);
-		this.readChestVehicleSaveData(tag);
+		this.readChestVehicleSaveData(tag, this.registryAccess());
 	}
 
 	public void destroy(DamageSource source) {
@@ -98,17 +95,15 @@ public class ChestBoat extends Boat implements HasCustomInventoryScreen, Contain
 	}
 
 	public Item getDropItem() {
-		switch (this.getBoatType()) {
-		case NIGHY:
-			return KoratioItems.NIGHY_CHEST_BOAT.get();
-		case VARESO:
-			return KoratioItems.VARESO_CHEST_BOAT.get();
-		case RUGONA:
-			return KoratioItems.RUGONA_CHEST_BOAT.get();
-		case PANGO:
-		default:
-			return KoratioItems.PANGO_CHEST_BOAT.get();
-		}
+        return switch (this.getVariant()) {
+            case VARESO -> KoratioItems.VARESO_CHEST_BOAT.get();
+            case RUGONA -> KoratioItems.RUGONA_CHEST_BOAT.get();
+            case ELVEN -> KoratioItems.ELVEN_CHEST_BOAT.get();
+            case BLUE_ELVEN -> KoratioItems.BLUE_ELVEN_CHEST_BOAT.get();
+            case CYAN_ELVEN -> KoratioItems.CYAN_ELVEN_CHEST_BOAT.get();
+            case GREEN_ELVEN -> KoratioItems.GREEN_ELVEN_CHEST_BOAT.get();
+            default -> KoratioItems.PANGO_CHEST_BOAT.get();
+        };
 	}
 
 	public void clearContent() {
@@ -161,12 +156,12 @@ public class ChestBoat extends Boat implements HasCustomInventoryScreen, Contain
 	}
 
 	@Nullable
-	public ResourceLocation getLootTable() {
+	public ResourceKey<LootTable> getLootTable() {
 		return this.lootTable;
 	}
 
-	public void setLootTable(@Nullable ResourceLocation loot) {
-		this.lootTable = loot;
+	public void setLootTable(@Nullable ResourceKey<LootTable> lootTable) {
+		this.lootTable = lootTable;
 	}
 
 	public long getLootTableSeed() {
@@ -183,27 +178,5 @@ public class ChestBoat extends Boat implements HasCustomInventoryScreen, Contain
 
 	public void clearItemStacks() {
 		this.itemStacks = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
-	}
-
-	// Forge Start
-	private net.minecraftforge.common.util.LazyOptional<?> itemHandler = net.minecraftforge.common.util.LazyOptional.of(() -> new net.minecraftforge.items.wrapper.InvWrapper(this));
-
-	@Override
-	public <T> net.minecraftforge.common.util.LazyOptional<T> getCapability(net.minecraftforge.common.capabilities.Capability<T> capability, @Nullable net.minecraft.core.Direction facing) {
-		if (this.isAlive() && capability == net.minecraftforge.common.capabilities.ForgeCapabilities.ITEM_HANDLER)
-			return itemHandler.cast();
-		return super.getCapability(capability, facing);
-	}
-
-	@Override
-	public void invalidateCaps() {
-		super.invalidateCaps();
-		itemHandler.invalidate();
-	}
-
-	@Override
-	public void reviveCaps() {
-		super.reviveCaps();
-		itemHandler = net.minecraftforge.common.util.LazyOptional.of(() -> new net.minecraftforge.items.wrapper.InvWrapper(this));
 	}
 }

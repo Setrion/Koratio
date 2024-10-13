@@ -1,8 +1,5 @@
 package net.setrion.koratio.data;
 
-import java.util.List;
-import java.util.function.Consumer;
-
 import it.unimi.dsi.fastutil.floats.Float2ObjectAVLTreeMap;
 import it.unimi.dsi.fastutil.floats.Float2ObjectSortedMap;
 import net.minecraft.Util;
@@ -13,24 +10,19 @@ import net.minecraft.world.level.biome.Biome;
 import net.setrion.koratio.registry.KoratioBiomes;
 import net.setrion.koratio.world.level.levelgen.carver.TerrainColumn;
 
+import java.util.List;
+import java.util.function.Consumer;
+
 public final class BiomeGenerator extends BiomeHelper {
 
 	public static List<TerrainColumn> makeFantasiaBiomeList(HolderGetter<Biome> biomeRegistry, Holder<Biome> undergroundBiome, Holder<Biome> skyBiome) {
 		return List.of(
 				biomeColumnWithUndergroundAndSkyBiome(9.025F, 0.05F, biomeRegistry, KoratioBiomes.FANTASIA_FIELDLANDS, undergroundBiome, skyBiome),
-				biomeColumnWithUndergroundAndSkyBiome(9.255F, 0.125F, biomeRegistry, KoratioBiomes.AMETHYST_FIELDS, undergroundBiome, skyBiome),
 				biomeColumnWithUndergroundAndSkyBiome(9.125F, 0.05F, biomeRegistry, KoratioBiomes.GILDED_FOREST, undergroundBiome, skyBiome),
 				biomeColumnWithUnderground(9.1F, 0.2F, biomeRegistry, KoratioBiomes.MUSHROOM_FOREST, undergroundBiome),
+				biomeColumnWithUnderground(9F, 0.0125F, biomeRegistry, KoratioBiomes.ELVEN_FOREST, undergroundBiome),
 				biomeColumnWithUndergroundAndSkyBiome(9.1F, 0.2F, biomeRegistry, KoratioBiomes.CANDY_CANE_VALLEY, undergroundBiome, skyBiome),
 				biomeColumnWithUndergroundAndSkyBiome(7.35F, 0.35F, biomeRegistry, KoratioBiomes.RIVER, undergroundBiome, skyBiome)
-		);
-	}
-	
-	public static List<TerrainColumn> makeDemonicioBiomeList(HolderGetter<Biome> biomeRegistry, Holder<Biome> undergroundBiome, Holder<Biome> skyBiome) {
-		return List.of(
-				biomeColumnWithUnderground(9.025F, 0.05F, biomeRegistry, KoratioBiomes.SKULL_DESERT, undergroundBiome),
-				biomeColumnWithUnderground(9.05F, 0.125F, biomeRegistry, KoratioBiomes.NIGHTMARE_FOREST, undergroundBiome),
-				biomeColumnWithUnderground(7.35F, 0.35F, biomeRegistry, KoratioBiomes.BLOOD_RIVER, undergroundBiome)
 		);
 	}
 

@@ -1,0 +1,10 @@
+{
+  "parent": "koratio:block/template/door_middle_left",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "front_m": "koratio:block/tall_vareso_door_middle",
+    "front_t": "koratio:block/tall_vareso_door_top",
+    "side": "koratio:block/vareso_door_sides",
+    "top": "koratio:block/vareso_door_top_bottom"
+  }
+}

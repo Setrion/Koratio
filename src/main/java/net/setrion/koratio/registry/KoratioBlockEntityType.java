@@ -1,29 +1,27 @@
 package net.setrion.koratio.registry;
 
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.level.block.entity.BlockEntityType;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.RegistryObject;
+import net.neoforged.neoforge.registries.DeferredHolder;
+import net.neoforged.neoforge.registries.DeferredRegister;
 import net.setrion.koratio.Koratio;
-import net.setrion.koratio.world.level.block.entity.CampfireBlockEntity;
-import net.setrion.koratio.world.level.block.entity.ChestBlockEntity;
-import net.setrion.koratio.world.level.block.entity.HangingSignBlockEntity;
-import net.setrion.koratio.world.level.block.entity.SignBlockEntity;
+import net.setrion.koratio.world.level.block.entity.*;
 
 public class KoratioBlockEntityType {
 
-	public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITY_TYPES = DeferredRegister.create(ForgeRegistries.BLOCK_ENTITY_TYPES, Koratio.MOD_ID);
-	
-	public static final RegistryObject<BlockEntityType<SignBlockEntity>> SIGN = BLOCK_ENTITY_TYPES.register("sign", () -> BlockEntityType.Builder.of(SignBlockEntity::new, 
-			KoratioBlocks.PANGO_SIGN.get(), KoratioBlocks.PANGO_WALL_SIGN.get(), KoratioBlocks.RUGONA_SIGN.get(), KoratioBlocks.RUGONA_WALL_SIGN.get(), KoratioBlocks.VARESO_SIGN.get(), KoratioBlocks.VARESO_WALL_SIGN.get(), KoratioBlocks.NIGHY_SIGN.get(), KoratioBlocks.NIGHY_WALL_SIGN.get()).build(null));
-	
-	public static final RegistryObject<BlockEntityType<HangingSignBlockEntity>> HANGING_SIGN = BLOCK_ENTITY_TYPES.register("hanging_sign", () -> BlockEntityType.Builder.of(HangingSignBlockEntity::new, 
-			KoratioBlocks.PANGO_HANGING_SIGN.get(), KoratioBlocks.PANGO_WALL_HANGING_SIGN.get(), KoratioBlocks.RUGONA_HANGING_SIGN.get(), KoratioBlocks.RUGONA_WALL_HANGING_SIGN.get(), KoratioBlocks.VARESO_HANGING_SIGN.get(), KoratioBlocks.VARESO_WALL_HANGING_SIGN.get(), KoratioBlocks.NIGHY_HANGING_SIGN.get(), KoratioBlocks.NIGHY_WALL_HANGING_SIGN.get()).build(null));
-	
-	public static final RegistryObject<BlockEntityType<ChestBlockEntity>> CHEST = BLOCK_ENTITY_TYPES.register("chest", () -> BlockEntityType.Builder.of(ChestBlockEntity::new,
-			KoratioBlocks.PANGO_CHEST.get(), KoratioBlocks.RUGONA_CHEST.get(), KoratioBlocks.VARESO_CHEST.get(), KoratioBlocks.NIGHY_CHEST.get()).build(null));
-	
-	public static final RegistryObject<BlockEntityType<CampfireBlockEntity>> CAMPFIRE = BLOCK_ENTITY_TYPES.register("campfire", () -> BlockEntityType.Builder.of(CampfireBlockEntity::new,
-			KoratioBlocks.AMETHYST_CAMPFIRE.get(), KoratioBlocks.EMERALD_CAMPFIRE.get()).build(null));
+	public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITY_TYPES = DeferredRegister.create(BuiltInRegistries.BLOCK_ENTITY_TYPE, Koratio.MOD_ID);
 
+	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<CampfireBlockEntity>> CAMPFIRE = BLOCK_ENTITY_TYPES.register("campfire", () -> BlockEntityType.Builder.of(CampfireBlockEntity::new,
+			KoratioBlocks.RAINBOW_CAMPFIRE.get()).build(null));
+
+	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<CandyShaperBlockEntity>> CANDY_SHAPER = BLOCK_ENTITY_TYPES.register("candy_shaper", () -> BlockEntityType.Builder.of(CandyShaperBlockEntity::new,
+			KoratioBlocks.CANDY_SHAPER.get()).build(null));
+
+	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<ChestBlockEntity>> CHEST = BLOCK_ENTITY_TYPES.register("chest", () -> BlockEntityType.Builder.of(ChestBlockEntity::new,
+			KoratioBlocks.PANGO_CHEST.get(), KoratioBlocks.RUGONA_CHEST.get(), KoratioBlocks.VARESO_CHEST.get(), KoratioBlocks.CANDY_CHEST.get(), KoratioBlocks.ELVEN_CHEST.get(), KoratioBlocks.BLUE_ELVEN_CHEST.get(), KoratioBlocks.CYAN_ELVEN_CHEST.get(), KoratioBlocks.GREEN_ELVEN_CHEST.get()).build(null));
+
+	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<TrappedChestBlockEntity>> TRAPPED_CHEST = BLOCK_ENTITY_TYPES.register("trapped_chest", () -> BlockEntityType.Builder.of(TrappedChestBlockEntity::new,
+			KoratioBlocks.TRAPPED_PANGO_CHEST.get(), KoratioBlocks.TRAPPED_RUGONA_CHEST.get(), KoratioBlocks.TRAPPED_VARESO_CHEST.get(), KoratioBlocks.TRAPPED_CANDY_CHEST.get(), KoratioBlocks.TRAPPED_ELVEN_CHEST.get(), KoratioBlocks.TRAPPED_BLUE_ELVEN_CHEST.get(), KoratioBlocks.TRAPPED_CYAN_ELVEN_CHEST.get(), KoratioBlocks.TRAPPED_GREEN_ELVEN_CHEST.get()).build(null));
+
+	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<GingerbreadBlockEntity>> GINGERBREAD_BLOCK = BLOCK_ENTITY_TYPES.register("gingerbread_block", () -> BlockEntityType.Builder.of(GingerbreadBlockEntity::new, KoratioBlocks.RAW_GINGERBREAD_BLOCK.get(), KoratioBlocks.GINGERBREAD_BLOCK.get()).build(null));
 }

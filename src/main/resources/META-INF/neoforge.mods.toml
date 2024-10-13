@@ -1,0 +1,35 @@
+modLoader="javafml" #mandatory
+# A version range to match for said mod loader - for regular FML @Mod it will be the the FML version. This is currently 47.
+loaderVersion="[4,)" #mandatory
+# The license for you mod. This is mandatory metadata and allows for easier comprehension of your redistributive properties.
+# Review your options at https://choosealicense.com/. All rights reserved is the default copyright stance, and is thus the default here.
+license="All rights reserved"
+# A URL to refer people to when problems occur with this mod
+issueTrackerURL="https://www.curseforge.com/minecraft/mc-mods/koratio/issues" #optional
+# A list of mods - how many allowed here is determined by the individual mod loader
+[[mods]] #mandatory
+modId="koratio" #mandatory
+version="1.21.0-0.0.1-alpha" #mandatory
+displayName="Koratio" #mandatory
+#updateJSONURL="https://change.me.example.invalid/updates.json" #optional
+#displayURL="https://change.me.to.your.mods.homepage.example.invalid/" #optional
+#logoFile="examplemod.png" #optional
+#credits="" #optional
+authors="Setrion" #optional
+description='''This mod adds a new Dimension, called Fantasia.'''
+[[dependencies.koratio]] #optional
+modId="neoforge" #mandatory
+type="required" #mandatory
+versionRange="[21.0.0-beta,)" #mandatory
+ordering="NONE"
+side="BOTH"
+[[dependencies.koratio]]
+modId="minecraft"
+type="required"
+# This version range declares a minimum of the current minecraft version up to but not including the next major version
+versionRange="[1.21,1.21.1)"
+ordering="NONE"
+side="BOTH"
+
+[[accessTransformers]]
+file="META-INF/accesstransformer.cfg"

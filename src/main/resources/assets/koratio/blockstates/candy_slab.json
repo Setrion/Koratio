@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "koratio:block/candy_slab"
+    },
+    "type=double": {
+      "model": "koratio:block/candy_planks"
+    },
+    "type=top": {
+      "model": "koratio:block/candy_slab_top"
+    }
+  }
+}

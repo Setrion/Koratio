@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "wooden_hanging_sign",
+  "key": {
+    "#": {
+      "item": "minecraft:chain"
+    },
+    "x": {
+      "item": "koratio:stripped_pango_log"
+    }
+  },
+  "pattern": [
+    "# #",
+    "xxx",
+    "xxx"
+  ],
+  "result": {
+    "count": 6,
+    "id": "koratio:pango_hanging_sign"
+  }
+}

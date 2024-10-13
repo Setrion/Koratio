@@ -16,6 +16,6 @@ public class CrystallizeRenderer extends MobRenderer<Crystallize, CrystallizeMod
 
 	@Override
 	public ResourceLocation getTextureLocation(Crystallize jumstem) {
-		return new ResourceLocation(Koratio.MOD_ID, "textures/entity/crystallize.png");
+		return ResourceLocation.fromNamespaceAndPath(Koratio.MOD_ID, "textures/entity/crystallize.png");
 	}
 }

@@ -1,0 +1,10 @@
+{
+  "type": "koratio:woodcutter",
+  "ingredient": {
+    "item": "koratio:stripped_rugona_log"
+  },
+  "result": {
+    "count": 12,
+    "id": "koratio:rugona_slab"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "wooden_sign",
+  "key": {
+    "#": {
+      "item": "minecraft:stick"
+    },
+    "x": {
+      "item": "koratio:green_elven_planks"
+    }
+  },
+  "pattern": [
+    "xxx",
+    "xxx",
+    " # "
+  ],
+  "result": {
+    "count": 3,
+    "id": "koratio:green_elven_sign"
+  }
+}

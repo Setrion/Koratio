@@ -1,0 +1,10 @@
+{
+  "type": "koratio:woodcutter",
+  "ingredient": {
+    "item": "koratio:rugona_planks"
+  },
+  "result": {
+    "count": 1,
+    "id": "koratio:rugona_stairs"
+  }
+}

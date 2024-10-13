@@ -1,0 +1,4 @@
+{
+  "type": "minecraft:entity",
+  "random_sequence": "koratio:entities/demonic_skeleton"
+}

@@ -4,7 +4,7 @@ import net.minecraft.core.HolderGetter;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.level.biome.Biome;
-import net.minecraftforge.server.ServerLifecycleHooks;
+import net.neoforged.neoforge.server.ServerLifecycleHooks;
 import net.setrion.koratio.registry.KoratioBiomes;
 import net.setrion.koratio.world.level.biome.FantasiaBiomeProvider;
 import net.setrion.koratio.world.level.levelgen.vanilla.context.Context;
@@ -36,7 +36,7 @@ public enum GenLayerFantasiaRiver implements CastleTransformer {
 	
 	boolean shouldStream(int biome1, int biome2) {
 		Registry<Biome> registry = ServerLifecycleHooks.getCurrentServer().registryAccess().registryOrThrow(Registries.BIOME);
-		float difference = registry.getHolder(biome1).get().get().getBaseTemperature() - registry.getHolder(biome2).get().get().getBaseTemperature();
+		float difference = registry.getHolder(biome1).get().value().getBaseTemperature() - registry.getHolder(biome2).get().value().getBaseTemperature();
 
 		if (difference < -0.1 || difference > 0.1) {
 			return true;

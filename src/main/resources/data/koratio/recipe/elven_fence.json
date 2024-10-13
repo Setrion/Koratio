@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "wooden_fence",
+  "key": {
+    "#": {
+      "item": "minecraft:stick"
+    },
+    "x": {
+      "item": "koratio:elven_planks"
+    }
+  },
+  "pattern": [
+    "x#x",
+    "x#x"
+  ],
+  "result": {
+    "count": 3,
+    "id": "koratio:elven_fence"
+  }
+}

@@ -1,11 +1,12 @@
 package net.setrion.koratio.world.level.levelgen.feature.treedecorators;
 
 import com.mojang.serialization.Codec;
-
+import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.block.VineBlock;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraft.world.level.levelgen.feature.treedecorators.LeaveVineDecorator;
 import net.minecraft.world.level.levelgen.feature.treedecorators.TreeDecorator;
 import net.minecraft.world.level.levelgen.feature.treedecorators.TreeDecoratorType;
 import net.setrion.koratio.registry.KoratioBlocks;
@@ -13,9 +14,9 @@ import net.setrion.koratio.registry.KoratioTreeDecoratorTypes;
 
 public class LeaveGildedVineDecorator extends TreeDecorator {
 
-	public static final Codec<LeaveGildedVineDecorator> CODEC = Codec.floatRange(0.0F, 1.0F).fieldOf("probability").xmap(LeaveGildedVineDecorator::new, (decorator) -> {
-		return decorator.probability;
-	}).codec();
+	public static final MapCodec<LeaveGildedVineDecorator> CODEC = Codec.floatRange(0.0F, 1.0F)
+			.fieldOf("probability")
+			.xmap(LeaveGildedVineDecorator::new, vine -> vine.probability);
 	private final float probability;
 
 	protected TreeDecoratorType<?> type() {

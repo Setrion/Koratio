@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_fluffer": {
+      "conditions": {
+        "items": [
+          {
+            "items": "koratio:fluffer"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "koratio:cooked_fluffer"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_fluffer"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "koratio:cooked_fluffer"
+    ]
+  }
+}

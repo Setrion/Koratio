@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/door_top_left",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "bottom": "koratio:block/tall_jungle_door_bottom",
+    "top": "koratio:block/tall_jungle_door_top"
+  }
+}

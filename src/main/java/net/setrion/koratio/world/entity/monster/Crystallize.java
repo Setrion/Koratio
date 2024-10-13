@@ -5,7 +5,6 @@ import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
@@ -16,29 +15,21 @@ import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
-import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.pathfinder.BlockPathTypes;
+import net.minecraft.world.level.pathfinder.PathType;
 import net.setrion.koratio.registry.KoratioSoundEvents;
 
 public class Crystallize extends Monster {
 
-	ItemStack boots = new ItemStack(Items.LEATHER_BOOTS);
-
 	public Crystallize(EntityType<? extends Crystallize> type, Level level) {
 		super(type, level);
-		this.setPathfindingMalus(BlockPathTypes.WATER, -1.0F);
-		this.setPathfindingMalus(BlockPathTypes.LAVA, -1.0F);
-		this.setPathfindingMalus(BlockPathTypes.DANGER_FIRE, -1.0F);
-		this.setPathfindingMalus(BlockPathTypes.DAMAGE_FIRE, -1.0F);
-		this.setPathfindingMalus(BlockPathTypes.POWDER_SNOW, 0.0F);
-		this.setPathfindingMalus(BlockPathTypes.DANGER_POWDER_SNOW, 0.0F);
-		boots.enchant(Enchantments.FROST_WALKER, 1);
-		this.equipItemIfPossible(boots);
-		this.setDropChance(EquipmentSlot.FEET, 0.0F);
+		this.setPathfindingMalus(PathType.WATER, -1.0F);
+		this.setPathfindingMalus(PathType.LAVA, -1.0F);
+		this.setPathfindingMalus(PathType.DANGER_FIRE, -1.0F);
+		this.setPathfindingMalus(PathType.DAMAGE_FIRE, -1.0F);
+		this.setPathfindingMalus(PathType.POWDER_SNOW, 0.0F);
+		this.setPathfindingMalus(PathType.DANGER_POWDER_SNOW, 0.0F);
 		this.xpReward = 10;
 	}
 	

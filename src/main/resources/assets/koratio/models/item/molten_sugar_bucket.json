@@ -1,0 +1,5 @@
+{
+  "parent": "neoforge:item/bucket",
+  "fluid": "koratio:molten_sugar",
+  "loader": "neoforge:fluid_container"
+}

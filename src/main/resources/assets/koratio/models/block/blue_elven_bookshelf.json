@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "koratio:block/blue_elven_planks",
+    "side": "koratio:block/blue_elven_bookshelf"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "leaf_pane",
+  "key": {
+    "x": {
+      "item": "minecraft:oak_leaves"
+    }
+  },
+  "pattern": [
+    "xxx",
+    "xxx"
+  ],
+  "result": {
+    "count": 16,
+    "id": "koratio:oak_leaf_pane"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "type": "koratio:woodcutter",
+  "ingredient": {
+    "item": "koratio:pango_wood"
+  },
+  "result": {
+    "count": 12,
+    "id": "koratio:pango_slab"
+  }
+}

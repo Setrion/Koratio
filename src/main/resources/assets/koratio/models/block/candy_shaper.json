@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "down": "koratio:block/candy_planks",
+    "east": "koratio:block/candy_shaper_back",
+    "north": "koratio:block/candy_shaper_front",
+    "particle": "koratio:block/candy_shaper_front",
+    "south": "koratio:block/candy_shaper_side",
+    "up": "koratio:block/candy_shaper_top",
+    "west": "koratio:block/candy_shaper_side"
+  }
+}

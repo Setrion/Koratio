@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "wooden_sign",
+  "key": {
+    "#": {
+      "item": "minecraft:stick"
+    },
+    "x": {
+      "item": "koratio:vareso_planks"
+    }
+  },
+  "pattern": [
+    "xxx",
+    "xxx",
+    " # "
+  ],
+  "result": {
+    "count": 3,
+    "id": "koratio:vareso_sign"
+  }
+}

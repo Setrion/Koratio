@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "koratio:block/raw_large_gingerbread_brick_slab"
+    },
+    "type=double": {
+      "model": "koratio:block/raw_large_gingerbread_bricks"
+    },
+    "type=top": {
+      "model": "koratio:block/raw_large_gingerbread_brick_slab_top"
+    }
+  }
+}

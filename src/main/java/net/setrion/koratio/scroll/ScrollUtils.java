@@ -1,44 +1,45 @@
 package net.setrion.koratio.scroll;
 
+import net.minecraft.core.component.DataComponentMap;
+import net.minecraft.core.component.DataComponentPatch;
+import net.minecraft.core.component.DataComponentType;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.item.ItemStack;
+import net.setrion.koratio.registry.KoratioDataComponents;
 import net.setrion.koratio.registry.KoratioItems;
 import net.setrion.koratio.registry.KoratioScrolls;
 
 public class ScrollUtils {
 
 	public static boolean hasScrollData(ItemStack stack) {
-		if (stack.getTag() == null) return false;
-		if (stack.getTag().getCompound("Scroll") == null) return false;
-		if (stack.getTag().getCompound("Scroll").get("Name") == null) return false;
-		return true;
-	}
+        return stack.getComponents().has(KoratioDataComponents.SCROLL_DATA.get());
+    }
 	
 	public static Scroll getScroll(ItemStack stack) {
-		CompoundTag tag = stack.getOrCreateTag();
-		if (!hasScrollData(stack)) return null;
+		DataComponentMap map = stack.getComponents();
+		if (!hasScrollData(stack)) return KoratioScrolls.FAILURE;
 		for (Scroll scroll : KoratioScrolls.SCROLLS) {
-			if (tag.getCompound("Scroll").get("Name").getAsString().equals(scroll.getName())) {
+			if (map.get(KoratioDataComponents.SCROLL_DATA.get()).name().equals(scroll.getName())) {
 				return scroll;
 			}
 		}
-		return null;
+		return KoratioScrolls.FAILURE;
 	}
 	
 	public static ItemStack addScrollToStack(ItemStack stack, Scroll scroll, boolean encrypted) {
-		CompoundTag scrollTag = new CompoundTag();
-		scrollTag.putString("Name", scroll.getName());
-		scrollTag.putBoolean("isEncrypted", encrypted);
-		stack.getOrCreateTag().put("Scroll", scrollTag);
+		KoratioDataComponents.ScrollRecord scrollRecord = new KoratioDataComponents.ScrollRecord(scroll.getName(), encrypted);
+		stack.set(KoratioDataComponents.SCROLL_DATA.get(), scrollRecord);
 		return stack;
 	}
 	
 	public static boolean isEncrypted(ItemStack stack) {
-		return stack.getTag().getCompound("Scroll").getBoolean("isEncrypted");
+		return stack.getComponents().get(KoratioDataComponents.SCROLL_DATA.get()).isEncrypted();
 	}
 	
 	public static ItemStack decryptScroll(ItemStack stack) {
-		stack.getTag().getCompound("Scroll").putBoolean("isDecrypted", true);
+		KoratioDataComponents.ScrollRecord scrollRecord = new KoratioDataComponents.ScrollRecord(stack.get(KoratioDataComponents.SCROLL_DATA.get()).name(), false);
+		stack.set(KoratioDataComponents.SCROLL_DATA.get(), scrollRecord);
 		return stack;
 	}
 	

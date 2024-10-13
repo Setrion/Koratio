@@ -1,7 +1,5 @@
 package net.setrion.koratio.world.level.chunk.chunkgenerators.warp;
 
-import java.util.Optional;
-
 import net.minecraft.Util;
 import net.minecraft.util.Mth;
 import net.minecraft.world.level.biome.BiomeSource;
@@ -10,6 +8,8 @@ import net.minecraft.world.level.levelgen.RandomState;
 import net.minecraft.world.level.levelgen.synth.BlendedNoise;
 import net.setrion.koratio.world.level.biome.BiomeSourceBase;
 import net.setrion.koratio.world.level.levelgen.carver.TerrainColumn;
+
+import java.util.Optional;
 
 public class KoratioChunkWarp {
 

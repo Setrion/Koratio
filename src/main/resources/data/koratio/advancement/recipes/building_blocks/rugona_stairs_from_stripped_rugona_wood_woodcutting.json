@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_stripped_rugona_wood": {
+      "conditions": {
+        "items": [
+          {
+            "items": "koratio:stripped_rugona_wood"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "koratio:rugona_stairs_from_stripped_rugona_wood_woodcutting"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_stripped_rugona_wood"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "koratio:rugona_stairs_from_stripped_rugona_wood_woodcutting"
+    ]
+  }
+}

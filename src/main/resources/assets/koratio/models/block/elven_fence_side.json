@@ -1,0 +1,33 @@
+{
+  "textures": {
+    "texture": "koratio:block/elven_planks",
+    "blue": "koratio:block/blue_elven_planks",
+    "cyan": "koratio:block/cyan_elven_planks",
+    "green": "koratio:block/green_elven_planks",
+    "particle": "koratio:block/elven_planks"
+  },
+  "elements": [
+    {   "from": [ 7, 12, 0 ],
+      "to": [ 9, 15, 9 ],
+      "faces": {
+        "down":  { "uv": [ 7, 0, 9, 9 ], "texture": "#green" },
+        "up":    { "uv": [ 7, 0, 9, 9 ], "texture": "#green" },
+        "north": { "uv": [ 7, 1, 9, 4 ], "texture": "#green", "cullface": "north" },
+        "west":  { "uv": [ 0, 1, 9, 4 ], "texture": "#green" },
+        "east":  { "uv": [ 0, 1, 9, 4 ], "texture": "#green" }
+      },
+      "__comment": "top bar"
+    },
+    {   "from": [ 7, 6, 0 ],
+      "to": [ 9, 9, 9 ],
+      "faces": {
+        "down":  { "uv": [ 7, 0, 9,  9 ], "texture": "#blue" },
+        "up":    { "uv": [ 7, 0, 9,  9 ], "texture": "#cyan" },
+        "north": { "uv": [ 7, 7, 9, 10 ], "texture": "#texture", "cullface": "north" },
+        "west":  { "uv": [ 0, 7, 9, 10 ], "texture": "#texture" },
+        "east":  { "uv": [ 0, 7, 9, 10 ], "texture": "#texture" }
+      },
+      "__comment": "lower bar"
+    }
+  ]
+}

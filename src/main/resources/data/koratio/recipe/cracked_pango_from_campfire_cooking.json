@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:campfire_cooking",
+  "category": "food",
+  "cookingtime": 600,
+  "experience": 0.35,
+  "ingredient": {
+    "item": "koratio:raw_pango"
+  },
+  "result": {
+    "count": 1,
+    "id": "koratio:cracked_pango"
+  }
+}

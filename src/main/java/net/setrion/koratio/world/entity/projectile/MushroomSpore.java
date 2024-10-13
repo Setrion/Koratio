@@ -1,7 +1,9 @@
 package net.setrion.koratio.world.entity.projectile;
 
+import net.minecraft.core.particles.ColorParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.protocol.game.ClientboundAddEntityPacket;
+import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.util.Mth;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.AreaEffectCloud;
@@ -31,11 +33,15 @@ public class MushroomSpore extends Projectile {
 		this.setPos(jumstem.getX() - (double)(jumstem.getBbWidth() + 1.0F) * 0.5D * (double)Mth.sin(jumstem.yBodyRot * ((float)Math.PI / 180F)), jumstem.getEyeY() - (double)0.1F, jumstem.getZ() + (double)(jumstem.getBbWidth() + 1.0F) * 0.5D * (double)Mth.cos(jumstem.yBodyRot * ((float)Math.PI / 180F)));
 	}
 
+	@Override
+	protected void defineSynchedData(SynchedEntityData.Builder builder) {
+	}
+
 	public void tick() {
 		super.tick();
 		Vec3 vec3 = this.getDeltaMovement();
 		HitResult hitresult = ProjectileUtil.getHitResultOnMoveVector(this, this::canHitEntity);
-		if (hitresult.getType() != HitResult.Type.MISS && !net.minecraftforge.event.ForgeEventFactory.onProjectileImpact(this, hitresult))
+		if (hitresult.getType() != HitResult.Type.MISS && !net.neoforged.neoforge.event.EventHooks.onProjectileImpact(this, hitresult))
 			this.onHit(hitresult);
 		double d0 = this.getX() + vec3.x;
 		double d1 = this.getY() + vec3.y;
@@ -94,14 +100,22 @@ public class MushroomSpore extends Projectile {
 
 		for(int i = 0; i < 7; ++i) {
 			if (this.getOwner() instanceof JumStem jumstem && jumstem.getVariant() != JumStem.Variant.SHEARED) {
-				int c = jumstem.getVariant().getEffect().getColor();
+				int c = jumstem.getVariant().getEffect().value().getColor();
 				if (c != -1 && 2 > 0) {
 					double c0 = (double)(c >> 16 & 255) / 255.0D;
 					double c1 = (double)(c >> 8 & 255) / 255.0D;
 					double c2 = (double)(c >> 0 & 255) / 255.0D;
 
 					for(int j = 0; j < 2; ++j) {
-						this.level().addParticle(ParticleTypes.ENTITY_EFFECT, this.getRandomX(0.5D), this.getRandomY(), this.getRandomZ(0.5D), c0, c1, c2);
+						this.level().addParticle(
+								ColorParticleOption.create(ParticleTypes.ENTITY_EFFECT, i),
+								this.getRandomX(0.5),
+								this.getRandomY(),
+								this.getRandomZ(0.5),
+								c0,
+								c1,
+								c2
+						);
 					}
 				}
 			}

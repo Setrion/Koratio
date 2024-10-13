@@ -1,0 +1,32 @@
+{
+  "parent": "koratio:koratio/root",
+  "criteria": {
+    "decrypted_scroll": {
+      "trigger": "koratio:decrypted_scroll"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.koratio.decrypting.desc"
+    },
+    "icon": {
+      "components": {
+        "koratio:scroll_data": {
+          "isEncrypted": true,
+          "name": "a_new_world"
+        }
+      },
+      "count": 1,
+      "id": "koratio:scroll"
+    },
+    "title": {
+      "translate": "advancements.koratio.decrypting.title"
+    }
+  },
+  "requirements": [
+    [
+      "decrypted_scroll"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

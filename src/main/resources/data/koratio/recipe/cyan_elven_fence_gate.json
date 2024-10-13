@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "wooden_fence_gate",
+  "key": {
+    "#": {
+      "item": "koratio:cyan_elven_planks"
+    },
+    "x": {
+      "item": "minecraft:stick"
+    }
+  },
+  "pattern": [
+    "x#x",
+    "x#x"
+  ],
+  "result": {
+    "count": 1,
+    "id": "koratio:cyan_elven_fence_gate"
+  }
+}

@@ -1,21 +1,20 @@
 package net.setrion.koratio.world.level.biome;
 
-import java.util.Optional;
-import java.util.function.Function;
-import java.util.stream.Stream;
-
-import com.mojang.serialization.Codec;
-
+import com.mojang.serialization.MapCodec;
 import net.minecraft.core.Holder;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.BiomeSource;
 import net.minecraft.world.level.biome.Climate;
 import net.setrion.koratio.world.level.levelgen.carver.TerrainColumn;
 
+import java.util.Optional;
+import java.util.function.Function;
+import java.util.stream.Stream;
+
 public class BiomeSourceBase extends BiomeSource {
 
 	@Override
-	protected Codec<? extends BiomeSource> codec() {
+	protected MapCodec<? extends BiomeSource> codec() {
 		return null;
 	}
 

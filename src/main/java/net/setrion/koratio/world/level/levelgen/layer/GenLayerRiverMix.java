@@ -28,9 +28,8 @@ public enum GenLayerRiverMix implements AreaTransformer2, DimensionOffset0Transf
 		int riverInputs = area2.get(this.getParentX(val1), this.getParentY(val2));
 
 		int river = FantasiaBiomeProvider.getBiomeId(KoratioBiomes.RIVER, registry);
-		int river2 = FantasiaBiomeProvider.getBiomeId(KoratioBiomes.BLOOD_RIVER, registry);
 
-		if (riverInputs == river || riverInputs == river2) {
+		if (riverInputs == river) {
 			return riverInputs;
 		} else {
 			return biomeInputs;

@@ -2,7 +2,6 @@ package net.setrion.koratio.world.level.chunk.chunkgenerators.warp;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-
 import net.minecraft.util.ExtraCodecs;
 import net.minecraft.util.Mth;
 

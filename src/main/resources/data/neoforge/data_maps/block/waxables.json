@@ -1,0 +1,16 @@
+{
+  "values": {
+    "koratio:tall_copper_door": {
+      "waxed": "koratio:tall_waxed_copper_door"
+    },
+    "koratio:tall_exposed_copper_door": {
+      "waxed": "koratio:tall_waxed_exposed_copper_door"
+    },
+    "koratio:tall_oxidized_copper_door": {
+      "waxed": "koratio:tall_waxed_oxidized_copper_door"
+    },
+    "koratio:tall_weathered_copper_door": {
+      "waxed": "koratio:tall_waxed_weathered_copper_door"
+    }
+  }
+}

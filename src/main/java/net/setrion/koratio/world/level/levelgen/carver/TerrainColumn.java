@@ -1,16 +1,9 @@
 package net.setrion.koratio.world.level.levelgen.carver;
 
-import java.util.Map;
-import java.util.function.BinaryOperator;
-import java.util.stream.Stream;
-
-import org.jetbrains.annotations.NotNull;
-
 import com.mojang.datafixers.util.Pair;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.DataResult;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-
 import it.unimi.dsi.fastutil.floats.Float2ObjectAVLTreeMap;
 import it.unimi.dsi.fastutil.floats.Float2ObjectMap;
 import it.unimi.dsi.fastutil.floats.Float2ObjectSortedMap;
@@ -19,6 +12,11 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.RegistryFixedCodec;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.biome.Biome;
+import org.jetbrains.annotations.NotNull;
+
+import java.util.Map;
+import java.util.function.BinaryOperator;
+import java.util.stream.Stream;
 
 public class TerrainColumn implements Comparable<TerrainColumn> {
 	public static final Codec<TerrainColumn> CODEC = RecordCodecBuilder.create(instance ->

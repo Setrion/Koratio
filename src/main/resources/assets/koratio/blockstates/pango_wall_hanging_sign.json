@@ -1,7 +1,7 @@
 {
   "variants": {
     "": {
-      "model": "koratio:block/rugona_hanging_sign"
+      "model": "koratio:block/pango_wall_hanging_sign"
     }
   }
 }

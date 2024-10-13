@@ -1,0 +1,37 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "minecraft:lapis_lazuli"
+    },
+    {
+      "item": "minecraft:amethyst_shard"
+    },
+    {
+      "item": "minecraft:quartz"
+    },
+    {
+      "item": "koratio:topaz"
+    },
+    {
+      "item": "koratio:sapphire"
+    },
+    {
+      "item": "koratio:ruby"
+    },
+    {
+      "item": "minecraft:emerald"
+    },
+    {
+      "item": "koratio:onyx"
+    },
+    {
+      "item": "minecraft:diamond"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "koratio:rainbow_gem"
+  }
+}

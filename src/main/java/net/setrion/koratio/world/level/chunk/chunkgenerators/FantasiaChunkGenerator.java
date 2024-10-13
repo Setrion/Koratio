@@ -1,26 +1,23 @@
 package net.setrion.koratio.world.level.chunk.chunkgenerators;
 
-import java.util.Optional;
-
-import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-
 import net.minecraft.core.Holder;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.chunk.ChunkGenerator;
-import net.minecraft.world.level.levelgen.LegacyRandomSource;
-import net.minecraft.world.level.levelgen.NoiseBasedChunkGenerator;
-import net.minecraft.world.level.levelgen.NoiseGeneratorSettings;
-import net.minecraft.world.level.levelgen.NoiseSettings;
-import net.minecraft.world.level.levelgen.WorldgenRandom;
+import net.minecraft.world.level.levelgen.*;
+import net.setrion.koratio.registry.KoratioDimensions;
 import net.setrion.koratio.world.level.biome.BiomeSourceBase;
 import net.setrion.koratio.world.level.chunk.chunkgenerators.warp.KoratioBlendedNoise;
 import net.setrion.koratio.world.level.chunk.chunkgenerators.warp.KoratioChunkWarp;
 import net.setrion.koratio.world.level.chunk.chunkgenerators.warp.NoiseModifier;
 import net.setrion.koratio.world.level.chunk.chunkgenerators.warp.NoiseSlider;
 
+import java.util.Optional;
+import java.util.concurrent.CompletableFuture;
+
 public class FantasiaChunkGenerator extends KoratioChunkGenerator {
-	public static final Codec<FantasiaChunkGenerator> CODEC = RecordCodecBuilder.create((instance) -> instance.group(
+	public static final MapCodec<FantasiaChunkGenerator> CODEC = RecordCodecBuilder.mapCodec((instance) -> instance.group(
 			ChunkGenerator.CODEC.fieldOf("wrapped_generator").forGetter(o -> o.delegate),
 			NoiseGeneratorSettings.CODEC.fieldOf("noise_generation_settings").forGetter(o -> o.noiseGeneratorSettings)
 	).apply(instance, FantasiaChunkGenerator::new));
@@ -33,8 +30,8 @@ public class FantasiaChunkGenerator extends KoratioChunkGenerator {
 		this.noiseGeneratorSettings = noiseGenSettings;
 
 		if (delegate instanceof NoiseBasedChunkGenerator noiseGen && noiseGen.generatorSettings().isBound()) {
-			this.defaultBlock = noiseGen.generatorSettings().get().defaultBlock();
-			this.defaultFluid = noiseGen.generatorSettings().get().defaultFluid();
+			this.defaultBlock = noiseGen.generatorSettings().value().defaultBlock();
+			this.defaultFluid = noiseGen.generatorSettings().value().defaultFluid();
 		} else {
 			this.defaultBlock = Blocks.STONE.defaultBlockState();
 			this.defaultFluid = Blocks.WATER.defaultBlockState();
@@ -53,9 +50,9 @@ public class FantasiaChunkGenerator extends KoratioChunkGenerator {
 			this.warper = Optional.empty();
 		}
 	}
-	
+
 	@Override
-	protected Codec<? extends ChunkGenerator> codec() {
-		return CODEC;
+	protected MapCodec<? extends ChunkGenerator> codec() {
+		return KoratioDimensions.FANTASIA_CHUNK_GENERATOR.get();
 	}
 }

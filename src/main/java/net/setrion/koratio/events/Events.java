@@ -1,49 +1,26 @@
 package net.setrion.koratio.events;
 
-import java.util.Optional;
-
 import net.minecraft.core.Direction;
-import net.minecraft.world.entity.item.ItemEntity;
-import net.minecraft.world.item.Items;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.BaseFireBlock;
-import net.minecraftforge.event.entity.EntityLeaveLevelEvent;
-import net.minecraftforge.event.entity.EntityTravelToDimensionEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.common.ItemAbilities;
+import net.neoforged.neoforge.event.level.BlockEvent;
 import net.setrion.koratio.Koratio;
 import net.setrion.koratio.registry.KoratioBlocks;
-import net.setrion.koratio.world.level.biome.FantasiaPortalShape;
 
-@Mod.EventBusSubscriber(modid = Koratio.MOD_ID)
+@EventBusSubscriber(modid = Koratio.MOD_ID)
 public class Events {
 
 	@SubscribeEvent
-	public void onDimensionTravel (EntityTravelToDimensionEvent event) {
-		if (event.getEntity() instanceof ItemEntity item) {
-			if (item.getItem().getItem() == Items.AMETHYST_SHARD) {
-				event.setCanceled(true);
-				if (item.level().dimension() == Level.OVERWORLD) {
-					Optional<FantasiaPortalShape> optional = FantasiaPortalShape.findEmptyPortalShape(item.level(), item.blockPosition(), Direction.Axis.X);
-					if (optional.isPresent()) {
-						optional.get().createPortalBlocks();
-						item.kill();
-						return;
-					}
+	public static void onToolUseOnBlock(BlockEvent.BlockToolModificationEvent event) {
+		Block block = event.getState().getBlock();
+		if (event.getItemAbility() == ItemAbilities.HOE_TILL) {
+			if (block == Blocks.GRASS_BLOCK || block == Blocks.DIRT_PATH || block == Blocks.DIRT) {
+				if (event.getContext().getClickedFace() == Direction.DOWN) {
+					event.setFinalState(KoratioBlocks.FLIPPED_FARMLAND.get().defaultBlockState());
 				}
-			}
-		}
-	}
-	
-	@SubscribeEvent
-	public void onItemBurn(EntityLeaveLevelEvent event) {
-		if (event.getEntity() instanceof ItemEntity item && item.isOnFire() && item.getItem().getItem() == Items.AMETHYST_SHARD) {
-			if (event.getLevel().getBlockState(event.getEntity().blockPosition()).getBlock() instanceof BaseFireBlock) {
-				event.getLevel().setBlock(event.getEntity().blockPosition(), KoratioBlocks.AMETHYST_FIRE.get().defaultBlockState(), 3);
-			}
-		} else if (event.getEntity() instanceof ItemEntity item && item.isOnFire() && item.getItem().getItem() == Items.EMERALD) {
-			if (event.getLevel().getBlockState(event.getEntity().blockPosition()).getBlock() instanceof BaseFireBlock) {
-				event.getLevel().setBlock(event.getEntity().blockPosition(), KoratioBlocks.EMERALD_FIRE.get().defaultBlockState(), 3);
 			}
 		}
 	}

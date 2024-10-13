@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "koratio:item/sticky_red_sugar_bucket"
+  }
+}

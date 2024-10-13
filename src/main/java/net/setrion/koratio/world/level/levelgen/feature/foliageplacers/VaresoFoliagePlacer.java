@@ -1,8 +1,8 @@
 package net.setrion.koratio.world.level.levelgen.feature.foliageplacers;
 
 import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.RandomSource;
 import net.minecraft.util.valueproviders.IntProvider;
@@ -13,7 +13,7 @@ import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacerTy
 import net.setrion.koratio.registry.KoratioFoliagePlacerTypes;
 
 public class VaresoFoliagePlacer extends FoliagePlacer {
-	public static final Codec<VaresoFoliagePlacer> CODEC = RecordCodecBuilder.create((instance) -> {
+	public static final MapCodec<VaresoFoliagePlacer> CODEC = RecordCodecBuilder.mapCodec((instance) -> {
 		return foliagePlacerParts(instance).apply(instance, VaresoFoliagePlacer::new);
 	});
 	

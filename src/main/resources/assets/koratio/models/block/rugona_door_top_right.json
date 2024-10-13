@@ -1,8 +1,10 @@
 {
-  "parent": "minecraft:block/door_top_right",
+  "parent": "koratio:block/template/door_top_right",
   "render_type": "minecraft:cutout",
   "textures": {
-    "bottom": "koratio:block/rugona_door_bottom",
-    "top": "koratio:block/rugona_door_top"
+    "front_b": "koratio:block/rugona_door_bottom",
+    "front_t": "koratio:block/rugona_door_top",
+    "side": "koratio:block/rugona_door_sides",
+    "top": "koratio:block/rugona_door_top_bottom"
   }
 }

@@ -1,0 +1,10 @@
+{
+  "type": "koratio:woodcutter",
+  "ingredient": {
+    "item": "koratio:elven_wood"
+  },
+  "result": {
+    "count": 4,
+    "id": "koratio:blue_elven_stairs"
+  }
+}

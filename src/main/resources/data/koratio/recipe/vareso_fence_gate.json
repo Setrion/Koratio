@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "wooden_fence_gate",
+  "key": {
+    "#": {
+      "item": "koratio:vareso_planks"
+    },
+    "x": {
+      "item": "minecraft:stick"
+    }
+  },
+  "pattern": [
+    "x#x",
+    "x#x"
+  ],
+  "result": {
+    "count": 1,
+    "id": "koratio:vareso_fence_gate"
+  }
+}

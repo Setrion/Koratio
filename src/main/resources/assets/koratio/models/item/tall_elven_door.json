@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "koratio:item/elven_door",
+    "layer1": "koratio:item/tall_door_overlay"
+  }
+}

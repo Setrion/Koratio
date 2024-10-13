@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "leaf_pane",
+  "key": {
+    "x": {
+      "item": "minecraft:jungle_leaves"
+    }
+  },
+  "pattern": [
+    "xxx",
+    "xxx"
+  ],
+  "result": {
+    "count": 16,
+    "id": "koratio:jungle_leaf_pane"
+  }
+}

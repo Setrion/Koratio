@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_stripped_cyan_elven_log": {
+      "conditions": {
+        "items": [
+          {
+            "items": "koratio:stripped_cyan_elven_log"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "koratio:blue_elven_stairs_from_stripped_cyan_elven_log_woodcutting"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_stripped_cyan_elven_log"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "koratio:blue_elven_stairs_from_stripped_cyan_elven_log_woodcutting"
+    ]
+  }
+}

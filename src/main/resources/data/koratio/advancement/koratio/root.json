@@ -1,0 +1,39 @@
+{
+  "criteria": {
+    "outcast": {
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "structures": "koratio:outcast"
+              }
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:location"
+    }
+  },
+  "display": {
+    "background": "koratio:textures/block/pango_planks.png",
+    "description": {
+      "translate": "advancements.koratio.root.desc"
+    },
+    "icon": {
+      "count": 1,
+      "id": "koratio:decrypting_table"
+    },
+    "title": {
+      "translate": "advancements.koratio.root.title"
+    }
+  },
+  "requirements": [
+    [
+      "outcast"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

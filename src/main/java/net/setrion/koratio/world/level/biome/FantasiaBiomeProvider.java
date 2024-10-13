@@ -1,31 +1,24 @@
 package net.setrion.koratio.world.level.biome;
 
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-import java.util.function.Function;
-import java.util.function.LongFunction;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
 import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.RegistryOps;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.BiomeSource;
 import net.minecraft.world.level.biome.Climate;
-import net.minecraftforge.server.ServerLifecycleHooks;
+import net.neoforged.neoforge.server.ServerLifecycleHooks;
 import net.setrion.koratio.registry.KoratioDimensions;
 import net.setrion.koratio.world.level.levelgen.carver.TerrainColumn;
 import net.setrion.koratio.world.level.levelgen.layer.GenLayerBiomeStabilize;
 import net.setrion.koratio.world.level.levelgen.layer.GenLayerFantasiaBiomes;
-import net.setrion.koratio.world.level.levelgen.layer.GenLayerRiverMix;
 import net.setrion.koratio.world.level.levelgen.layer.GenLayerFantasiaRiver;
+import net.setrion.koratio.world.level.levelgen.layer.GenLayerRiverMix;
 import net.setrion.koratio.world.level.levelgen.vanilla.Layer;
 import net.setrion.koratio.world.level.levelgen.vanilla.SmoothLayer;
 import net.setrion.koratio.world.level.levelgen.vanilla.ZoomLayer;
@@ -35,13 +28,23 @@ import net.setrion.koratio.world.level.levelgen.vanilla.area.LazyArea;
 import net.setrion.koratio.world.level.levelgen.vanilla.context.BigContext;
 import net.setrion.koratio.world.level.levelgen.vanilla.context.LazyAreaContext;
 
+import java.util.*;
+import java.util.function.Function;
+import java.util.function.LongFunction;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 public class FantasiaBiomeProvider extends BiomeSourceBase {
-	public static final Codec<FantasiaBiomeProvider> CODEC = RecordCodecBuilder.create((instance) -> instance.group(
+	public static final MapCodec<FantasiaBiomeProvider> CODEC = RecordCodecBuilder.mapCodec((instance) -> instance.group(
 			RegistryOps.retrieveGetter(Registries.BIOME),
-			TerrainColumn.CODEC.listOf().fieldOf("biome_landscape").xmap(l -> l.stream().collect(Collectors.toMap(TerrainColumn::getResourceKey, Function.identity())), m -> List.copyOf(m.values())).forGetter(o -> o.biomeList),
+			TerrainColumn.CODEC.listOf().fieldOf("biome_landscape").xmap(l -> l.stream().collect(Collectors.toMap(TerrainColumn::getResourceKey, Function.identity())), m -> m.values().stream().sorted(Comparator.comparing(TerrainColumn::getResourceKey)).toList()).forGetter(o -> o.biomeList),
 			Codec.FLOAT.fieldOf("base_offset").forGetter(o -> o.baseOffset),
 			Codec.FLOAT.fieldOf("base_factor").forGetter(o -> o.baseFactor)
 	).apply(instance, instance.stable(FantasiaBiomeProvider::new)));
+
+	public static ResourceLocation namedRegistry(String name) {
+		return ResourceLocation.fromNamespaceAndPath("koratio", name.toLowerCase(Locale.ROOT));
+	}
 
 	private final HolderGetter<Biome> registry;
 	private final Map<ResourceKey<Biome>, TerrainColumn> biomeList;
@@ -64,7 +67,7 @@ public class FantasiaBiomeProvider extends BiomeSourceBase {
 	}
 
 	public static int getBiomeId(ResourceKey<Biome> biome, HolderGetter<Biome> registry) {
-		return ServerLifecycleHooks.getCurrentServer().registryAccess().registryOrThrow(Registries.BIOME).getId(registry.get(biome).get().get());
+		return ServerLifecycleHooks.getCurrentServer().registryAccess().registryOrThrow(Registries.BIOME).getId(registry.get(biome).get().key());
 	}
 
 	private static <T extends Area, C extends BigContext<T>> AreaFactory<T> makeLayers(LongFunction<C> seed, HolderGetter<Biome> registry, long rawSeed) {
@@ -109,7 +112,7 @@ public class FantasiaBiomeProvider extends BiomeSourceBase {
 
 
 	@Override
-	protected Codec<? extends BiomeSource> codec() {
+	protected MapCodec<? extends BiomeSource> codec() {
 		return CODEC;
 	}
 

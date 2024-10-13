@@ -8,12 +8,9 @@ import net.minecraft.world.item.SwordItem;
 import net.minecraft.world.item.Tier;
 
 public class AbilitySword extends SwordItem {
-	
-	//Abilities:
-	//Fire, Poison, Ice
 
-	public AbilitySword(Tier tier, int damage, float speed, Properties properties) {
-		super(tier, damage, speed, properties);
+	public AbilitySword(Tier tier, Properties properties) {
+		super(tier, properties);
 	}
 
 	@Override
@@ -22,11 +19,9 @@ public class AbilitySword extends SwordItem {
 			if (!player.getCooldowns().isOnCooldown(this)) {
 				if (!player.level().isClientSide()) {
 					if (player.isCrouching()) {
-						target.setSecondsOnFire(5);
+						target.setRemainingFireTicks(5);
 						player.getCooldowns().addCooldown(this, 100);
-						stack.hurtAndBreak(10, entity, (living) -> {
-							living.broadcastBreakEvent(EquipmentSlot.MAINHAND);
-						});
+						stack.hurtAndBreak(10, entity, EquipmentSlot.MAINHAND);
 						return true;
 					}
 				}

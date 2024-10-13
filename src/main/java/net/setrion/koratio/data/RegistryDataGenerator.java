@@ -1,25 +1,17 @@
 package net.setrion.koratio.data;
 
-import java.util.Set;
-import java.util.concurrent.CompletableFuture;
-
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.RegistrySetBuilder;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
-import net.minecraftforge.common.data.DatapackBuiltinEntriesProvider;
-import net.minecraftforge.common.data.ExistingFileHelper;
+import net.neoforged.neoforge.common.data.DatapackBuiltinEntriesProvider;
+import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.setrion.koratio.Koratio;
-import net.setrion.koratio.registry.KoratioBiomes;
-import net.setrion.koratio.registry.KoratioCarvers;
-import net.setrion.koratio.registry.KoratioConfiguredFeatures;
-import net.setrion.koratio.registry.KoratioDimensions;
-import net.setrion.koratio.registry.KoratioPlacedFeatures;
-import net.setrion.koratio.registry.KoratioPools;
-import net.setrion.koratio.registry.KoratioProcessorLists;
-import net.setrion.koratio.registry.KoratioStructureSets;
-import net.setrion.koratio.registry.KoratioStructures;
+import net.setrion.koratio.registry.*;
+
+import java.util.Set;
+import java.util.concurrent.CompletableFuture;
 
 public class RegistryDataGenerator extends DatapackBuiltinEntriesProvider {
 
@@ -31,6 +23,7 @@ public class RegistryDataGenerator extends DatapackBuiltinEntriesProvider {
 			.add(Registries.NOISE_SETTINGS, KoratioDimensions::bootstrapNoise)
 			.add(Registries.DIMENSION_TYPE, KoratioDimensions::bootstrapType)
 			.add(Registries.LEVEL_STEM, KoratioDimensions::bootstrapStem)
+			.add(Registries.TRIM_MATERIAL, KoratioTrimMaterials::bootstrap)
 			.add(Registries.BIOME, KoratioBiomes::bootstrap)
 			.add(Registries.TEMPLATE_POOL, KoratioPools::bootstrap)
 			.add(Registries.STRUCTURE, KoratioStructures::bootstrap)
@@ -38,11 +31,13 @@ public class RegistryDataGenerator extends DatapackBuiltinEntriesProvider {
 			.add(Registries.PROCESSOR_LIST, KoratioProcessorLists::bootstrap);
 
 	// Use addProviders() instead
-	private RegistryDataGenerator(PackOutput output, CompletableFuture<HolderLookup.Provider> provider) {
+	public RegistryDataGenerator(PackOutput output, CompletableFuture<HolderLookup.Provider> provider) {
 		super(output, provider, BUILDER, Set.of("minecraft", Koratio.MOD_ID));
 	}
 
-	public static void addProviders(boolean isServer, DataGenerator generator, PackOutput output, CompletableFuture<HolderLookup.Provider> provider, ExistingFileHelper helper) {
-		generator.addProvider(isServer, new RegistryDataGenerator(output, provider));
+	public static RegistryDataGenerator addProviders(boolean isServer, DataGenerator generator, PackOutput output, CompletableFuture<HolderLookup.Provider> provider, ExistingFileHelper helper) {
+		var gen = new RegistryDataGenerator(output, provider);
+		generator.addProvider(isServer, gen);
+		return gen;
 	}
 }

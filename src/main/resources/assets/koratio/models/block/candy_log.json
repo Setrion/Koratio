@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "koratio:block/candy_log_top",
+    "side": "koratio:block/candy_log"
+  }
+}

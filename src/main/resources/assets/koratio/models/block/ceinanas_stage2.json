@@ -1,0 +1,7 @@
+{
+  "parent": "koratio:block/flipped_crop",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "crop": "koratio:block/ceinanas_stage2"
+  }
+}

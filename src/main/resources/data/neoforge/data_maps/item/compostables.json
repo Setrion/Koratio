@@ -1,0 +1,100 @@
+{
+  "values": {
+    "koratio:acacia_leaf_pane": {
+      "chance": 0.05
+    },
+    "koratio:azalea_leaf_pane": {
+      "chance": 0.05
+    },
+    "koratio:birch_leaf_pane": {
+      "chance": 0.05
+    },
+    "koratio:cherry_leaf_pane": {
+      "chance": 0.05
+    },
+    "koratio:dark_oak_leaf_pane": {
+      "chance": 0.05
+    },
+    "koratio:elven_leaf_pane": {
+      "chance": 0.05
+    },
+    "koratio:elven_leaves": {
+      "chance": 0.3
+    },
+    "koratio:elven_sapling": {
+      "chance": 0.3
+    },
+    "koratio:fantasia_grass": {
+      "chance": 0.3
+    },
+    "koratio:flowering_azalea_leaf_pane": {
+      "chance": 0.05
+    },
+    "koratio:gilded_vines": {
+      "chance": 0.5
+    },
+    "koratio:green_mushroom": {
+      "chance": 0.65
+    },
+    "koratio:green_mushroom_block": {
+      "chance": 0.85
+    },
+    "koratio:jungle_leaf_pane": {
+      "chance": 0.05
+    },
+    "koratio:mangrove_leaf_pane": {
+      "chance": 0.05
+    },
+    "koratio:oak_leaf_pane": {
+      "chance": 0.05
+    },
+    "koratio:pango_leaf_pane": {
+      "chance": 0.05
+    },
+    "koratio:pango_leaves": {
+      "chance": 0.3
+    },
+    "koratio:pango_sapling": {
+      "chance": 0.3
+    },
+    "koratio:purple_mushroom": {
+      "chance": 0.65
+    },
+    "koratio:purple_mushroom_block": {
+      "chance": 0.85
+    },
+    "koratio:rainbow_allium": {
+      "chance": 0.3
+    },
+    "koratio:rainbow_lily_of_the_valley": {
+      "chance": 0.3
+    },
+    "koratio:rainbow_rose": {
+      "chance": 0.3
+    },
+    "koratio:rugona_leaf_pane": {
+      "chance": 0.05
+    },
+    "koratio:rugona_leaves": {
+      "chance": 0.3
+    },
+    "koratio:rugona_sapling": {
+      "chance": 0.3
+    },
+    "koratio:spruce_leaf_pane": {
+      "chance": 0.05
+    },
+    "koratio:tall_fantasia_grass": {
+      "chance": 0.5
+    },
+    "koratio:vareso_leaf_pane": {
+      "chance": 0.05
+    },
+    "koratio:vareso_leaves": {
+      "chance": 0.3
+    },
+    "koratio:vareso_sapling": {
+      "chance": 0.3
+    }
+  }
+}

@@ -8,12 +8,7 @@ import net.minecraft.data.worldgen.placement.VegetationPlacements;
 import net.minecraft.sounds.Musics;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
-import net.minecraft.world.level.biome.AmbientMoodSettings;
-import net.minecraft.world.level.biome.AmbientParticleSettings;
-import net.minecraft.world.level.biome.Biome;
-import net.minecraft.world.level.biome.BiomeGenerationSettings;
-import net.minecraft.world.level.biome.BiomeSpecialEffects;
-import net.minecraft.world.level.biome.MobSpawnSettings;
+import net.minecraft.world.level.biome.*;
 import net.minecraft.world.level.biome.MobSpawnSettings.SpawnerData;
 import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraft.world.level.levelgen.carver.ConfiguredWorldCarver;
@@ -32,17 +27,6 @@ public abstract class BiomeHelper {
 		biome.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, KoratioPlacedFeatures.PLACED_PATCH_FANTASIA_GRASS);
 		biome.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, KoratioPlacedFeatures.TREES_FANTASIA_FIELDLANDS);
 		biome.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, KoratioPlacedFeatures.PLACED_RAINBOW_FLOWERS);
-		
-		return biome;
-	}
-	
-	public static BiomeGenerationSettings.Builder amethystFieldsGen(HolderGetter<PlacedFeature> featureGetter, HolderGetter<ConfiguredWorldCarver<?>> carverGetter) {
-		BiomeGenerationSettings.Builder biome = defaultFantasiaGenSettingBuilder(featureGetter, carverGetter);
-
-		biome.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, KoratioPlacedFeatures.PLACED_PATCH_AMETHYST_GRASS);
-		biome.addFeature(GenerationStep.Decoration.SURFACE_STRUCTURES, KoratioPlacedFeatures.PLACED_AMETHYST_SPIKE);
-		biome.addFeature(GenerationStep.Decoration.SURFACE_STRUCTURES, KoratioPlacedFeatures.PLACED_AMETHYST_GEODE);
-		biome.addCarver(GenerationStep.Carving.AIR, KoratioCarvers.AMETHYST_SPIDER_CAVES_CONFIGURED);
 		
 		return biome;
 	}
@@ -67,6 +51,15 @@ public abstract class BiomeHelper {
 		return biome;
 	}
 
+	public static BiomeGenerationSettings.Builder elvenForestGen(HolderGetter<PlacedFeature> featureGetter, HolderGetter<ConfiguredWorldCarver<?>> carverGetter) {
+		BiomeGenerationSettings.Builder biome = defaultFantasiaGenSettingBuilder(featureGetter, carverGetter);
+
+		biome.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, KoratioPlacedFeatures.PLACED_PATCH_FANTASIA_GRASS);
+		biome.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, KoratioPlacedFeatures.PLACED_ELVEN);
+
+		return biome;
+	}
+
 	public static BiomeGenerationSettings.Builder mushroomForestGen(HolderGetter<PlacedFeature> featureGetter, HolderGetter<ConfiguredWorldCarver<?>> carverGetter) {
 		BiomeGenerationSettings.Builder biome = defaultFantasiaGenSettingBuilder(featureGetter, carverGetter);
 		
@@ -74,6 +67,7 @@ public abstract class BiomeHelper {
 		biome.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, KoratioPlacedFeatures.PLACED_PATCH_FANTASIA_GRASS);
 		biome.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, KoratioPlacedFeatures.PLACED_PURPLE_MUSHROOM);
 		biome.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, KoratioPlacedFeatures.PLACED_GREEN_MUSHROOM);
+		biome.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, VegetationPlacements.MUSHROOM_ISLAND_VEGETATION);
 		biome.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, KoratioPlacedFeatures.PURPLE_MUSHROOM_NORMAL);
 		biome.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, KoratioPlacedFeatures.GREEN_MUSHROOM_NORMAL);
 		biome.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, KoratioPlacedFeatures.RED_MUSHROOM_NORMAL);
@@ -108,16 +102,6 @@ public abstract class BiomeHelper {
 
 		return biome;
 	}
-	
-	//Demonicio
-	
-	public static BiomeGenerationSettings.Builder nightmareForestGen(HolderGetter<PlacedFeature> featureGetter, HolderGetter<ConfiguredWorldCarver<?>> carverGetter) {
-		BiomeGenerationSettings.Builder biome = defaultDemonicioGenSettingBuilder(featureGetter, carverGetter);
-		
-		biome.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, KoratioPlacedFeatures.PLACED_NIGHY);
-		
-		return biome;
-	}
 
 	public static BiomeSpecialEffects.Builder whiteAshParticles(BiomeSpecialEffects.Builder builder) {
 		builder.ambientParticle(new AmbientParticleSettings(ParticleTypes.WHITE_ASH, 0.05f));
@@ -127,11 +111,6 @@ public abstract class BiomeHelper {
 	//Caves!
 	public static void addFantasiaCaves(BiomeGenerationSettings.Builder biome) {
 		biome.addCarver(GenerationStep.Carving.AIR, KoratioCarvers.FANTASIA_CAVES_CONFIGURED);
-	}
-	
-	//Caves!
-	public static void addDemonicioCaves(BiomeGenerationSettings.Builder biome) {
-		biome.addCarver(GenerationStep.Carving.AIR, KoratioCarvers.DEMONICIO_CAVES_CONFIGURED);
 	}
 	
 	public static void addFantasiaCrystalCaves(BiomeGenerationSettings.Builder biome) {
@@ -176,17 +155,7 @@ public abstract class BiomeHelper {
 		return biome;
 	}
 	
-	public static BiomeGenerationSettings.Builder defaultDemonicioGenSettingBuilder(HolderGetter<PlacedFeature> featureGetter, HolderGetter<ConfiguredWorldCarver<?>> carverGetter) {
-		BiomeGenerationSettings.Builder biome = new BiomeGenerationSettings.Builder(featureGetter, carverGetter);
-		
-		addDemonicioCaves(biome);
-		return biome;
-	}
-	
 	public static void addDefaultFantasiaOres(BiomeGenerationSettings.Builder biome) {
-		biome.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, KoratioPlacedFeatures.ORE_ARSOY_UPPER);
-		biome.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, KoratioPlacedFeatures.ORE_ARSOY_MIDDLE);
-		biome.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, KoratioPlacedFeatures.ORE_ARSOY_SMALL);
 	}
 	
 	//MobSpawning - Fantasia
@@ -201,15 +170,7 @@ public abstract class BiomeHelper {
 		MobSpawnSettings.Builder spawnInfo = defaultFantasiaMobSpawning();
 		
 		spawnInfo.addSpawn(MobCategory.CREATURE, new SpawnerData(KoratioEntityType.SPIKY_PIG.get(), 10, 4, 4));
-		spawnInfo.addSpawn(MobCategory.CREATURE, new SpawnerData(KoratioEntityType.UNICORN_CAT.get(), 1, 1, 1));
-		
-		return spawnInfo;
-	}
-	
-	public static MobSpawnSettings.Builder amethystFieldsSpawning() {
-		MobSpawnSettings.Builder spawnInfo = defaultFantasiaMobSpawning();
-		
-		spawnInfo.addSpawn(MobCategory.MONSTER, new SpawnerData(KoratioEntityType.AMETHYST_SPIDER.get(), 10, 1, 4));
+		spawnInfo.addSpawn(MobCategory.CREATURE, new SpawnerData(KoratioEntityType.MAGICAL_CAT.get(), 1, 1, 1));
 		
 		return spawnInfo;
 	}
@@ -242,7 +203,7 @@ public abstract class BiomeHelper {
 		spawnInfo.creatureGenerationProbability(0.1f);
 
 		spawnInfo.addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(EntityType.PHANTOM, 10, 2, 3));
-		spawnInfo.addSpawn(MobCategory.MISC, new MobSpawnSettings.SpawnerData(EntityType.ALLAY, 10, 1, 2));
+		spawnInfo.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(EntityType.ALLAY, 10, 1, 2));
 
 		return spawnInfo;
 	}

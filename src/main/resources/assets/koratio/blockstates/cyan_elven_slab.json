@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "koratio:block/cyan_elven_slab"
+    },
+    "type=double": {
+      "model": "koratio:block/cyan_elven_planks"
+    },
+    "type=top": {
+      "model": "koratio:block/cyan_elven_slab_top"
+    }
+  }
+}

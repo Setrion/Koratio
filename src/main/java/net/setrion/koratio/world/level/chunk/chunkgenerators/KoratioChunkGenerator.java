@@ -1,23 +1,11 @@
 package net.setrion.koratio.world.level.chunk.chunkgenerators;
 
-import java.util.List;
-import java.util.Optional;
-import java.util.OptionalInt;
-import java.util.Set;
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.Executor;
-import java.util.function.Predicate;
-import java.util.function.Supplier;
-
-import javax.annotation.Nullable;
-
 import com.google.common.annotations.VisibleForTesting;
 import com.google.common.base.Suppliers;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
-import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-
 import net.minecraft.SharedConstants;
 import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
@@ -42,20 +30,24 @@ import net.minecraft.world.level.chunk.ChunkAccess;
 import net.minecraft.world.level.chunk.ChunkGenerator;
 import net.minecraft.world.level.chunk.LevelChunkSection;
 import net.minecraft.world.level.chunk.ProtoChunk;
-import net.minecraft.world.level.levelgen.Aquifer;
-import net.minecraft.world.level.levelgen.Beardifier;
-import net.minecraft.world.level.levelgen.Heightmap;
-import net.minecraft.world.level.levelgen.NoiseChunk;
-import net.minecraft.world.level.levelgen.NoiseGeneratorSettings;
-import net.minecraft.world.level.levelgen.NoiseSettings;
-import net.minecraft.world.level.levelgen.RandomState;
-import net.minecraft.world.level.levelgen.WorldGenerationContext;
+import net.minecraft.world.level.levelgen.*;
 import net.minecraft.world.level.levelgen.blending.Blender;
+import net.setrion.koratio.registry.KoratioDimensions;
 import net.setrion.koratio.world.level.chunk.chunkgenerators.warp.KoratioChunkWarp;
+
+import javax.annotation.Nullable;
+import java.util.List;
+import java.util.Optional;
+import java.util.OptionalInt;
+import java.util.Set;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.Executor;
+import java.util.function.Predicate;
+import java.util.function.Supplier;
 
 @SuppressWarnings({"deprecation"})
 public class KoratioChunkGenerator extends ChunkGeneratorBase {
-	public static final Codec<KoratioChunkGenerator> CODEC = RecordCodecBuilder.create((instance) -> instance.group(
+	public static final MapCodec<KoratioChunkGenerator> CODEC = RecordCodecBuilder.mapCodec((instance) -> instance.group(
 			ChunkGenerator.CODEC.fieldOf("wrapped_generator").forGetter(o -> o.delegate),
 			NoiseGeneratorSettings.CODEC.fieldOf("noise_generation_settings").forGetter(o -> o.noiseGeneratorSettings)
 	).apply(instance, KoratioChunkGenerator::new));
@@ -87,8 +79,8 @@ public class KoratioChunkGenerator extends ChunkGeneratorBase {
 	}
 	
 	@Override
-	protected Codec<? extends ChunkGenerator> codec() {
-		return CODEC;
+	protected MapCodec<? extends ChunkGenerator> codec() {
+		return KoratioDimensions.FANTASIA_CHUNK_GENERATOR.get();
 	}
 
 	@Override
@@ -173,7 +165,7 @@ public class KoratioChunkGenerator extends ChunkGeneratorBase {
 	}
 
 	@Override
-	public CompletableFuture<ChunkAccess> createBiomes(Executor executor, RandomState random, Blender blender, StructureManager manager, ChunkAccess chunkAccess) {
+	public CompletableFuture<ChunkAccess> createBiomes(RandomState randomState, Blender blender, StructureManager structureManager, ChunkAccess chunkAccess) {
 		return CompletableFuture.supplyAsync(Util.wrapThreadWithTaskName("init_biomes", () -> {
 			chunkAccess.fillBiomesFromNoise(this.getBiomeSource(), Climate.empty());
 			return chunkAccess;
@@ -181,9 +173,9 @@ public class KoratioChunkGenerator extends ChunkGeneratorBase {
 	}
 
 	@Override
-	public CompletableFuture<ChunkAccess> fillFromNoise(Executor executor, Blender blender, RandomState random, StructureManager structureManager, ChunkAccess chunkAccess) {
+	public CompletableFuture<ChunkAccess> fillFromNoise(Blender blender, RandomState random, StructureManager structureManager, ChunkAccess chunkAccess) {
 		if (warper.isEmpty()) {
-			return super.fillFromNoise(executor, blender, random, structureManager, chunkAccess);
+			return null;
 		} else {
 			NoiseSettings settings = this.noiseGeneratorSettings.value().noiseSettings();
 			int cellHeight = settings.getCellHeight();
@@ -209,7 +201,7 @@ public class KoratioChunkGenerator extends ChunkGeneratorBase {
 					for (LevelChunkSection section : sections) {
 						section.release();
 					}
-				}, executor);
+				});
 			}
 		}
 	}

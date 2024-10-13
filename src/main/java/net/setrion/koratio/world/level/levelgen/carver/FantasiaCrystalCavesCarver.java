@@ -1,14 +1,6 @@
 package net.setrion.koratio.world.level.levelgen.carver;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-import java.util.function.Function;
-
-import org.apache.commons.lang3.mutable.MutableBoolean;
-
 import com.mojang.serialization.Codec;
-
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Holder;
@@ -24,6 +16,12 @@ import net.minecraft.world.level.levelgen.Aquifer;
 import net.minecraft.world.level.levelgen.carver.CarvingContext;
 import net.minecraft.world.level.levelgen.carver.CaveCarverConfiguration;
 import net.minecraft.world.level.material.FluidState;
+import org.apache.commons.lang3.mutable.MutableBoolean;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+import java.util.function.Function;
 
 public class FantasiaCrystalCavesCarver extends FantasiaCavesCarver {
 

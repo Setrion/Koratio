@@ -1,0 +1,23 @@
+{
+	"credit": "Made with Blockbench",
+	"textures": {
+		"particle": "koratio:block/elven_planks",
+		"texture": "koratio:block/elven_planks",
+		"blue": "koratio:block/blue_elven_planks",
+		"green": "koratio:block/green_elven_planks"
+	},
+	"elements": [
+		{
+			"from": [1, 0, 1],
+			"to": [15, 0.5, 15],
+			"faces": {
+				"north": {"uv": [1, 15, 15, 15.5], "texture": "#green"},
+				"east": {"uv": [2, 15, 3, 1], "rotation": 270, "texture": "#texture"},
+				"south": {"uv": [1, 15, 15, 15.5], "texture": "#blue"},
+				"west": {"uv": [14, 15, 15, 1], "rotation": 90, "texture": "#texture"},
+				"up": {"uv": [1, 1, 15, 15], "texture": "#texture"},
+				"down": {"uv": [1, 1, 15, 15], "rotation": 180, "texture": "#texture", "cullface": "down"}
+			}
+		}
+	]
+}

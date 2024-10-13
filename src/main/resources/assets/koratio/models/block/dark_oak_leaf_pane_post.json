@@ -1,0 +1,8 @@
+{
+  "parent": "koratio:block/template_glass_pane_post",
+  "render_type": "minecraft:cutout_mipped",
+  "textures": {
+    "edge": "minecraft:block/dark_oak_leaves",
+    "pane": "minecraft:block/dark_oak_leaves"
+  }
+}

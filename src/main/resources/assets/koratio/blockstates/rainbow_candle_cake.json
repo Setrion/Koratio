@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "lit=false": {
+      "model": "koratio:block/rainbow_candle_cake"
+    },
+    "lit=true": {
+      "model": "koratio:block/rainbow_candle_cake_lit"
+    }
+  }
+}

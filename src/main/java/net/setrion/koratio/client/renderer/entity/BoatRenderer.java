@@ -1,16 +1,10 @@
 package net.setrion.koratio.client.renderer.entity;
 
-import java.util.Map;
-import java.util.stream.Stream;
-
-import org.joml.Quaternionf;
-
 import com.google.common.collect.ImmutableMap;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.datafixers.util.Pair;
 import com.mojang.math.Axis;
-
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
@@ -23,6 +17,10 @@ import net.setrion.koratio.Koratio;
 import net.setrion.koratio.client.model.BoatModel;
 import net.setrion.koratio.registry.ModelLayers;
 import net.setrion.koratio.world.entity.vehicle.Boat;
+import org.joml.Quaternionf;
+
+import java.util.Map;
+import java.util.stream.Stream;
 
 public class BoatRenderer extends EntityRenderer<Boat> {
 	private final Map<Boat.Type, Pair<ResourceLocation, BoatModel>> boatResources;
@@ -33,7 +31,7 @@ public class BoatRenderer extends EntityRenderer<Boat> {
 		this.boatResources = Stream.of(Boat.Type.values()).collect(ImmutableMap.toImmutableMap((type) -> {
 			return type;
 		}, (type) -> {
-			return Pair.of(new ResourceLocation(Koratio.MOD_ID, getTextureLocation(type, hasChest)), this.createBoatModel(context, type, hasChest));
+			return Pair.of(ResourceLocation.fromNamespaceAndPath(Koratio.MOD_ID, getTextureLocation(type, hasChest)), this.createBoatModel(context, type, hasChest));
 		}));
 	}
 
@@ -72,7 +70,7 @@ public class BoatRenderer extends EntityRenderer<Boat> {
 		stack.mulPose(Axis.YP.rotationDegrees(90.0F));
 		boatmodel.setupAnim(boat, p_113931_, 0.0F, -0.1F, 0.0F, 0.0F);
 		VertexConsumer vertexconsumer = buffer.getBuffer(boatmodel.renderType(resourcelocation));
-		boatmodel.renderToBuffer(stack, vertexconsumer, p_113934_, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
+		boatmodel.renderToBuffer(stack, vertexconsumer, p_113934_, OverlayTexture.NO_OVERLAY);
 		if (!boat.isUnderWater()) {
 			VertexConsumer vertexconsumer1 = buffer.getBuffer(RenderType.waterMask());
 			boatmodel.waterPatch().render(stack, vertexconsumer1, p_113934_, OverlayTexture.NO_OVERLAY);
@@ -83,9 +81,9 @@ public class BoatRenderer extends EntityRenderer<Boat> {
 	}
 
 	@Deprecated // forge: override getModelWithLocation to change the texture / model
-	public ResourceLocation getTextureLocation(Boat p_113927_) {
-	return getModelWithLocation(p_113927_).getFirst();
+	public ResourceLocation getTextureLocation(Boat boat) {
+	return getModelWithLocation(boat).getFirst();
 	}
 
-	public Pair<ResourceLocation, BoatModel> getModelWithLocation(Boat boat) { return this.boatResources.get(boat.getBoatType()); }
+	public Pair<ResourceLocation, BoatModel> getModelWithLocation(Boat boat) { return this.boatResources.get(boat.getVariant()); }
 }

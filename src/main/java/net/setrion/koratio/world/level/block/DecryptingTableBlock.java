@@ -22,7 +22,8 @@ public class DecryptingTableBlock extends Block {
 		super(properties);
 	}
 
-	public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult result) {
+	@Override
+	protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hitResult) {
 		if (level.isClientSide) {
 			return InteractionResult.SUCCESS;
 		} else {
@@ -31,10 +32,8 @@ public class DecryptingTableBlock extends Block {
 			return InteractionResult.CONSUME;
 		}
 	}
-	
+
 	public MenuProvider getMenuProvider(BlockState state, Level level, BlockPos pos) {
-		return new SimpleMenuProvider((id, inventory, player) -> {
-			return new DecryptingMenu(id, inventory, ContainerLevelAccess.create(level, pos));
-		}, CONTAINER_TITLE);
+		return new SimpleMenuProvider((id, inventory, player) -> new DecryptingMenu(id, inventory, ContainerLevelAccess.create(level, pos)), CONTAINER_TITLE);
 	}
 }

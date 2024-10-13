@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/stairs",
+  "textures": {
+    "bottom": "koratio:block/cyan_elven_planks",
+    "side": "koratio:block/cyan_elven_planks",
+    "top": "koratio:block/cyan_elven_planks"
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/wall_inventory",
+  "textures": {
+    "wall": "koratio:block/raw_large_gingerbread_bricks"
+  }
+}

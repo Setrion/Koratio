@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab_top",
+  "textures": {
+    "bottom": "koratio:block/elven_planks",
+    "side": "koratio:block/elven_planks",
+    "top": "koratio:block/elven_planks"
+  }
+}

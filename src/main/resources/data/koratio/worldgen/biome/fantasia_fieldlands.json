@@ -33,10 +33,7 @@
     [
       "minecraft:disk_sand",
       "minecraft:disk_clay",
-      "minecraft:disk_gravel",
-      "koratio:ore_arsoy_upper",
-      "koratio:ore_arsoy_middle",
-      "koratio:ore_arsoy_small"
+      "minecraft:disk_gravel"
     ],
     [],
     [],
@@ -60,7 +57,7 @@
         "weight": 10
       },
       {
-        "type": "koratio:unicorn_cat",
+        "type": "koratio:magical_cat",
         "maxCount": 1,
         "minCount": 1,
         "weight": 1

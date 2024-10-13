@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "koratio:block/elven_wood",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "koratio:block/elven_wood"
+    },
+    "axis=z": {
+      "model": "koratio:block/elven_wood",
+      "x": 90
+    }
+  }
+}

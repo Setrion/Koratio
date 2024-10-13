@@ -1,0 +1,29 @@
+{
+  "parent": "koratio:koratio/decrypting",
+  "criteria": {
+    "entered_fantasia": {
+      "conditions": {
+        "to": "koratio:fantasia"
+      },
+      "trigger": "minecraft:changed_dimension"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.koratio.enter_fantasia.desc"
+    },
+    "icon": {
+      "count": 1,
+      "id": "koratio:miniature_fantasia_portal"
+    },
+    "title": {
+      "translate": "advancements.koratio.enter_fantasia.title"
+    }
+  },
+  "requirements": [
+    [
+      "entered_fantasia"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

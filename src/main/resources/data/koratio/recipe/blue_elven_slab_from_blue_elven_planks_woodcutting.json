@@ -1,0 +1,10 @@
+{
+  "type": "koratio:woodcutter",
+  "ingredient": {
+    "item": "koratio:blue_elven_planks"
+  },
+  "result": {
+    "count": 2,
+    "id": "koratio:blue_elven_slab"
+  }
+}

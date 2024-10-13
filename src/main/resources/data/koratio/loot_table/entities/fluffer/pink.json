@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:entity",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "koratio:pink_levitating_wool"
+        }
+      ],
+      "rolls": 1.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:loot_table",
+          "value": "koratio:entities/fluffer"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "koratio:entities/fluffer/pink"
+}

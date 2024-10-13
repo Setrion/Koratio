@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "group": "tall_wooden_door",
+  "key": {
+    "#": {
+      "item": "minecraft:warped_door"
+    },
+    "x": {
+      "item": "minecraft:warped_planks"
+    }
+  },
+  "pattern": [
+    "x",
+    "#",
+    "x"
+  ],
+  "result": {
+    "count": 2,
+    "id": "koratio:tall_warped_door"
+  }
+}

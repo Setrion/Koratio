@@ -31,8 +31,7 @@
   "spawners": {
     "ambient": [],
     "axolotls": [],
-    "creature": [],
-    "misc": [
+    "creature": [
       {
         "type": "minecraft:allay",
         "maxCount": 2,
@@ -40,6 +39,7 @@
         "weight": 10
       }
     ],
+    "misc": [],
     "monster": [
       {
         "type": "minecraft:phantom",

@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:smelting",
+  "category": "misc",
+  "cookingtime": 200,
+  "experience": 0.5,
+  "ingredient": {
+    "item": "koratio:sticky_blue_sugar_bucket"
+  },
+  "result": {
+    "count": 1,
+    "id": "koratio:molten_blue_sugar_bucket"
+  }
+}

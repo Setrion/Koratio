@@ -22,6 +22,15 @@
           },
           {
             "biome_layers": {
+              "-1.0": "koratio:elven_forest",
+              "-3.0": "koratio:depths_of_fantasia"
+            },
+            "depth": 9.0,
+            "key_biome": "koratio:elven_forest",
+            "scale": 0.0125
+          },
+          {
+            "biome_layers": {
               "-1.0": "koratio:fantasia_fieldlands",
               "-3.0": "koratio:depths_of_fantasia",
               "100.0": "koratio:skylands"
@@ -58,16 +67,6 @@
             "depth": 7.35,
             "key_biome": "koratio:river",
             "scale": 0.35
-          },
-          {
-            "biome_layers": {
-              "-1.0": "koratio:amethyst_fields",
-              "-3.0": "koratio:depths_of_fantasia",
-              "100.0": "koratio:skylands"
-            },
-            "depth": 9.255,
-            "key_biome": "koratio:amethyst_fields",
-            "scale": 0.125
           }
         ]
       },

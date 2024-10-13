@@ -1,21 +1,16 @@
 package net.setrion.koratio.client.model;
 
-import java.util.Arrays;
-
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-
 import net.minecraft.client.model.HierarchicalModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
-import net.minecraft.client.model.geom.builders.CubeDeformation;
-import net.minecraft.client.model.geom.builders.CubeListBuilder;
-import net.minecraft.client.model.geom.builders.LayerDefinition;
-import net.minecraft.client.model.geom.builders.MeshDefinition;
-import net.minecraft.client.model.geom.builders.PartDefinition;
+import net.minecraft.client.model.geom.builders.*;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
+
+import java.util.Arrays;
 
 public class CrystallizeModel<T extends Entity> extends HierarchicalModel<T> {
 	private final ModelPart root;
@@ -63,13 +58,13 @@ public class CrystallizeModel<T extends Entity> extends HierarchicalModel<T> {
 	public ModelPart root() {
 		return root;
 	}
-	
+
 	@Override
-	public void renderToBuffer(PoseStack stack, VertexConsumer builder, int light, int overlay, float red, float green, float blue, float alpha) {
+	public void renderToBuffer(PoseStack poseStack, VertexConsumer buffer, int packedLight, int packedOverlay, int color) {
 		for (ModelPart crystal : crystals) {
-			crystal.render(stack, builder, light, overlay, red, green, blue, 0.75F);
+			crystal.render(poseStack, buffer, packedLight, packedOverlay, color);
 		}
-		head.render(stack, builder, light, overlay, red, green, blue, 1.0F);
+		head.render(poseStack, buffer, packedLight, packedOverlay, color);
 	}
 
 	@Override

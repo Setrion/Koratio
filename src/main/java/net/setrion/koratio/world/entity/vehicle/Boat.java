@@ -1,11 +1,6 @@
 package net.setrion.koratio.world.entity.vehicle;
 
-import java.util.List;
-
-import javax.annotation.Nullable;
-
 import com.google.common.collect.Lists;
-
 import net.minecraft.BlockUtil;
 import net.minecraft.client.player.Input;
 import net.minecraft.client.player.LocalPlayer;
@@ -22,27 +17,26 @@ import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.tags.EntityTypeTags;
+import net.minecraft.util.ByIdMap;
 import net.minecraft.util.Mth;
+import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EntityDimensions;
-import net.minecraft.world.entity.EntitySelector;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.MoverType;
-import net.minecraft.world.entity.Pose;
+import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.animal.WaterAnimal;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.vehicle.DismountHelper;
+import net.minecraft.world.entity.vehicle.VehicleEntity;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.GameRules;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.WaterlilyBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
@@ -56,18 +50,15 @@ import net.setrion.koratio.registry.KoratioBlocks;
 import net.setrion.koratio.registry.KoratioEntityType;
 import net.setrion.koratio.registry.KoratioItems;
 
-public class Boat extends Entity {
-	private static final EntityDataAccessor<Integer> DATA_ID_HURT = SynchedEntityData.defineId(Boat.class, EntityDataSerializers.INT);
-	private static final EntityDataAccessor<Integer> DATA_ID_HURTDIR = SynchedEntityData.defineId(Boat.class, EntityDataSerializers.INT);
-	private static final EntityDataAccessor<Float> DATA_ID_DAMAGE = SynchedEntityData.defineId(Boat.class, EntityDataSerializers.FLOAT);
+import javax.annotation.Nullable;
+import java.util.List;
+import java.util.function.IntFunction;
+
+public class Boat extends VehicleEntity implements Leashable, VariantHolder<Boat.Type>, net.neoforged.neoforge.common.extensions.IBoatExtension {
 	private static final EntityDataAccessor<Integer> DATA_ID_TYPE = SynchedEntityData.defineId(Boat.class, EntityDataSerializers.INT);
 	private static final EntityDataAccessor<Boolean> DATA_ID_PADDLE_LEFT = SynchedEntityData.defineId(Boat.class, EntityDataSerializers.BOOLEAN);
 	private static final EntityDataAccessor<Boolean> DATA_ID_PADDLE_RIGHT = SynchedEntityData.defineId(Boat.class, EntityDataSerializers.BOOLEAN);
 	private static final EntityDataAccessor<Integer> DATA_ID_BUBBLE_TIME = SynchedEntityData.defineId(Boat.class, EntityDataSerializers.INT);
-	public static final int PADDLE_LEFT = 0;
-	public static final int PADDLE_RIGHT = 1;
-	public static final double PADDLE_SOUND_TIME = (double)((float)Math.PI / 4F);
-	public static final int BUBBLE_TIME = 60;
 	private final float[] paddlePositions = new float[2];
 	private float invFriction;
 	private float outOfControlTicks;
@@ -92,6 +83,8 @@ public class Boat extends Entity {
 	private float bubbleMultiplier;
 	private float bubbleAngle;
 	private float bubbleAngleO;
+	@Nullable
+	private Leashable.LeashData leashData;
 
 	public Boat(EntityType<? extends Boat> type, Level level) {
 		super(type, level);
@@ -106,22 +99,17 @@ public class Boat extends Entity {
 		this.zo = z;
 	}
 
-	protected float getEyeHeight(Pose pose, EntityDimensions size) {
-		return size.height;
-	}
-
 	protected Entity.MovementEmission getMovementEmission() {
 		return Entity.MovementEmission.EVENTS;
 	}
 
-	protected void defineSynchedData() {
-		this.entityData.define(DATA_ID_HURT, 0);
-		this.entityData.define(DATA_ID_HURTDIR, 1);
-		this.entityData.define(DATA_ID_DAMAGE, 0.0F);
-		this.entityData.define(DATA_ID_TYPE, Boat.Type.PANGO.ordinal());
-		this.entityData.define(DATA_ID_PADDLE_LEFT, false);
-		this.entityData.define(DATA_ID_PADDLE_RIGHT, false);
-		this.entityData.define(DATA_ID_BUBBLE_TIME, 0);
+	@Override
+	protected void defineSynchedData(SynchedEntityData.Builder builder) {
+		super.defineSynchedData(builder);
+		builder.define(DATA_ID_TYPE, Boat.Type.PANGO.ordinal());
+		builder.define(DATA_ID_PADDLE_LEFT, false);
+		builder.define(DATA_ID_PADDLE_RIGHT, false);
+		builder.define(DATA_ID_BUBBLE_TIME, 0);
 	}
 
 	public boolean canCollideWith(Entity other) {
@@ -140,12 +128,8 @@ public class Boat extends Entity {
 		return true;
 	}
 
-	protected Vec3 getRelativePortalPosition(Direction.Axis axis, BlockUtil.FoundRectangle rect) {
+	public Vec3 getRelativePortalPosition(Direction.Axis axis, BlockUtil.FoundRectangle rect) {
 	return LivingEntity.resetForwardDirectionOfRelativePortalPosition(super.getRelativePortalPosition(axis, rect));
-	}
-
-	public double getPassengersRidingOffset() {
-		return -0.1D;
 	}
 
 	public boolean hurt(DamageSource source, float amount) {
@@ -203,38 +187,57 @@ public class Boat extends Entity {
 	}
 
 	public Item getDropItem() {
-		switch (this.getBoatType()) {
-		case NIGHY:
-			return KoratioItems.NIGHY_BOAT.get();
-		case VARESO:
-			return KoratioItems.VARESO_BOAT.get();
-		case RUGONA:
-			return KoratioItems.RUGONA_BOAT.get();
-		case PANGO:
-		default:
-			return KoratioItems.PANGO_BOAT.get();
-		}
-	}
-
-	public void animateHurt() {
-		this.setHurtDir(-this.getHurtDir());
-		this.setHurtTime(10);
-		this.setDamage(this.getDamage() * 11.0F);
+        return switch (this.getVariant()) {
+            case VARESO -> KoratioItems.VARESO_BOAT.get();
+            case RUGONA -> KoratioItems.RUGONA_BOAT.get();
+            case ELVEN -> KoratioItems.ELVEN_BOAT.get();
+            case BLUE_ELVEN -> KoratioItems.BLUE_ELVEN_BOAT.get();
+            case CYAN_ELVEN -> KoratioItems.CYAN_ELVEN_BOAT.get();
+            case GREEN_ELVEN -> KoratioItems.GREEN_ELVEN_BOAT.get();
+            default -> KoratioItems.PANGO_BOAT.get();
+        };
 	}
 
 	public boolean isPickable() {
 		return !this.isRemoved();
 	}
 
-	public void lerpTo(double x, double y, double z, float yRot, float xRot, int steps, boolean bool) {
-		this.lerpX = x;
-		this.lerpY = y;
-		this.lerpZ = z;
-		this.lerpYRot = (double)yRot;
-		this.lerpXRot = (double)xRot;
+	@Override
+	public void lerpTo(double pX, double pY, double pZ, float pYRot, float pXRot, int pSteps) {
+		this.lerpX = pX;
+		this.lerpY = pY;
+		this.lerpZ = pZ;
+		this.lerpYRot = pYRot;
+		this.lerpXRot = pXRot;
 		this.lerpSteps = 10;
 	}
 
+	@Override
+	public double lerpTargetX() {
+		return this.lerpSteps > 0 ? this.lerpX : this.getX();
+	}
+
+	@Override
+	public double lerpTargetY() {
+		return this.lerpSteps > 0 ? this.lerpY : this.getY();
+	}
+
+	@Override
+	public double lerpTargetZ() {
+		return this.lerpSteps > 0 ? this.lerpZ : this.getZ();
+	}
+
+	@Override
+	public float lerpTargetXRot() {
+		return this.lerpSteps > 0 ? (float)this.lerpXRot : this.getXRot();
+	}
+
+	@Override
+	public float lerpTargetYRot() {
+		return this.lerpSteps > 0 ? (float)this.lerpYRot : this.getYRot();
+	}
+
+	@Override
 	public Direction getMotionDirection() {
 		return this.getDirection().getClockWise();
 	}
@@ -404,6 +407,30 @@ public class Boat extends Entity {
 
 	public float getRowingTime(int p_38316_, float p_38317_) {
 		return this.getPaddleState(p_38316_) ? Mth.clampedLerp(this.paddlePositions[p_38316_] - ((float)Math.PI / 8F), this.paddlePositions[p_38316_], p_38317_) : 0.0F;
+	}
+
+	@Nullable
+	@Override
+	public Leashable.LeashData getLeashData() {
+		return this.leashData;
+	}
+
+	@Override
+	public void setLeashData(@Nullable Leashable.LeashData pLeashData) {
+		this.leashData = pLeashData;
+	}
+
+	@Override
+	public Vec3 getLeashOffset() {
+		return new Vec3(0.0, (double)(0.88F * this.getEyeHeight()), (double)(this.getBbWidth() * 0.64F));
+	}
+
+	@Override
+	public void elasticRangeLeashBehaviour(Entity pLeashHolder, float pDistance) {
+		Vec3 vec3 = pLeashHolder.position().subtract(this.position()).normalize().scale((double)pDistance - 6.0);
+		Vec3 vec31 = this.getDeltaMovement();
+		boolean flag = vec31.dot(vec3) > 0.0;
+		this.setDeltaMovement(vec31.add(vec3.scale(flag ? 0.15F : 0.2F)));
 	}
 
 	private Boat.Status getStatus() {
@@ -622,36 +649,17 @@ public class Boat extends Entity {
 		}
 	}
 
-	protected float getSinglePassengerXOffset() {
-		return 0.0F;
-	}
-
-	public void positionRider(Entity entity, Entity.MoveFunction moveFunction) {
-		if (this.hasPassenger(entity)) {
-			float f = this.getSinglePassengerXOffset();
-			float f1 = (float)((this.isRemoved() ? (double)0.01F : this.getPassengersRidingOffset()) + entity.getMyRidingOffset());
-			if (this.getPassengers().size() > 1) {
-				int i = this.getPassengers().indexOf(entity);
-				if (i == 0) {
-					f = 0.2F;
-				} else {
-					f = -0.6F;
-				}
-
-				if (entity instanceof Animal) {
-					f += 0.2F;
-				}
-			}
-
-			Vec3 vec3 = (new Vec3((double)f, 0.0D, 0.0D)).yRot(-this.getYRot() * ((float)Math.PI / 180F) - ((float)Math.PI / 2F));
-			entity.setPos(this.getX() + vec3.x, this.getY() + (double)f1, this.getZ() + vec3.z);
-			entity.setYRot(entity.getYRot() + this.deltaRotation);
-			entity.setYHeadRot(entity.getYHeadRot() + this.deltaRotation);
-			this.clampRotation(entity);
-			if (entity instanceof Animal && this.getPassengers().size() == this.getMaxPassengers()) {
-				int j = entity.getId() % 2 == 0 ? 90 : 270;
-				entity.setYBodyRot(((Animal)entity).yBodyRot + (float)j);
-				entity.setYHeadRot(entity.getYHeadRot() + (float)j);
+	@Override
+	protected void positionRider(Entity passenger, Entity.MoveFunction callback) {
+		super.positionRider(passenger, callback);
+		if (!passenger.getType().is(EntityTypeTags.CAN_TURN_IN_BOATS)) {
+			passenger.setYRot(passenger.getYRot() + this.deltaRotation);
+			passenger.setYHeadRot(passenger.getYHeadRot() + this.deltaRotation);
+			this.clampRotation(passenger);
+			if (passenger instanceof Animal && this.getPassengers().size() == this.getMaxPassengers()) {
+				int i = passenger.getId() % 2 == 0 ? 90 : 270;
+				passenger.setYBodyRot(((Animal)passenger).yBodyRot + (float)i);
+				passenger.setYHeadRot(passenger.getYHeadRot() + (float)i);
 			}
 		}
 	}
@@ -701,21 +709,25 @@ public class Boat extends Entity {
 	}
 
 	protected void addAdditionalSaveData(CompoundTag tag) {
-		tag.putString("Type", this.getBoatType().getName());
+		tag.putString("Type", this.getVariant().getName());
 	}
 
 	protected void readAdditionalSaveData(CompoundTag tag) {
 		if (tag.contains("Type", 8)) {
-			this.setType(Boat.Type.byName(tag.getString("Type")));
+			this.setVariant(Boat.Type.byName(tag.getString("Type")));
 		}
 	}
 
-	public InteractionResult interact(Player player, InteractionHand hand) {
-		if (player.isSecondaryUseActive()) {
+	@Override
+	public InteractionResult interact(Player pPlayer, InteractionHand pHand) {
+		InteractionResult interactionresult = super.interact(pPlayer, pHand);
+		if (interactionresult != InteractionResult.PASS) {
+			return interactionresult;
+		} else if (pPlayer.isSecondaryUseActive()) {
 			return InteractionResult.PASS;
 		} else if (this.outOfControlTicks < 60.0F) {
 			if (!this.level().isClientSide) {
-				return player.startRiding(this) ? InteractionResult.CONSUME : InteractionResult.PASS;
+				return pPlayer.startRiding(this) ? InteractionResult.CONSUME : InteractionResult.PASS;
 			} else {
 				return InteractionResult.SUCCESS;
 			}
@@ -739,7 +751,7 @@ public class Boat extends Entity {
 						this.kill();
 						if (this.level().getGameRules().getBoolean(GameRules.RULE_DOENTITYDROPS)) {
 							for(int i = 0; i < 3; ++i) {
-								this.spawnAtLocation(this.getBoatType().getPlanks());
+								this.spawnAtLocation(this.getVariant().getPlanks());
 							}
 
 							for(int j = 0; j < 2; ++j) {
@@ -796,11 +808,11 @@ public class Boat extends Entity {
 		return this.entityData.get(DATA_ID_HURTDIR);
 	}
 
-	public void setType(Boat.Type type) {
-		this.entityData.set(DATA_ID_TYPE, type.ordinal());
+	public void setVariant(Boat.Type pVariant) {
+		this.entityData.set(DATA_ID_TYPE, pVariant.ordinal());
 	}
 
-	public Boat.Type getBoatType() {
+	public Boat.Type getVariant() {
 		return Boat.Type.byId(this.entityData.get(DATA_ID_TYPE));
 	}
 
@@ -815,17 +827,6 @@ public class Boat extends Entity {
 	@Nullable
 	public LivingEntity getControllingPassenger() {
 		return (LivingEntity) this.getFirstPassenger();
-	}
-
-	public void setInput(boolean left, boolean right, boolean up, boolean down) {
-		this.inputLeft = left;
-		this.inputRight = right;
-		this.inputUp = up;
-		this.inputDown = down;
-	}
-
-	public Packet<ClientGamePacketListener> getAddEntityPacket() {
-		return new ClientboundAddEntityPacket(this);
 	}
 
 	public boolean isUnderWater() {
@@ -854,51 +855,56 @@ public class Boat extends Entity {
 		IN_AIR;
 	}
 
-	public static enum Type {
+	@net.neoforged.fml.common.asm.enumextension.NamedEnum(1)
+	@net.neoforged.fml.common.asm.enumextension.NetworkedEnum(net.neoforged.fml.common.asm.enumextension.NetworkedEnum.NetworkCheck.CLIENTBOUND)
+	public enum Type implements StringRepresentable {
 		PANGO(KoratioBlocks.PANGO_PLANKS.get(), "pango"),
 		RUGONA(KoratioBlocks.RUGONA_PLANKS.get(), "rugona"),
 		VARESO(KoratioBlocks.VARESO_PLANKS.get(), "vareso"),
-		NIGHY(KoratioBlocks.NIGHY_PLANKS.get(), "nighy");
-	
+		CANDY(KoratioBlocks.CANDY_PLANKS.get(), "candy"),
+		ELVEN(KoratioBlocks.ELVEN_PLANKS.get(), "elven"),
+		BLUE_ELVEN(KoratioBlocks.BLUE_ELVEN_PLANKS.get(), "blue_elven"),
+		CYAN_ELVEN(KoratioBlocks.CYAN_ELVEN_PLANKS.get(), "cyan_elven"),
+		GREEN_ELVEN(KoratioBlocks.GREEN_ELVEN_PLANKS.get(), "green_elven");
+
 		private final String name;
-		private final Block planks;
-	
-		private Type(Block block, String name) {
-			this.name = name;
-			this.planks = block;
+		private final java.util.function.Supplier<Block> planksSupplier;
+		public static final StringRepresentable.EnumCodec<Boat.Type> CODEC = StringRepresentable.fromEnum(Boat.Type::values);
+		private static final IntFunction<Boat.Type> BY_ID = ByIdMap.continuous(Enum::ordinal, values(), ByIdMap.OutOfBoundsStrategy.ZERO);
+
+		@net.neoforged.fml.common.asm.enumextension.ReservedConstructor
+        Type(Block pPlanks, String pName) {
+			this.name = pName;
+			this.planksSupplier = () -> pPlanks;
 		}
-	
+
+		@Override
+		public String getSerializedName() {
+			return this.name;
+		}
+
 		public String getName() {
 			return this.name;
 		}
-	
+
 		public Block getPlanks() {
-			return this.planks;
+			return this.planksSupplier.get();
 		}
-	
+
+		@Override
 		public String toString() {
 			return this.name;
 		}
-	
-		public static Boat.Type byId(int id) {
-			Boat.Type[] aboat$type = values();
-			if (id < 0 || id >= aboat$type.length) {
-				id = 0;
-			}
-		
-			return aboat$type[id];
+
+		/**
+		 * Get a boat type by its enum ordinal
+		 */
+		public static Boat.Type byId(int pId) {
+			return BY_ID.apply(pId);
 		}
-	
-		public static Boat.Type byName(String name) {
-			Boat.Type[] aboat$type = values();
-	
-			for(int i = 0; i < aboat$type.length; ++i) {
-				if (aboat$type[i].getName().equals(name)) {
-					return aboat$type[i];
-				}
-			}
-	
-			return aboat$type[0];
+
+		public static Boat.Type byName(String pName) {
+			return CODEC.byName(pName, PANGO);
 		}
 	}
 }

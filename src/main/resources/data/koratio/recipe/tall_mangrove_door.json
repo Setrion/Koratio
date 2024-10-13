@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "group": "tall_wooden_door",
+  "key": {
+    "#": {
+      "item": "minecraft:mangrove_door"
+    },
+    "x": {
+      "item": "minecraft:mangrove_planks"
+    }
+  },
+  "pattern": [
+    "x",
+    "#",
+    "x"
+  ],
+  "result": {
+    "count": 2,
+    "id": "koratio:tall_mangrove_door"
+  }
+}

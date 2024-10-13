@@ -1,7 +1,6 @@
 package net.setrion.koratio.world.level.levelgen.feature;
 
 import com.mojang.serialization.Codec;
-
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.LevelAccessor;

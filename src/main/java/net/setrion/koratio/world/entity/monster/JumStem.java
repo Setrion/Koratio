@@ -1,14 +1,7 @@
 package net.setrion.koratio.world.entity.monster;
 
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.EnumSet;
-
-import javax.annotation.Nullable;
-
-import org.jetbrains.annotations.NotNull;
-
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Holder;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
@@ -23,12 +16,7 @@ import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.entity.AreaEffectCloud;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.MobSpawnType;
-import net.minecraft.world.entity.SpawnGroupData;
+import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.control.MoveControl;
 import net.minecraft.world.entity.ai.goal.Goal;
@@ -46,10 +34,18 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
+import net.neoforged.neoforge.common.IShearable;
 import net.setrion.koratio.registry.KoratioBlocks;
 import net.setrion.koratio.world.entity.projectile.MushroomSpore;
+import org.jetbrains.annotations.NotNull;
 
-public class JumStem extends Monster implements net.minecraftforge.common.IForgeShearable {
+import javax.annotation.Nullable;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.EnumSet;
+import java.util.List;
+
+public class JumStem extends Monster implements net.neoforged.neoforge.common.IShearable {
 	
 	private static final EntityDataAccessor<Integer> DATA_VARIANT = SynchedEntityData.defineId(JumStem.class, EntityDataSerializers.INT);
 	private static final EntityDataAccessor<Integer> DATA_SHROOMS = SynchedEntityData.defineId(JumStem.class, EntityDataSerializers.INT);
@@ -62,9 +58,16 @@ public class JumStem extends Monster implements net.minecraftforge.common.IForge
 
 	public JumStem(EntityType<? extends JumStem> type, Level level) {
 		super(type, level);
-		this.moveControl = new JumStem.JumStemMoveControl(this);
-		this.entityData.define(DATA_VARIANT, 0);
-		this.entityData.define(DATA_SHROOMS, 0);
+		this.moveControl = new JumStemMoveControl(this);
+		this.entityData.set(DATA_VARIANT, 0);
+		this.entityData.set(DATA_SHROOMS, 0);
+	}
+
+	@Override
+	protected void defineSynchedData(SynchedEntityData.Builder builder) {
+		super.defineSynchedData(builder);
+		builder.define(DATA_VARIANT, 0);
+		builder.define(DATA_SHROOMS, 0);
 	}
 	
 	@Override
@@ -125,14 +128,15 @@ public class JumStem extends Monster implements net.minecraftforge.common.IForge
 	private void setMushroomAmount(int amount) {
 		this.entityData.set(DATA_SHROOMS, amount);
 	}
-	
+
+	@org.jetbrains.annotations.Nullable
 	@Override
-	public SpawnGroupData finalizeSpawn(ServerLevelAccessor level, DifficultyInstance difficulty, MobSpawnType type, SpawnGroupData groupData, CompoundTag tag) {
+	public SpawnGroupData finalizeSpawn(ServerLevelAccessor level, DifficultyInstance difficulty, MobSpawnType spawnType, @org.jetbrains.annotations.Nullable SpawnGroupData spawnGroupData) {
 		this.setVariant(JumStem.Variant.BY_ID[level.getRandom().nextIntBetweenInclusive(1, 4)]);
 		this.setMushroomAmount(level.getRandom().nextInt(4));
-		return super.finalizeSpawn(level, difficulty, type, groupData, tag);
+		return super.finalizeSpawn(level, difficulty, spawnType, spawnGroupData);
 	}
-	
+
 	public void tick() {
 		if (this.hasEffect(this.getVariant().getEffect())) {
 			this.removeEffect(this.getVariant().getEffect());
@@ -346,9 +350,9 @@ public class JumStem extends Monster implements net.minecraftforge.common.IForge
 			}
 		}
 	}
-	
+
 	@Override
-	public java.util.List<ItemStack> onSheared(@org.jetbrains.annotations.Nullable Player player, @org.jetbrains.annotations.NotNull ItemStack item, Level world, BlockPos pos, int fortune) {
+	public List<ItemStack> onSheared(@org.jetbrains.annotations.Nullable Player player, ItemStack item, Level level, BlockPos pos) {
 		this.gameEvent(GameEvent.SHEAR, player);
 		return shearInternal(player == null ? SoundSource.BLOCKS : SoundSource.PLAYERS);
 	}
@@ -376,12 +380,12 @@ public class JumStem extends Monster implements net.minecraftforge.common.IForge
 	public boolean readyForShearing() {
 		return this.isAlive() && !this.isBaby() && this.getMushroomAmount() > 0 && this.getVariant() != JumStem.Variant.SHEARED;
 	}
-	
+
 	@Override
-	public boolean isShearable(@org.jetbrains.annotations.NotNull ItemStack item, Level world, BlockPos pos) {
+	public boolean isShearable(@org.jetbrains.annotations.Nullable Player player, ItemStack item, Level level, BlockPos pos) {
 		return readyForShearing();
 	}
-	
+
 	public static enum Variant {
 		SHEARED(0, "sheared", Blocks.AIR, null),
 		RED(1, "red", Blocks.RED_MUSHROOM, MobEffects.BLINDNESS),
@@ -395,9 +399,9 @@ public class JumStem extends Monster implements net.minecraftforge.common.IForge
 		private final int id;
 		private final String name;
 		private final Block block;
-		private final MobEffect effect;
+		private final Holder<MobEffect> effect;
 
-		Variant(int id, String name, @NotNull Block block, @Nullable MobEffect effect) {
+		Variant(int id, String name, @NotNull Block block, @Nullable Holder<MobEffect> effect) {
 			this.id = id;
 			this.name = name;
 			this.block = block;
@@ -428,7 +432,7 @@ public class JumStem extends Monster implements net.minecraftforge.common.IForge
 			return this.block;
 		}
 		
-		public MobEffect getEffect() {
+		public Holder<MobEffect> getEffect() {
 			return this.effect;
 		}
 	}

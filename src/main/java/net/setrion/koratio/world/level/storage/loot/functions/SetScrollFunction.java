@@ -1,25 +1,30 @@
 package net.setrion.koratio.world.level.storage.loot.functions;
 
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonSerializationContext;
-
-import net.minecraft.util.GsonHelper;
+import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.level.storage.loot.functions.LootItemConditionalFunction;
 import net.minecraft.world.level.storage.loot.functions.LootItemFunctionType;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 import net.setrion.koratio.registry.KoratioLootItemFunctions;
-import net.setrion.koratio.scroll.Scroll;
 import net.setrion.koratio.scroll.ScrollUtils;
 
+import java.util.List;
+
 public class SetScrollFunction extends LootItemConditionalFunction {
-	
-	final Scroll scroll;
+
+	public static final MapCodec<SetScrollFunction> CODEC = RecordCodecBuilder.mapCodec(
+			instance -> commonFields(instance)
+					.and(Codec.STRING.fieldOf("scroll").forGetter(function -> String.valueOf(function.scroll)))
+					.and(Codec.BOOL.fieldOf("encrypted").forGetter(function -> function.encrypted))
+					.apply(instance, SetScrollFunction::new)
+	);
+	final String scroll;
 	final boolean encrypted;
 
-	public SetScrollFunction(LootItemCondition[] conditions, Scroll scroll, boolean encrypted) {
+	public SetScrollFunction(List<LootItemCondition> conditions, String scroll, boolean encrypted) {
 		super(conditions);
 		this.scroll = scroll;
 		this.encrypted = encrypted;
@@ -32,27 +37,12 @@ public class SetScrollFunction extends LootItemConditionalFunction {
 
 	@Override
 	protected ItemStack run(ItemStack stack, LootContext context) {
-		return ScrollUtils.addScrollToStack(stack, scroll, encrypted);
+		return ScrollUtils.addScrollToStack(stack, ScrollUtils.getScrollByName(scroll), encrypted);
 	}
 	
-	public static LootItemConditionalFunction.Builder<?> setScroll(Scroll scroll, boolean encrypted) {
-		return simpleBuilder((condition) -> {
+	public static LootItemConditionalFunction.Builder<?> setScroll(String scroll, boolean encrypted) {
+		return simpleBuilder(condition -> {
 			return new SetScrollFunction(condition, scroll, encrypted);
 		});
-	}
-	
-	public static class Serializer extends LootItemConditionalFunction.Serializer<SetScrollFunction> {
-		public void serialize(JsonObject json, SetScrollFunction function, JsonSerializationContext context) {
-			super.serialize(json, function, context);
-			json.addProperty("name", function.scroll.getName());
-			json.addProperty("encrypted", function.encrypted);
-		}
-
-		public SetScrollFunction deserialize(JsonObject json, JsonDeserializationContext context, LootItemCondition[] conditions) {
-			String name = GsonHelper.getAsString(json, "name");
-			boolean encrypted = GsonHelper.getAsBoolean(json, "encrypted");
-			return new SetScrollFunction(conditions, ScrollUtils.getScrollByName(name), encrypted);
-
-		}
 	}
 }

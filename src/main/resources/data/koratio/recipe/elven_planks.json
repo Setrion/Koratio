@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "group": "planks",
+  "ingredients": [
+    {
+      "tag": "koratio:elven_logs"
+    }
+  ],
+  "result": {
+    "count": 4,
+    "id": "koratio:elven_planks"
+  }
+}

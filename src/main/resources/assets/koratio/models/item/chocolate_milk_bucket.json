@@ -1,6 +1,5 @@
 {
-  "parent": "minecraft:item/generated",
-  "textures": {
-    "layer0": "koratio:item/chocolate_milk_bucket"
-  }
+  "parent": "neoforge:item/bucket",
+  "fluid": "koratio:chocolate_milk",
+  "loader": "neoforge:fluid_container"
 }

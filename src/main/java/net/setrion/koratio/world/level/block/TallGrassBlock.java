@@ -18,7 +18,7 @@ public class TallGrassBlock extends net.minecraft.world.level.block.TallGrassBlo
 	}
 	
 	@Override
-	public boolean isValidBonemealTarget(LevelReader level, BlockPos pos, BlockState state, boolean b) {
+	public boolean isValidBonemealTarget(LevelReader level, BlockPos pos, BlockState state) {
 		return false;
 	}
 

@@ -1,0 +1,22 @@
+{
+  "textures": {
+    "texture": "koratio:block/elven_planks",
+    "blue": "koratio:block/blue_elven_planks",
+    "green": "koratio:block/green_elven_planks",
+    "particle": "koratio:block/elven_planks"
+  },
+  "elements": [
+    {   "from": [ 6, 0, 6 ],
+      "to": [ 10, 16, 10 ],
+      "faces": {
+        "down":  { "uv": [ 6, 6, 10, 10 ], "texture": "#blue", "cullface": "down" },
+        "up":    { "uv": [ 6, 6, 10, 10 ], "texture": "#green", "cullface": "up" },
+        "north": { "uv": [ 6, 0, 10, 16 ], "texture": "#texture" },
+        "south": { "uv": [ 6, 0, 10, 16 ], "texture": "#texture" },
+        "west":  { "uv": [ 6, 0, 10, 16 ], "texture": "#texture" },
+        "east":  { "uv": [ 6, 0, 10, 16 ], "texture": "#texture" }
+      },
+      "__comment": "Center post"
+    }
+  ]
+}

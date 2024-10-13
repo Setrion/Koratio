@@ -1,0 +1,9 @@
+{
+  "asset_name": "onyx",
+  "description": {
+    "color": "#454545",
+    "translate": "trim_material.koratio.onyx"
+  },
+  "ingredient": "koratio:onyx",
+  "item_model_index": 0.3
+}

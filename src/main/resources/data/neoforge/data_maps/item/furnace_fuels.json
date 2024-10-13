@@ -1,0 +1,13 @@
+{
+  "values": {
+    "#c:bookshelves": {
+      "burn_time": 300
+    },
+    "#c:chests/wooden": {
+      "burn_time": 300
+    },
+    "#koratio:tall_wooden_doors": {
+      "burn_time": 300
+    }
+  }
+}

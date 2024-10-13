@@ -1,9 +1,5 @@
 package net.setrion.koratio.client.gui.screens.inventory;
 
-import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.mutable.MutableBoolean;
-import org.apache.commons.lang3.mutable.MutableInt;
-
 import net.minecraft.client.GameNarrator;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.Screen;
@@ -12,10 +8,13 @@ import net.minecraft.network.chat.Style;
 import net.minecraft.resources.ResourceLocation;
 import net.setrion.koratio.Koratio;
 import net.setrion.koratio.scroll.Scroll;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.mutable.MutableBoolean;
+import org.apache.commons.lang3.mutable.MutableInt;
 
 public class ScrollScreen extends Screen {
 	
-	public static final ResourceLocation SCROLL_LOCATION = new ResourceLocation(Koratio.MOD_ID, "textures/gui/scroll.png");
+	public static final ResourceLocation SCROLL_LOCATION = ResourceLocation.fromNamespaceAndPath(Koratio.MOD_ID, "textures/gui/scroll.png");
 	public Scroll scroll;
 
 	public ScrollScreen(Scroll scroll) {
@@ -25,12 +24,11 @@ public class ScrollScreen extends Screen {
 	
 	@Override
 	public void render(GuiGraphics graphics, int mouseX, int mouseY, float partialTicks) {
-		this.renderBackground(graphics);
+		this.renderBackground(graphics, mouseX, mouseY, partialTicks);
 		int i = (this.width - 192) / 2;
 		int j = (this.height - 256) / 2;
-		graphics.blit(SCROLL_LOCATION, i, j, 0, 0, 192, 256);
+		graphics.blit(SCROLL_LOCATION, i, j, 0, 0, 192, 192);
 		this.renderText(graphics, i+5, j+8, partialTicks);
-		super.render(graphics, mouseX, mouseY, partialTicks);
 	}
 	
 	public void renderText(GuiGraphics graphics, int x, int y, float partialTicks) {

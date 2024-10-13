@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/cross",
-  "render_type": "minecraft:cutout",
+  "render_type": "minecraft:tripwire",
   "textures": {
     "cross": "koratio:block/ice_rose"
   }

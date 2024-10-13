@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/cube_bottom_top",
+  "textures": {
+    "bottom": "koratio:block/blue_elven_planks",
+    "side": "koratio:block/elven_bookshelf",
+    "top": "koratio:block/green_elven_planks"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/template_glass_pane_post",
+  "render_type": "translucent",
+  "textures": {
+    "edge": "koratio:block/rainbow_crystal_glass_pane_top",
+    "pane": "koratio:block/rainbow_crystal_glass"
+  }
+}

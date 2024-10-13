@@ -1,7 +1,6 @@
 package net.setrion.koratio.client.renderer.entity;
 
 import com.mojang.blaze3d.vertex.PoseStack;
-
 import net.minecraft.client.renderer.entity.EntityRendererProvider.Context;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.resources.ResourceLocation;
@@ -29,6 +28,6 @@ public class JumStemRenderer extends MobRenderer<JumStem, JumStemModel<JumStem>>
 
 	@Override
 	public ResourceLocation getTextureLocation(JumStem jumstem) {
-		return new ResourceLocation(Koratio.MOD_ID, "textures/entity/jumstem/"+jumstem.getVariant().getName()+".png");
+		return ResourceLocation.fromNamespaceAndPath(Koratio.MOD_ID, "textures/entity/jumstem/"+jumstem.getVariant().getName()+".png");
 	}
 }

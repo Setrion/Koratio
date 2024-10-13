@@ -1,12 +1,9 @@
 package net.setrion.koratio.world.level.levelgen.feature.trunkplacers;
 
-import java.util.List;
-import java.util.function.BiConsumer;
-
 import com.google.common.collect.Lists;
 import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.LevelSimulatedReader;
@@ -17,8 +14,11 @@ import net.minecraft.world.level.levelgen.feature.trunkplacers.TrunkPlacer;
 import net.minecraft.world.level.levelgen.feature.trunkplacers.TrunkPlacerType;
 import net.setrion.koratio.registry.KoratioTrunkPlacerTypes;
 
+import java.util.List;
+import java.util.function.BiConsumer;
+
 public class VaresoTrunkPlacer extends TrunkPlacer {
-	public static final Codec<VaresoTrunkPlacer> CODEC = RecordCodecBuilder.create((instance) -> {
+	public static final MapCodec<VaresoTrunkPlacer> CODEC = RecordCodecBuilder.mapCodec((instance) -> {
 		return trunkPlacerParts(instance).apply(instance, VaresoTrunkPlacer::new);
 	});
 

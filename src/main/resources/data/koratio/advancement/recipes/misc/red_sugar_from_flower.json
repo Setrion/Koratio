@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_red_sugarglass_flower": {
+      "conditions": {
+        "items": [
+          {
+            "items": "koratio:red_sugarglass_flower"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "koratio:red_sugar_from_flower"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_red_sugarglass_flower"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "koratio:red_sugar_from_flower"
+    ]
+  }
+}

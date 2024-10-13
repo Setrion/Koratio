@@ -1,0 +1,10 @@
+{
+  "type": "koratio:woodcutter",
+  "ingredient": {
+    "item": "koratio:stripped_cyan_elven_log"
+  },
+  "result": {
+    "count": 4,
+    "id": "koratio:cyan_elven_planks"
+  }
+}

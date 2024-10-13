@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_elven_planks": {
+      "conditions": {
+        "items": [
+          {
+            "items": "koratio:elven_planks"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "koratio:elven_stairs"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_elven_planks"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "koratio:elven_stairs"
+    ]
+  }
+}

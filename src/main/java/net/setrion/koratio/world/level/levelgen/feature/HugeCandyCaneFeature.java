@@ -1,9 +1,6 @@
 package net.setrion.koratio.world.level.levelgen.feature;
 
-import java.util.List;
-
 import com.mojang.serialization.Codec;
-
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Vec3i;
 import net.minecraft.resources.ResourceLocation;
@@ -23,9 +20,11 @@ import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemp
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplateManager;
 import net.setrion.koratio.Koratio;
 
+import java.util.List;
+
 public class HugeCandyCaneFeature extends Feature<NoneFeatureConfiguration> {
 	
-	List<ResourceLocation> list = List.of(new ResourceLocation(Koratio.MOD_ID, "candy_cane/red"), new ResourceLocation(Koratio.MOD_ID, "candy_cane/blue"), new ResourceLocation(Koratio.MOD_ID, "candy_cane/yellow"), new ResourceLocation(Koratio.MOD_ID, "candy_cane/green"));
+	List<ResourceLocation> list = List.of(ResourceLocation.fromNamespaceAndPath(Koratio.MOD_ID, "candy_cane/red"), ResourceLocation.fromNamespaceAndPath(Koratio.MOD_ID, "candy_cane/blue"), ResourceLocation.fromNamespaceAndPath(Koratio.MOD_ID, "candy_cane/yellow"), ResourceLocation.fromNamespaceAndPath(Koratio.MOD_ID, "candy_cane/green"));
 
 	public HugeCandyCaneFeature(Codec<NoneFeatureConfiguration> codec) {
 		super(codec);

@@ -35,10 +35,7 @@
     [
       "minecraft:disk_sand",
       "minecraft:disk_clay",
-      "minecraft:disk_gravel",
-      "koratio:ore_arsoy_upper",
-      "koratio:ore_arsoy_middle",
-      "koratio:ore_arsoy_small"
+      "minecraft:disk_gravel"
     ],
     [],
     [],

@@ -3,7 +3,6 @@ package net.setrion.koratio.client.renderer.entity;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Axis;
-
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider.Context;
@@ -16,7 +15,7 @@ import net.setrion.koratio.registry.ModelLayers;
 import net.setrion.koratio.world.entity.projectile.MushroomSpore;
 
 public class MushroomSporeRenderer extends EntityRenderer<MushroomSpore> {
-	private static final ResourceLocation MUSHROOM_SPORE_LOCATION = new ResourceLocation(Koratio.MOD_ID, "textures/entity/mushroom_spore.png");
+	private static final ResourceLocation MUSHROOM_SPORE_LOCATION = ResourceLocation.fromNamespaceAndPath(Koratio.MOD_ID, "textures/entity/mushroom_spore.png");
 	private final MushroomSporeModel<MushroomSpore> model;
 
 	public MushroomSporeRenderer(Context context) {
@@ -31,7 +30,7 @@ public class MushroomSporeRenderer extends EntityRenderer<MushroomSpore> {
 		stack.mulPose(Axis.ZP.rotationDegrees(Mth.lerp(p_115375_, spore.xRotO, spore.getXRot())));
 		this.model.setupAnim(spore, p_115375_, 0.0F, -0.1F, 0.0F, 0.0F);
 		VertexConsumer vertexconsumer = buffer.getBuffer(this.model.renderType(MUSHROOM_SPORE_LOCATION));
-		this.model.renderToBuffer(stack, vertexconsumer, p_115378_, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
+		this.model.renderToBuffer(stack, vertexconsumer, p_115378_, OverlayTexture.NO_OVERLAY);
 		stack.popPose();
 		super.render(spore, p_115374_, p_115375_, stack, buffer, p_115378_);
 	}

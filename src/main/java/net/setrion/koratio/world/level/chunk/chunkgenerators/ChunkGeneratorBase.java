@@ -1,8 +1,5 @@
 package net.setrion.koratio.world.level.chunk.chunkgenerators;
 
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.Executor;
-
 import net.minecraft.server.level.WorldGenRegion;
 import net.minecraft.world.level.LevelHeightAccessor;
 import net.minecraft.world.level.NoiseColumn;
@@ -14,6 +11,9 @@ import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.levelgen.RandomState;
 import net.minecraft.world.level.levelgen.blending.Blender;
+
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.Executor;
 
 public abstract class ChunkGeneratorBase extends ChunkGenerator {
     public final ChunkGenerator delegate;
@@ -50,8 +50,8 @@ public abstract class ChunkGeneratorBase extends ChunkGenerator {
     }
 
     @Override
-    public CompletableFuture<ChunkAccess> fillFromNoise(Executor executor, Blender blender, RandomState random, StructureManager structureManager, ChunkAccess chunkAccess) {
-        return this.delegate.fillFromNoise(executor, blender, random, structureManager, chunkAccess);
+    public CompletableFuture<ChunkAccess> fillFromNoise(Blender blender, RandomState randomState, StructureManager structureManager, ChunkAccess chunk) {
+        return this.delegate.fillFromNoise(blender, randomState, structureManager, chunk);
     }
 
     @Override

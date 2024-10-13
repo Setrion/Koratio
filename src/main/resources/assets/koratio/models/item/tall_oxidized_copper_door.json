@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "minecraft:item/oxidized_copper_door",
+    "layer1": "koratio:item/tall_door_overlay"
+  }
+}

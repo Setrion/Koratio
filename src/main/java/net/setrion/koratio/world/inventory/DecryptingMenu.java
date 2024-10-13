@@ -1,9 +1,10 @@
 package net.setrion.koratio.world.inventory;
 
 import com.mojang.datafixers.util.Pair;
-
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.Container;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
@@ -25,10 +26,10 @@ import net.setrion.koratio.world.item.ScrollItem;
 
 public class DecryptingMenu extends AbstractContainerMenu {
 	
-	public static final ResourceLocation BLOCK_ATLAS = new ResourceLocation("textures/atlas/blocks.png");
-	public static final ResourceLocation EMPTY_SCROLL_SLOT = new ResourceLocation(Koratio.MOD_ID, "item/empty_scroll_slot");
-	public static final ResourceLocation EMPTY_BOOK_SLOT = new ResourceLocation(Koratio.MOD_ID, "item/empty_book_slot");
-	public static final ResourceLocation EMPTY_PAPER_SLOT = new ResourceLocation(Koratio.MOD_ID, "item/empty_paper_slot");
+	public static final ResourceLocation BLOCK_ATLAS = ResourceLocation.withDefaultNamespace("textures/atlas/blocks.png");
+	public static final ResourceLocation EMPTY_SCROLL_SLOT = ResourceLocation.fromNamespaceAndPath(Koratio.MOD_ID, "item/empty_scroll_slot");
+	public static final ResourceLocation EMPTY_BOOK_SLOT = ResourceLocation.fromNamespaceAndPath(Koratio.MOD_ID, "item/empty_book_slot");
+	public static final ResourceLocation EMPTY_PAPER_SLOT = ResourceLocation.fromNamespaceAndPath(Koratio.MOD_ID, "item/empty_paper_slot");
 	private final ContainerLevelAccess access;
 	private final DataSlot chance = DataSlot.standalone();
 	private final DataSlot cost = DataSlot.standalone();
@@ -47,7 +48,7 @@ public class DecryptingMenu extends AbstractContainerMenu {
 	public DecryptingMenu(int id, Inventory inventory, ContainerLevelAccess access) {
 		super(KoratioMenuTypes.DECRYPTING.get(), id);
 		this.access = access;
-		this.addSlot(new Slot(slot, 0, 73, 22) {
+		addSlot(new Slot(slot, 0, 73, 22) {
 			@Override
 			public int getMaxStackSize() {
 				return 1;
@@ -60,13 +61,13 @@ public class DecryptingMenu extends AbstractContainerMenu {
 			
 			@Override
 			public boolean mayPlace(ItemStack stack) {
-				if (stack.getItem() instanceof ScrollItem scroll && ScrollUtils.hasScrollData(stack)) {
-					return !ScrollUtils.isEncrypted(stack);
+				if (stack.getItem() instanceof ScrollItem && ScrollUtils.hasScrollData(stack)) {
+					return ScrollUtils.isEncrypted(stack);
 				}
 				return false;
 			}
 		});
-		this.addSlot(new Slot(slot, 1, 73, 46) {
+		addSlot(new Slot(slot, 1, 73, 46) {
 			@Override
 			public int getMaxStackSize() {
 				return 1;
@@ -79,13 +80,10 @@ public class DecryptingMenu extends AbstractContainerMenu {
 			
 			@Override
 			public boolean mayPlace(ItemStack stack) {
-				if (stack.getItem() instanceof DecryptingBookItem) {
-					return true;
-				}
-				return false;
-			}
+                return stack.getItem() instanceof DecryptingBookItem;
+            }
 		});
-		this.addSlot(new Slot(slot, 2, 152, 54) {
+		addSlot(new Slot(slot, 2, 152, 54) {
 			
 			@Override
 			public Pair<ResourceLocation, ResourceLocation> getNoItemIcon() {
@@ -94,11 +92,8 @@ public class DecryptingMenu extends AbstractContainerMenu {
 			
 			@Override
 			public boolean mayPlace(ItemStack stack) {
-				if (stack.getItem() == Items.PAPER) {
-					return true;
-				}
-				return false;
-			}
+                return stack.getItem() == Items.PAPER;
+            }
 		});
 		for(int l = 0; l < 3; ++l) {
 			for(int k = 0; k < 9; ++k) {
@@ -107,16 +102,16 @@ public class DecryptingMenu extends AbstractContainerMenu {
 		}
 
 		for(int i1 = 0; i1 < 9; ++i1) {
-			this.addSlot(new Slot(inventory, i1, 8 + i1 * 18, 142));
+			addSlot(new Slot(inventory, i1, 8 + i1 * 18, 142));
 		}
-		this.addDataSlot(chance);
-		this.addDataSlot(cost);
+		addDataSlot(chance);
+		addDataSlot(cost);
 	}
 	
 	@Override
 	public boolean clickMenuButton(Player player, int id) {
 		if (getSlot(0).getItem().getItem() instanceof ScrollItem && ScrollUtils.isEncrypted(getSlot(0).getItem())) {
-			chance.set((int)(5 * id));
+			chance.set(5 * id);
 			cost.set(id);
 			if (getSlot(1).getItem().getItem() instanceof DecryptingBookItem book) {
 				chance.set(chance.get() + book.getPower());
@@ -126,10 +121,11 @@ public class DecryptingMenu extends AbstractContainerMenu {
 				if (flag || player.getRandom().nextInt(100/chance.get()) == 0) {
 					getSlot(0).set(ScrollUtils.decryptScroll(getSlot(0).getItem()));
 					Scroll scroll = ScrollUtils.getScroll(getSlot(0).getItem());
-					KoratioCriteriaTriggers.DECRYPTED_SCROLL.trigger((ServerPlayer) player, scroll.getName(), scroll.getType());
+					access.execute((level, pos) -> level.playSound(null, pos, SoundEvents.ENCHANTMENT_TABLE_USE, SoundSource.BLOCKS, 1.0F, level.random.nextFloat() * 0.1F + 0.9F));
+					KoratioCriteriaTriggers.DECRYPTED_SCROLL.get().trigger((ServerPlayer) player, scroll.getName(), scroll.getType().getName());
 				}
 				if (!flag) {
-					player.giveExperienceLevels(-this.getCost());
+					player.giveExperienceLevels(-getCost());
 					getSlot(2).remove(4);
 					getSlot(1).remove(1);
 				}
@@ -143,7 +139,7 @@ public class DecryptingMenu extends AbstractContainerMenu {
 		super.removed(player);
 		if (!player.level().isClientSide) {
 			for (int i = 0; i <= 2; i++) {
-				ItemStack itemstack = this.slot.removeItem(i, this.slot.getMaxStackSize());
+				ItemStack itemstack = slot.removeItem(i, slot.getMaxStackSize());
 				if (!itemstack.isEmpty()) {
 					player.drop(itemstack, false);
 				}
@@ -154,23 +150,23 @@ public class DecryptingMenu extends AbstractContainerMenu {
 	@Override
 	public ItemStack quickMoveStack(Player player, int index) {
 		ItemStack itemstack = ItemStack.EMPTY;
-		Slot slot = this.slots.get(index);
-		if (slot != null && slot.hasItem()) {
+		Slot slot = slots.get(index);
+		if (slot.hasItem()) {
 			ItemStack itemstack1 = slot.getItem();
 			itemstack = itemstack1.copy();
-			if (this.moveItemStackTo(itemstack1, 0, 1, false)) { //Forge Fix Shift Clicking in beacons with stacks larger then 1.
+			if (moveItemStackTo(itemstack1, 0, 1, false)) {
 				return ItemStack.EMPTY;
 			} else if (this.moveItemStackTo(itemstack1, 1, 2, false)) {
 				return ItemStack.EMPTY;
 			} else if (index >= 2 && index <= 28) {
-				if (!this.moveItemStackTo(itemstack1, 29, 38, false)) {
+				if (!moveItemStackTo(itemstack1, 29, 38, false)) {
 					return ItemStack.EMPTY;
 				}
 			} else if (index >= 29 && index < 38) {
-				if (!this.moveItemStackTo(itemstack1, 1, 29, false)) {
+				if (!moveItemStackTo(itemstack1, 1, 29, false)) {
 					return ItemStack.EMPTY;
 				}
-			} else if (!this.moveItemStackTo(itemstack1, 1, 38, false)) {
+			} else if (!moveItemStackTo(itemstack1, 1, 38, false)) {
 				return ItemStack.EMPTY;
 			}
 
@@ -192,22 +188,22 @@ public class DecryptingMenu extends AbstractContainerMenu {
 
 	@Override
 	public boolean stillValid(Player player) {
-		return super.stillValid(access, player, KoratioBlocks.DECRYPTING_TABLE.get());
+		return stillValid(access, player, KoratioBlocks.DECRYPTING_TABLE.get());
 	}
 	
 	public int getCost() {
-		return this.cost.get();
+		return cost.get();
 	}
 	
 	public void setCost(int amount) {
-		this.cost.set(amount);
+		cost.set(amount);
 	}
 	
 	public int getChance() {
-		return this.chance.get();
+		return chance.get();
 	}
 	
 	public void setChance(int amount) {
-		this.chance.set(amount);
+		chance.set(amount);
 	}
 }

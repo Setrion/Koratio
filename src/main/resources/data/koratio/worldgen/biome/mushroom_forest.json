@@ -42,10 +42,7 @@
     [
       "minecraft:disk_sand",
       "minecraft:disk_clay",
-      "minecraft:disk_gravel",
-      "koratio:ore_arsoy_upper",
-      "koratio:ore_arsoy_middle",
-      "koratio:ore_arsoy_small"
+      "minecraft:disk_gravel"
     ],
     [],
     [],
@@ -54,6 +51,7 @@
       "koratio:patch_fantasia_grass",
       "koratio:tree/purple_mushroom",
       "koratio:tree/green_mushroom",
+      "minecraft:mushroom_island_vegetation",
       "koratio:purple_mushroom_normal",
       "koratio:green_mushroom_normal",
       "koratio:red_mushroom_normal",

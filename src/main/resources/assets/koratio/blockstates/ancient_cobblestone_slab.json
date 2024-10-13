@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "koratio:block/ancient_cobblestone_slab"
+    },
+    "type=double": {
+      "model": "koratio:block/ancient_cobblestone"
+    },
+    "type=top": {
+      "model": "koratio:block/ancient_cobblestone_slab_top"
+    }
+  }
+}

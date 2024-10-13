@@ -1,6 +1,5 @@
 {
-  "parent": "minecraft:item/generated",
-  "textures": {
-    "layer0": "koratio:item/blood_bucket"
-  }
+  "parent": "neoforge:item/bucket",
+  "fluid": "koratio:blood",
+  "loader": "neoforge:fluid_container"
 }

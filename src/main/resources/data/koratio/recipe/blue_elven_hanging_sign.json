@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "wooden_hanging_sign",
+  "key": {
+    "#": {
+      "item": "minecraft:chain"
+    },
+    "x": {
+      "item": "koratio:stripped_blue_elven_log"
+    }
+  },
+  "pattern": [
+    "# #",
+    "xxx",
+    "xxx"
+  ],
+  "result": {
+    "count": 6,
+    "id": "koratio:blue_elven_hanging_sign"
+  }
+}
