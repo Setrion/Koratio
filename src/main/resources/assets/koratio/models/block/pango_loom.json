@@ -1,9 +1,0 @@
-{
-  "parent": "minecraft:block/orientable_with_bottom",
-  "textures": {
-    "bottom": "koratio:block/pango_loom_bottom",
-    "front": "koratio:block/pango_loom_front",
-    "side": "koratio:block/pango_loom_side",
-    "top": "koratio:block/pango_loom_top"
-  }
-}

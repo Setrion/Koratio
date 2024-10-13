@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/outer_stairs",
-  "textures": {
-    "bottom": "koratio:block/infested_soul_cobblestone",
-    "side": "koratio:block/infested_soul_cobblestone",
-    "top": "koratio:block/infested_soul_cobblestone"
-  }
-}

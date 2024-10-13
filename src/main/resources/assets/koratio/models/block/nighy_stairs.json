@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/stairs",
-  "textures": {
-    "bottom": "koratio:block/nighy_planks",
-    "side": "koratio:block/nighy_planks",
-    "top": "koratio:block/nighy_planks"
-  }
-}

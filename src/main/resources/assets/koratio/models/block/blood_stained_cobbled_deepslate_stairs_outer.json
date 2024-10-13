@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/outer_stairs",
-  "textures": {
-    "bottom": "koratio:block/blood_stained_cobbled_deepslate",
-    "side": "koratio:block/blood_stained_cobbled_deepslate",
-    "top": "koratio:block/blood_stained_cobbled_deepslate"
-  }
-}

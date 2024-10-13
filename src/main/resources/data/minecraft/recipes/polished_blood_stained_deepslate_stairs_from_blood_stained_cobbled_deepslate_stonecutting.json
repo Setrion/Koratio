@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "count": 1,
-  "ingredient": {
-    "item": "koratio:blood_stained_cobbled_deepslate"
-  },
-  "result": "koratio:polished_blood_stained_deepslate_stairs"
-}

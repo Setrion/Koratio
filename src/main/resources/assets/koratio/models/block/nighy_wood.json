@@ -1,7 +1,0 @@
-{
-  "parent": "minecraft:block/cube_column",
-  "textures": {
-    "end": "koratio:block/nighy_log",
-    "side": "koratio:block/nighy_log"
-  }
-}

@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:block/cube_all",
-  "textures": {
-    "all": "koratio:block/cracked_infested_soul_stone_bricks"
-  }
-}

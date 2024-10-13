@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/slab_top",
-  "textures": {
-    "bottom": "koratio:block/soul_cobblestone",
-    "side": "koratio:block/soul_cobblestone",
-    "top": "koratio:block/soul_cobblestone"
-  }
-}

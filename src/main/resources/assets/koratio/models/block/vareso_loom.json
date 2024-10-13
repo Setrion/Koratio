@@ -1,9 +1,0 @@
-{
-  "parent": "minecraft:block/orientable_with_bottom",
-  "textures": {
-    "bottom": "koratio:block/vareso_loom_bottom",
-    "front": "koratio:block/vareso_loom_front",
-    "side": "koratio:block/vareso_loom_side",
-    "top": "koratio:block/vareso_loom_top"
-  }
-}

@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:block/cube_all",
-  "textures": {
-    "all": "koratio:block/blood_stained_deepslate_bricks"
-  }
-}

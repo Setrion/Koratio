@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/cube_bottom_top",
-  "textures": {
-    "bottom": "koratio:block/vareso_barrel_bottom",
-    "side": "koratio:block/vareso_barrel_side",
-    "top": "koratio:block/vareso_barrel_top"
-  }
-}

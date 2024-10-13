@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/cube_bottom_top",
-  "textures": {
-    "bottom": "koratio:block/pango_barrel_bottom",
-    "side": "koratio:block/pango_barrel_side",
-    "top": "koratio:block/pango_barrel_top_open"
-  }
-}

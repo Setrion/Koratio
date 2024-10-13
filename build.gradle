@@ -175,10 +175,6 @@ tasks.withType(ProcessResources).configureEach {
             mod_authors         : mod_authors, mod_description: mod_description,
     ]
     inputs.properties replaceProperties
-
-    filesMatching(['META-INF/mods.toml']) {
-        expand replaceProperties + [project: project]
-    }
 }
 
 // Example configuration to allow publishing using the maven-publish plugin
@@ -197,11 +193,4 @@ publishing {
 
 tasks.withType(JavaCompile).configureEach {
     options.encoding = 'UTF-8' // Use the UTF-8 charset for Java compilation
-}
-
-idea {
-    module {
-        downloadSources = true
-        downloadJavadoc = true
-    }
 }

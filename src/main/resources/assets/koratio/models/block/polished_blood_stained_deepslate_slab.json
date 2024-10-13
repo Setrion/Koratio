@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/slab",
-  "textures": {
-    "bottom": "koratio:block/polished_blood_stained_deepslate",
-    "side": "koratio:block/polished_blood_stained_deepslate",
-    "top": "koratio:block/polished_blood_stained_deepslate"
-  }
-}
