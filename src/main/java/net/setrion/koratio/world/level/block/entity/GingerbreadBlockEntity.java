@@ -62,9 +62,6 @@ public class GingerbreadBlockEntity extends BlockEntity {
 
     public GingerbreadBlockEntity(BlockPos pos, BlockState blockState) {
         super(KoratioBlockEntityType.GINGERBREAD_BLOCK.get(), pos, blockState);
-        for (int c = 0; c < 6; c++) {
-            glazedColor[0] = PartColor.NONE;
-        }
     }
 
     @Override
@@ -153,12 +150,11 @@ public class GingerbreadBlockEntity extends BlockEntity {
             }
         }
         tag.put("Glaze", Glaze);
-        this.requestModelDataUpdate();
     }
 
     @Override
     public CompoundTag getUpdateTag(HolderLookup.Provider registries) {
-        CompoundTag tag = new CompoundTag();
+        CompoundTag tag = super.getUpdateTag(registries);
         saveAdditional(tag, registries);
         return tag;
     }
@@ -169,10 +165,17 @@ public class GingerbreadBlockEntity extends BlockEntity {
     }
 
     @Override
+    public void handleUpdateTag(CompoundTag tag, HolderLookup.Provider lookupProvider) {
+        super.handleUpdateTag(tag, lookupProvider);
+        requestModelDataUpdate();
+        setChanged();
+    }
+
+    @Override
     public void onDataPacket(Connection connection, ClientboundBlockEntityDataPacket packet, HolderLookup.Provider registries) {
         super.onDataPacket(connection, packet, registries);
-        this.level.sendBlockUpdated(packet.getPos(), this.getBlockState(), this.getBlockState(), 3);
-
+        requestModelDataUpdate();
+        setChanged();
     }
 
     @Override
@@ -208,9 +211,6 @@ public class GingerbreadBlockEntity extends BlockEntity {
             glazedBottom[b] = bottom.getBoolean(Part.byId(b).name);
         }
         glazedColor[5] = PartColor.byName(bottom.getString("color"));
-        requestModelDataUpdate();
-        this.level.sendBlockUpdated(this.worldPosition, this.getBlockState(), this.getBlockState(), 3);
-        setChanged();
     }
 
     public PartColor getColor(int i) {
@@ -223,8 +223,12 @@ public class GingerbreadBlockEntity extends BlockEntity {
     public void setColor(int i, PartColor color) {
         glazedColor[i] = color;
         setChanged();
-        requestModelDataUpdate();
+    }
+
+    @Override
+    public void setChanged() {
         this.level.sendBlockUpdated(this.worldPosition, this.getBlockState(), this.getBlockState(), 3);
+        super.setChanged();
     }
 
     public void setPart(Direction facing, Part part, boolean shown) {
@@ -242,8 +246,6 @@ public class GingerbreadBlockEntity extends BlockEntity {
             glazedBottom[part.id] = shown;
         }
         setChanged();
-        requestModelDataUpdate();
-        this.level.sendBlockUpdated(this.worldPosition, this.getBlockState(), this.getBlockState(), 3);
     }
 
     public boolean getPart(Direction facing, Part part) {

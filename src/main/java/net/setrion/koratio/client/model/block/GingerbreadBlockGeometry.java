@@ -17,16 +17,6 @@ public record GingerbreadBlockGeometry(String name, BlockModel core, BlockModel 
                                        BlockModel eastTopOverlay, BlockModel eastBottomOverlay, BlockModel eastLeftOverlay, BlockModel eastRightOverlay, BlockModel eastMiddleOverlay,
                                        BlockModel southTopOverlay, BlockModel southBottomOverlay, BlockModel southLeftOverlay, BlockModel southRightOverlay, BlockModel southMiddleOverlay,
                                        BlockModel westTopOverlay, BlockModel westBottomOverlay, BlockModel westLeftOverlay, BlockModel westRightOverlay, BlockModel westMiddleOverlay) implements IUnbakedGeometry<GingerbreadBlockGeometry> {
-    private static final Vector3f BLOCK_CENTER = new Vector3f(0.5f, 0.5f, 0.5f);
-
-    private static final BlockModelRotation[] ROTATIONS = new BlockModelRotation[] {
-            BlockModelRotation.X180_Y0,
-            BlockModelRotation.X0_Y0,
-            BlockModelRotation.X90_Y0,
-            BlockModelRotation.X90_Y180,
-            BlockModelRotation.X90_Y270,
-            BlockModelRotation.X90_Y90
-    };
 
     @Override
     public BakedModel bake(IGeometryBakingContext iGeometryBakingContext, ModelBaker modelBaker, Function<Material, TextureAtlasSprite> function, ModelState modelState, ItemOverrides itemOverrides) {
