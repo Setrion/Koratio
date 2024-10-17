@@ -20,9 +20,9 @@ public class RainbowCandleCakeBlock extends CandleCakeBlock {
 
     @Override
     public void animateTick(BlockState state, Level level, BlockPos pos, RandomSource random) {
-        if ((Boolean)state.getValue(LIT)) {
+        if (state.getValue(LIT)) {
             this.getParticleOffsets(state).forEach((p_220695_) -> {
-                addParticlesAndSound(level, p_220695_.add((double)pos.getX(), (double)pos.getY(), (double)pos.getZ()), random);
+                addParticlesAndSound(level, p_220695_.add(pos.getX(), pos.getY(), pos.getZ()), random);
             });
         }
 

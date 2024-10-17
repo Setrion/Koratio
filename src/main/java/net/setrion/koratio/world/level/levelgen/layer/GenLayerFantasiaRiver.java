@@ -38,10 +38,6 @@ public enum GenLayerFantasiaRiver implements CastleTransformer {
 		Registry<Biome> registry = ServerLifecycleHooks.getCurrentServer().registryAccess().registryOrThrow(Registries.BIOME);
 		float difference = registry.getHolder(biome1).get().value().getBaseTemperature() - registry.getHolder(biome2).get().value().getBaseTemperature();
 
-		if (difference < -0.1 || difference > 0.1) {
-			return true;
-		}
-		
-		return false;
-	}
+        return difference < -0.1 || difference > 0.1;
+    }
 }

@@ -21,6 +21,7 @@ public class KoratioStats {
     public static final DeferredHolder<ResourceLocation, ResourceLocation> INTERACT_WITH_WOODCUTTER = makeCustomStat("interact_with_woodcutter");
     public static final DeferredHolder<ResourceLocation, ResourceLocation> INTERACT_WITH_CANDY_SHAPER = makeCustomStat("interact_with_candy_shaper");
     public static final DeferredHolder<ResourceLocation, ResourceLocation> CANDYS_MADE = makeCustomStat("candys_made");
+    public static final DeferredHolder<ResourceLocation, ResourceLocation> EAT_BLOCK_SLICE = makeCustomStat("eat_block_slice");
 
     private static DeferredHolder<ResourceLocation, ResourceLocation> makeCustomStat(String key) {
         ResourceLocation resourcelocation = Koratio.prefix(key);

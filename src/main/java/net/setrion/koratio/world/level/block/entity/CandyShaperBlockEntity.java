@@ -43,7 +43,7 @@ public class CandyShaperBlockEntity extends AbstractFluidTankBlockEntity impleme
                 (be, context) -> be.FLUID_TANK);
     }
 
-    private final AbstractFluidTank FLUID_TANK = new MultiFluidContainer<>(new FluidContainer(2000) {
+    private final MultiFluidContainer<?> FLUID_TANK = new MultiFluidContainer<>(new FluidContainer(2000) {
         @Override
         public boolean isFluidValid(FluidStack stack) {
             return stack.is(KoratioFluids.MOLTEN_SUGAR.get());

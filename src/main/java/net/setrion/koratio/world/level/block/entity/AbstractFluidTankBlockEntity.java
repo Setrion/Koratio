@@ -26,7 +26,7 @@ public class AbstractFluidTankBlockEntity extends BlockEntity {
         return true;
     }
 
-    protected void findRecipe() {};
+    protected void findRecipe() {}
 
     @Nullable
     @Override

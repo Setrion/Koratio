@@ -78,7 +78,6 @@ public abstract class LanguageGenerator extends LanguageProvider {
 		protected void addMisc() {
 			add("itemGroup.koratio.main", "Koratio");
 			add("itemGroup.koratio.fantasia", "Koratio - Fantasia");
-			add("itemGroup.koratio.demonicio", "Koratio - Demonicio");
 
 			add("koratio.woodcutter_category", "Woodcutter");
 			add("koratio.candy_shaper_category", "Candy Shaper");
@@ -92,6 +91,9 @@ public abstract class LanguageGenerator extends LanguageProvider {
 			add("container.woodcutter", "Woodcutter");
 			add("container.candy_shaper", "Candy Shaper");
 			add("decrypting.chance", "Chance: ");
+
+			add("tooltip.koratio.piping_bag.empty", "Empty");
+			add("tooltip.koratio.piping_bag.filled", "Filled with %s units of Icing");
 		}
 		
 		@Override
@@ -107,6 +109,7 @@ public abstract class LanguageGenerator extends LanguageProvider {
 		@Override
 		protected void addItems() {
 			add(KoratioItems.SCROLL.get(), "Scroll");
+			add(KoratioItems.PIPING_BAG.get(), "Piping Bag");
 			add(KoratioItems.DECRYPTING_BOOK.get(), "Decrypting Book");
 			add(KoratioItems.BETTER_DECRYPTING_BOOK.get(), "Better Decrypting Book");
 			add(KoratioItems.FANTASTIC_DECRYPTING_BOOK.get(), "Fantastic Decrypting Book");
@@ -155,6 +158,8 @@ public abstract class LanguageGenerator extends LanguageProvider {
 			add(KoratioItems.PANGO_CHEST_BOAT.get(), "Pango Chest Boat");
 			add(KoratioItems.RUGONA_BOAT.get(), "Rugona Boat");
 			add(KoratioItems.RUGONA_CHEST_BOAT.get(), "Rugona Chest Boat");
+			add(KoratioItems.CANDY_BOAT.get(), "Candy Boat");
+			add(KoratioItems.CANDY_CHEST_BOAT.get(), "Candy Chest Boat");
 			add(KoratioItems.VARESO_BOAT.get(), "Vareso Boat");
 			add(KoratioItems.VARESO_CHEST_BOAT.get(), "Vareso Chest Boat");
 			add(KoratioItems.ELVEN_BOAT.get(), "Elven Boat");
@@ -193,6 +198,13 @@ public abstract class LanguageGenerator extends LanguageProvider {
 			add(KoratioItems.MOLTEN_YELLOW_SUGAR_BUCKET.get(), "Molten Yellow Sugar Bucket");
 			add(KoratioItems.MOLTEN_RED_SUGAR_BUCKET.get(), "Molten Red Sugar Bucket");
 
+			add(KoratioItems.WOODEN_ICING_SPATULA.get(), "Wooden Icing Spatula");
+			add(KoratioItems.STONE_ICING_SPATULA.get(), "Stone Icing Spatula");
+			add(KoratioItems.GOLDEN_ICING_SPATULA.get(), "Golden Icing Spatula");
+			add(KoratioItems.IRON_ICING_SPATULA.get(), "Iron Icing Spatula");
+			add(KoratioItems.DIAMOND_ICING_SPATULA.get(), "Diamond Icing Spatula");
+			add(KoratioItems.NETHERITE_ICING_SPATULA.get(), "Netherite Icing Spatula");
+
 			add(KoratioItems.BONE_HELMET.get(), "Bone Helmet");
 			add(KoratioItems.BONE_CHESTPLATE.get(), "Bone Chestplate");
 			add(KoratioItems.BONE_LEGGINGS.get(), "Bone Leggings");
@@ -202,6 +214,7 @@ public abstract class LanguageGenerator extends LanguageProvider {
 			add(KoratioItems.BONE_AXE.get(), "Bone Axe");
 			add(KoratioItems.BONE_PICKAXE.get(), "Bone Pickaxe");
 			add(KoratioItems.BONE_HOE.get(), "Bone Hoe");
+			add(KoratioItems.BONE_ICING_SPATULA.get(), "Bone Icing Spatula");
 			
 			add(KoratioItems.WITHER_BONE_HELMET.get(), "Wither Bone Helmet");
 			add(KoratioItems.WITHER_BONE_CHESTPLATE.get(), "Wither Bone Chestplate");
@@ -212,6 +225,7 @@ public abstract class LanguageGenerator extends LanguageProvider {
 			add(KoratioItems.WITHER_BONE_AXE.get(), "Wither Bone Axe");
 			add(KoratioItems.WITHER_BONE_PICKAXE.get(), "Wither Bone Pickaxe");
 			add(KoratioItems.WITHER_BONE_HOE.get(), "Wither Bone Hoe");
+			add(KoratioItems.WITHER_BONE_ICING_SPATULA.get(), "Wither Bone Icing Spatula");
 			
 			add(KoratioItems.MAGICAL_CAT_SPAWN_EGG.get(), "Magical Cat Spawn Egg");
 			add(KoratioItems.JUMSTEM_SPAWN_EGG.get(), "Jumstem Spawn Egg");
@@ -526,6 +540,39 @@ public abstract class LanguageGenerator extends LanguageProvider {
 			add(KoratioBlocks.GREEN_CANDY_BLOCK.get(), "Green Candy Block");
 			add(KoratioBlocks.YELLOW_CANDY_BLOCK.get(), "Yellow Candy Block");
 			add(KoratioBlocks.RED_CANDY_BLOCK.get(), "Red Candy Block");
+
+			add(KoratioBlocks.FROSTING_BLOCK.get(), "Block of Frosting");
+			add(KoratioBlocks.BLUE_FROSTING_BLOCK.get(), "Block of blue Frosting");
+			add(KoratioBlocks.GREEN_FROSTING_BLOCK.get(), "Block of green Frosting");
+			add(KoratioBlocks.YELLOW_FROSTING_BLOCK.get(), "Block of yellow Frosting");
+			add(KoratioBlocks.RED_FROSTING_BLOCK.get(), "Block of red Frosting");
+
+			add(KoratioBlocks.RAW_GINGERBREAD_BLOCK.get(), "Raw Gingerbread Block");
+			add(KoratioBlocks.RAW_GINGERBREAD_STAIRS.get(), "Raw Gingerbread Stairs");
+			add(KoratioBlocks.RAW_GINGERBREAD_SLAB.get(), "Raw Gingerbread Slab");
+			add(KoratioBlocks.RAW_GINGERBREAD_BRICKS.get(), "Raw Gingerbread Bricks");
+			add(KoratioBlocks.RAW_GINGERBREAD_BRICK_STAIRS.get(), "Raw Gingerbread Brick Stairs");
+			add(KoratioBlocks.RAW_GINGERBREAD_BRICK_SLAB.get(), "Raw Gingerbread Brick Slab");
+			add(KoratioBlocks.RAW_LARGE_GINGERBREAD_BRICKS.get(), "Raw Large Gingerbread Bricks");
+			add(KoratioBlocks.RAW_LARGE_GINGERBREAD_BRICK_STAIRS.get(), "Raw Large Gingerbread Brick Stairs");
+			add(KoratioBlocks.RAW_LARGE_GINGERBREAD_BRICK_SLAB.get(), "Raw Large Gingerbread Brick Slab");
+			add(KoratioBlocks.RAW_GINGERBREAD_WALL.get(), "Raw Gingerbread Wall");
+			add(KoratioBlocks.RAW_GINGERBREAD_BRICK_WALL.get(), "Raw Gingerbread Brick Wall");
+			add(KoratioBlocks.RAW_LARGE_GINGERBREAD_BRICK_WALL.get(), "Raw Large Gingerbread Brick Wall");
+			add(KoratioBlocks.GINGERBREAD_BLOCK.get(), "Gingerbread Block");
+			add(KoratioBlocks.GINGERBREAD_STAIRS.get(), "Gingerbread Stairs");
+			add(KoratioBlocks.GINGERBREAD_SLAB.get(), "Gingerbread Slab");
+			add(KoratioBlocks.GINGERBREAD_BRICKS.get(), "Gingerbread Bricks");
+			add(KoratioBlocks.GINGERBREAD_BRICK_STAIRS.get(), "Gingerbread Brick Stairs");
+			add(KoratioBlocks.GINGERBREAD_BRICK_SLAB.get(), "Gingerbread Brick Slab");
+			add(KoratioBlocks.LARGE_GINGERBREAD_BRICKS.get(), "Large Gingerbread Bricks");
+			add(KoratioBlocks.LARGE_GINGERBREAD_BRICK_STAIRS.get(), "Large Gingerbread Brick Stairs");
+			add(KoratioBlocks.LARGE_GINGERBREAD_BRICK_SLAB.get(), "Large Gingerbread Brick Slab");
+			add(KoratioBlocks.GINGERBREAD_WALL.get(), "Gingerbread Wall");
+			add(KoratioBlocks.GINGERBREAD_BRICK_WALL.get(), "Gingerbread Brick Wall");
+			add(KoratioBlocks.LARGE_GINGERBREAD_BRICK_WALL.get(), "Large Gingerbread Brick Wall");
+
+			add(KoratioBlocks.MARSHMALLOW_BLOCK.get(), "Marshmallow Block");
 
 			add(KoratioBlocks.WHITE_LEVITATING_WOOL.get(), "White Levitating Wool");
 			add(KoratioBlocks.ORANGE_LEVITATING_WOOL.get(), "Orange Levitating Wool");

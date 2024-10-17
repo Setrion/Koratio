@@ -9,7 +9,7 @@ public enum AncientDoorState implements StringRepresentable {
 
     private final String name;
 
-    private AncientDoorState(String pName) {
+    AncientDoorState(String pName) {
         this.name = pName;
     }
 

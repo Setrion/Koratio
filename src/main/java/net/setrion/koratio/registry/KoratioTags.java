@@ -44,6 +44,8 @@ public class KoratioTags {
 		public static final TagKey<Item> TALL_WOODEN_DOORS = createItemKey(Koratio.prefix("tall_wooden_doors"));
 		public static final TagKey<Item> TALL_DOORS = createItemKey(Koratio.prefix("tall_doors"));
 
+		public static final TagKey<Item> FROSTINGS = createItemKey(Koratio.prefix("frostings"));
+
 		public static final TagKey<Item> RAINBOW_GEM_STORAGE_BLOCKS = createItemKey(ResourceLocation.fromNamespaceAndPath("c", "storage_blocks/rainbow_gem"));
 		public static final TagKey<Item> RUBY_STORAGE_BLOCKS = createItemKey(ResourceLocation.fromNamespaceAndPath("c", "storage_blocks/ruby"));
 		public static final TagKey<Item> SAPPHIRE_STORAGE_BLOCKS = createItemKey(ResourceLocation.fromNamespaceAndPath("c", "storage_blocks/sapphire"));
@@ -73,6 +75,8 @@ public class KoratioTags {
 		public static final TagKey<Block> TALL_WOODEN_DOORS = createBlockKey(Koratio.prefix("tall_wooden_doors"));
 		public static final TagKey<Block> TALL_DOORS = createBlockKey(Koratio.prefix("tall_doors"));
 
+		public static final TagKey<Block> FROSTINGS = createBlockKey(Koratio.prefix("frostings"));
+
 		public static final TagKey<Block> MUSHROOMS = createBlockKey(Koratio.prefix("mushrooms"));
 	    
 	    public static final TagKey<Block> BASE_STONE_FANTASIA = createBlockKey(Koratio.prefix("base_stone_fantasia"));
@@ -92,6 +96,8 @@ public class KoratioTags {
 		public static final TagKey<Block> SAPPHIRE_ORES = createBlockKey(ResourceLocation.fromNamespaceAndPath("c", "ores/sapphire"));
 		public static final TagKey<Block> TOPAZ_ORES = createBlockKey(ResourceLocation.fromNamespaceAndPath("c", "ores/topaz"));
 		public static final TagKey<Block> ONYX_ORES = createBlockKey(ResourceLocation.fromNamespaceAndPath("c", "ores/onyx"));
+
+		public static final TagKey<Block> SPATULA_EFFICIENT = createBlockKey(Koratio.prefix("spatula_efficient"));
 
 		public static final TagKey<Block> NEEDS_BONE_TOOL = createBlockKey(Koratio.prefix("need_bone_tool"));
 	    public static final TagKey<Block> NEEDS_WITHER_BONE_TOOL = createBlockKey(Koratio.prefix("need_wither_bone_tool"));

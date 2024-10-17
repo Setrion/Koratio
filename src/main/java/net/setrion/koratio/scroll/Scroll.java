@@ -38,7 +38,7 @@ public class Scroll {
 		private final ChatFormatting text_color;
 		private final boolean isEnchanted;
 		
-		private ScrollType(String name, int color, ChatFormatting text_color,boolean isEnchanted) {
+		ScrollType(String name, int color, ChatFormatting text_color, boolean isEnchanted) {
 			this.name = name;
 			this.color = color;
 			this.text_color = text_color;

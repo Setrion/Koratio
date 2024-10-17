@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "chests",
+  "key": {
+    "#": {
+      "item": "koratio:candy_planks"
+    },
+    "x": {
+      "tag": "c:chests/wooden"
+    }
+  },
+  "pattern": [
+    "###",
+    "#x#",
+    "###"
+  ],
+  "result": {
+    "count": 2,
+    "id": "koratio:candy_chest"
+  }
+}

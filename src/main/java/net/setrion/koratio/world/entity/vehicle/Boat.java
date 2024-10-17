@@ -298,7 +298,7 @@ public class Boat extends VehicleEntity implements Leashable, VariantHolder<Boat
 						Vec3 vec3 = this.getViewVector(1.0F);
 						double d0 = i == 1 ? -vec3.z : vec3.z;
 						double d1 = i == 1 ? vec3.x : -vec3.x;
-						this.level().playSound((Player)null, this.getX() + d0, this.getY(), this.getZ() + d1, soundevent, this.getSoundSource(), 1.0F, 0.8F + 0.4F * this.random.nextFloat());
+						this.level().playSound(null, this.getX() + d0, this.getY(), this.getZ() + d1, soundevent, this.getSoundSource(), 1.0F, 0.8F + 0.4F * this.random.nextFloat());
 					}
 				}
 
@@ -309,7 +309,7 @@ public class Boat extends VehicleEntity implements Leashable, VariantHolder<Boat
 		}
 
 		this.checkInsideBlocks();
-		List<Entity> list = this.level().getEntities(this, this.getBoundingBox().inflate((double)0.2F, (double)-0.01F, (double)0.2F), EntitySelector.pushableBy(this));
+		List<Entity> list = this.level().getEntities(this, this.getBoundingBox().inflate(0.2F, -0.01F, 0.2F), EntitySelector.pushableBy(this));
 		if (!list.isEmpty()) {
 			boolean flag = !this.level().isClientSide() && !(this.getControllingPassenger() instanceof Player);
 
@@ -337,7 +337,7 @@ public class Boat extends VehicleEntity implements Leashable, VariantHolder<Boat
 
 			this.bubbleMultiplier = Mth.clamp(this.bubbleMultiplier, 0.0F, 1.0F);
 			this.bubbleAngleO = this.bubbleAngle;
-			this.bubbleAngle = 10.0F * (float)Math.sin((double)(0.5F * (float)this.level().getGameTime())) * this.bubbleMultiplier;
+			this.bubbleAngle = 10.0F * (float)Math.sin(0.5F * (float)this.level().getGameTime()) * this.bubbleMultiplier;
 		} else {
 			if (!this.isAboveBubbleColumn) {
 				this.setBubbleTime(0);
@@ -422,7 +422,7 @@ public class Boat extends VehicleEntity implements Leashable, VariantHolder<Boat
 
 	@Override
 	public Vec3 getLeashOffset() {
-		return new Vec3(0.0, (double)(0.88F * this.getEyeHeight()), (double)(this.getBbWidth() * 0.64F));
+		return new Vec3(0.0, 0.88F * this.getEyeHeight(), this.getBbWidth() * 0.64F);
 	}
 
 	@Override
@@ -506,7 +506,7 @@ public class Boat extends VehicleEntity implements Leashable, VariantHolder<Boat
 						if (j2 <= 0 || k2 != k && k2 != l - 1) {
 							blockpos$mutableblockpos.set(l1, k2, i2);
 							BlockState blockstate = this.level().getBlockState(blockpos$mutableblockpos);
-							if (!(blockstate.getBlock() instanceof WaterlilyBlock) && Shapes.joinIsNotEmpty(blockstate.getCollisionShape(this.level(), blockpos$mutableblockpos).move((double)l1, (double)k2, (double)i2), voxelshape, BooleanOp.AND)) {
+							if (!(blockstate.getBlock() instanceof WaterlilyBlock) && Shapes.joinIsNotEmpty(blockstate.getCollisionShape(this.level(), blockpos$mutableblockpos).move(l1, k2, i2), voxelshape, BooleanOp.AND)) {
 								f += blockstate.getFriction(this.level(), blockpos$mutableblockpos, this);
 								++k1;
 							}
@@ -538,7 +538,7 @@ public class Boat extends VehicleEntity implements Leashable, VariantHolder<Boat
 					FluidState fluidstate = this.level().getFluidState(blockpos$mutableblockpos);
 					if (this.isInWater()) {
 						float f = (float)l1 + fluidstate.getHeight(this.level(), blockpos$mutableblockpos);
-						this.waterLevel = Math.max((double)f, this.waterLevel);
+						this.waterLevel = Math.max(f, this.waterLevel);
 						flag |= aabb.minY < (double)f;
 					}
 				}
@@ -598,7 +598,7 @@ public class Boat extends VehicleEntity implements Leashable, VariantHolder<Boat
 				d1 = -7.0E-4D;
 				this.invFriction = 0.9F;
 			} else if (this.status == Boat.Status.UNDER_WATER) {
-				d2 = (double)0.01F;
+				d2 = 0.01F;
 				this.invFriction = 0.45F;
 			} else if (this.status == Boat.Status.IN_AIR) {
 				this.invFriction = 0.9F;
@@ -644,7 +644,7 @@ public class Boat extends VehicleEntity implements Leashable, VariantHolder<Boat
 				f -= 0.005F;
 			}
 
-			this.setDeltaMovement(this.getDeltaMovement().add((double)(Mth.sin(-this.getYRot() * ((float)Math.PI / 180F)) * f), 0.0D, (double)(Mth.cos(this.getYRot() * ((float)Math.PI / 180F)) * f)));
+			this.setDeltaMovement(this.getDeltaMovement().add(Mth.sin(-this.getYRot() * ((float)Math.PI / 180F)) * f, 0.0D, Mth.cos(this.getYRot() * ((float)Math.PI / 180F)) * f));
 			this.setPaddleState(this.inputRight && !this.inputLeft || this.inputUp, this.inputLeft && !this.inputRight || this.inputUp);
 		}
 	}
@@ -665,7 +665,7 @@ public class Boat extends VehicleEntity implements Leashable, VariantHolder<Boat
 	}
 
 	public Vec3 getDismountLocationForPassenger(LivingEntity entity) {
-		Vec3 vec3 = getCollisionHorizontalEscapeVector((double)(this.getBbWidth() * Mth.SQRT_OF_TWO), (double)entity.getBbWidth(), entity.getYRot());
+		Vec3 vec3 = getCollisionHorizontalEscapeVector(this.getBbWidth() * Mth.SQRT_OF_TWO, entity.getBbWidth(), entity.getYRot());
 		double d0 = this.getX() + vec3.x;
 		double d1 = this.getZ() + vec3.z;
 		BlockPos blockpos = new BlockPos((int) d0, (int) this.getBoundingBox().maxY, (int) d1);
@@ -847,13 +847,13 @@ public class Boat extends VehicleEntity implements Leashable, VariantHolder<Boat
 		return new ItemStack(this.getDropItem());
 	}
 
-	public static enum Status {
+	public enum Status {
 		IN_WATER,
 		UNDER_WATER,
 		UNDER_FLOWING_WATER,
 		ON_LAND,
-		IN_AIR;
-	}
+		IN_AIR
+    }
 
 	@net.neoforged.fml.common.asm.enumextension.NamedEnum(1)
 	@net.neoforged.fml.common.asm.enumextension.NetworkedEnum(net.neoforged.fml.common.asm.enumextension.NetworkedEnum.NetworkCheck.CLIENTBOUND)

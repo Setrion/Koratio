@@ -1,4 +1,4 @@
 {
-  "loader": "koratio:glazed",
-  "render_type": "cutout_mipped"
+  "base": "koratio:block/gingerbread_block_base",
+  "loader": "koratio:glazed"
 }

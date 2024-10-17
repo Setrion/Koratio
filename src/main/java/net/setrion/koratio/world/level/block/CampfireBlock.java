@@ -44,14 +44,14 @@ public class CampfireBlock extends net.minecraft.world.level.block.CampfireBlock
 
     @Override
     public void animateTick(BlockState state, Level level, BlockPos pos, RandomSource random) {
-        if ((Boolean)state.getValue(LIT)) {
+        if (state.getValue(LIT)) {
             if (random.nextInt(10) == 0) {
                 level.playLocalSound((double)pos.getX() + 0.5, (double)pos.getY() + 0.5, (double)pos.getZ() + 0.5, SoundEvents.CAMPFIRE_CRACKLE, SoundSource.BLOCKS, 0.5F + random.nextFloat(), random.nextFloat() * 0.7F + 0.6F, false);
             }
 
             if (this.spawnParticles && random.nextInt(5) == 0) {
                 for(int i = 0; i < random.nextInt(1) + 1; ++i) {
-                    level.addParticle(KoratioParticles.RAINBOW_LAVA.get(), (double)pos.getX() + 0.5, (double)pos.getY() + 0.5, (double)pos.getZ() + 0.5, (double)(random.nextFloat() / 2.0F), 5.0E-5, (double)(random.nextFloat() / 2.0F));
+                    level.addParticle(KoratioParticles.RAINBOW_LAVA.get(), (double)pos.getX() + 0.5, (double)pos.getY() + 0.5, (double)pos.getZ() + 0.5, random.nextFloat() / 2.0F, 5.0E-5, random.nextFloat() / 2.0F);
                 }
             }
         }

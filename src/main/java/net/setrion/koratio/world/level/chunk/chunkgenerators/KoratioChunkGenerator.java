@@ -46,12 +46,7 @@ import java.util.function.Predicate;
 import java.util.function.Supplier;
 
 @SuppressWarnings({"deprecation"})
-public class KoratioChunkGenerator extends ChunkGeneratorBase {
-	public static final MapCodec<KoratioChunkGenerator> CODEC = RecordCodecBuilder.mapCodec((instance) -> instance.group(
-			ChunkGenerator.CODEC.fieldOf("wrapped_generator").forGetter(o -> o.delegate),
-			NoiseGeneratorSettings.CODEC.fieldOf("noise_generation_settings").forGetter(o -> o.noiseGeneratorSettings)
-	).apply(instance, KoratioChunkGenerator::new));
-
+public abstract class KoratioChunkGenerator extends ChunkGeneratorBase {
 	private final Holder<NoiseGeneratorSettings> noiseGeneratorSettings;
 
 	public BlockState defaultBlock;
@@ -76,11 +71,6 @@ public class KoratioChunkGenerator extends ChunkGeneratorBase {
 		return (p_224274_, p_224275_, p_224276_) -> {
 			return p_224275_ < Math.min(-54, i) ? aquifer$fluidstatus : aquifer$fluidstatus1;
 		};
-	}
-	
-	@Override
-	protected MapCodec<? extends ChunkGenerator> codec() {
-		return KoratioDimensions.FANTASIA_CHUNK_GENERATOR.get();
 	}
 
 	@Override

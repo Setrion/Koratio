@@ -98,6 +98,18 @@ public class RecipeGenerator extends RecipeProvider {
 		chestBoat(output, KoratioItems.GREEN_ELVEN_CHEST_BOAT.get(), KoratioItems.GREEN_ELVEN_BOAT.get());
 		
 		//ShapedRecipes
+		ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, KoratioBlocks.WOODCUTTER.get()).pattern(" i ").pattern("sws").define('i', Tags.Items.INGOTS_IRON).define('s', Blocks.STONE).define('w', ItemTags.PLANKS).unlockedBy("has_iron_ingot", has(Tags.Items.INGOTS_IRON)).save(output);
+		ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, KoratioBlocks.DECRYPTING_TABLE.get()).pattern("pb").pattern("ww").pattern("ww").define('p', Items.PAPER).define('b', Items.BOOK).define('w', ItemTags.PLANKS).unlockedBy("has_book", has(Items.BOOK)).save(output);
+		ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, KoratioBlocks.CANDY_SHAPER.get()).pattern("ss").pattern("ww").pattern("ww").define('s', Blocks.STONE_SLAB).define('w', ItemTags.PLANKS).unlockedBy("has_planks", has(ItemTags.PLANKS)).save(output);
+
+		ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, KoratioItems.PIPING_BAG.get()).pattern(" sb").pattern("sgs").pattern("is ").define('s', Items.STRING).define('b', ItemTags.WOODEN_BUTTONS).define('g', Items.GLASS_BOTTLE).define('i', Items.BAMBOO).unlockedBy("has_glass_bottle", has(Items.GLASS_BOTTLE)).save(output);
+
+		spatula(output, KoratioItems.WOODEN_ICING_SPATULA.get(), Ingredient.of(ItemTags.PLANKS));
+		spatula(output, KoratioItems.STONE_ICING_SPATULA.get(), Ingredient.of(ItemTags.STONE_TOOL_MATERIALS));
+		spatula(output, KoratioItems.GOLDEN_ICING_SPATULA.get(), Ingredient.of(Tags.Items.INGOTS_GOLD));
+		spatula(output, KoratioItems.IRON_ICING_SPATULA.get(), Ingredient.of(Tags.Items.INGOTS_IRON));
+		spatula(output, KoratioItems.DIAMOND_ICING_SPATULA.get(), Ingredient.of(Tags.Items.GEMS_DIAMOND));
+
 		compress(KoratioBlocks.RAINBOW_GEM_BLOCK.get(), KoratioItems.RAINBOW_GEM.get()).save(output);
 		compress(KoratioBlocks.RUBY_BLOCK.get(), KoratioItems.RUBY.get()).save(output);
 		compress(KoratioBlocks.SAPPHIRE_BLOCK.get(), KoratioItems.SAPPHIRE.get()).save(output);
@@ -108,6 +120,33 @@ public class RecipeGenerator extends RecipeProvider {
 		compress(KoratioBlocks.BLUE_SUGAR_BLOCK.get(), KoratioItems.BLUE_SUGAR.get()).save(output);
 		compress(KoratioBlocks.YELLOW_SUGAR_BLOCK.get(), KoratioItems.YELLOW_SUGAR.get()).save(output);
 		compress(KoratioBlocks.GREEN_SUGAR_BLOCK.get(), KoratioItems.GREEN_SUGAR.get()).save(output);
+
+		ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, KoratioBlocks.RAW_GINGERBREAD_BLOCK.get(), 8).pattern("www").pattern("sms").pattern("chc").define('w', Items.WHEAT).define('s', KoratioTags.Items.SUGAR).define('m', Items.MILK_BUCKET).define('c', Items.COCOA_BEANS).define('h', Items.HONEY_BOTTLE).unlockedBy("has_cocoa_beans", has(Items.COCOA_BEANS)).save(output);
+		twoByTwo(output, KoratioBlocks.RAW_GINGERBREAD_BRICKS.get(), KoratioBlocks.RAW_GINGERBREAD_BLOCK.get());
+		twoByTwo(output, KoratioBlocks.RAW_LARGE_GINGERBREAD_BRICKS.get(), KoratioBlocks.RAW_GINGERBREAD_BRICKS.get());
+		twoByTwo(output, KoratioBlocks.GINGERBREAD_BRICKS.get(), KoratioBlocks.GINGERBREAD_BLOCK.get());
+		twoByTwo(output, KoratioBlocks.LARGE_GINGERBREAD_BRICKS.get(), KoratioBlocks.GINGERBREAD_BRICKS.get());
+
+		stairs(KoratioBlocks.RAW_GINGERBREAD_STAIRS.get(), KoratioBlocks.RAW_GINGERBREAD_BLOCK);
+		stairs(KoratioBlocks.RAW_GINGERBREAD_BRICK_STAIRS.get(), KoratioBlocks.RAW_GINGERBREAD_BRICKS);
+		stairs(KoratioBlocks.RAW_LARGE_GINGERBREAD_BRICK_STAIRS.get(), KoratioBlocks.RAW_LARGE_GINGERBREAD_BRICKS);
+		stairs(KoratioBlocks.GINGERBREAD_STAIRS.get(), KoratioBlocks.GINGERBREAD_BLOCK);
+		stairs(KoratioBlocks.GINGERBREAD_BRICK_STAIRS.get(), KoratioBlocks.GINGERBREAD_BRICKS);
+		stairs(KoratioBlocks.LARGE_GINGERBREAD_BRICK_STAIRS.get(), KoratioBlocks.LARGE_GINGERBREAD_BRICKS);
+
+		slab(KoratioBlocks.RAW_GINGERBREAD_SLAB.get(), KoratioBlocks.RAW_GINGERBREAD_BLOCK);
+		slab(KoratioBlocks.RAW_GINGERBREAD_BRICK_SLAB.get(), KoratioBlocks.RAW_GINGERBREAD_BRICKS);
+		slab(KoratioBlocks.RAW_LARGE_GINGERBREAD_BRICK_SLAB.get(), KoratioBlocks.RAW_LARGE_GINGERBREAD_BRICKS);
+		slab(KoratioBlocks.GINGERBREAD_SLAB.get(), KoratioBlocks.GINGERBREAD_BLOCK);
+		slab(KoratioBlocks.GINGERBREAD_BRICK_SLAB.get(), KoratioBlocks.GINGERBREAD_BRICKS);
+		slab(KoratioBlocks.LARGE_GINGERBREAD_BRICK_SLAB.get(), KoratioBlocks.LARGE_GINGERBREAD_BRICKS);
+
+		wall(KoratioBlocks.RAW_GINGERBREAD_WALL.get(), KoratioBlocks.RAW_GINGERBREAD_BLOCK);
+		wall(KoratioBlocks.RAW_GINGERBREAD_BRICK_WALL.get(), KoratioBlocks.RAW_GINGERBREAD_BRICKS);
+		wall(KoratioBlocks.RAW_LARGE_GINGERBREAD_BRICK_WALL.get(), KoratioBlocks.RAW_LARGE_GINGERBREAD_BRICKS);
+		wall(KoratioBlocks.GINGERBREAD_WALL.get(), KoratioBlocks.GINGERBREAD_BLOCK);
+		wall(KoratioBlocks.GINGERBREAD_BRICK_WALL.get(), KoratioBlocks.GINGERBREAD_BRICKS);
+		wall(KoratioBlocks.LARGE_GINGERBREAD_BRICK_WALL.get(), KoratioBlocks.LARGE_GINGERBREAD_BRICKS);
 
 		leafPane(KoratioBlocks.OAK_LEAF_PANE.get(), Blocks.OAK_LEAVES).save(output);
 		leafPane(KoratioBlocks.SPRUCE_LEAF_PANE.get(), Blocks.SPRUCE_LEAVES).save(output);
@@ -174,6 +213,23 @@ public class RecipeGenerator extends RecipeProvider {
 		chest(KoratioItems.RUGONA_CHEST.get(), KoratioBlocks.RUGONA_PLANKS).save(output);
 		bookshelf(output, KoratioItems.RUGONA_BOOKSHELF.get(), KoratioBlocks.RUGONA_PLANKS);
 		leafPane(KoratioBlocks.RUGONA_LEAF_PANE.get(), KoratioBlocks.RUGONA_LEAVES.get()).save(output);
+
+		woodFromLogs(output, KoratioBlocks.CANDY_WOOD.get(), KoratioBlocks.CANDY_LOG.get());
+		woodFromLogs(output, KoratioBlocks.STRIPPED_CANDY_WOOD.get(), KoratioBlocks.STRIPPED_CANDY_LOG.get());
+		door(KoratioBlocks.CANDY_DOOR.get(), KoratioBlocks.CANDY_PLANKS).save(output);
+		//tallDoor(KoratioBlocks.TALL_CANDY_DOOR.get(), KoratioBlocks.CANDY_PLANKS.get(), KoratioBlocks.CANDY_DOOR.get(), "tall_wooden_door").save(output);
+		fence(KoratioBlocks.CANDY_FENCE.get(), KoratioBlocks.CANDY_PLANKS).save(output);
+		fenceGate(KoratioBlocks.CANDY_FENCE_GATE.get(), KoratioBlocks.CANDY_PLANKS).save(output);
+		pressurePlate(KoratioBlocks.CANDY_PRESSURE_PLATE.get(), KoratioBlocks.CANDY_PLANKS).save(output);
+		woodenSlab(KoratioBlocks.CANDY_SLAB.get(), KoratioBlocks.CANDY_PLANKS).save(output);
+		woodenStairs(KoratioBlocks.CANDY_STAIRS.get(), KoratioBlocks.CANDY_PLANKS).save(output);
+		trapdoor(KoratioBlocks.CANDY_TRAPDOOR.get(), KoratioBlocks.CANDY_PLANKS).save(output);
+		sign(KoratioBlocks.CANDY_SIGN.get(), KoratioBlocks.CANDY_PLANKS).save(output);
+		hangingSign(KoratioBlocks.CANDY_HANGING_SIGN.get(), KoratioBlocks.STRIPPED_CANDY_LOG).save(output);
+		woodenBoat(output, KoratioItems.CANDY_BOAT.get(), KoratioBlocks.CANDY_PLANKS.get());
+		chest(KoratioItems.CANDY_CHEST.get(), KoratioBlocks.CANDY_PLANKS).save(output);
+		bookshelf(output, KoratioItems.CANDY_BOOKSHELF.get(), KoratioBlocks.CANDY_PLANKS);
+		leafPane(KoratioBlocks.COTTON_CANDY_LEAF_PANE.get(), KoratioBlocks.COTTON_CANDY_LEAVES.get()).save(output);
 
 		woodFromLogs(output, KoratioBlocks.VARESO_WOOD.get(), KoratioBlocks.VARESO_LOG.get());
 		woodFromLogs(output, KoratioBlocks.STRIPPED_VARESO_WOOD.get(), KoratioBlocks.STRIPPED_VARESO_LOG.get());
@@ -283,6 +339,35 @@ public class RecipeGenerator extends RecipeProvider {
 		candyShaping(output, KoratioItems.RED_YELLOW_CANDY_CANE, 0, 0, 0, 200, 200);
 		candyShaping(output, KoratioItems.RED_RAINBOW_CANDY_CANE, 200, 50, 50, 50, 50);
 
+		candyShaping(output, KoratioItems.WHITE_BLUE_LOLLIPOP, 200, 200, 0, 0, 0);
+		candyShaping(output, KoratioItems.WHITE_GREEN_LOLLIPOP, 200, 0, 200, 0, 0);
+		candyShaping(output, KoratioItems.WHITE_YELLOW_LOLLIPOP, 200, 0, 0, 200, 0);
+		candyShaping(output, KoratioItems.WHITE_RED_LOLLIPOP, 200, 0, 0, 0, 200);
+		candyShaping(output, KoratioItems.BLUE_LOLLIPOP, 0, 400, 0, 0, 0);
+		candyShaping(output, KoratioItems.BLUE_WHITE_LOLLIPOP, 200, 200, 0, 0, 0);
+		candyShaping(output, KoratioItems.BLUE_GREEN_LOLLIPOP, 0, 200, 200, 0, 0);
+		candyShaping(output, KoratioItems.BLUE_YELLOW_LOLLIPOP, 0, 200, 0, 200, 0);
+		candyShaping(output, KoratioItems.BLUE_RED_LOLLIPOP, 0, 200, 0, 0, 200);
+		candyShaping(output, KoratioItems.BLUE_RAINBOW_LOLLIPOP, 200, 50, 50, 50, 50);
+		candyShaping(output, KoratioItems.GREEN_LOLLIPOP, 0, 0, 400, 0, 0);
+		candyShaping(output, KoratioItems.GREEN_WHITE_LOLLIPOP, 200, 0, 200, 0, 0);
+		candyShaping(output, KoratioItems.GREEN_BLUE_LOLLIPOP, 0, 200, 200, 0, 0);
+		candyShaping(output, KoratioItems.GREEN_YELLOW_LOLLIPOP, 0, 0, 200, 200, 0);
+		candyShaping(output, KoratioItems.GREEN_RED_LOLLIPOP, 0, 0, 200, 0, 200);
+		candyShaping(output, KoratioItems.GREEN_RAINBOW_LOLLIPOP, 200, 50, 50, 50, 50);
+		candyShaping(output, KoratioItems.YELLOW_LOLLIPOP, 0, 0, 0, 400, 0);
+		candyShaping(output, KoratioItems.YELLOW_WHITE_LOLLIPOP, 200, 0, 0, 200, 0);
+		candyShaping(output, KoratioItems.YELLOW_BLUE_LOLLIPOP, 0, 200, 0, 200, 0);
+		candyShaping(output, KoratioItems.YELLOW_GREEN_LOLLIPOP, 0, 0, 200, 200, 0);
+		candyShaping(output, KoratioItems.YELLOW_RED_LOLLIPOP, 0, 0, 0, 200, 200);
+		candyShaping(output, KoratioItems.YELLOW_RAINBOW_LOLLIPOP, 200, 50, 50, 50, 50);
+		candyShaping(output, KoratioItems.RED_LOLLIPOP, 0, 0, 0, 0, 400);
+		candyShaping(output, KoratioItems.RED_WHITE_LOLLIPOP, 200, 0, 0, 0, 200);
+		candyShaping(output, KoratioItems.RED_BLUE_LOLLIPOP, 0, 200, 0, 0, 200);
+		candyShaping(output, KoratioItems.RED_GREEN_LOLLIPOP, 0, 0, 200, 0, 200);
+		candyShaping(output, KoratioItems.RED_YELLOW_LOLLIPOP, 0, 0, 0, 200, 200);
+		candyShaping(output, KoratioItems.RED_RAINBOW_LOLLIPOP, 200, 50, 50, 50, 50);
+
 		//BrewingRecipes
 		
 		//FurnaceRecipes
@@ -291,6 +376,19 @@ public class RecipeGenerator extends RecipeProvider {
 		SimpleCookingRecipeBuilder.smelting(Ingredient.of(KoratioItems.STICKY_GREEN_SUGAR_BUCKET.get()), RecipeCategory.MISC, KoratioItems.MOLTEN_GREEN_SUGAR_BUCKET.get(), 0.5F, 200).unlockedBy("has_sugar_bucket", has(KoratioItems.STICKY_GREEN_SUGAR_BUCKET.get())).save(output);
 		SimpleCookingRecipeBuilder.smelting(Ingredient.of(KoratioItems.STICKY_YELLOW_SUGAR_BUCKET.get()), RecipeCategory.MISC, KoratioItems.MOLTEN_YELLOW_SUGAR_BUCKET.get(), 0.5F, 200).unlockedBy("has_sugar_bucket", has(KoratioItems.STICKY_YELLOW_SUGAR_BUCKET.get())).save(output);
 		SimpleCookingRecipeBuilder.smelting(Ingredient.of(KoratioItems.STICKY_RED_SUGAR_BUCKET.get()), RecipeCategory.MISC, KoratioItems.MOLTEN_RED_SUGAR_BUCKET.get(), 0.5F, 200).unlockedBy("has_sugar_bucket", has(KoratioItems.STICKY_RED_SUGAR_BUCKET.get())).save(output);
+
+		SimpleCookingRecipeBuilder.smelting(Ingredient.of(KoratioBlocks.RAW_GINGERBREAD_BLOCK), RecipeCategory.BUILDING_BLOCKS, KoratioBlocks.GINGERBREAD_BLOCK.get(), 0.5F, 200).unlockedBy("has_raw_gingerbread", has(KoratioBlocks.RAW_GINGERBREAD_BLOCK.get())).save(output, Koratio.prefix("gingerbread_block_from_smelting"));
+		SimpleCookingRecipeBuilder.smelting(Ingredient.of(KoratioBlocks.RAW_GINGERBREAD_BRICKS), RecipeCategory.BUILDING_BLOCKS, KoratioBlocks.GINGERBREAD_BRICKS.get(), 0.5F, 200).unlockedBy("has_raw_gingerbread", has(KoratioBlocks.RAW_GINGERBREAD_BRICKS.get())).save(output, Koratio.prefix("gingerbread_bricks_from_smelting"));
+		SimpleCookingRecipeBuilder.smelting(Ingredient.of(KoratioBlocks.RAW_LARGE_GINGERBREAD_BRICKS), RecipeCategory.BUILDING_BLOCKS, KoratioBlocks.LARGE_GINGERBREAD_BRICKS.get(), 0.5F, 200).unlockedBy("has_raw_gingerbread", has(KoratioBlocks.RAW_LARGE_GINGERBREAD_BRICKS.get())).save(output, Koratio.prefix("large_gingerbread_bricks_from_smelting"));
+		SimpleCookingRecipeBuilder.smelting(Ingredient.of(KoratioBlocks.RAW_GINGERBREAD_STAIRS), RecipeCategory.BUILDING_BLOCKS, KoratioBlocks.GINGERBREAD_STAIRS.get(), 0.5F, 200).unlockedBy("has_raw_gingerbread", has(KoratioBlocks.RAW_GINGERBREAD_STAIRS.get())).save(output, Koratio.prefix("gingerbread_stairs_from_smelting"));
+		SimpleCookingRecipeBuilder.smelting(Ingredient.of(KoratioBlocks.RAW_GINGERBREAD_BRICK_STAIRS), RecipeCategory.BUILDING_BLOCKS, KoratioBlocks.GINGERBREAD_BRICK_STAIRS.get(), 0.5F, 200).unlockedBy("has_raw_gingerbread", has(KoratioBlocks.RAW_GINGERBREAD_BRICK_STAIRS.get())).save(output, Koratio.prefix("gingerbread_brick_stairs_from_smelting"));
+		SimpleCookingRecipeBuilder.smelting(Ingredient.of(KoratioBlocks.RAW_LARGE_GINGERBREAD_BRICK_STAIRS), RecipeCategory.BUILDING_BLOCKS, KoratioBlocks.LARGE_GINGERBREAD_BRICK_STAIRS.get(), 0.5F, 200).unlockedBy("has_raw_gingerbread", has(KoratioBlocks.RAW_LARGE_GINGERBREAD_BRICK_STAIRS.get())).save(output, Koratio.prefix("large_gingerbread_brick_stairs_from_smelting"));
+		SimpleCookingRecipeBuilder.smelting(Ingredient.of(KoratioBlocks.RAW_GINGERBREAD_SLAB), RecipeCategory.BUILDING_BLOCKS, KoratioBlocks.GINGERBREAD_SLAB.get(), 0.5F, 200).unlockedBy("has_raw_gingerbread", has(KoratioBlocks.RAW_GINGERBREAD_SLAB.get())).save(output, Koratio.prefix("gingerbread_slab_from_smelting"));
+		SimpleCookingRecipeBuilder.smelting(Ingredient.of(KoratioBlocks.RAW_GINGERBREAD_BRICK_SLAB), RecipeCategory.BUILDING_BLOCKS, KoratioBlocks.GINGERBREAD_BRICK_SLAB.get(), 0.5F, 200).unlockedBy("has_raw_gingerbread", has(KoratioBlocks.RAW_GINGERBREAD_BRICK_SLAB.get())).save(output, Koratio.prefix("gingerbread_brick_slab_from_smelting"));
+		SimpleCookingRecipeBuilder.smelting(Ingredient.of(KoratioBlocks.RAW_LARGE_GINGERBREAD_BRICK_SLAB), RecipeCategory.BUILDING_BLOCKS, KoratioBlocks.LARGE_GINGERBREAD_BRICK_SLAB.get(), 0.5F, 200).unlockedBy("has_raw_gingerbread", has(KoratioBlocks.RAW_LARGE_GINGERBREAD_BRICK_SLAB.get())).save(output, Koratio.prefix("large_gingerbread_brick_slab_from_smelting"));
+		SimpleCookingRecipeBuilder.smelting(Ingredient.of(KoratioBlocks.RAW_GINGERBREAD_WALL), RecipeCategory.BUILDING_BLOCKS, KoratioBlocks.GINGERBREAD_WALL.get(), 0.5F, 200).unlockedBy("has_raw_gingerbread", has(KoratioBlocks.RAW_GINGERBREAD_WALL.get())).save(output, Koratio.prefix("gingerbread_wall_from_smelting"));
+		SimpleCookingRecipeBuilder.smelting(Ingredient.of(KoratioBlocks.RAW_GINGERBREAD_BRICK_WALL), RecipeCategory.BUILDING_BLOCKS, KoratioBlocks.GINGERBREAD_BRICK_WALL.get(), 0.5F, 200).unlockedBy("has_raw_gingerbread", has(KoratioBlocks.RAW_GINGERBREAD_BRICK_WALL.get())).save(output, Koratio.prefix("gingerbread_brick_wall_from_smelting"));
+		SimpleCookingRecipeBuilder.smelting(Ingredient.of(KoratioBlocks.RAW_LARGE_GINGERBREAD_BRICK_WALL), RecipeCategory.BUILDING_BLOCKS, KoratioBlocks.LARGE_GINGERBREAD_BRICK_WALL.get(), 0.5F, 200).unlockedBy("has_raw_gingerbread", has(KoratioBlocks.RAW_LARGE_GINGERBREAD_BRICK_WALL.get())).save(output, Koratio.prefix("large_gingerbread_brick_wall_from_smelting"));
 
 		SimpleCookingRecipeBuilder.smelting(Ingredient.of(KoratioItems.RAW_PANGO.get()), RecipeCategory.FOOD, KoratioItems.CRACKED_PANGO.get(), 0.35F, 200).unlockedBy("has_raw_pango", has(KoratioItems.RAW_PANGO.get())).save(output);
 		SimpleCookingRecipeBuilder.smelting(Ingredient.of(KoratioItems.SPIKED_PORKCHOP.get()), RecipeCategory.FOOD, KoratioItems.COOKED_SPIKED_PORKCHOP.get(), 0.35F, 200).unlockedBy("has_spiked_porkchop", has(KoratioItems.SPIKED_PORKCHOP.get())).save(output);
@@ -317,6 +415,7 @@ public class RecipeGenerator extends RecipeProvider {
 		SimpleCookingRecipeBuilder.campfireCooking(Ingredient.of(KoratioItems.FLUFFER.get()), RecipeCategory.FOOD, KoratioItems.COOKED_FLUFFER.get(), 0.35F, 600).unlockedBy("has_fluffer", has(KoratioItems.FLUFFER.get())).save(output, Koratio.prefix("cooked_fluffer_from_campfire_cooking"));
 
 		//SmithingRecipes
+		netheriteSmithing(output, KoratioItems.DIAMOND_ICING_SPATULA.get(), RecipeCategory.TOOLS, KoratioItems.NETHERITE_ICING_SPATULA.get());
 		
 		//StonecuttingRecipes
 
@@ -768,24 +867,28 @@ public class RecipeGenerator extends RecipeProvider {
 		return ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, output, 9).requires(input).unlockedBy("has_"+BuiltInRegistries.ITEM.getKey(input.asItem()).getPath(), has(input));
 	}
 	
-	protected static void sword(RecipeOutput output, Item result, Item ingredient) {
-		ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, result).define('#', Items.STICK).define('X', ingredient).pattern("X").pattern("X").pattern("#").unlockedBy("has_"+BuiltInRegistries.ITEM.getKey(ingredient).getPath(), has(ingredient)).save(output);
+	protected static void sword(RecipeOutput output, Item result, Ingredient ingredient) {
+		ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, result).define('#', Items.STICK).define('X', ingredient).pattern("X").pattern("X").pattern("#").unlockedBy("has_stick", has(Items.STICK)).save(output);
 	}
 	
-	protected static void pickaxe(RecipeOutput output, Item result, Item ingredient) {
-		ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, result).define('#', Items.STICK).define('X', ingredient).pattern("XXX").pattern(" # ").pattern(" # ").unlockedBy("has_"+BuiltInRegistries.ITEM.getKey(ingredient).getPath(), has(ingredient)).save(output);
+	protected static void pickaxe(RecipeOutput output, Item result, Ingredient ingredient) {
+		ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, result).define('#', Items.STICK).define('X', ingredient).pattern("XXX").pattern(" # ").pattern(" # ").unlockedBy("has_stick", has(Items.STICK)).save(output);
 	}
 	
-	protected static void axe(RecipeOutput output, Item result, Item ingredient) {
-		ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, result).define('#', Items.STICK).define('X', ingredient).pattern("XX").pattern("X#").pattern(" #").unlockedBy("has_"+BuiltInRegistries.ITEM.getKey(ingredient).getPath(), has(ingredient)).save(output);
+	protected static void axe(RecipeOutput output, Item result, Ingredient ingredient) {
+		ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, result).define('#', Items.STICK).define('X', ingredient).pattern("XX").pattern("X#").pattern(" #").unlockedBy("has_stick", has(Items.STICK)).save(output);
 	}
 	
-	protected static void shovel(RecipeOutput output, Item result, Item ingredient) {
-		ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, result).define('#', Items.STICK).define('X', ingredient).pattern("X").pattern("#").pattern("#").unlockedBy("has_"+BuiltInRegistries.ITEM.getKey(ingredient).getPath(), has(ingredient)).save(output);
+	protected static void shovel(RecipeOutput output, Item result, Ingredient ingredient) {
+		ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, result).define('#', Items.STICK).define('X', ingredient).pattern("X").pattern("#").pattern("#").unlockedBy("has_stick", has(Items.STICK)).save(output);
 	}
 	
-	protected static void hoe(RecipeOutput output, Item result, Item ingredient) {
-		ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, result).define('#', Items.STICK).define('X', ingredient).pattern("XX").pattern(" #").pattern(" #").unlockedBy("has_"+BuiltInRegistries.ITEM.getKey(ingredient).getPath(), has(ingredient)).save(output);
+	protected static void hoe(RecipeOutput output, Item result, Ingredient ingredient) {
+		ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, result).define('#', Items.STICK).define('X', ingredient).pattern("XX").pattern(" #").pattern(" #").unlockedBy("has_stick", has(Items.STICK)).save(output);
+	}
+
+	protected static void spatula(RecipeOutput output, Item result, Ingredient ingredient) {
+		ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, result).define('#', Items.STICK).define('X', ingredient).pattern(" X").pattern("X ").pattern("# ").unlockedBy("has_stick", has(Items.STICK)).save(output);
 	}
 	
 	protected static void helmet(RecipeOutput output, Item result, Item ingredient) {

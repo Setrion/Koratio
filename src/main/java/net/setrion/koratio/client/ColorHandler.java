@@ -5,7 +5,6 @@ import net.minecraft.util.FastColor;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.level.FoliageColor;
 import net.minecraft.world.level.GrassColor;
-import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -15,7 +14,10 @@ import net.setrion.koratio.Koratio;
 import net.setrion.koratio.registry.KoratioBlocks;
 import net.setrion.koratio.registry.KoratioItems;
 import net.setrion.koratio.scroll.ScrollUtils;
-import net.setrion.koratio.world.level.block.entity.GingerbreadBlockEntity;
+import net.setrion.koratio.world.item.ColoredCandyItem;
+import net.setrion.koratio.world.item.PipingBagItem;
+import net.setrion.koratio.world.item.RainbowCandyItem;
+import net.setrion.koratio.world.level.block.entity.GlazedBlockEntity;
 
 @EventBusSubscriber(modid = Koratio.MOD_ID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public class ColorHandler {
@@ -30,16 +32,16 @@ public class ColorHandler {
 		event.register((state, getter, pos, tintIndex) -> getter != null && pos != null ? BiomeColors.getAverageFoliageColor(getter, pos) : FoliageColor.getDefaultColor(), KoratioBlocks.OAK_LEAF_PANE.get(), KoratioBlocks.JUNGLE_LEAF_PANE.get(), KoratioBlocks.ACACIA_LEAF_PANE.get(), KoratioBlocks.DARK_OAK_LEAF_PANE.get(), KoratioBlocks.MANGROVE_LEAF_PANE.get());
 		event.register((state, getter, pos, tintIndex) -> {
 			if (getter != null && pos != null) {
-				if (getter.getBlockEntity(pos) instanceof GingerbreadBlockEntity gingerbread) {
+				if (getter.getBlockEntity(pos) instanceof GlazedBlockEntity gingerbread) {
 					if (tintIndex < 7 && tintIndex > 0) {
-						if (gingerbread.getColor(tintIndex - 1) != GingerbreadBlockEntity.PartColor.NONE) {
+						if (gingerbread.getColor(tintIndex - 1) != GlazedBlockEntity.PartColor.NONE) {
 							return gingerbread.getColor(tintIndex - 1).getColor();
 						}
 					}
 				}
 			}
 			return 0xFFFFFF;
-		}, KoratioBlocks.GINGERBREAD_BLOCK.get());
+		}, KoratioBlocks.RAW_GINGERBREAD_BLOCK.get(), KoratioBlocks.GINGERBREAD_BLOCK.get(), KoratioBlocks.RAW_GINGERBREAD_BRICKS.get(), KoratioBlocks.GINGERBREAD_BRICKS.get(), KoratioBlocks.RAW_LARGE_GINGERBREAD_BRICKS.get(), KoratioBlocks.LARGE_GINGERBREAD_BRICKS.get());
 		event.register((state, getter, pos, tintIndex) -> {
 			if (tintIndex > 15) return 0xFFFFFF;
 
@@ -96,5 +98,19 @@ public class ColorHandler {
 			if (!ScrollUtils.hasScrollData(stack) && tintIndex == 1) return 0;
 			return tintIndex == 1 ? (FastColor.ARGB32.opaque(ScrollUtils.getScroll(stack).getType().getColor())) : -1;
 		}, KoratioItems.SCROLL.get());
+		event.register((stack, tintIndex) -> {
+			if (stack.is(KoratioItems.PIPING_BAG)) {
+				PipingBagItem bag = (PipingBagItem) stack.getItem();
+				if (bag.isEmpty(stack) || tintIndex == 0) return -1;
+				return bag.getColor(stack).getColor();
+			}
+			return 0;
+		}, KoratioItems.PIPING_BAG.get());
+		for (ColoredCandyItem coloredCandyItem : ColoredCandyItem.candy()) {
+			event.register((stack, tintIndex) -> FastColor.ARGB32.opaque(coloredCandyItem.getColor(tintIndex)), coloredCandyItem);
+		}
+		for (RainbowCandyItem coloredCandyItem : RainbowCandyItem.candy()) {
+			event.register((stack, tintIndex) -> FastColor.ARGB32.opaque(coloredCandyItem.getRainbowColor(tintIndex)), coloredCandyItem);
+		}
 	}
 }

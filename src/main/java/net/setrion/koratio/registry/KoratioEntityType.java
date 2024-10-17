@@ -34,30 +34,30 @@ public class KoratioEntityType {
 
 	public static final DeferredRegister<EntityType<?>> ENTITY_TYPES = DeferredRegister.create(BuiltInRegistries.ENTITY_TYPE, Koratio.MOD_ID);
 
-	public static final DeferredHolder<EntityType<?>, EntityType<JumStem>> JUMSTEM = ENTITY_TYPES.register("jumstem", () -> EntityType.Builder.<JumStem>of(JumStem::new, MobCategory.MONSTER).sized(0.5F, 1.3F).build("jumstem"));
+	public static final DeferredHolder<EntityType<?>, EntityType<JumStem>> JUMSTEM = ENTITY_TYPES.register("jumstem", () -> EntityType.Builder.of(JumStem::new, MobCategory.MONSTER).sized(0.5F, 1.3F).build("jumstem"));
 
-	public static final DeferredHolder<EntityType<?>, EntityType<GingerbreadMan>> GINGERBREAD_MAN = ENTITY_TYPES.register("gingerbread_man", () -> EntityType.Builder.<GingerbreadMan>of(GingerbreadMan::new, MobCategory.MONSTER).sized(0.5F, 1.9F).build("gingerbread_man"));
+	public static final DeferredHolder<EntityType<?>, EntityType<GingerbreadMan>> GINGERBREAD_MAN = ENTITY_TYPES.register("gingerbread_man", () -> EntityType.Builder.of(GingerbreadMan::new, MobCategory.MONSTER).sized(0.5F, 1.9F).build("gingerbread_man"));
 	
-	public static final DeferredHolder<EntityType<?>, EntityType<Crystallize>> CRYSTALLIZE = ENTITY_TYPES.register("crystallize", () -> EntityType.Builder.<Crystallize>of(Crystallize::new, MobCategory.MONSTER).sized(0.5F, 2.0F).build("crystallize"));
+	public static final DeferredHolder<EntityType<?>, EntityType<Crystallize>> CRYSTALLIZE = ENTITY_TYPES.register("crystallize", () -> EntityType.Builder.of(Crystallize::new, MobCategory.MONSTER).sized(0.5F, 2.0F).build("crystallize"));
 
 	public static final DeferredHolder<EntityType<?>, EntityType<MushroomSpore>> MUSHROOM_SPORE = ENTITY_TYPES.register("mushroom_spore", () -> EntityType.Builder.<MushroomSpore>of(MushroomSpore::new, MobCategory.MISC).sized(0.2F, 0.2F).build("mushroom_spore"));
 	
-	public static final DeferredHolder<EntityType<?>, EntityType<MagicalCat>> MAGICAL_CAT = ENTITY_TYPES.register("magical_cat", () -> EntityType.Builder.<MagicalCat>of(MagicalCat::new, MobCategory.CREATURE).sized(0.75F, 0.5F).build("magical_cat"));
-	public static final DeferredHolder<EntityType<?>, EntityType<Fluffer>> FLUFFER = ENTITY_TYPES.register("fluffer", () -> EntityType.Builder.<Fluffer>of(Fluffer::new, MobCategory.CREATURE).sized(0.85F, 0.85F).build("fluffer"));
-	public static final DeferredHolder<EntityType<?>, EntityType<SpikyPig>> SPIKY_PIG = ENTITY_TYPES.register("spiky_pig", () -> EntityType.Builder.<SpikyPig>of(SpikyPig::new, MobCategory.CREATURE).sized(0.9F, 0.9F).build("spiky_pig"));
-	public static final DeferredHolder<EntityType<?>, EntityType<GoldenFoxSpirit>> GOLDEN_FOX_SPIRIT = ENTITY_TYPES.register("golden_fox_spirit", () -> EntityType.Builder.<GoldenFoxSpirit>of(GoldenFoxSpirit::new, MobCategory.CREATURE).sized(0.5F, 1.6F).build("golden_fox_spirit"));
+	public static final DeferredHolder<EntityType<?>, EntityType<MagicalCat>> MAGICAL_CAT = ENTITY_TYPES.register("magical_cat", () -> EntityType.Builder.of(MagicalCat::new, MobCategory.CREATURE).sized(0.75F, 0.5F).build("magical_cat"));
+	public static final DeferredHolder<EntityType<?>, EntityType<Fluffer>> FLUFFER = ENTITY_TYPES.register("fluffer", () -> EntityType.Builder.of(Fluffer::new, MobCategory.CREATURE).sized(0.85F, 0.85F).build("fluffer"));
+	public static final DeferredHolder<EntityType<?>, EntityType<SpikyPig>> SPIKY_PIG = ENTITY_TYPES.register("spiky_pig", () -> EntityType.Builder.of(SpikyPig::new, MobCategory.CREATURE).sized(0.9F, 0.9F).build("spiky_pig"));
+	public static final DeferredHolder<EntityType<?>, EntityType<GoldenFoxSpirit>> GOLDEN_FOX_SPIRIT = ENTITY_TYPES.register("golden_fox_spirit", () -> EntityType.Builder.of(GoldenFoxSpirit::new, MobCategory.CREATURE).sized(0.5F, 1.6F).build("golden_fox_spirit"));
 	
 	//Demons
 	//public static final DeferredHolder<EntityType<?>, EntityType<Necromancer>> NECROMANCER = ENTITY_TYPES.register("necromancer", () -> EntityType.Builder.<Necromancer>of(Necromancer::new, MobCategory.MONSTER).sized(0.6F, 1.95F).clientTrackingRange(8).build("necromancer"));
 	//public static final DeferredHolder<EntityType<?>, EntityType<NecromancerSkull>> NECROMANCER_SKULL = ENTITY_TYPES.register("necromancer_skull", () -> EntityType.Builder.<NecromancerSkull>of(NecromancerSkull::new, MobCategory.MONSTER).sized(0.5F, 0.5F).clientTrackingRange(8).build("necromancer_skull"));
-	public static final DeferredHolder<EntityType<?>, EntityType<DemonicZombie>> DEMONIC_ZOMBIE = ENTITY_TYPES.register("demonic_zombie", () -> EntityType.Builder.<DemonicZombie>of(DemonicZombie::new, MobCategory.MONSTER).sized(0.6F, 1.95F).clientTrackingRange(8).build("demonic_zombie"));
-	public static final DeferredHolder<EntityType<?>, EntityType<DemonicSkeleton>> DEMONIC_SKELETON = ENTITY_TYPES.register("demonic_skeleton", () -> EntityType.Builder.<DemonicSkeleton>of(DemonicSkeleton::new, MobCategory.MONSTER).sized(0.6F, 1.95F).clientTrackingRange(8).build("demonic_skeleton"));
-	public static final DeferredHolder<EntityType<?>, EntityType<DemonicSoldier>> DEMONIC_SOLDIER = ENTITY_TYPES.register("demonic_soldier", () -> EntityType.Builder.<DemonicSoldier>of(DemonicSoldier::new, MobCategory.MONSTER).sized(0.6F, 1.95F).clientTrackingRange(8).build("demonic_soldier"));
+	public static final DeferredHolder<EntityType<?>, EntityType<DemonicZombie>> DEMONIC_ZOMBIE = ENTITY_TYPES.register("demonic_zombie", () -> EntityType.Builder.of(DemonicZombie::new, MobCategory.MONSTER).sized(0.6F, 1.95F).clientTrackingRange(8).build("demonic_zombie"));
+	public static final DeferredHolder<EntityType<?>, EntityType<DemonicSkeleton>> DEMONIC_SKELETON = ENTITY_TYPES.register("demonic_skeleton", () -> EntityType.Builder.of(DemonicSkeleton::new, MobCategory.MONSTER).sized(0.6F, 1.95F).clientTrackingRange(8).build("demonic_skeleton"));
+	public static final DeferredHolder<EntityType<?>, EntityType<DemonicSoldier>> DEMONIC_SOLDIER = ENTITY_TYPES.register("demonic_soldier", () -> EntityType.Builder.of(DemonicSoldier::new, MobCategory.MONSTER).sized(0.6F, 1.95F).clientTrackingRange(8).build("demonic_soldier"));
 	
 	//Misc
 	public static final DeferredHolder<EntityType<?>, EntityType<Boat>> BOAT = ENTITY_TYPES.register("boat", () -> EntityType.Builder.<Boat>of(Boat::new, MobCategory.MISC).sized(1.375F, 0.5625F).clientTrackingRange(10).build("boat"));
 	public static final DeferredHolder<EntityType<?>, EntityType<ChestBoat>> CHEST_BOAT = ENTITY_TYPES.register("chest_boat", () -> EntityType.Builder.<ChestBoat>of(ChestBoat::new, MobCategory.MISC).sized(1.375F, 0.5625F).clientTrackingRange(10).build("chest_boat"));
-	public static final DeferredHolder<EntityType<?>, EntityType<LevitatingBlockEntity>> LEVITATING_BLOCK = ENTITY_TYPES.register("levitating_block", () -> EntityType.Builder.<LevitatingBlockEntity>of(LevitatingBlockEntity::new, MobCategory.MISC).sized(1.0F, 1.0F).build("levitating_block"));
+	public static final DeferredHolder<EntityType<?>, EntityType<LevitatingBlockEntity>> LEVITATING_BLOCK = ENTITY_TYPES.register("levitating_block", () -> EntityType.Builder.of(LevitatingBlockEntity::new, MobCategory.MISC).sized(1.0F, 1.0F).build("levitating_block"));
 	
 	@SubscribeEvent
 	public static void registerSpawnPlacements(RegisterSpawnPlacementsEvent event) {

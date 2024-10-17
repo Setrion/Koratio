@@ -1,0 +1,38 @@
+{
+  "parent": "item/generated",
+  "render_type": "cutout_mipped",
+  "textures": {
+    "layer0": "koratio:item/piping_bag",
+    "layer1": "koratio:item/piping_bag_filling"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "koratio:empty": 1
+      },
+      "model": "koratio:item/empty_piping_bag"
+    }
+  ],
+  "display": {
+    "thirdperson_righthand": {
+      "rotation": [ 0, -90, 55 ],
+      "translation": [ 0, 4.0, 0.5 ],
+      "scale": [ 0.6, 0.6, 0.6 ]
+    },
+    "thirdperson_lefthand": {
+      "rotation": [ 0, 90, -55 ],
+      "translation": [ 0, 4.0, 0.5 ],
+      "scale": [ 0.6, 0.6, 0.6 ]
+    },
+    "firstperson_righthand": {
+      "rotation": [ 0, -90, 25 ],
+      "translation": [ 1.13, 3.2, 1.13 ],
+      "scale": [ 0.5, 0.5, 0.5 ]
+    },
+    "firstperson_lefthand": {
+      "rotation": [ 0, 90, -25 ],
+      "translation": [ 1.13, 3.2, 1.13 ],
+      "scale": [ 0.5, 0.5, 0.5 ]
+    }
+  }
+}

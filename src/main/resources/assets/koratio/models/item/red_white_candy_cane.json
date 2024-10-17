@@ -1,6 +1,3 @@
 {
-  "parent": "minecraft:item/generated",
-  "textures": {
-    "layer0": "koratio:item/red_white_candy_cane"
-  }
+  "parent": "koratio:item/template_colored_candy_cane"
 }

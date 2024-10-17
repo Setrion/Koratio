@@ -181,10 +181,9 @@ public class MagicalCat extends TamableAnimal {
 			return false;
 		} else if (!this.isTame()) {
 			return false;
-		} else if (!(animal instanceof MagicalCat)) {
+		} else if (!(animal instanceof MagicalCat unicorn_cat)) {
 			return false;
 		} else {
-			MagicalCat unicorn_cat = (MagicalCat)animal;
 			if (!unicorn_cat.isTame()) {
 				return false;
 			} else if (unicorn_cat.isInSittingPose()) {

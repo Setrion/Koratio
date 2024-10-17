@@ -1,8 +1,13 @@
 package net.setrion.koratio;
 
+import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.item.ItemProperties;
+import net.minecraft.client.renderer.item.ItemPropertyFunction;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.neoforged.bus.api.IEventBus;
@@ -22,6 +27,8 @@ import net.setrion.koratio.core.cauldron.EmptyCauldronInteraction;
 import net.setrion.koratio.data.compat.KoratioCuriosCompat;
 import net.setrion.koratio.events.RegistryEvents;
 import net.setrion.koratio.registry.*;
+import net.setrion.koratio.world.item.PipingBagItem;
+import org.jetbrains.annotations.Nullable;
 
 @Mod(Koratio.MOD_ID)
 public class Koratio {
@@ -34,7 +41,6 @@ public class Koratio {
 
         bus.addListener(this::setupEntityModelLayers);
         bus.addListener(this::commonSetup);
-        bus.addListener(this::clientSetup);
         bus.addListener(this::clientScreenSetup);
         bus.addListener(this::addBlockEntityTypes);
         
@@ -62,21 +68,6 @@ public class Koratio {
     	KoratioBlocks.registerPots();
     	KoratioBlocks.registerStrippables();
         KoratioVillagerTypes.register();
-    }
-    
-    public void clientSetup(final FMLClientSetupEvent event) {
-        ItemBlockRenderTypes.setRenderLayer(KoratioFluids.MOLTEN_SUGAR.get(), RenderType.translucent());
-        ItemBlockRenderTypes.setRenderLayer(KoratioFluids.FLOWING_MOLTEN_SUGAR.get(), RenderType.translucent());
-        ItemBlockRenderTypes.setRenderLayer(KoratioFluids.MOLTEN_BLUE_SUGAR.get(), RenderType.translucent());
-        ItemBlockRenderTypes.setRenderLayer(KoratioFluids.FLOWING_MOLTEN_BLUE_SUGAR.get(), RenderType.translucent());
-        ItemBlockRenderTypes.setRenderLayer(KoratioFluids.MOLTEN_GREEN_SUGAR.get(), RenderType.translucent());
-        ItemBlockRenderTypes.setRenderLayer(KoratioFluids.FLOWING_MOLTEN_GREEN_SUGAR.get(), RenderType.translucent());
-        ItemBlockRenderTypes.setRenderLayer(KoratioFluids.MOLTEN_YELLOW_SUGAR.get(), RenderType.translucent());
-        ItemBlockRenderTypes.setRenderLayer(KoratioFluids.FLOWING_MOLTEN_YELLOW_SUGAR.get(), RenderType.translucent());
-        ItemBlockRenderTypes.setRenderLayer(KoratioFluids.MOLTEN_RED_SUGAR.get(), RenderType.translucent());
-        ItemBlockRenderTypes.setRenderLayer(KoratioFluids.FLOWING_MOLTEN_RED_SUGAR.get(), RenderType.translucent());
-        ItemBlockRenderTypes.setRenderLayer(KoratioBlocks.GINGERBREAD_BLOCK.get(), RenderType.CUTOUT_MIPPED);
-        ItemBlockRenderTypes.setRenderLayer(KoratioBlocks.RAW_GINGERBREAD_BLOCK.get(), RenderType.CUTOUT_MIPPED);
     }
 
     public void clientScreenSetup(RegisterMenuScreensEvent event) {

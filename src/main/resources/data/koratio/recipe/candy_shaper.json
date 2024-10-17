@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "s": {
+      "item": "minecraft:stone_slab"
+    },
+    "w": {
+      "tag": "minecraft:planks"
+    }
+  },
+  "pattern": [
+    "ss",
+    "ww",
+    "ww"
+  ],
+  "result": {
+    "count": 1,
+    "id": "koratio:candy_shaper"
+  }
+}

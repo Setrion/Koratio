@@ -56,7 +56,7 @@ public class DemonicSoldier extends Monster {
 	}
 
 	public static AttributeSupplier.Builder createAttributes() {
-		return Monster.createMonsterAttributes().add(Attributes.FOLLOW_RANGE, 35.0D).add(Attributes.MAX_HEALTH, 20.0D).add(Attributes.MOVEMENT_SPEED, (double)0.27F).add(Attributes.ATTACK_DAMAGE, 3.0D);
+		return Monster.createMonsterAttributes().add(Attributes.FOLLOW_RANGE, 35.0D).add(Attributes.MAX_HEALTH, 20.0D).add(Attributes.MOVEMENT_SPEED, 0.27F).add(Attributes.ATTACK_DAMAGE, 3.0D);
 	}
 	
 	public boolean canBreakDoors() {
@@ -120,8 +120,8 @@ public class DemonicSoldier extends Monster {
 
 		if (this.getItemBySlot(EquipmentSlot.HEAD).isEmpty()) {
 			LocalDate localdate = LocalDate.now();
-			int i = localdate.get(ChronoField.DAY_OF_MONTH);
-			int j = localdate.get(ChronoField.MONTH_OF_YEAR);
+			int i = localdate.getDayOfMonth();
+			int j = localdate.getMonth().getValue();
 			if (j == 10 && i == 31 && randomsource.nextFloat() < 0.25F) {
 				this.setItemSlot(EquipmentSlot.HEAD, new ItemStack(randomsource.nextFloat() < 0.1F ? Blocks.JACK_O_LANTERN : Blocks.CARVED_PUMPKIN));
 				this.armorDropChances[EquipmentSlot.HEAD.getIndex()] = 0.0F;

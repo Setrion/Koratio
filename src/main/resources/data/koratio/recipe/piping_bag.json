@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "b": {
+      "tag": "minecraft:wooden_buttons"
+    },
+    "g": {
+      "item": "minecraft:glass_bottle"
+    },
+    "i": {
+      "item": "minecraft:bamboo"
+    },
+    "s": {
+      "item": "minecraft:string"
+    }
+  },
+  "pattern": [
+    " sb",
+    "sgs",
+    "is "
+  ],
+  "result": {
+    "count": 1,
+    "id": "koratio:piping_bag"
+  }
+}

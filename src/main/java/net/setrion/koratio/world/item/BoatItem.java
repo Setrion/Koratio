@@ -43,7 +43,7 @@ public class BoatItem extends Item {
 				Vec3 vec31 = player.getEyePosition();
 
 				for(Entity entity : list) {
-					AABB aabb = entity.getBoundingBox().inflate((double)entity.getPickRadius());
+					AABB aabb = entity.getBoundingBox().inflate(entity.getPickRadius());
 					if (aabb.contains(vec31)) {
 						return InteractionResultHolder.pass(itemstack);
 					}
@@ -75,6 +75,6 @@ public class BoatItem extends Item {
 	}
 
 	private Boat getBoat(Level level, HitResult result) {
-		return (Boat)(this.hasChest ? new ChestBoat(level, result.getLocation().x, result.getLocation().y, result.getLocation().z) : new Boat(level, result.getLocation().x, result.getLocation().y, result.getLocation().z));
+		return this.hasChest ? new ChestBoat(level, result.getLocation().x, result.getLocation().y, result.getLocation().z) : new Boat(level, result.getLocation().x, result.getLocation().y, result.getLocation().z);
 	}
 }

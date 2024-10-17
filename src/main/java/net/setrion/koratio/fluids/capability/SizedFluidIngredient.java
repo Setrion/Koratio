@@ -68,21 +68,20 @@ public class SizedFluidIngredient {
     public boolean equals(Object o) {
         if (this == o) {
             return true;
-        } else if (!(o instanceof SizedFluidIngredient)) {
+        } else if (!(o instanceof SizedFluidIngredient other)) {
             return false;
         } else {
-            SizedFluidIngredient other = (SizedFluidIngredient)o;
             return this.amount == other.amount && this.ingredient.equals(other.ingredient);
         }
     }
 
     public int hashCode() {
-        return Objects.hash(new Object[]{this.ingredient, this.amount});
+        return Objects.hash(this.ingredient, this.amount);
     }
 
     public String toString() {
         int var10000 = this.amount;
-        return "" + var10000 + "x " + String.valueOf(this.ingredient);
+        return var10000 + "x " + this.ingredient;
     }
 
     static {

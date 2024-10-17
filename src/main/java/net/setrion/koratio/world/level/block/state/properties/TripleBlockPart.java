@@ -7,7 +7,7 @@ public enum TripleBlockPart implements StringRepresentable {
     MIDDLE(),
     LOWER();
 
-    private TripleBlockPart() {
+    TripleBlockPart() {
     }
 
     @Override

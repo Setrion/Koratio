@@ -1,0 +1,10 @@
+{
+    "parent": "item/generated",
+    "textures": {
+        "layer0": "koratio:item/candy_cane_base",
+        "layer1": "koratio:item/rainbow_candy_cane_layer_1",
+        "layer2": "koratio:item/rainbow_candy_cane_layer_2",
+        "layer3": "koratio:item/rainbow_candy_cane_layer_3",
+        "layer4": "koratio:item/rainbow_candy_cane_layer_4"
+    }
+}

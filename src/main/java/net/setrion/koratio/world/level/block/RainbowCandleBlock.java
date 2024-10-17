@@ -19,9 +19,9 @@ public class RainbowCandleBlock extends CandleBlock {
 
     @Override
     public void animateTick(BlockState state, Level level, BlockPos pos, RandomSource random) {
-        if ((Boolean)state.getValue(LIT)) {
+        if (state.getValue(LIT)) {
             this.getParticleOffsets(state).forEach((vec3) -> {
-                addParticlesAndSound(level, vec3.add((double)pos.getX(), (double)pos.getY(), (double)pos.getZ()), random);
+                addParticlesAndSound(level, vec3.add(pos.getX(), pos.getY(), pos.getZ()), random);
             });
         }
     }

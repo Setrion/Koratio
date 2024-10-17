@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_molten_sugar": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#koratio:molten_sugar_buckets"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "koratio:blue_white_lollipop"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_molten_sugar"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "koratio:blue_white_lollipop"
+    ]
+  }
+}

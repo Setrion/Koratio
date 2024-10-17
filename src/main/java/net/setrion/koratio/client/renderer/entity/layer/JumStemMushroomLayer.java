@@ -44,7 +44,7 @@ public class JumStemMushroomLayer<T extends JumStem> extends RenderLayer<T, JumS
 				}
 				if (entity.getMushroomAmount() > 1) {
 					stack.pushPose();
-					stack.translate(-0.35D, (double)0.45, (double)-0.25F);
+					stack.translate(-0.35D, 0.45, -0.25F);
 					stack.mulPose(Axis.YP.rotationDegrees(-99.0F));
 					stack.scale(-0.5F, -0.5F, 0.5F);
 					stack.translate(-0.5D, -0.5D, -0.5D);
@@ -53,7 +53,7 @@ public class JumStemMushroomLayer<T extends JumStem> extends RenderLayer<T, JumS
 				}
 				if (entity.getMushroomAmount() > 2) {
 					stack.pushPose();
-					stack.translate(0.6D, (double)0.575F, (double)0.25F);
+					stack.translate(0.6D, 0.575F, 0.25F);
 					stack.mulPose(Axis.XP.rotationDegrees(135.0F));
 					stack.mulPose(Axis.ZP.rotationDegrees(135.0F));
 					stack.mulPose(Axis.YP.rotationDegrees(5.0F));

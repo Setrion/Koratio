@@ -201,14 +201,19 @@ public class BlockLootTables extends net.minecraft.data.loot.BlockLootSubProvide
 
 		add(KoratioBlocks.SUGAR_BLOCK.get(), block -> createSingleItemTableWithSilkTouch(block, Items.SUGAR, ConstantValue.exactly(9.0F)));
 		add(KoratioBlocks.STICKY_SUGAR_BLOCK.get(), block -> createSingleItemTableWithSilkTouch(block, Items.SUGAR, ConstantValue.exactly(9.0F)));
+		add(KoratioBlocks.FROSTING_BLOCK.get(), block -> createSingleItemTableWithSilkTouch(block, KoratioItems.RED_SUGAR, ConstantValue.exactly(9.0F)));
 		add(KoratioBlocks.BLUE_SUGAR_BLOCK.get(), block -> createSingleItemTableWithSilkTouch(block, KoratioItems.BLUE_SUGAR, ConstantValue.exactly(9.0F)));
 		add(KoratioBlocks.STICKY_BLUE_SUGAR_BLOCK.get(), block -> createSingleItemTableWithSilkTouch(block, KoratioItems.BLUE_SUGAR, ConstantValue.exactly(9.0F)));
+		add(KoratioBlocks.BLUE_FROSTING_BLOCK.get(), block -> createSingleItemTableWithSilkTouch(block, KoratioItems.RED_SUGAR, ConstantValue.exactly(9.0F)));
 		add(KoratioBlocks.GREEN_SUGAR_BLOCK.get(), block -> createSingleItemTableWithSilkTouch(block, KoratioItems.GREEN_SUGAR, ConstantValue.exactly(9.0F)));
 		add(KoratioBlocks.STICKY_GREEN_SUGAR_BLOCK.get(), block -> createSingleItemTableWithSilkTouch(block, KoratioItems.GREEN_SUGAR, ConstantValue.exactly(9.0F)));
+		add(KoratioBlocks.GREEN_FROSTING_BLOCK.get(), block -> createSingleItemTableWithSilkTouch(block, KoratioItems.RED_SUGAR, ConstantValue.exactly(9.0F)));
 		add(KoratioBlocks.YELLOW_SUGAR_BLOCK.get(), block -> createSingleItemTableWithSilkTouch(block, KoratioItems.YELLOW_SUGAR, ConstantValue.exactly(9.0F)));
 		add(KoratioBlocks.STICKY_YELLOW_SUGAR_BLOCK.get(), block -> createSingleItemTableWithSilkTouch(block, KoratioItems.YELLOW_SUGAR, ConstantValue.exactly(9.0F)));
+		add(KoratioBlocks.YELLOW_FROSTING_BLOCK.get(), block -> createSingleItemTableWithSilkTouch(block, KoratioItems.RED_SUGAR, ConstantValue.exactly(9.0F)));
 		add(KoratioBlocks.RED_SUGAR_BLOCK.get(), block -> createSingleItemTableWithSilkTouch(block, KoratioItems.RED_SUGAR, ConstantValue.exactly(9.0F)));
 		add(KoratioBlocks.STICKY_RED_SUGAR_BLOCK.get(), block -> createSingleItemTableWithSilkTouch(block, KoratioItems.RED_SUGAR, ConstantValue.exactly(9.0F)));
+		add(KoratioBlocks.RED_FROSTING_BLOCK.get(), block -> createSingleItemTableWithSilkTouch(block, KoratioItems.RED_SUGAR, ConstantValue.exactly(9.0F)));
 
 		dropOther(KoratioBlocks.MOLTEN_SUGAR_CAULDRON.get(), Blocks.CAULDRON);
 		dropOther(KoratioBlocks.MOLTEN_BLUE_SUGAR_CAULDRON.get(), Blocks.CAULDRON);
@@ -240,15 +245,13 @@ public class BlockLootTables extends net.minecraft.data.loot.BlockLootSubProvide
 		dropSelf(KoratioBlocks.LARGE_GINGERBREAD_BRICKS.get());
 		dropSelf(KoratioBlocks.LARGE_GINGERBREAD_BRICK_STAIRS.get());
 		add(KoratioBlocks.LARGE_GINGERBREAD_BRICK_SLAB.get(), this::createSlabItemTable);
-		dropSelf(KoratioBlocks.RAW_GINGERBREAD_BLOCK_WALL.get());
-		dropSelf(KoratioBlocks.GINGERBREAD_BLOCK_WALL.get());
+		dropSelf(KoratioBlocks.RAW_GINGERBREAD_WALL.get());
+		dropSelf(KoratioBlocks.GINGERBREAD_WALL.get());
 		dropSelf(KoratioBlocks.RAW_GINGERBREAD_BRICK_WALL.get());
 		dropSelf(KoratioBlocks.GINGERBREAD_BRICK_WALL.get());
 		dropSelf(KoratioBlocks.RAW_LARGE_GINGERBREAD_BRICK_WALL.get());
 		dropSelf(KoratioBlocks.LARGE_GINGERBREAD_BRICK_WALL.get());
 		dropSelf(KoratioBlocks.MARSHMALLOW_BLOCK.get());
-		dropSelf(KoratioBlocks.MARSHMALLOW_STAIRS.get());
-		add(KoratioBlocks.MARSHMALLOW_SLAB.get(), this::createSlabItemTable);
 
 		add(KoratioBlocks.GILDED_VINES.get(), this::createSilkTouchOnlyTable);
 

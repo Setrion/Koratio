@@ -11,7 +11,7 @@ public class InventoryUtils {
     public static List<Integer> getSlotsForItem(ItemStack stack, Inventory inventory) {
         List<Integer> list = new ArrayList<Integer>();
         for(int i = 0; i < inventory.items.size(); ++i) {
-            if (!((ItemStack)inventory.items.get(i)).isEmpty() && ItemStack.isSameItemSameComponents(stack, (ItemStack)inventory.items.get(i))) {
+            if (!inventory.items.get(i).isEmpty() && ItemStack.isSameItemSameComponents(stack, inventory.items.get(i))) {
                 list.add(i);
             }
         }

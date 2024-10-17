@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "c": {
+      "item": "minecraft:cocoa_beans"
+    },
+    "h": {
+      "item": "minecraft:honey_bottle"
+    },
+    "m": {
+      "item": "minecraft:milk_bucket"
+    },
+    "s": {
+      "tag": "c:sugar"
+    },
+    "w": {
+      "item": "minecraft:wheat"
+    }
+  },
+  "pattern": [
+    "www",
+    "sms",
+    "chc"
+  ],
+  "result": {
+    "count": 8,
+    "id": "koratio:raw_gingerbread_block"
+  }
+}

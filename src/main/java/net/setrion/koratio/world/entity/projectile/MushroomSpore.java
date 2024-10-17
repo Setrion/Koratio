@@ -52,9 +52,9 @@ public class MushroomSpore extends Projectile {
 		} else if (this.isInWaterOrBubble()) {
 			this.discard();
 		} else {
-			this.setDeltaMovement(vec3.scale((double)0.99F));
+			this.setDeltaMovement(vec3.scale(0.99F));
 			if (!this.isNoGravity()) {
-				this.setDeltaMovement(this.getDeltaMovement().add(0.0D, (double)-0.06F, 0.0D));
+				this.setDeltaMovement(this.getDeltaMovement().add(0.0D, -0.06F, 0.0D));
 			}
 
 			this.setPos(d0, d1, d2);
@@ -101,7 +101,7 @@ public class MushroomSpore extends Projectile {
 		for(int i = 0; i < 7; ++i) {
 			if (this.getOwner() instanceof JumStem jumstem && jumstem.getVariant() != JumStem.Variant.SHEARED) {
 				int c = jumstem.getVariant().getEffect().value().getColor();
-				if (c != -1 && 2 > 0) {
+				if (c != -1) {
 					double c0 = (double)(c >> 16 & 255) / 255.0D;
 					double c1 = (double)(c >> 8 & 255) / 255.0D;
 					double c2 = (double)(c >> 0 & 255) / 255.0D;

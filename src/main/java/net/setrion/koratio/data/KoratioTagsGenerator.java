@@ -57,6 +57,7 @@ public class KoratioTagsGenerator {
             copy(BlockTags.CEILING_HANGING_SIGNS, ItemTags.HANGING_SIGNS);
             copy(Tags.Blocks.CHESTS_WOODEN, Tags.Items.CHESTS_WOODEN);
             copy(Tags.Blocks.BOOKSHELVES, Tags.Items.BOOKSHELVES);
+            copy(KoratioTags.Blocks.FROSTINGS, KoratioTags.Items.FROSTINGS);
             copy(Tags.Blocks.ORES_IN_GROUND_STONE, Tags.Items.ORES_IN_GROUND_STONE);
             copy(Tags.Blocks.ORES_IN_GROUND_DEEPSLATE, Tags.Items.ORES_IN_GROUND_DEEPSLATE);
             tag(ItemTags.BOATS).add(KoratioItems.PANGO_BOAT.get(), KoratioItems.RUGONA_BOAT.get(), KoratioItems.VARESO_BOAT.get(), KoratioItems.CANDY_BOAT.get(), KoratioItems.ELVEN_BOAT.get(), KoratioItems.BLUE_ELVEN_BOAT.get(), KoratioItems.CYAN_ELVEN_BOAT.get(), KoratioItems.GREEN_ELVEN_BOAT.get());
@@ -139,6 +140,7 @@ public class KoratioTagsGenerator {
             tag(BlockTags.CEILING_HANGING_SIGNS).add(KoratioBlocks.PANGO_HANGING_SIGN.get(), KoratioBlocks.RUGONA_HANGING_SIGN.get(), KoratioBlocks.VARESO_HANGING_SIGN.get(), KoratioBlocks.CANDY_HANGING_SIGN.get(), KoratioBlocks.ELVEN_HANGING_SIGN.get());
             tag(Tags.Blocks.CHESTS_WOODEN).add(KoratioBlocks.PANGO_CHEST.get(), KoratioBlocks.RUGONA_CHEST.get(), KoratioBlocks.VARESO_CHEST.get(), KoratioBlocks.CANDY_CHEST.get(), KoratioBlocks.ELVEN_CHEST.get(), KoratioBlocks.BLUE_ELVEN_CHEST.get(), KoratioBlocks.CYAN_ELVEN_CHEST.get(), KoratioBlocks.GREEN_ELVEN_CHEST.get());
             tag(Tags.Blocks.CHESTS).addTag(Tags.Blocks.CHESTS_WOODEN);
+            tag(KoratioTags.Blocks.FROSTINGS).add(KoratioBlocks.FROSTING_BLOCK.get(), KoratioBlocks.BLUE_FROSTING_BLOCK.get(), KoratioBlocks.GREEN_FROSTING_BLOCK.get(), KoratioBlocks.YELLOW_FROSTING_BLOCK.get(), KoratioBlocks.RED_FROSTING_BLOCK.get());
             tag(BlockTags.LAVA_POOL_STONE_CANNOT_REPLACE).add(KoratioBlocks.PANGO_CHEST.get(), KoratioBlocks.RUGONA_CHEST.get(), KoratioBlocks.VARESO_CHEST.get(), KoratioBlocks.CANDY_CHEST.get(), KoratioBlocks.ELVEN_CHEST.get(), KoratioBlocks.BLUE_ELVEN_CHEST.get(), KoratioBlocks.CYAN_ELVEN_CHEST.get(), KoratioBlocks.GREEN_ELVEN_CHEST.get());
             tag(BlockTags.FEATURES_CANNOT_REPLACE).add(KoratioBlocks.PANGO_CHEST.get(), KoratioBlocks.RUGONA_CHEST.get(), KoratioBlocks.VARESO_CHEST.get(), KoratioBlocks.CANDY_CHEST.get(), KoratioBlocks.ELVEN_CHEST.get(), KoratioBlocks.BLUE_ELVEN_CHEST.get(), KoratioBlocks.CYAN_ELVEN_CHEST.get(), KoratioBlocks.GREEN_ELVEN_CHEST.get());
             tag(BlockTags.PORTALS).add(KoratioBlocks.FANTASIA_PORTAL.get());

@@ -3,6 +3,11 @@ package net.setrion.koratio.data;
 import net.minecraft.core.Direction;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
+import net.minecraft.data.models.blockstates.MultiVariantGenerator;
+import net.minecraft.data.models.blockstates.PropertyDispatch;
+import net.minecraft.data.models.blockstates.Variant;
+import net.minecraft.data.models.blockstates.VariantProperties;
+import net.minecraft.data.models.model.ModelLocationUtils;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.properties.DoorHingeSide;
@@ -12,7 +17,9 @@ import net.neoforged.neoforge.client.model.generators.ConfiguredModel;
 import net.neoforged.neoforge.client.model.generators.ModelFile;
 import net.neoforged.neoforge.client.model.generators.MultiPartBlockStateBuilder;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
+import net.neoforged.neoforge.registries.DeferredBlock;
 import net.setrion.koratio.Koratio;
+import net.setrion.koratio.client.model.block.GlazedModelLoader;
 import net.setrion.koratio.registry.KoratioBlocks;
 import net.setrion.koratio.world.level.block.*;
 import net.setrion.koratio.world.level.block.state.properties.TripleBlockPart;
@@ -84,14 +91,19 @@ public class BlockStateGenerator extends BlockStateProvider {
 		simpleBlock(KoratioBlocks.DEEPSLATE_COOKIE_ORE.get());
 		simpleBlock(KoratioBlocks.SUGAR_BLOCK.get());
 		simpleBlock(KoratioBlocks.STICKY_SUGAR_BLOCK.get());
-		simpleBlock(KoratioBlocks.RED_SUGAR_BLOCK.get());
-		simpleBlock(KoratioBlocks.STICKY_RED_SUGAR_BLOCK.get());
+		simpleBlock(KoratioBlocks.FROSTING_BLOCK.get());
 		simpleBlock(KoratioBlocks.BLUE_SUGAR_BLOCK.get());
 		simpleBlock(KoratioBlocks.STICKY_BLUE_SUGAR_BLOCK.get());
-		simpleBlock(KoratioBlocks.YELLOW_SUGAR_BLOCK.get());
-		simpleBlock(KoratioBlocks.STICKY_YELLOW_SUGAR_BLOCK.get());
+		simpleBlock(KoratioBlocks.BLUE_FROSTING_BLOCK.get());
 		simpleBlock(KoratioBlocks.GREEN_SUGAR_BLOCK.get());
 		simpleBlock(KoratioBlocks.STICKY_GREEN_SUGAR_BLOCK.get());
+		simpleBlock(KoratioBlocks.GREEN_FROSTING_BLOCK.get());
+		simpleBlock(KoratioBlocks.YELLOW_SUGAR_BLOCK.get());
+		simpleBlock(KoratioBlocks.STICKY_YELLOW_SUGAR_BLOCK.get());
+		simpleBlock(KoratioBlocks.YELLOW_FROSTING_BLOCK.get());
+		simpleBlock(KoratioBlocks.RED_SUGAR_BLOCK.get());
+		simpleBlock(KoratioBlocks.STICKY_RED_SUGAR_BLOCK.get());
+		simpleBlock(KoratioBlocks.RED_FROSTING_BLOCK.get());
 
 		simpleBlock(KoratioBlocks.WHITE_CANDY_BLOCK.get());
 		simpleBlock(KoratioBlocks.BLUE_CANDY_BLOCK.get());
@@ -116,30 +128,32 @@ public class BlockStateGenerator extends BlockStateProvider {
 		simpleBlock(KoratioBlocks.RED_LEVITATING_WOOL.get(), models().cubeAll(KoratioBlocks.RED_LEVITATING_WOOL.getId().getPath(), blockTexture(Blocks.RED_WOOL)));
 		simpleBlock(KoratioBlocks.BLACK_LEVITATING_WOOL.get(), models().cubeAll(KoratioBlocks.BLACK_LEVITATING_WOOL.getId().getPath(), blockTexture(Blocks.BLACK_WOOL)));
 
-		simpleBlock(KoratioBlocks.RAW_GINGERBREAD_BLOCK.get());
+		glazedBlock(KoratioBlocks.RAW_GINGERBREAD_BLOCK);
 		stairsBlock(KoratioBlocks.RAW_GINGERBREAD_STAIRS.get(), Koratio.prefix("block/raw_gingerbread_block"));
 		slabBlock(KoratioBlocks.RAW_GINGERBREAD_SLAB.get(), KoratioBlocks.RAW_GINGERBREAD_BLOCK.getId(), Koratio.prefix("block/raw_gingerbread_block"));
-		simpleBlock(KoratioBlocks.GINGERBREAD_BLOCK.get());
+		glazedBlock(KoratioBlocks.GINGERBREAD_BLOCK);
 		stairsBlock(KoratioBlocks.GINGERBREAD_STAIRS.get(), Koratio.prefix("block/gingerbread_block"));
 		slabBlock(KoratioBlocks.GINGERBREAD_SLAB.get(), KoratioBlocks.GINGERBREAD_BLOCK.getId(), Koratio.prefix("block/gingerbread_block"));
-		simpleBlock(KoratioBlocks.RAW_GINGERBREAD_BRICKS.get());
+		glazedBlock(KoratioBlocks.RAW_GINGERBREAD_BRICKS);
 		stairsBlock(KoratioBlocks.RAW_GINGERBREAD_BRICK_STAIRS.get(), Koratio.prefix("block/raw_gingerbread_bricks"));
 		slabBlock(KoratioBlocks.RAW_GINGERBREAD_BRICK_SLAB.get(), KoratioBlocks.RAW_GINGERBREAD_BRICKS.getId(), Koratio.prefix("block/raw_gingerbread_bricks"));
-		simpleBlock(KoratioBlocks.GINGERBREAD_BRICKS.get());
+		glazedBlock(KoratioBlocks.GINGERBREAD_BRICKS);
 		stairsBlock(KoratioBlocks.GINGERBREAD_BRICK_STAIRS.get(), Koratio.prefix("block/gingerbread_bricks"));
 		slabBlock(KoratioBlocks.GINGERBREAD_BRICK_SLAB.get(), KoratioBlocks.GINGERBREAD_BRICKS.getId(), Koratio.prefix("block/gingerbread_bricks"));
-		simpleBlock(KoratioBlocks.RAW_LARGE_GINGERBREAD_BRICKS.get());
+		glazedBlock(KoratioBlocks.RAW_LARGE_GINGERBREAD_BRICKS);
 		stairsBlock(KoratioBlocks.RAW_LARGE_GINGERBREAD_BRICK_STAIRS.get(), Koratio.prefix("block/raw_large_gingerbread_bricks"));
 		slabBlock(KoratioBlocks.RAW_LARGE_GINGERBREAD_BRICK_SLAB.get(), KoratioBlocks.RAW_LARGE_GINGERBREAD_BRICKS.getId(), Koratio.prefix("block/raw_large_gingerbread_bricks"));
-		simpleBlock(KoratioBlocks.LARGE_GINGERBREAD_BRICKS.get());
+		glazedBlock(KoratioBlocks.LARGE_GINGERBREAD_BRICKS);
 		stairsBlock(KoratioBlocks.LARGE_GINGERBREAD_BRICK_STAIRS.get(), Koratio.prefix("block/large_gingerbread_bricks"));
 		slabBlock(KoratioBlocks.LARGE_GINGERBREAD_BRICK_SLAB.get(), KoratioBlocks.LARGE_GINGERBREAD_BRICKS.getId(), Koratio.prefix("block/large_gingerbread_bricks"));
-		wallInventoryBlock(KoratioBlocks.RAW_GINGERBREAD_BLOCK_WALL.get(), Koratio.prefix("block/raw_gingerbread_block"));
-		wallInventoryBlock(KoratioBlocks.GINGERBREAD_BLOCK_WALL.get(), Koratio.prefix("block/gingerbread_block"));
+		wallInventoryBlock(KoratioBlocks.RAW_GINGERBREAD_WALL.get(), Koratio.prefix("block/raw_gingerbread_block"));
+		wallInventoryBlock(KoratioBlocks.GINGERBREAD_WALL.get(), Koratio.prefix("block/gingerbread_block"));
 		wallInventoryBlock(KoratioBlocks.RAW_GINGERBREAD_BRICK_WALL.get(), Koratio.prefix("block/raw_gingerbread_bricks"));
 		wallInventoryBlock(KoratioBlocks.GINGERBREAD_BRICK_WALL.get(), Koratio.prefix("block/gingerbread_bricks"));
 		wallInventoryBlock(KoratioBlocks.RAW_LARGE_GINGERBREAD_BRICK_WALL.get(), Koratio.prefix("block/raw_large_gingerbread_bricks"));
 		wallInventoryBlock(KoratioBlocks.LARGE_GINGERBREAD_BRICK_WALL.get(), Koratio.prefix("block/large_gingerbread_bricks"));
+
+		eatableBlock(KoratioBlocks.MARSHMALLOW_BLOCK.get(), Koratio.prefix("block/marshmallow_block_top"), Koratio.prefix("block/marshmallow_block_side"), Koratio.prefix("block/marshmallow_block_bottom"));
 
 		flippedCropBlock(KoratioBlocks.CEINANAS.get());
 		flippedCropBlock(KoratioBlocks.UPNIPS.get());
@@ -409,48 +423,70 @@ public class BlockStateGenerator extends BlockStateProvider {
 	}
 
 	private void doorBlockInternalWithRenderType(DoorBlock block, ResourceLocation bottom, ResourceLocation top, ResourceLocation sides, ResourceLocation top_bottom, String renderType) {
-		ModelFile bottomLeft = models().withExistingParent(BuiltInRegistries.BLOCK.getKey(block).toString() + "_bottom_left", Koratio.prefix("block/template/door_bottom_left")).texture("side", sides).texture("front_b", bottom).texture("front_t", top).texture("top", top_bottom).renderType(renderType);
-		ModelFile bottomLeftOpen = models().withExistingParent(BuiltInRegistries.BLOCK.getKey(block).toString() + "_bottom_left_open", Koratio.prefix("block/template/door_bottom_left_open")).texture("side", sides).texture("front_b", bottom).texture("front_t", top).texture("top", top_bottom).renderType(renderType);
-		ModelFile bottomRight = models().withExistingParent(BuiltInRegistries.BLOCK.getKey(block).toString() + "_bottom_right", Koratio.prefix("block/template/door_bottom_right")).texture("side", sides).texture("front_b", bottom).texture("front_t", top).texture("top", top_bottom).renderType(renderType);
-		ModelFile bottomRightOpen = models().withExistingParent(BuiltInRegistries.BLOCK.getKey(block).toString() + "_bottom_right_open", Koratio.prefix("block/template/door_bottom_right_open")).texture("side", sides).texture("front_b", bottom).texture("front_t", top).texture("top", top_bottom).renderType(renderType);
-		ModelFile topLeft = models().withExistingParent(BuiltInRegistries.BLOCK.getKey(block).toString() + "_top_left", Koratio.prefix("block/template/door_top_left")).texture("side", sides).texture("front_b", bottom).texture("front_t", top).texture("top", top_bottom).renderType(renderType);
-		ModelFile topLeftOpen = models().withExistingParent(BuiltInRegistries.BLOCK.getKey(block).toString() + "_top_left_open", Koratio.prefix("block/template/door_top_left_open")).texture("side", sides).texture("front_b", bottom).texture("front_t", top).texture("top", top_bottom).renderType(renderType);
-		ModelFile topRight = models().withExistingParent(BuiltInRegistries.BLOCK.getKey(block).toString() + "_top_right", Koratio.prefix("block/template/door_top_right")).texture("side", sides).texture("front_b", bottom).texture("front_t", top).texture("top", top_bottom).renderType(renderType);
-		ModelFile topRightOpen = models().withExistingParent(BuiltInRegistries.BLOCK.getKey(block).toString() + "_top_right_open", Koratio.prefix("block/template/door_top_right_open")).texture("side", sides).texture("front_b", bottom).texture("front_t", top).texture("top", top_bottom).renderType(renderType);
+		ModelFile bottomLeft = models().withExistingParent(BuiltInRegistries.BLOCK.getKey(block) + "_bottom_left", Koratio.prefix("block/template/door_bottom_left")).texture("side", sides).texture("front_b", bottom).texture("front_t", top).texture("top", top_bottom).renderType(renderType);
+		ModelFile bottomLeftOpen = models().withExistingParent(BuiltInRegistries.BLOCK.getKey(block) + "_bottom_left_open", Koratio.prefix("block/template/door_bottom_left_open")).texture("side", sides).texture("front_b", bottom).texture("front_t", top).texture("top", top_bottom).renderType(renderType);
+		ModelFile bottomRight = models().withExistingParent(BuiltInRegistries.BLOCK.getKey(block) + "_bottom_right", Koratio.prefix("block/template/door_bottom_right")).texture("side", sides).texture("front_b", bottom).texture("front_t", top).texture("top", top_bottom).renderType(renderType);
+		ModelFile bottomRightOpen = models().withExistingParent(BuiltInRegistries.BLOCK.getKey(block) + "_bottom_right_open", Koratio.prefix("block/template/door_bottom_right_open")).texture("side", sides).texture("front_b", bottom).texture("front_t", top).texture("top", top_bottom).renderType(renderType);
+		ModelFile topLeft = models().withExistingParent(BuiltInRegistries.BLOCK.getKey(block) + "_top_left", Koratio.prefix("block/template/door_top_left")).texture("side", sides).texture("front_b", bottom).texture("front_t", top).texture("top", top_bottom).renderType(renderType);
+		ModelFile topLeftOpen = models().withExistingParent(BuiltInRegistries.BLOCK.getKey(block) + "_top_left_open", Koratio.prefix("block/template/door_top_left_open")).texture("side", sides).texture("front_b", bottom).texture("front_t", top).texture("top", top_bottom).renderType(renderType);
+		ModelFile topRight = models().withExistingParent(BuiltInRegistries.BLOCK.getKey(block) + "_top_right", Koratio.prefix("block/template/door_top_right")).texture("side", sides).texture("front_b", bottom).texture("front_t", top).texture("top", top_bottom).renderType(renderType);
+		ModelFile topRightOpen = models().withExistingParent(BuiltInRegistries.BLOCK.getKey(block) + "_top_right_open", Koratio.prefix("block/template/door_top_right_open")).texture("side", sides).texture("front_b", bottom).texture("front_t", top).texture("top", top_bottom).renderType(renderType);
 		doorBlock(block, bottomLeft, bottomLeftOpen, bottomRight, bottomRightOpen, topLeft, topLeftOpen, topRight, topRightOpen);
 	}
 
 	private void tallDoorBlockInternalWithRenderType(TallDoorBlock block, ResourceLocation bottom, ResourceLocation middle, ResourceLocation top, String renderType) {
-		ModelFile bottomLeft = models().doorBottomLeft(BuiltInRegistries.BLOCK.getKey(block).toString() + "_bottom_left", bottom, top).renderType(renderType);
-		ModelFile bottomLeftOpen = models().doorBottomLeftOpen(BuiltInRegistries.BLOCK.getKey(block).toString() + "_bottom_left_open", bottom, top).renderType(renderType);
-		ModelFile bottomRight = models().doorBottomRight(BuiltInRegistries.BLOCK.getKey(block).toString() + "_bottom_right", bottom, top).renderType(renderType);
-		ModelFile bottomRightOpen = models().doorBottomRightOpen(BuiltInRegistries.BLOCK.getKey(block).toString() + "_bottom_right_open", bottom, top).renderType(renderType);
-		ModelFile middleLeft = models().withExistingParent(BuiltInRegistries.BLOCK.getKey(block).toString() + "_middle_left", Koratio.prefix("block/template/old_door_middle_left")).texture("middle", middle).renderType(renderType);
-		ModelFile middleLeftOpen = models().withExistingParent(BuiltInRegistries.BLOCK.getKey(block).toString() + "_middle_left_open", Koratio.prefix("block/template/old_door_middle_left_open")).texture("middle", middle).renderType(renderType);
-		ModelFile middleRight = models().withExistingParent(BuiltInRegistries.BLOCK.getKey(block).toString() + "_middle_right", Koratio.prefix("block/template/old_door_middle_right")).texture("middle", middle).renderType(renderType);
-		ModelFile middleRightOpen = models().withExistingParent(BuiltInRegistries.BLOCK.getKey(block).toString() + "_middle_right_open", Koratio.prefix("block/template/old_door_middle_right_open")).texture("middle", middle).renderType(renderType);
-		ModelFile topLeft = models().doorTopLeft(BuiltInRegistries.BLOCK.getKey(block).toString() + "_top_left", bottom, top).renderType(renderType);
-		ModelFile topLeftOpen = models().doorTopLeftOpen(BuiltInRegistries.BLOCK.getKey(block).toString() + "_top_left_open", bottom, top).renderType(renderType);
-		ModelFile topRight = models().doorTopRight(BuiltInRegistries.BLOCK.getKey(block).toString() + "_top_right", bottom, top).renderType(renderType);
-		ModelFile topRightOpen = models().doorTopRightOpen(BuiltInRegistries.BLOCK.getKey(block).toString() + "_top_right_open", bottom, top).renderType(renderType);
+		ModelFile bottomLeft = models().doorBottomLeft(BuiltInRegistries.BLOCK.getKey(block) + "_bottom_left", bottom, top).renderType(renderType);
+		ModelFile bottomLeftOpen = models().doorBottomLeftOpen(BuiltInRegistries.BLOCK.getKey(block) + "_bottom_left_open", bottom, top).renderType(renderType);
+		ModelFile bottomRight = models().doorBottomRight(BuiltInRegistries.BLOCK.getKey(block) + "_bottom_right", bottom, top).renderType(renderType);
+		ModelFile bottomRightOpen = models().doorBottomRightOpen(BuiltInRegistries.BLOCK.getKey(block) + "_bottom_right_open", bottom, top).renderType(renderType);
+		ModelFile middleLeft = models().withExistingParent(BuiltInRegistries.BLOCK.getKey(block) + "_middle_left", Koratio.prefix("block/template/old_door_middle_left")).texture("middle", middle).renderType(renderType);
+		ModelFile middleLeftOpen = models().withExistingParent(BuiltInRegistries.BLOCK.getKey(block) + "_middle_left_open", Koratio.prefix("block/template/old_door_middle_left_open")).texture("middle", middle).renderType(renderType);
+		ModelFile middleRight = models().withExistingParent(BuiltInRegistries.BLOCK.getKey(block) + "_middle_right", Koratio.prefix("block/template/old_door_middle_right")).texture("middle", middle).renderType(renderType);
+		ModelFile middleRightOpen = models().withExistingParent(BuiltInRegistries.BLOCK.getKey(block) + "_middle_right_open", Koratio.prefix("block/template/old_door_middle_right_open")).texture("middle", middle).renderType(renderType);
+		ModelFile topLeft = models().doorTopLeft(BuiltInRegistries.BLOCK.getKey(block) + "_top_left", bottom, top).renderType(renderType);
+		ModelFile topLeftOpen = models().doorTopLeftOpen(BuiltInRegistries.BLOCK.getKey(block) + "_top_left_open", bottom, top).renderType(renderType);
+		ModelFile topRight = models().doorTopRight(BuiltInRegistries.BLOCK.getKey(block) + "_top_right", bottom, top).renderType(renderType);
+		ModelFile topRightOpen = models().doorTopRightOpen(BuiltInRegistries.BLOCK.getKey(block) + "_top_right_open", bottom, top).renderType(renderType);
 		tallDoorBlock(block, bottomLeft, bottomLeftOpen, bottomRight, bottomRightOpen, middleLeft, middleLeftOpen, middleRight, middleRightOpen, topLeft, topLeftOpen, topRight, topRightOpen);
 	}
 
 	private void tallDoorBlockInternalWithRenderType(TallDoorBlock block, ResourceLocation bottom, ResourceLocation middle, ResourceLocation top, ResourceLocation sides, ResourceLocation top_bottom, String renderType) {
-		ModelFile bottomLeft = models().withExistingParent(BuiltInRegistries.BLOCK.getKey(block).toString() + "_bottom_left", Koratio.prefix("block/template/door_bottom_left")).texture("side", sides).texture("front_b", bottom).texture("front_t", top).texture("top", top_bottom).renderType(renderType);
-		ModelFile bottomLeftOpen = models().withExistingParent(BuiltInRegistries.BLOCK.getKey(block).toString() + "_bottom_left_open", Koratio.prefix("block/template/door_bottom_left_open")).texture("side", sides).texture("front_b", bottom).texture("front_t", top).texture("top", top_bottom).renderType(renderType);
-		ModelFile bottomRight = models().withExistingParent(BuiltInRegistries.BLOCK.getKey(block).toString() + "_bottom_right", Koratio.prefix("block/template/door_bottom_right")).texture("side", sides).texture("front_b", bottom).texture("front_t", top).texture("top", top_bottom).renderType(renderType);
-		ModelFile bottomRightOpen = models().withExistingParent(BuiltInRegistries.BLOCK.getKey(block).toString() + "_bottom_right_open", Koratio.prefix("block/template/door_bottom_right_open")).texture("side", sides).texture("front_b", bottom).texture("front_t", top).texture("top", top_bottom).renderType(renderType);
-		ModelFile middleLeft = models().withExistingParent(BuiltInRegistries.BLOCK.getKey(block).toString() + "_middle_left", Koratio.prefix("block/template/door_middle_left")).texture("side", sides).texture("front_m", middle).texture("front_t", top).texture("top", top_bottom).renderType(renderType);
-		ModelFile middleLeftOpen = models().withExistingParent(BuiltInRegistries.BLOCK.getKey(block).toString() + "_middle_left_open", Koratio.prefix("block/template/door_middle_left_open")).texture("side", sides).texture("front_m", middle).texture("front_t", top).texture("top", top_bottom).renderType(renderType);
-		ModelFile middleRight = models().withExistingParent(BuiltInRegistries.BLOCK.getKey(block).toString() + "_middle_right", Koratio.prefix("block/template/door_middle_right")).texture("side", sides).texture("front_m", middle).texture("front_t", top).texture("top", top_bottom).renderType(renderType);
-		ModelFile middleRightOpen = models().withExistingParent(BuiltInRegistries.BLOCK.getKey(block).toString() + "_middle_right_open", Koratio.prefix("block/template/door_middle_right_open")).texture("side", sides).texture("front_m", middle).texture("front_t", top).texture("top", top_bottom).renderType(renderType);
-		ModelFile topLeft = models().withExistingParent(BuiltInRegistries.BLOCK.getKey(block).toString() + "_top_left", Koratio.prefix("block/template/door_top_left")).texture("side", sides).texture("front_b", bottom).texture("front_t", top).texture("top", top_bottom).renderType(renderType);
-		ModelFile topLeftOpen = models().withExistingParent(BuiltInRegistries.BLOCK.getKey(block).toString() + "_top_left_open", Koratio.prefix("block/template/door_top_left_open")).texture("side", sides).texture("front_b", bottom).texture("front_t", top).texture("top", top_bottom).renderType(renderType);
-		ModelFile topRight = models().withExistingParent(BuiltInRegistries.BLOCK.getKey(block).toString() + "_top_right", Koratio.prefix("block/template/door_top_right")).texture("side", sides).texture("front_b", bottom).texture("front_t", top).texture("top", top_bottom).renderType(renderType);
-		ModelFile topRightOpen = models().withExistingParent(BuiltInRegistries.BLOCK.getKey(block).toString() + "_top_right_open", Koratio.prefix("block/template/door_top_right_open")).texture("side", sides).texture("front_b", bottom).texture("front_t", top).texture("top", top_bottom).renderType(renderType);
+		ModelFile bottomLeft = models().withExistingParent(BuiltInRegistries.BLOCK.getKey(block) + "_bottom_left", Koratio.prefix("block/template/door_bottom_left")).texture("side", sides).texture("front_b", bottom).texture("front_t", top).texture("top", top_bottom).renderType(renderType);
+		ModelFile bottomLeftOpen = models().withExistingParent(BuiltInRegistries.BLOCK.getKey(block) + "_bottom_left_open", Koratio.prefix("block/template/door_bottom_left_open")).texture("side", sides).texture("front_b", bottom).texture("front_t", top).texture("top", top_bottom).renderType(renderType);
+		ModelFile bottomRight = models().withExistingParent(BuiltInRegistries.BLOCK.getKey(block) + "_bottom_right", Koratio.prefix("block/template/door_bottom_right")).texture("side", sides).texture("front_b", bottom).texture("front_t", top).texture("top", top_bottom).renderType(renderType);
+		ModelFile bottomRightOpen = models().withExistingParent(BuiltInRegistries.BLOCK.getKey(block) + "_bottom_right_open", Koratio.prefix("block/template/door_bottom_right_open")).texture("side", sides).texture("front_b", bottom).texture("front_t", top).texture("top", top_bottom).renderType(renderType);
+		ModelFile middleLeft = models().withExistingParent(BuiltInRegistries.BLOCK.getKey(block) + "_middle_left", Koratio.prefix("block/template/door_middle_left")).texture("side", sides).texture("front_m", middle).texture("front_t", top).texture("top", top_bottom).renderType(renderType);
+		ModelFile middleLeftOpen = models().withExistingParent(BuiltInRegistries.BLOCK.getKey(block) + "_middle_left_open", Koratio.prefix("block/template/door_middle_left_open")).texture("side", sides).texture("front_m", middle).texture("front_t", top).texture("top", top_bottom).renderType(renderType);
+		ModelFile middleRight = models().withExistingParent(BuiltInRegistries.BLOCK.getKey(block) + "_middle_right", Koratio.prefix("block/template/door_middle_right")).texture("side", sides).texture("front_m", middle).texture("front_t", top).texture("top", top_bottom).renderType(renderType);
+		ModelFile middleRightOpen = models().withExistingParent(BuiltInRegistries.BLOCK.getKey(block) + "_middle_right_open", Koratio.prefix("block/template/door_middle_right_open")).texture("side", sides).texture("front_m", middle).texture("front_t", top).texture("top", top_bottom).renderType(renderType);
+		ModelFile topLeft = models().withExistingParent(BuiltInRegistries.BLOCK.getKey(block) + "_top_left", Koratio.prefix("block/template/door_top_left")).texture("side", sides).texture("front_b", bottom).texture("front_t", top).texture("top", top_bottom).renderType(renderType);
+		ModelFile topLeftOpen = models().withExistingParent(BuiltInRegistries.BLOCK.getKey(block) + "_top_left_open", Koratio.prefix("block/template/door_top_left_open")).texture("side", sides).texture("front_b", bottom).texture("front_t", top).texture("top", top_bottom).renderType(renderType);
+		ModelFile topRight = models().withExistingParent(BuiltInRegistries.BLOCK.getKey(block) + "_top_right", Koratio.prefix("block/template/door_top_right")).texture("side", sides).texture("front_b", bottom).texture("front_t", top).texture("top", top_bottom).renderType(renderType);
+		ModelFile topRightOpen = models().withExistingParent(BuiltInRegistries.BLOCK.getKey(block) + "_top_right_open", Koratio.prefix("block/template/door_top_right_open")).texture("side", sides).texture("front_b", bottom).texture("front_t", top).texture("top", top_bottom).renderType(renderType);
 		tallDoorBlock(block, bottomLeft, bottomLeftOpen, bottomRight, bottomRightOpen, middleLeft, middleLeftOpen, middleRight, middleRightOpen, topLeft, topLeftOpen, topRight, topRightOpen);
 	}
+
+	public void eatableBlock(EatableBlock block, ResourceLocation top, ResourceLocation side, ResourceLocation bottom) {
+		getVariantBuilder(block).forAllStates(state -> {
+			ModelFile full = models().withExistingParent(BuiltInRegistries.BLOCK.getKey(block)+"", Koratio.prefix("block/template/eatable_full")).texture("top", top).texture("side", side).texture("bottom", bottom);
+			ModelFile[] slices = new ModelFile[7];
+			slices[0] = models().withExistingParent(BuiltInRegistries.BLOCK.getKey(block)+"_slice_1", Koratio.prefix("block/template/eatable_slice_1")).texture("top", top).texture("side", side).texture("bottom", bottom);
+			slices[1] = models().withExistingParent(BuiltInRegistries.BLOCK.getKey(block)+"_slice_2", Koratio.prefix("block/template/eatable_slice_2")).texture("top", top).texture("side", side).texture("bottom", bottom);
+			slices[2] = models().withExistingParent(BuiltInRegistries.BLOCK.getKey(block)+"_slice_3", Koratio.prefix("block/template/eatable_slice_3")).texture("top", top).texture("side", side).texture("bottom", bottom);
+			slices[3] = models().withExistingParent(BuiltInRegistries.BLOCK.getKey(block)+"_slice_4", Koratio.prefix("block/template/eatable_slice_4")).texture("top", top).texture("side", side).texture("bottom", bottom);
+			slices[4] = models().withExistingParent(BuiltInRegistries.BLOCK.getKey(block)+"_slice_5", Koratio.prefix("block/template/eatable_slice_5")).texture("top", top).texture("side", side).texture("bottom", bottom);
+			slices[5] = models().withExistingParent(BuiltInRegistries.BLOCK.getKey(block)+"_slice_6", Koratio.prefix("block/template/eatable_slice_6")).texture("top", top).texture("side", side).texture("bottom", bottom);
+			slices[6] = models().withExistingParent(BuiltInRegistries.BLOCK.getKey(block)+"_slice_7", Koratio.prefix("block/template/eatable_slice_7")).texture("top", top).texture("side", side).texture("bottom", bottom);
+			ModelFile model;
+			if(state.getValue(EatableBlock.BITES) == 0) {
+				model = full;
+			} else {
+				model = slices[state.getValue(EatableBlock.BITES)-1];
+			}
+			return ConfiguredModel.builder().modelFile(model)
+					.build();
+		});
+    }
 
 	public void tallDoorBlock(TallDoorBlock block, ModelFile bottomLeft, ModelFile bottomLeftOpen, ModelFile bottomRight, ModelFile bottomRightOpen, ModelFile middleLeft, ModelFile middleLeftOpen, ModelFile middleRight, ModelFile middleRightOpen, ModelFile topLeft, ModelFile topLeftOpen, ModelFile topRight, ModelFile topRightOpen) {
 		getVariantBuilder(block).forAllStatesExcept(state -> {
@@ -537,18 +573,18 @@ public class BlockStateGenerator extends BlockStateProvider {
 
 	protected void leafPaneBlock(IronBarsBlock block, Block texture) {
 		paneBlockWithRenderType(block, getBlockPathInFolder(texture), getBlockPathInFolder(texture), "cutout_mipped");
-		ModelFile post = models().withExistingParent(BuiltInRegistries.BLOCK.getKey(block).toString()+"_post", "koratio:block/template_glass_pane_post")
+		ModelFile post = models().withExistingParent(BuiltInRegistries.BLOCK.getKey(block) +"_post", "koratio:block/template_glass_pane_post")
 				.texture("pane", getBlockPathInFolder(texture))
 				.texture("edge", getBlockPathInFolder(texture)).renderType("cutout_mipped");
-		ModelFile side = models().withExistingParent(BuiltInRegistries.BLOCK.getKey(block).toString()+"_side", "koratio:block/template_glass_pane_side")
+		ModelFile side = models().withExistingParent(BuiltInRegistries.BLOCK.getKey(block) +"_side", "koratio:block/template_glass_pane_side")
 				.texture("pane", getBlockPathInFolder(texture))
 				.texture("edge", getBlockPathInFolder(texture)).renderType("cutout_mipped");
-		ModelFile sideAlt = models().withExistingParent(BuiltInRegistries.BLOCK.getKey(block).toString()+"_side_alt", "koratio:block/template_glass_pane_side_alt")
+		ModelFile sideAlt = models().withExistingParent(BuiltInRegistries.BLOCK.getKey(block) +"_side_alt", "koratio:block/template_glass_pane_side_alt")
 				.texture("pane", getBlockPathInFolder(texture))
 				.texture("edge", getBlockPathInFolder(texture)).renderType("cutout_mipped");
-		ModelFile noSide = models().withExistingParent(BuiltInRegistries.BLOCK.getKey(block).toString()+"_noside", "koratio:block/template_glass_pane_noside")
+		ModelFile noSide = models().withExistingParent(BuiltInRegistries.BLOCK.getKey(block) +"_noside", "koratio:block/template_glass_pane_noside")
 				.texture("pane", getBlockPathInFolder(texture)).renderType("cutout_mipped");
-		ModelFile noSideAlt = models().withExistingParent(BuiltInRegistries.BLOCK.getKey(block).toString()+"_noside_alt", "koratio:block/template_glass_pane_noside_alt")
+		ModelFile noSideAlt = models().withExistingParent(BuiltInRegistries.BLOCK.getKey(block) +"_noside_alt", "koratio:block/template_glass_pane_noside_alt")
 				.texture("pane", getBlockPathInFolder(texture)).renderType("cutout_mipped");
 		paneBlock(block, post, side, sideAlt, noSide, noSideAlt);
 	}
@@ -608,6 +644,13 @@ public class BlockStateGenerator extends BlockStateProvider {
 	
 	protected void signBlock(StandingSignBlock sign, WallSignBlock wallSign, Block particle) {
 		signBlock(sign, wallSign, getBlockPathInFolder(particle));
+	}
+
+	protected void glazedBlock(DeferredBlock<?> block) {
+		GlazedModelLoader.GingerbreadBlockModelLoaderBuilder loaderBuilder = models().getBuilder(block.getId().toString()).customLoader(GlazedModelLoader.GingerbreadBlockModelLoaderBuilder::new);
+		loaderBuilder.setBaseModel(ResourceLocation.parse(getBlockPathInFolder(block.get())+"_base"));
+		models().withExistingParent(block.getId().getPath()+"_base", "minecraft:block/cube_all").texture("all", getBlockPathInFolder(block.get()));
+		simpleBlock(block.get(), loaderBuilder.end());
 	}
 
 	protected void cauldronBlock(Block block, String fluid) {

@@ -4,17 +4,18 @@ import com.mojang.blaze3d.shaders.FogShape;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.Camera;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.Font;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.*;
-import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
-import net.minecraft.client.renderer.FogRenderer;
-import net.minecraft.client.renderer.Sheets;
+import net.minecraft.client.renderer.*;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
 import net.minecraft.client.renderer.blockentity.CampfireRenderer;
+import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
@@ -29,8 +30,7 @@ import net.neoforged.neoforge.client.extensions.common.RegisterClientExtensionsE
 import net.setrion.koratio.Koratio;
 import net.setrion.koratio.client.ItemStackBlockEntityRenderer;
 import net.setrion.koratio.client.gui.screens.inventory.ScrollScreen;
-import net.setrion.koratio.client.model.block.GingerbreadBlockModel;
-import net.setrion.koratio.client.model.block.GingerbreadBlockModelLoader;
+import net.setrion.koratio.client.model.block.GlazedModelLoader;
 import net.setrion.koratio.client.particle.DripParticle;
 import net.setrion.koratio.client.particle.ElvenLeafParticle;
 import net.setrion.koratio.client.particle.TeleporterAscendParticle;
@@ -39,8 +39,10 @@ import net.setrion.koratio.client.renderer.blockentity.KoratioChestRenderer;
 import net.setrion.koratio.client.renderer.entity.*;
 import net.setrion.koratio.registry.*;
 import net.setrion.koratio.scroll.ScrollUtils;
+import net.setrion.koratio.world.item.PipingBagItem;
 import net.setrion.koratio.world.item.ScrollItem;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import org.joml.Vector3f;
 
 @EventBusSubscriber(modid = Koratio.MOD_ID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
@@ -48,7 +50,7 @@ public class ClientEvents {
 
 	@SubscribeEvent
 	public static void onModelRegistry(ModelEvent.RegisterGeometryLoaders event) {
-		event.register(Koratio.prefix("glazed"), GingerbreadBlockModelLoader.INSTANCE);
+		event.register(Koratio.prefix("glazed"), GlazedModelLoader.INSTANCE);
 	}
 
 	@SubscribeEvent
@@ -62,7 +64,33 @@ public class ClientEvents {
 			Sheets.addWoodType(KoratioBlocks.GREEN_ELVEN_WOOD_TYPE);
 			Sheets.addWoodType(KoratioBlocks.VARESO_TYPE);
 			Sheets.addWoodType(KoratioBlocks.CANDY_WOOD_TYPE);
+			ItemProperties.register(KoratioItems.PIPING_BAG.get(),
+					ResourceLocation.fromNamespaceAndPath(Koratio.MOD_ID, "empty"), (itemStack, clientLevel, livingEntity, i) -> {
+						if (itemStack.is(KoratioItems.PIPING_BAG)) {
+							PipingBagItem bag = (PipingBagItem) itemStack.getItem();
+							if (bag.isEmpty(itemStack)) {
+								return 1.0F;
+							}
+						}
+						return 0;
+					});
 		});
+		ItemBlockRenderTypes.setRenderLayer(KoratioFluids.MOLTEN_SUGAR.get(), RenderType.translucent());
+		ItemBlockRenderTypes.setRenderLayer(KoratioFluids.FLOWING_MOLTEN_SUGAR.get(), RenderType.translucent());
+		ItemBlockRenderTypes.setRenderLayer(KoratioFluids.MOLTEN_BLUE_SUGAR.get(), RenderType.translucent());
+		ItemBlockRenderTypes.setRenderLayer(KoratioFluids.FLOWING_MOLTEN_BLUE_SUGAR.get(), RenderType.translucent());
+		ItemBlockRenderTypes.setRenderLayer(KoratioFluids.MOLTEN_GREEN_SUGAR.get(), RenderType.translucent());
+		ItemBlockRenderTypes.setRenderLayer(KoratioFluids.FLOWING_MOLTEN_GREEN_SUGAR.get(), RenderType.translucent());
+		ItemBlockRenderTypes.setRenderLayer(KoratioFluids.MOLTEN_YELLOW_SUGAR.get(), RenderType.translucent());
+		ItemBlockRenderTypes.setRenderLayer(KoratioFluids.FLOWING_MOLTEN_YELLOW_SUGAR.get(), RenderType.translucent());
+		ItemBlockRenderTypes.setRenderLayer(KoratioFluids.MOLTEN_RED_SUGAR.get(), RenderType.translucent());
+		ItemBlockRenderTypes.setRenderLayer(KoratioFluids.FLOWING_MOLTEN_RED_SUGAR.get(), RenderType.translucent());
+		ItemBlockRenderTypes.setRenderLayer(KoratioBlocks.RAW_GINGERBREAD_BLOCK.get(), RenderType.CUTOUT_MIPPED);
+		ItemBlockRenderTypes.setRenderLayer(KoratioBlocks.RAW_GINGERBREAD_BRICKS.get(), RenderType.CUTOUT_MIPPED);
+		ItemBlockRenderTypes.setRenderLayer(KoratioBlocks.RAW_LARGE_GINGERBREAD_BRICKS.get(), RenderType.CUTOUT_MIPPED);
+		ItemBlockRenderTypes.setRenderLayer(KoratioBlocks.GINGERBREAD_BLOCK.get(), RenderType.CUTOUT_MIPPED);
+		ItemBlockRenderTypes.setRenderLayer(KoratioBlocks.GINGERBREAD_BRICKS.get(), RenderType.CUTOUT_MIPPED);
+		ItemBlockRenderTypes.setRenderLayer(KoratioBlocks.LARGE_GINGERBREAD_BRICKS.get(), RenderType.CUTOUT_MIPPED);
 	}
 
 	@SubscribeEvent

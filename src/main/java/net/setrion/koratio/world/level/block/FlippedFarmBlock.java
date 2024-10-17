@@ -67,7 +67,7 @@ public class FlippedFarmBlock extends Block {
 
     public void tick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
         if (!state.canSurvive(level, pos)) {
-            turnToDirt((Entity)null, state, level, pos);
+            turnToDirt(null, state, level, pos);
         }
     }
 
@@ -77,7 +77,7 @@ public class FlippedFarmBlock extends Block {
             if (i > 0) {
                 level.setBlock(pos, state.setValue(MOISTURE, Integer.valueOf(i - 1)), 2);
             } else if (!shouldMaintainFarmland(level, pos)) {
-                turnToDirt((Entity)null, state, level, pos);
+                turnToDirt(null, state, level, pos);
             }
         } else if (i < 7) {
             level.setBlock(pos, state.setValue(MOISTURE, Integer.valueOf(7)), 2);
@@ -92,11 +92,11 @@ public class FlippedFarmBlock extends Block {
     }
 
     public static BlockState pushEntitiesDown(BlockState state, BlockState dirt, LevelAccessor accessor, BlockPos pos) {
-        VoxelShape voxelshape = Shapes.joinUnoptimized(state.getCollisionShape(accessor, pos), dirt.getCollisionShape(accessor, pos), BooleanOp.ONLY_SECOND).move((double)pos.getX(), (double)pos.getY(), (double)pos.getZ());
+        VoxelShape voxelshape = Shapes.joinUnoptimized(state.getCollisionShape(accessor, pos), dirt.getCollisionShape(accessor, pos), BooleanOp.ONLY_SECOND).move(pos.getX(), pos.getY(), pos.getZ());
         if (voxelshape.isEmpty()) {
             return dirt;
         } else {
-            for(Entity entity : accessor.getEntities((Entity)null, voxelshape.bounds())) {
+            for(Entity entity : accessor.getEntities(null, voxelshape.bounds())) {
                 double d0 = Shapes.collide(Direction.Axis.Y, entity.getBoundingBox().move(0.0D, -1.0D, 0.0D), List.of(voxelshape), -1.0D);
                 entity.teleportRelative(0.0D, -1.0D + d0, 0.0D);
             }

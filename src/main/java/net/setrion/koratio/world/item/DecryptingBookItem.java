@@ -31,6 +31,6 @@ public class DecryptingBookItem extends Item {
 	@Override
 	public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
 		super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
-		tooltipComponents.add(Component.translatable("decrypting_book.power").append(Component.literal(""+getPower()).withStyle(ChatFormatting.GOLD))); return;
-	}
+		tooltipComponents.add(Component.translatable("decrypting_book.power").append(Component.literal(""+getPower()).withStyle(ChatFormatting.GOLD)));
+    }
 }

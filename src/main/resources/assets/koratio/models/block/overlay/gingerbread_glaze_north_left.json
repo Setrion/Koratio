@@ -1,7 +1,8 @@
 {
 	"parent": "minecraft:block/cube",
+	"render_type": "cutout_mipped",
 	"textures": {
-		"glaze": "koratio:block/gingerbread_glaze_left"
+		"glaze": "koratio:block/glaze_left"
 	},
 	"elements": [
 		{

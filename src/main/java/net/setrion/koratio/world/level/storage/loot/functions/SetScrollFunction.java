@@ -17,7 +17,7 @@ public class SetScrollFunction extends LootItemConditionalFunction {
 
 	public static final MapCodec<SetScrollFunction> CODEC = RecordCodecBuilder.mapCodec(
 			instance -> commonFields(instance)
-					.and(Codec.STRING.fieldOf("scroll").forGetter(function -> String.valueOf(function.scroll)))
+					.and(Codec.STRING.fieldOf("scroll").forGetter(function -> function.scroll))
 					.and(Codec.BOOL.fieldOf("encrypted").forGetter(function -> function.encrypted))
 					.apply(instance, SetScrollFunction::new)
 	);

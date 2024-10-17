@@ -1,0 +1,27 @@
+{
+  "type": "koratio:candy_shaper",
+  "blue_sugar": {
+    "amount": 50,
+    "fluid": "koratio:molten_blue_sugar"
+  },
+  "green_sugar": {
+    "amount": 50,
+    "fluid": "koratio:molten_green_sugar"
+  },
+  "red_sugar": {
+    "amount": 50,
+    "fluid": "koratio:molten_red_sugar"
+  },
+  "result": {
+    "count": 1,
+    "id": "koratio:red_rainbow_lollipop"
+  },
+  "sugar": {
+    "amount": 200,
+    "fluid": "koratio:molten_sugar"
+  },
+  "yellow_sugar": {
+    "amount": 50,
+    "fluid": "koratio:molten_yellow_sugar"
+  }
+}

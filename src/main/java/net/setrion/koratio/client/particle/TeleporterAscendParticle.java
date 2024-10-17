@@ -48,7 +48,7 @@ public class TeleporterAscendParticle extends TextureSheetParticle {
                             .getBlockState(blockpos)
                             .getCollisionShape(this.level, blockpos)
                             .max(Direction.Axis.Y, this.x - (double) blockpos.getX(), this.z - (double) blockpos.getZ()),
-                    (double) this.level.getFluidState(blockpos).getHeight(this.level, blockpos)
+                    this.level.getFluidState(blockpos).getHeight(this.level, blockpos)
             );
             if (d0 > 0.0 && this.y < (double) blockpos.getY() - d0) {
                 this.remove();

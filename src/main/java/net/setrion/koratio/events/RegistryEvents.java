@@ -33,7 +33,7 @@ public class RegistryEvents {
         if (Objects.equals(evt.getRegistry(), BuiltInRegistries.RECIPE_SERIALIZER)) {
             Registry.register(BuiltInRegistries.BIOME_SOURCE, Koratio.prefix("fantasia_biomes"), FantasiaBiomeProvider.CODEC);
 
-            Registry.register(BuiltInRegistries.CHUNK_GENERATOR, Koratio.prefix("fantasia_chunk_generator"), FantasiaChunkGenerator.CODEC);
+            //Registry.register(BuiltInRegistries.CHUNK_GENERATOR, Koratio.prefix("fantasia_chunk_generator"), FantasiaChunkGenerator.CODEC);
         }
     }
 	

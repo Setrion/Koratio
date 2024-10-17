@@ -32,6 +32,7 @@ import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.level.storage.loot.BuiltInLootTables;
 import net.minecraft.world.level.storage.loot.LootTable;
@@ -48,28 +49,9 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 public class Fluffer extends Animal implements Shearable {
-    private static final EntityDataAccessor<Byte> DATA_WOOL_ID = SynchedEntityData.defineId(Fluffer.class, EntityDataSerializers.BYTE);
-    private static final Map<DyeColor, ItemLike> ITEM_BY_DYE = Util.make(Maps.newEnumMap(DyeColor.class), colormap -> {
-        colormap.put(DyeColor.WHITE, KoratioBlocks.WHITE_LEVITATING_WOOL);
-        colormap.put(DyeColor.ORANGE, KoratioBlocks.ORANGE_LEVITATING_WOOL);
-        colormap.put(DyeColor.MAGENTA, KoratioBlocks.MAGENTA_LEVITATING_WOOL);
-        colormap.put(DyeColor.LIGHT_BLUE, KoratioBlocks.LIGHT_BLUE_LEVITATING_WOOL);
-        colormap.put(DyeColor.YELLOW, KoratioBlocks.YELLOW_LEVITATING_WOOL);
-        colormap.put(DyeColor.LIME, KoratioBlocks.LIME_LEVITATING_WOOL);
-        colormap.put(DyeColor.PINK, KoratioBlocks.PINK_LEVITATING_WOOL);
-        colormap.put(DyeColor.GRAY, KoratioBlocks.GRAY_LEVITATING_WOOL);
-        colormap.put(DyeColor.LIGHT_GRAY, KoratioBlocks.LIGHT_GRAY_LEVITATING_WOOL);
-        colormap.put(DyeColor.CYAN, KoratioBlocks.CYAN_LEVITATING_WOOL);
-        colormap.put(DyeColor.PURPLE, KoratioBlocks.PURPLE_LEVITATING_WOOL);
-        colormap.put(DyeColor.BLUE, KoratioBlocks.BLUE_LEVITATING_WOOL);
-        colormap.put(DyeColor.BROWN, KoratioBlocks.BROWN_LEVITATING_WOOL);
-        colormap.put(DyeColor.GREEN, KoratioBlocks.GREEN_LEVITATING_WOOL);
-        colormap.put(DyeColor.RED, KoratioBlocks.RED_LEVITATING_WOOL);
-        colormap.put(DyeColor.BLACK, KoratioBlocks.BLACK_LEVITATING_WOOL);
-    });
-    private static final Map<DyeColor, Integer> COLOR_BY_DYE = Maps.<DyeColor, Integer>newEnumMap(
-            Arrays.stream(DyeColor.values()).collect(Collectors.toMap(color -> color, Fluffer::createWoolColor))
-    );
+    private static final EntityDataAccessor<Byte> DATA_WOOL_ID;
+    private static final Map<DyeColor, ItemLike> ITEM_BY_DYE;
+    private static final Map<DyeColor, Integer> COLOR_BY_DYE;
 
     private static int createWoolColor(DyeColor dyeColor) {
         if (dyeColor == DyeColor.WHITE) {
@@ -77,12 +59,7 @@ public class Fluffer extends Animal implements Shearable {
         } else {
             int i = dyeColor.getTextureDiffuseColor();
             float f = 0.75F;
-            return FastColor.ARGB32.color(
-                    255,
-                    Mth.floor((float)FastColor.ARGB32.red(i) * 0.75F),
-                    Mth.floor((float)FastColor.ARGB32.green(i) * 0.75F),
-                    Mth.floor((float)FastColor.ARGB32.blue(i) * 0.75F)
-            );
+            return FastColor.ARGB32.color(255, Mth.floor((float) FastColor.ARGB32.red(i) * 0.75F), Mth.floor((float) FastColor.ARGB32.green(i) * 0.75F), Mth.floor((float) FastColor.ARGB32.blue(i) * 0.75F));
         }
     }
 
@@ -281,5 +258,28 @@ public class Fluffer extends Animal implements Shearable {
 
     private static CraftingInput makeCraftInput(DyeColor color1, DyeColor color2) {
         return CraftingInput.of(2, 1, List.of(new ItemStack(DyeItem.byColor(color1)), new ItemStack(DyeItem.byColor(color2))));
+    }
+
+    static {
+        DATA_WOOL_ID = SynchedEntityData.defineId(Fluffer.class, EntityDataSerializers.BYTE);
+        ITEM_BY_DYE = Util.make(Maps.newEnumMap(DyeColor.class), (colormap) -> {
+            colormap.put(DyeColor.WHITE, KoratioBlocks.WHITE_LEVITATING_WOOL);
+            colormap.put(DyeColor.ORANGE, KoratioBlocks.ORANGE_LEVITATING_WOOL);
+            colormap.put(DyeColor.MAGENTA, KoratioBlocks.MAGENTA_LEVITATING_WOOL);
+            colormap.put(DyeColor.LIGHT_BLUE, KoratioBlocks.LIGHT_BLUE_LEVITATING_WOOL);
+            colormap.put(DyeColor.YELLOW, KoratioBlocks.YELLOW_LEVITATING_WOOL);
+            colormap.put(DyeColor.LIME, KoratioBlocks.LIME_LEVITATING_WOOL);
+            colormap.put(DyeColor.PINK, KoratioBlocks.PINK_LEVITATING_WOOL);
+            colormap.put(DyeColor.GRAY, KoratioBlocks.GRAY_LEVITATING_WOOL);
+            colormap.put(DyeColor.LIGHT_GRAY, KoratioBlocks.LIGHT_GRAY_LEVITATING_WOOL);
+            colormap.put(DyeColor.CYAN, KoratioBlocks.CYAN_LEVITATING_WOOL);
+            colormap.put(DyeColor.PURPLE, KoratioBlocks.PURPLE_LEVITATING_WOOL);
+            colormap.put(DyeColor.BLUE, KoratioBlocks.BLUE_LEVITATING_WOOL);
+            colormap.put(DyeColor.BROWN, KoratioBlocks.BROWN_LEVITATING_WOOL);
+            colormap.put(DyeColor.GREEN, KoratioBlocks.GREEN_LEVITATING_WOOL);
+            colormap.put(DyeColor.RED, KoratioBlocks.RED_LEVITATING_WOOL);
+            colormap.put(DyeColor.BLACK, KoratioBlocks.BLACK_LEVITATING_WOOL);
+        });
+        COLOR_BY_DYE = Maps.newEnumMap((Map)Arrays.stream(DyeColor.values()).collect(Collectors.toMap((color) -> color, Fluffer::createWoolColor)));
     }
 }

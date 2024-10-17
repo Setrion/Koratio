@@ -59,8 +59,8 @@ public class DecryptingScreen extends AbstractContainerScreen<DecryptingMenu> {
 		int l = minecraft.player.experienceLevel;
 		levelCost = (int)(10+scrollOffs*-10);
 		menu.setCost(levelCost);
-		graphics.drawCenteredString(font, Component.literal((int)levelCost+"").withStyle(l >= (int)levelCost || minecraft.player.getAbilities().instabuild ? ChatFormatting.GREEN : ChatFormatting.DARK_RED), i+150, k+40, 14737632);
-		chance = (int)(5 * levelCost);
+		graphics.drawCenteredString(font, Component.literal(levelCost +"").withStyle(l >= levelCost || minecraft.player.getAbilities().instabuild ? ChatFormatting.GREEN : ChatFormatting.DARK_RED), i+150, k+40, 14737632);
+		chance = 5 * levelCost;
 		if (menu.getSlot(1).getItem().getItem() instanceof DecryptingBookItem book) {
 			chance+=book.getPower();
 		}
@@ -85,24 +85,17 @@ public class DecryptingScreen extends AbstractContainerScreen<DecryptingMenu> {
 		if (minecraft.player.getAbilities().instabuild) chance = 100;
 		if (mouseX >= i && mouseX < i + 20 && mouseY >= j && mouseY < j+18) {
 
-			graphics.renderTooltip(font, Component.translatable("decrypting.chance").withStyle(ChatFormatting.GRAY).append(Component.literal(""+chance+"%").withStyle(ChatFormatting.GREEN)), mouseX, mouseY+20);
+			graphics.renderTooltip(font, Component.translatable("decrypting.chance").withStyle(ChatFormatting.GRAY).append(Component.literal(chance+"%").withStyle(ChatFormatting.GREEN)), mouseX, mouseY+20);
 		}
 	}
 	
 	protected void updateButtonState() {
 		boolean flag = minecraft.player.getAbilities().instabuild;
-		if (flag || (menu.getSlot(0).hasItem() && menu.getSlot(2).getItem().getCount() >= 4 && chance > 0 && levelCost > 0 && minecraft.player.experienceLevel >= levelCost)) {
-			button.active = true;
-		} else {
-			button.active = false;
-		}
+        button.active = flag || (menu.getSlot(0).hasItem() && menu.getSlot(2).getItem().getCount() >= 4 && chance > 0 && levelCost > 0 && minecraft.player.experienceLevel >= levelCost);
 	}
 
 	public boolean mouseClicked(double mouseX, double mouseY, int button) {
-		this.scrolling = false;
-		if (mouseX >= (double)leftPos + 119 && mouseX < (double)(leftPos + 131) && mouseY >= (double)topPos + 14 && mouseY < (double)(topPos + 70)) {
-			this.scrolling = true;
-		}
+        this.scrolling = mouseX >= (double) leftPos + 119 && mouseX < (double) (leftPos + 131) && mouseY >= (double) topPos + 14 && mouseY < (double) (topPos + 70);
 		
 		return super.mouseClicked(mouseX, mouseY, button);
 	}

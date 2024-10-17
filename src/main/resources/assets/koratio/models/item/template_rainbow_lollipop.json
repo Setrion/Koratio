@@ -1,0 +1,11 @@
+{
+    "parent": "koratio:item/template_layered",
+    "textures": {
+        "layer0": "koratio:item/lollipop_base",
+        "layer1": "koratio:item/rainbow_lollipop_layer_1",
+        "layer2": "koratio:item/rainbow_lollipop_layer_2",
+        "layer3": "koratio:item/rainbow_lollipop_layer_3",
+        "layer4": "koratio:item/rainbow_lollipop_layer_4",
+        "layer5": "koratio:item/lollipop_stalk"
+    }
+}

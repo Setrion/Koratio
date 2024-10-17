@@ -28,7 +28,7 @@ public class CandyShaperMenu extends AbstractFluidContainerMenu {
     private final ContainerLevelAccess access;
     private final DataSlot selectedRecipeIndex = DataSlot.standalone();
     private final Level level;
-    private List<RecipeHolder<CandyShaperRecipe>> recipes;
+    private final List<RecipeHolder<CandyShaperRecipe>> recipes;
     long lastSoundTime;
     final Slot resultSlot;
     final FluidSlot moltenSugarSlot;

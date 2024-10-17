@@ -274,7 +274,7 @@ public class JumStem extends Monster implements net.neoforged.neoforge.common.IS
 			if (livingentity == null) {
 				return false;
 			} else {
-				return !this.jumstem.canAttack(livingentity) ? false : this.jumstem.getMoveControl() instanceof JumStem.JumStemMoveControl;
+				return this.jumstem.canAttack(livingentity) && this.jumstem.getMoveControl() instanceof JumStemMoveControl;
 			}
 		}
 	
@@ -362,7 +362,7 @@ public class JumStem extends Monster implements net.neoforged.neoforge.common.IS
 	}
 
 	private java.util.List<ItemStack> shearInternal(SoundSource source) {
-		this.level().playSound((Player)null, this, SoundEvents.MOOSHROOM_SHEAR, source, 1.0F, 1.0F);
+		this.level().playSound(null, this, SoundEvents.MOOSHROOM_SHEAR, source, 1.0F, 1.0F);
 		if (!this.level().isClientSide()) {
 			((ServerLevel)this.level()).sendParticles(ParticleTypes.EXPLOSION, this.getX(), this.getY(0.5D), this.getZ(), 1, 0.0D, 0.0D, 0.0D, 0.0D);
 
@@ -386,7 +386,7 @@ public class JumStem extends Monster implements net.neoforged.neoforge.common.IS
 		return readyForShearing();
 	}
 
-	public static enum Variant {
+	public enum Variant {
 		SHEARED(0, "sheared", Blocks.AIR, null),
 		RED(1, "red", Blocks.RED_MUSHROOM, MobEffects.BLINDNESS),
 		BROWN(2, "brown", Blocks.BROWN_MUSHROOM, MobEffects.HUNGER),

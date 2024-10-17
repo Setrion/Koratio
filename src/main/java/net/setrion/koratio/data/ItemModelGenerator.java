@@ -8,11 +8,9 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.material.Fluid;
 import net.neoforged.neoforge.client.model.generators.ItemModelBuilder;
 import net.neoforged.neoforge.client.model.generators.ItemModelProvider;
 import net.neoforged.neoforge.client.model.generators.ModelFile;
-import net.neoforged.neoforge.client.model.generators.loaders.CompositeModelBuilder;
 import net.neoforged.neoforge.client.model.generators.loaders.DynamicFluidContainerModelBuilder;
 import net.neoforged.neoforge.client.model.generators.loaders.ItemLayerModelBuilder;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
@@ -21,6 +19,8 @@ import net.neoforged.neoforge.registries.DeferredItem;
 import net.setrion.koratio.Koratio;
 import net.setrion.koratio.registry.KoratioBlocks;
 import net.setrion.koratio.registry.KoratioItems;
+import net.setrion.koratio.world.item.ColoredCandyItem;
+import net.setrion.koratio.world.item.RainbowCandyItem;
 
 public class ItemModelGenerator extends ItemModelProvider {
 
@@ -41,39 +41,20 @@ public class ItemModelGenerator extends ItemModelProvider {
 		basicItem(KoratioItems.CEINANA.get());
 		basicItem(KoratioItems.UPNIP.get());
 
-		basicItem(KoratioItems.WHITE_BLUE_CANDY_CANE.get());
-		basicItem(KoratioItems.WHITE_GREEN_CANDY_CANE.get());
-		basicItem(KoratioItems.WHITE_YELLOW_CANDY_CANE.get());
-		basicItem(KoratioItems.WHITE_RED_CANDY_CANE.get());
+		for (ColoredCandyItem candy : ColoredCandyItem.candyCanes()) {
+			coloredCandyCaneItem(candy);
+		}
+		for (RainbowCandyItem candy : RainbowCandyItem.candyCanes()) {
+			rainbowCandyCaneItem(candy);
+		}
 
-		basicItem(KoratioItems.BLUE_CANDY_CANE.get());
-		basicItem(KoratioItems.BLUE_WHITE_CANDY_CANE.get());
-		basicItem(KoratioItems.BLUE_GREEN_CANDY_CANE.get());
-		basicItem(KoratioItems.BLUE_YELLOW_CANDY_CANE.get());
-		basicItem(KoratioItems.BLUE_RED_CANDY_CANE.get());
-		basicItem(KoratioItems.BLUE_RAINBOW_CANDY_CANE.get());
+		for (ColoredCandyItem candy : ColoredCandyItem.lollipops()) {
+			coloredLollipopItem(candy);
+		}
 
-		basicItem(KoratioItems.GREEN_CANDY_CANE.get());
-		basicItem(KoratioItems.GREEN_WHITE_CANDY_CANE.get());
-		basicItem(KoratioItems.GREEN_BLUE_CANDY_CANE.get());
-		basicItem(KoratioItems.GREEN_YELLOW_CANDY_CANE.get());
-		basicItem(KoratioItems.GREEN_RED_CANDY_CANE.get());
-		basicItem(KoratioItems.GREEN_RAINBOW_CANDY_CANE.get());
-
-		basicItem(KoratioItems.YELLOW_CANDY_CANE.get());
-		basicItem(KoratioItems.YELLOW_WHITE_CANDY_CANE.get());
-		basicItem(KoratioItems.YELLOW_BLUE_CANDY_CANE.get());
-		basicItem(KoratioItems.YELLOW_GREEN_CANDY_CANE.get());
-		basicItem(KoratioItems.YELLOW_RED_CANDY_CANE.get());
-		basicItem(KoratioItems.YELLOW_RAINBOW_CANDY_CANE.get());
-
-		basicItem(KoratioItems.RED_CANDY_CANE.get());
-		basicItem(KoratioItems.RED_WHITE_CANDY_CANE.get());
-		basicItem(KoratioItems.RED_BLUE_CANDY_CANE.get());
-		basicItem(KoratioItems.RED_GREEN_CANDY_CANE.get());
-		basicItem(KoratioItems.RED_YELLOW_CANDY_CANE.get());
-		basicItem(KoratioItems.RED_RAINBOW_CANDY_CANE.get());
-
+		for (RainbowCandyItem candy : RainbowCandyItem.lollipops()) {
+			rainbowLollipopItem(candy);
+		}
 
 		blockModel(KoratioBlocks.DECRYPTING_TABLE.get());
 		blockModel(KoratioBlocks.CANDY_SHAPER.get());
@@ -89,11 +70,11 @@ public class ItemModelGenerator extends ItemModelProvider {
 		basicItem(KoratioItems.STICKY_RED_SUGAR_BUCKET.get());
 
 
-		bucketItem(KoratioItems.MOLTEN_SUGAR_BUCKET);
-		bucketItem(KoratioItems.MOLTEN_BLUE_SUGAR_BUCKET);
-		bucketItem(KoratioItems.MOLTEN_GREEN_SUGAR_BUCKET);
-		bucketItem(KoratioItems.MOLTEN_YELLOW_SUGAR_BUCKET);
-		bucketItem(KoratioItems.MOLTEN_RED_SUGAR_BUCKET);
+		bucketDripItem(KoratioItems.MOLTEN_SUGAR_BUCKET);
+		bucketDripItem(KoratioItems.MOLTEN_BLUE_SUGAR_BUCKET);
+		bucketDripItem(KoratioItems.MOLTEN_GREEN_SUGAR_BUCKET);
+		bucketDripItem(KoratioItems.MOLTEN_YELLOW_SUGAR_BUCKET);
+		bucketDripItem(KoratioItems.MOLTEN_RED_SUGAR_BUCKET);
 		bucketItem(KoratioItems.CHOCOLATE_MILK_BUCKET);
 		bucketItem(KoratioItems.BLOOD_BUCKET);
 
@@ -124,14 +105,19 @@ public class ItemModelGenerator extends ItemModelProvider {
 		basicItem(KoratioItems.GREEN_SUGAR.get());
 		blockModel(KoratioBlocks.SUGAR_BLOCK.get());
 		blockModel(KoratioBlocks.STICKY_SUGAR_BLOCK.get());
-		blockModel(KoratioBlocks.RED_SUGAR_BLOCK.get());
-		blockModel(KoratioBlocks.STICKY_RED_SUGAR_BLOCK.get());
+		blockModel(KoratioBlocks.FROSTING_BLOCK.get());
 		blockModel(KoratioBlocks.BLUE_SUGAR_BLOCK.get());
 		blockModel(KoratioBlocks.STICKY_BLUE_SUGAR_BLOCK.get());
-		blockModel(KoratioBlocks.YELLOW_SUGAR_BLOCK.get());
-		blockModel(KoratioBlocks.STICKY_YELLOW_SUGAR_BLOCK.get());
+		blockModel(KoratioBlocks.BLUE_FROSTING_BLOCK.get());
 		blockModel(KoratioBlocks.GREEN_SUGAR_BLOCK.get());
 		blockModel(KoratioBlocks.STICKY_GREEN_SUGAR_BLOCK.get());
+		blockModel(KoratioBlocks.GREEN_FROSTING_BLOCK.get());
+		blockModel(KoratioBlocks.YELLOW_SUGAR_BLOCK.get());
+		blockModel(KoratioBlocks.STICKY_YELLOW_SUGAR_BLOCK.get());
+		blockModel(KoratioBlocks.YELLOW_FROSTING_BLOCK.get());
+		blockModel(KoratioBlocks.RED_SUGAR_BLOCK.get());
+		blockModel(KoratioBlocks.STICKY_RED_SUGAR_BLOCK.get());
+		blockModel(KoratioBlocks.RED_FROSTING_BLOCK.get());
 
 		blockModel(KoratioBlocks.WHITE_CANDY_BLOCK.get());
 		blockModel(KoratioBlocks.BLUE_CANDY_BLOCK.get());
@@ -175,8 +161,6 @@ public class ItemModelGenerator extends ItemModelProvider {
 		blockModel(KoratioBlocks.LARGE_GINGERBREAD_BRICK_STAIRS.get());
 		blockModel(KoratioBlocks.LARGE_GINGERBREAD_BRICK_SLAB.get());
 		blockModel(KoratioBlocks.MARSHMALLOW_BLOCK.get());
-		blockModel(KoratioBlocks.MARSHMALLOW_STAIRS.get());
-		blockModel(KoratioBlocks.MARSHMALLOW_SLAB.get());
 
 		blockModel(KoratioBlocks.ANCIENT_COBBLESTONE.get());
 		blockModel(KoratioBlocks.ANCIENT_COBBLESTONE_STAIRS.get());
@@ -196,16 +180,25 @@ public class ItemModelGenerator extends ItemModelProvider {
 		blockModel(KoratioBlocks.ANCIENT_STONE_TILE_STAIRS.get());
 		blockModel(KoratioBlocks.ANCIENT_STONE_TILE_SLAB.get());
 
+		basicTool(KoratioItems.WOODEN_ICING_SPATULA);
+		basicTool(KoratioItems.STONE_ICING_SPATULA);
+		basicTool(KoratioItems.GOLDEN_ICING_SPATULA);
+		basicTool(KoratioItems.IRON_ICING_SPATULA);
+		basicTool(KoratioItems.DIAMOND_ICING_SPATULA);
+		basicTool(KoratioItems.NETHERITE_ICING_SPATULA);
+
 		basicTool(KoratioItems.WITHER_BONE_SWORD);
 		basicTool(KoratioItems.WITHER_BONE_AXE);
 		basicTool(KoratioItems.WITHER_BONE_SHOVEL);
 		basicTool(KoratioItems.WITHER_BONE_PICKAXE);
 		basicTool(KoratioItems.WITHER_BONE_HOE);
+		basicTool(KoratioItems.WITHER_BONE_ICING_SPATULA);
 		basicTool(KoratioItems.BONE_SWORD);
 		basicTool(KoratioItems.BONE_AXE);
 		basicTool(KoratioItems.BONE_SHOVEL);
 		basicTool(KoratioItems.BONE_PICKAXE);
 		basicTool(KoratioItems.BONE_HOE);
+		basicTool(KoratioItems.BONE_ICING_SPATULA);
 
 		basicItem(KoratioItems.WITHER_BONE_HELMET.get());
 		basicItem(KoratioItems.WITHER_BONE_CHESTPLATE.get());
@@ -476,6 +469,12 @@ public class ItemModelGenerator extends ItemModelProvider {
 				.customLoader(DynamicFluidContainerModelBuilder::begin)
 				.fluid(bucket.get().content);
 	}
+
+	private DynamicFluidContainerModelBuilder<?> bucketDripItem(DeferredItem<BucketItem> bucket) {
+		return withExistingParent(bucket.getId().getPath(), ResourceLocation.fromNamespaceAndPath(NeoForgeVersion.MOD_ID, "item/bucket_drip"))
+				.customLoader(DynamicFluidContainerModelBuilder::begin)
+				.fluid(bucket.get().content);
+	}
 	
 	private ItemModelBuilder basicTool(DeferredItem<Item> item) {
 		return toolItem(item.getId().getPath(), Koratio.prefix("item/" + item.getId().getPath()));
@@ -488,9 +487,25 @@ public class ItemModelGenerator extends ItemModelProvider {
 	private void doorItem(Item item) {
 		withExistingParent(BuiltInRegistries.ITEM.getKey(item).getPath(), "item/generated").texture("layer0", getItemPathInFolder(item, "item"));
 	}
-	
+
 	private void spawnEggItem(Item item) {
 		withExistingParent(BuiltInRegistries.ITEM.getKey(item).getPath(), "minecraft:item/template_spawn_egg");
+	}
+
+	private void coloredCandyCaneItem(Item item) {
+		withExistingParent(BuiltInRegistries.ITEM.getKey(item).getPath(), "koratio:item/template_colored_candy_cane");
+	}
+
+	private void rainbowCandyCaneItem(Item item) {
+		withExistingParent(BuiltInRegistries.ITEM.getKey(item).getPath(), "koratio:item/template_rainbow_candy_cane");
+	}
+
+	private void coloredLollipopItem(Item item) {
+		withExistingParent(BuiltInRegistries.ITEM.getKey(item).getPath(), "koratio:item/template_colored_lollipop");
+	}
+
+	private void rainbowLollipopItem(Item item) {
+		withExistingParent(BuiltInRegistries.ITEM.getKey(item).getPath(), "koratio:item/template_rainbow_lollipop");
 	}
 	
 	private void plantItem(Item item) {

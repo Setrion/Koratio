@@ -26,7 +26,7 @@ public class DecryptScrollTrigger extends SimpleCriterionTrigger<DecryptScrollTr
 		});
 	}
 
-	public static record TriggerInstance(Optional<ContextAwarePredicate> player, Optional<String> name, Optional<String> type) implements SimpleCriterionTrigger.SimpleInstance {
+	public record TriggerInstance(Optional<ContextAwarePredicate> player, Optional<String> name, Optional<String> type) implements SimpleCriterionTrigger.SimpleInstance {
 		public static final Codec<DecryptScrollTrigger.TriggerInstance> CODEC = RecordCodecBuilder.create(
 				instance -> instance.group(
 								EntityPredicate.ADVANCEMENT_CODEC.optionalFieldOf("player").forGetter(DecryptScrollTrigger.TriggerInstance::player),
