@@ -69,7 +69,7 @@ public class ForgeClientEvents {
 						} else if (hit.getDirection() == Direction.WEST) {
 							dir = 3;
 						}
-						if (glazed.getColor(dir) == GlazedBlockEntity.PartColor.NONE || glazed.getColor(dir) == ((PipingBagItem) Minecraft.getInstance().player.getMainHandItem().getItem()).getColor(Minecraft.getInstance().player.getMainHandItem())) {
+						if (glazed.getColor(dir) == GlazedBlockEntity.PartColor.NONE || (glazed.getColor(dir) == ((PipingBagItem) Minecraft.getInstance().player.getMainHandItem().getItem()).getColor(Minecraft.getInstance().player.getMainHandItem()) && !glazed.isFaceFull(hit.getDirection()))) {
 							Vec3 offset = Vec3.atLowerCornerOf(hit.getBlockPos()).subtract(Minecraft.getInstance().gameRenderer.getMainCamera().getPosition());
 							event.getPoseStack().pushPose();
 							event.getPoseStack().translate(offset.x, offset.y, offset.z);
@@ -79,7 +79,8 @@ public class ForgeClientEvents {
 							VertexConsumer builder = new GhostVertexConsumer(Minecraft.getInstance().renderBuffers().bufferSource().getBuffer(NeoForgeRenderTypes.TRANSLUCENT_ON_PARTICLES_TARGET.get()), 120, Color.decode(color + "").getRed(), Color.decode(color + "").getGreen(), Color.decode(color + "").getBlue());
 							if (!Minecraft.getInstance().player.isShiftKeyDown()) {
 								BakedModel model = getModel(hit);
-								if (model != null) {
+								GlazedBlockEntity.Part i = getHitPart(hit);
+								if (model != null && !glazed.getPart(hit.getDirection(), i)) {
 									Minecraft.getInstance().getBlockRenderer().getModelRenderer().tesselateBlock(Minecraft.getInstance().level, model, Minecraft.getInstance().level.getBlockState(hit.getBlockPos()), hit.getBlockPos(), event.getPoseStack(), builder, true, RandomSource.create(), Minecraft.getInstance().level.getBlockState(hit.getBlockPos()).getSeed(hit.getBlockPos()), OverlayTexture.NO_OVERLAY, ModelData.EMPTY, null);
 								}
 							} else {

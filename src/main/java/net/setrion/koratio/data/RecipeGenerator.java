@@ -15,12 +15,11 @@ import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.neoforged.neoforge.common.Tags;
-import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.crafting.FluidIngredient;
+import net.neoforged.neoforge.fluids.crafting.SizedFluidIngredient;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.setrion.koratio.Koratio;
 import net.setrion.koratio.data.recipes.CandyShaperRecipeBuilder;
-import net.setrion.koratio.fluids.capability.SizedFluidIngredient;
 import net.setrion.koratio.registry.KoratioBlocks;
 import net.setrion.koratio.registry.KoratioFluids;
 import net.setrion.koratio.registry.KoratioItems;
@@ -56,7 +55,7 @@ public class RecipeGenerator extends RecipeProvider {
 		ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, KoratioItems.YELLOW_SUGAR.get(), 8).requires(Items.SUGAR, 8).requires(Tags.Items.DYES_YELLOW).group("yellow_sugar").unlockedBy("has_sugar", has(Items.SUGAR)).save(output);
 		ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, KoratioItems.GREEN_SUGAR.get(), 8).requires(Items.SUGAR, 8).requires(Tags.Items.DYES_GREEN).group("green_sugar").unlockedBy("has_sugar", has(Items.SUGAR)).save(output);
 
-		ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, KoratioItems.STICKY_SUGAR_BUCKET.get()).requires(Items.BUCKET).requires(KoratioBlocks.STICKY_SUGAR_BLOCK.get()).unlockedBy("has_sugar_block", has(KoratioBlocks.STICKY_SUGAR_BLOCK.get())).save(output);
+		ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, KoratioItems.STICKY_WHITE_SUGAR_BUCKET.get()).requires(Items.BUCKET).requires(KoratioBlocks.STICKY_WHITE_SUGAR_BLOCK.get()).unlockedBy("has_sugar_block", has(KoratioBlocks.STICKY_WHITE_SUGAR_BLOCK.get())).save(output);
 		ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, KoratioItems.STICKY_BLUE_SUGAR_BUCKET.get()).requires(Items.BUCKET).requires(KoratioBlocks.STICKY_BLUE_SUGAR_BLOCK.get()).unlockedBy("has_sugar_block", has(KoratioBlocks.STICKY_BLUE_SUGAR_BLOCK.get())).save(output);
 		ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, KoratioItems.STICKY_GREEN_SUGAR_BUCKET.get()).requires(Items.BUCKET).requires(KoratioBlocks.STICKY_GREEN_SUGAR_BLOCK.get()).unlockedBy("has_sugar_block", has(KoratioBlocks.STICKY_GREEN_SUGAR_BLOCK.get())).save(output);
 		ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, KoratioItems.STICKY_YELLOW_SUGAR_BUCKET.get()).requires(Items.BUCKET).requires(KoratioBlocks.STICKY_YELLOW_SUGAR_BLOCK.get()).unlockedBy("has_sugar_block", has(KoratioBlocks.STICKY_YELLOW_SUGAR_BLOCK.get())).save(output);
@@ -69,7 +68,7 @@ public class RecipeGenerator extends RecipeProvider {
 		oneToOne(KoratioItems.YELLOW_SUGAR.get(), KoratioItems.YELLOW_SUGARGLASS_FLOWER.get()).save(output, Koratio.prefix("yellow_sugar_from_flower"));
 		oneToOne(KoratioItems.RED_SUGAR.get(), KoratioItems.RED_SUGARGLASS_FLOWER.get()).save(output, Koratio.prefix("red_sugar_from_flower"));
 		
-		decompress(Items.SUGAR, KoratioBlocks.SUGAR_BLOCK.get()).save(output, Koratio.prefix("sugar_from_block"));
+		decompress(Items.SUGAR, KoratioBlocks.WHITE_SUGAR_BLOCK.get()).save(output, Koratio.prefix("white_sugar_from_block"));
 		decompress(KoratioItems.RED_SUGAR.get(), KoratioBlocks.RED_SUGAR_BLOCK.get()).save(output, Koratio.prefix("red_sugar_from_block"));
 		decompress(KoratioItems.BLUE_SUGAR.get(), KoratioBlocks.BLUE_SUGAR_BLOCK.get()).save(output, Koratio.prefix("blue_sugar_from_block"));
 		decompress(KoratioItems.YELLOW_SUGAR.get(), KoratioBlocks.YELLOW_SUGAR_BLOCK.get()).save(output, Koratio.prefix("yellow_sugar_from_block"));
@@ -115,7 +114,7 @@ public class RecipeGenerator extends RecipeProvider {
 		compress(KoratioBlocks.SAPPHIRE_BLOCK.get(), KoratioItems.SAPPHIRE.get()).save(output);
 		compress(KoratioBlocks.TOPAZ_BLOCK.get(), KoratioItems.TOPAZ.get()).save(output);
 		compress(KoratioBlocks.ONYX_BLOCK.get(), KoratioItems.ONYX.get()).save(output);
-		compress(KoratioBlocks.SUGAR_BLOCK.get(), Items.SUGAR).save(output);
+		compress(KoratioBlocks.WHITE_SUGAR_BLOCK.get(), Items.SUGAR).save(output);
 		compress(KoratioBlocks.RED_SUGAR_BLOCK.get(), KoratioItems.RED_SUGAR.get()).save(output);
 		compress(KoratioBlocks.BLUE_SUGAR_BLOCK.get(), KoratioItems.BLUE_SUGAR.get()).save(output);
 		compress(KoratioBlocks.YELLOW_SUGAR_BLOCK.get(), KoratioItems.YELLOW_SUGAR.get()).save(output);
@@ -309,69 +308,14 @@ public class RecipeGenerator extends RecipeProvider {
 
 		ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, Items.CAKE).pattern("mmm").pattern("ses").pattern("www").define('m', Items.MILK_BUCKET).define('s', KoratioTags.Items.SUGAR).define('e', Tags.Items.EGGS).define('w', Items.WHEAT).unlockedBy("has_egg", has(Tags.Items.EGGS)).save(output);
 
-		//CandyShaperRecipes candyShaping(output, result, white, blue, green, yellow, red)
-		candyShaping(output, KoratioItems.WHITE_BLUE_CANDY_CANE, 200, 200, 0, 0, 0);
-		candyShaping(output, KoratioItems.WHITE_GREEN_CANDY_CANE, 200, 0, 200, 0, 0);
-		candyShaping(output, KoratioItems.WHITE_YELLOW_CANDY_CANE, 200, 0, 0, 200, 0);
-		candyShaping(output, KoratioItems.WHITE_RED_CANDY_CANE, 200, 0, 0, 0, 200);
-		candyShaping(output, KoratioItems.BLUE_CANDY_CANE, 0, 400, 0, 0, 0);
-		candyShaping(output, KoratioItems.BLUE_WHITE_CANDY_CANE, 200, 200, 0, 0, 0);
-		candyShaping(output, KoratioItems.BLUE_GREEN_CANDY_CANE, 0, 200, 200, 0, 0);
-		candyShaping(output, KoratioItems.BLUE_YELLOW_CANDY_CANE, 0, 200, 0, 200, 0);
-		candyShaping(output, KoratioItems.BLUE_RED_CANDY_CANE, 0, 200, 0, 0, 200);
-		candyShaping(output, KoratioItems.BLUE_RAINBOW_CANDY_CANE, 200, 50, 50, 50, 50);
-		candyShaping(output, KoratioItems.GREEN_CANDY_CANE, 0, 0, 400, 0, 0);
-		candyShaping(output, KoratioItems.GREEN_WHITE_CANDY_CANE, 200, 0, 200, 0, 0);
-		candyShaping(output, KoratioItems.GREEN_BLUE_CANDY_CANE, 0, 200, 200, 0, 0);
-		candyShaping(output, KoratioItems.GREEN_YELLOW_CANDY_CANE, 0, 0, 200, 200, 0);
-		candyShaping(output, KoratioItems.GREEN_RED_CANDY_CANE, 0, 0, 200, 0, 200);
-		candyShaping(output, KoratioItems.GREEN_RAINBOW_CANDY_CANE, 200, 50, 50, 50, 50);
-		candyShaping(output, KoratioItems.YELLOW_CANDY_CANE, 0, 0, 0, 400, 0);
-		candyShaping(output, KoratioItems.YELLOW_WHITE_CANDY_CANE, 200, 0, 0, 200, 0);
-		candyShaping(output, KoratioItems.YELLOW_BLUE_CANDY_CANE, 0, 200, 0, 200, 0);
-		candyShaping(output, KoratioItems.YELLOW_GREEN_CANDY_CANE, 0, 0, 200, 200, 0);
-		candyShaping(output, KoratioItems.YELLOW_RED_CANDY_CANE, 0, 0, 0, 200, 200);
-		candyShaping(output, KoratioItems.YELLOW_RAINBOW_CANDY_CANE, 200, 50, 50, 50, 50);
-		candyShaping(output, KoratioItems.RED_CANDY_CANE, 0, 0, 0, 0, 400);
-		candyShaping(output, KoratioItems.RED_WHITE_CANDY_CANE, 200, 0, 0, 0, 200);
-		candyShaping(output, KoratioItems.RED_BLUE_CANDY_CANE, 0, 200, 0, 0, 200);
-		candyShaping(output, KoratioItems.RED_GREEN_CANDY_CANE, 0, 0, 200, 0, 200);
-		candyShaping(output, KoratioItems.RED_YELLOW_CANDY_CANE, 0, 0, 0, 200, 200);
-		candyShaping(output, KoratioItems.RED_RAINBOW_CANDY_CANE, 200, 50, 50, 50, 50);
-
-		candyShaping(output, KoratioItems.WHITE_BLUE_LOLLIPOP, 200, 200, 0, 0, 0);
-		candyShaping(output, KoratioItems.WHITE_GREEN_LOLLIPOP, 200, 0, 200, 0, 0);
-		candyShaping(output, KoratioItems.WHITE_YELLOW_LOLLIPOP, 200, 0, 0, 200, 0);
-		candyShaping(output, KoratioItems.WHITE_RED_LOLLIPOP, 200, 0, 0, 0, 200);
-		candyShaping(output, KoratioItems.BLUE_LOLLIPOP, 0, 400, 0, 0, 0);
-		candyShaping(output, KoratioItems.BLUE_WHITE_LOLLIPOP, 200, 200, 0, 0, 0);
-		candyShaping(output, KoratioItems.BLUE_GREEN_LOLLIPOP, 0, 200, 200, 0, 0);
-		candyShaping(output, KoratioItems.BLUE_YELLOW_LOLLIPOP, 0, 200, 0, 200, 0);
-		candyShaping(output, KoratioItems.BLUE_RED_LOLLIPOP, 0, 200, 0, 0, 200);
-		candyShaping(output, KoratioItems.BLUE_RAINBOW_LOLLIPOP, 200, 50, 50, 50, 50);
-		candyShaping(output, KoratioItems.GREEN_LOLLIPOP, 0, 0, 400, 0, 0);
-		candyShaping(output, KoratioItems.GREEN_WHITE_LOLLIPOP, 200, 0, 200, 0, 0);
-		candyShaping(output, KoratioItems.GREEN_BLUE_LOLLIPOP, 0, 200, 200, 0, 0);
-		candyShaping(output, KoratioItems.GREEN_YELLOW_LOLLIPOP, 0, 0, 200, 200, 0);
-		candyShaping(output, KoratioItems.GREEN_RED_LOLLIPOP, 0, 0, 200, 0, 200);
-		candyShaping(output, KoratioItems.GREEN_RAINBOW_LOLLIPOP, 200, 50, 50, 50, 50);
-		candyShaping(output, KoratioItems.YELLOW_LOLLIPOP, 0, 0, 0, 400, 0);
-		candyShaping(output, KoratioItems.YELLOW_WHITE_LOLLIPOP, 200, 0, 0, 200, 0);
-		candyShaping(output, KoratioItems.YELLOW_BLUE_LOLLIPOP, 0, 200, 0, 200, 0);
-		candyShaping(output, KoratioItems.YELLOW_GREEN_LOLLIPOP, 0, 0, 200, 200, 0);
-		candyShaping(output, KoratioItems.YELLOW_RED_LOLLIPOP, 0, 0, 0, 200, 200);
-		candyShaping(output, KoratioItems.YELLOW_RAINBOW_LOLLIPOP, 200, 50, 50, 50, 50);
-		candyShaping(output, KoratioItems.RED_LOLLIPOP, 0, 0, 0, 0, 400);
-		candyShaping(output, KoratioItems.RED_WHITE_LOLLIPOP, 200, 0, 0, 0, 200);
-		candyShaping(output, KoratioItems.RED_BLUE_LOLLIPOP, 0, 200, 0, 0, 200);
-		candyShaping(output, KoratioItems.RED_GREEN_LOLLIPOP, 0, 0, 200, 0, 200);
-		candyShaping(output, KoratioItems.RED_YELLOW_LOLLIPOP, 0, 0, 0, 200, 200);
-		candyShaping(output, KoratioItems.RED_RAINBOW_LOLLIPOP, 200, 50, 50, 50, 50);
+		//CandyShaperRecipes candyShaping(output, result, mainFluid, secondFluid)
+		//candyShaping(output, Items.DIAMOND, new SizedFluidIngredient(FluidIngredient.of(KoratioFluids.MOLTEN_BLACK_SUGAR.get()), 200), new SizedFluidIngredient(FluidIngredient.of(KoratioFluids.MOLTEN_BLUE_SUGAR.get()), 200));
+		//candyShaping(output, Items.EMERALD, new SizedFluidIngredient(FluidIngredient.of(KoratioFluids.MOLTEN_BLACK_SUGAR.get()), 400));
 
 		//BrewingRecipes
 		
 		//FurnaceRecipes
-		SimpleCookingRecipeBuilder.smelting(Ingredient.of(KoratioItems.STICKY_SUGAR_BUCKET.get()), RecipeCategory.MISC, KoratioItems.MOLTEN_SUGAR_BUCKET.get(), 0.5F, 200).unlockedBy("has_sugar_bucket", has(KoratioItems.STICKY_SUGAR_BUCKET.get())).save(output);
+		SimpleCookingRecipeBuilder.smelting(Ingredient.of(KoratioItems.STICKY_WHITE_SUGAR_BUCKET.get()), RecipeCategory.MISC, KoratioItems.MOLTEN_WHITE_SUGAR_BUCKET.get(), 0.5F, 200).unlockedBy("has_sugar_bucket", has(KoratioItems.STICKY_WHITE_SUGAR_BUCKET.get())).save(output);
 		SimpleCookingRecipeBuilder.smelting(Ingredient.of(KoratioItems.STICKY_BLUE_SUGAR_BUCKET.get()), RecipeCategory.MISC, KoratioItems.MOLTEN_BLUE_SUGAR_BUCKET.get(), 0.5F, 200).unlockedBy("has_sugar_bucket", has(KoratioItems.STICKY_BLUE_SUGAR_BUCKET.get())).save(output);
 		SimpleCookingRecipeBuilder.smelting(Ingredient.of(KoratioItems.STICKY_GREEN_SUGAR_BUCKET.get()), RecipeCategory.MISC, KoratioItems.MOLTEN_GREEN_SUGAR_BUCKET.get(), 0.5F, 200).unlockedBy("has_sugar_bucket", has(KoratioItems.STICKY_GREEN_SUGAR_BUCKET.get())).save(output);
 		SimpleCookingRecipeBuilder.smelting(Ingredient.of(KoratioItems.STICKY_YELLOW_SUGAR_BUCKET.get()), RecipeCategory.MISC, KoratioItems.MOLTEN_YELLOW_SUGAR_BUCKET.get(), 0.5F, 200).unlockedBy("has_sugar_bucket", has(KoratioItems.STICKY_YELLOW_SUGAR_BUCKET.get())).save(output);
@@ -933,38 +877,18 @@ public class RecipeGenerator extends RecipeProvider {
 		return new SingleItemRecipeBuilder(pCategory, WoodcutterRecipe::new, pIngredient, pResult, pCount);
 	}
 
-	public static void candyShaping(RecipeOutput output, ItemLike result, int white, int blue, int green, int yellow, int red) {
-		SizedFluidIngredient whiteIngredient;
-		SizedFluidIngredient blueIngredient;
-		SizedFluidIngredient greenIngredient;
-		SizedFluidIngredient yellowIngredient;
-		SizedFluidIngredient redIngredient;
-		if (white <= 0) {
-			whiteIngredient = new SizedFluidIngredient(FluidIngredient.empty(), 0);
-		} else {
-			whiteIngredient = SizedFluidIngredient.of(new FluidStack(KoratioFluids.MOLTEN_SUGAR.get(), white));
+	public static void candyShaping(RecipeOutput output, ItemLike result, SizedFluidIngredient mainFluidIngredient) {
+		if (mainFluidIngredient.ingredient().isEmpty()) {
+			return;
 		}
-		if (blue <= 0) {
-			blueIngredient = new SizedFluidIngredient(FluidIngredient.empty(), 0);
-		} else {
-			blueIngredient = SizedFluidIngredient.of(new FluidStack(KoratioFluids.MOLTEN_BLUE_SUGAR.get(), blue));
+		CandyShaperRecipeBuilder.recipe(result, mainFluidIngredient, null).unlockedBy("has_molten_sugar", has(KoratioTags.Items.MOLTEN_SUGAR_BUCKETS)).save(output);
+	}
+
+	public static void candyShaping(RecipeOutput output, ItemLike result, SizedFluidIngredient mainFluidIngredient, SizedFluidIngredient secondFluidIngredient) {
+		if (mainFluidIngredient.ingredient().isEmpty()) {
+			return;
 		}
-		if (green <= 0) {
-			greenIngredient = new SizedFluidIngredient(FluidIngredient.empty(), 0);
-		} else {
-			greenIngredient = SizedFluidIngredient.of(new FluidStack(KoratioFluids.MOLTEN_GREEN_SUGAR.get(), green));
-		}
-		if (yellow <= 0) {
-			yellowIngredient = new SizedFluidIngredient(FluidIngredient.empty(), 0);
-		} else {
-			yellowIngredient = SizedFluidIngredient.of(new FluidStack(KoratioFluids.MOLTEN_YELLOW_SUGAR.get(), yellow));
-		}
-		if (red <= 0) {
-			redIngredient = new SizedFluidIngredient(FluidIngredient.empty(), 0);
-		} else {
-			redIngredient = SizedFluidIngredient.of(new FluidStack(KoratioFluids.MOLTEN_RED_SUGAR.get(), red));
-		}
-		CandyShaperRecipeBuilder.recipe(result, whiteIngredient, blueIngredient, greenIngredient, yellowIngredient, redIngredient).unlockedBy("has_molten_sugar", has(KoratioTags.Items.MOLTEN_SUGAR_BUCKETS)).save(output);
+		CandyShaperRecipeBuilder.recipe(result, mainFluidIngredient, secondFluidIngredient).unlockedBy("has_molten_sugar", has(KoratioTags.Items.MOLTEN_SUGAR_BUCKETS)).save(output);
 	}
 
 	protected static String getItemName(ItemLike item) {

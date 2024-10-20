@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "koratio:block/sticky_brown_sugar_block"
+  }
+}

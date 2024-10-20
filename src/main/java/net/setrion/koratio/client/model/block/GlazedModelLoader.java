@@ -22,7 +22,6 @@ public enum GlazedModelLoader implements IGeometryLoader<GlazedBlockGeometry> {
     @Override
     public GlazedBlockGeometry read(JsonObject jsonObject, JsonDeserializationContext deserializationContext) throws JsonParseException {
         BlockModel core = loadModel(ResourceLocation.parse(jsonObject.get("base").getAsString()));
-        //BlockModel core = loadModel(Koratio.prefix("block/gingerbread_block_base"));
         BlockModel topTopOverlay = loadModel(Koratio.prefix("block/overlay/gingerbread_glaze_top_top"));
         BlockModel topBottomOverlay = loadModel(Koratio.prefix("block/overlay/gingerbread_glaze_top_bottom"));
         BlockModel topLeftOverlay = loadModel(Koratio.prefix("block/overlay/gingerbread_glaze_top_left"));
@@ -89,10 +88,7 @@ public enum GlazedModelLoader implements IGeometryLoader<GlazedBlockGeometry> {
 
         @Override
         public JsonObject toJson(JsonObject json) {
-
-            // Add your fields to the given JsonObject.
             json.add("base", new JsonPrimitive(baseModel.toString()));
-            // Then call super, which adds the loader property and some other things.
             return super.toJson(json);
         }
     }

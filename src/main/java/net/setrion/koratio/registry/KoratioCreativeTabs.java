@@ -11,6 +11,7 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 import net.setrion.koratio.Koratio;
 import net.setrion.koratio.scroll.Scroll;
 import net.setrion.koratio.scroll.ScrollUtils;
+import net.setrion.koratio.world.item.CandyItem;
 import net.setrion.koratio.world.item.PipingBagItem;
 import net.setrion.koratio.world.level.block.entity.GlazedBlockEntity;
 
@@ -142,88 +143,59 @@ public class KoratioCreativeTabs {
 
 				//Minerals
 				
-				output.accept(KoratioItems.BLUE_SUGAR.get());
-				output.accept(KoratioItems.GREEN_SUGAR.get());
-				output.accept(KoratioItems.YELLOW_SUGAR.get());
+				output.accept(KoratioItems.LIGHT_GRAY_SUGAR.get());
+				output.accept(KoratioItems.GRAY_SUGAR.get());
+				output.accept(KoratioItems.BLACK_SUGAR.get());
+				output.accept(KoratioItems.BROWN_SUGAR.get());
 				output.accept(KoratioItems.RED_SUGAR.get());
+				output.accept(KoratioItems.ORANGE_SUGAR.get());
+				output.accept(KoratioItems.YELLOW_SUGAR.get());
+				output.accept(KoratioItems.LIME_SUGAR.get());
+				output.accept(KoratioItems.GREEN_SUGAR.get());
+				output.accept(KoratioItems.CYAN_SUGAR.get());
+				output.accept(KoratioItems.LIGHT_BLUE_SUGAR.get());
+				output.accept(KoratioItems.BLUE_SUGAR.get());
+				output.accept(KoratioItems.PURPLE_SUGAR.get());
+				output.accept(KoratioItems.MAGENTA_SUGAR.get());
+				output.accept(KoratioItems.PINK_SUGAR.get());
 
-				output.accept(KoratioItems.STICKY_SUGAR_BUCKET.get());
-				output.accept(KoratioItems.STICKY_BLUE_SUGAR_BUCKET.get());
-				output.accept(KoratioItems.STICKY_GREEN_SUGAR_BUCKET.get());
-				output.accept(KoratioItems.STICKY_YELLOW_SUGAR_BUCKET.get());
+				output.accept(KoratioItems.STICKY_WHITE_SUGAR_BUCKET.get());
+				output.accept(KoratioItems.STICKY_LIGHT_GRAY_SUGAR_BUCKET.get());
+				output.accept(KoratioItems.STICKY_GRAY_SUGAR_BUCKET.get());
+				output.accept(KoratioItems.STICKY_BLACK_SUGAR_BUCKET.get());
+				output.accept(KoratioItems.STICKY_BROWN_SUGAR_BUCKET.get());
 				output.accept(KoratioItems.STICKY_RED_SUGAR_BUCKET.get());
+				output.accept(KoratioItems.STICKY_ORANGE_SUGAR_BUCKET.get());
+				output.accept(KoratioItems.STICKY_YELLOW_SUGAR_BUCKET.get());
+				output.accept(KoratioItems.STICKY_LIME_SUGAR_BUCKET.get());
+				output.accept(KoratioItems.STICKY_GREEN_SUGAR_BUCKET.get());
+				output.accept(KoratioItems.STICKY_CYAN_SUGAR_BUCKET.get());
+				output.accept(KoratioItems.STICKY_LIGHT_BLUE_SUGAR_BUCKET.get());
+				output.accept(KoratioItems.STICKY_BLUE_SUGAR_BUCKET.get());
+				output.accept(KoratioItems.STICKY_PURPLE_SUGAR_BUCKET.get());
+				output.accept(KoratioItems.STICKY_MAGENTA_SUGAR_BUCKET.get());
+				output.accept(KoratioItems.STICKY_PINK_SUGAR_BUCKET.get());
 
-				output.accept(KoratioItems.MOLTEN_SUGAR_BUCKET.get());
-				output.accept(KoratioItems.MOLTEN_BLUE_SUGAR_BUCKET.get());
-				output.accept(KoratioItems.MOLTEN_GREEN_SUGAR_BUCKET.get());
-				output.accept(KoratioItems.MOLTEN_YELLOW_SUGAR_BUCKET.get());
+				output.accept(KoratioItems.MOLTEN_WHITE_SUGAR_BUCKET.get());
+				output.accept(KoratioItems.MOLTEN_LIGHT_GRAY_SUGAR_BUCKET.get());
+				output.accept(KoratioItems.MOLTEN_GRAY_SUGAR_BUCKET.get());
+				output.accept(KoratioItems.MOLTEN_BLACK_SUGAR_BUCKET.get());
+				output.accept(KoratioItems.MOLTEN_BROWN_SUGAR_BUCKET.get());
 				output.accept(KoratioItems.MOLTEN_RED_SUGAR_BUCKET.get());
+				output.accept(KoratioItems.MOLTEN_ORANGE_SUGAR_BUCKET.get());
+				output.accept(KoratioItems.MOLTEN_YELLOW_SUGAR_BUCKET.get());
+				output.accept(KoratioItems.MOLTEN_LIME_SUGAR_BUCKET.get());
+				output.accept(KoratioItems.MOLTEN_GREEN_SUGAR_BUCKET.get());
+				output.accept(KoratioItems.MOLTEN_CYAN_SUGAR_BUCKET.get());
+				output.accept(KoratioItems.MOLTEN_LIGHT_BLUE_SUGAR_BUCKET.get());
+				output.accept(KoratioItems.MOLTEN_BLUE_SUGAR_BUCKET.get());
+				output.accept(KoratioItems.MOLTEN_PURPLE_SUGAR_BUCKET.get());
+				output.accept(KoratioItems.MOLTEN_MAGENTA_SUGAR_BUCKET.get());
+				output.accept(KoratioItems.MOLTEN_PINK_SUGAR_BUCKET.get());
 
-				output.accept(KoratioItems.WHITE_BLUE_CANDY_CANE.get());
-				output.accept(KoratioItems.WHITE_GREEN_CANDY_CANE.get());
-				output.accept(KoratioItems.WHITE_YELLOW_CANDY_CANE.get());
-				output.accept(KoratioItems.WHITE_RED_CANDY_CANE.get());
-
-				output.accept(KoratioItems.BLUE_CANDY_CANE.get());
-				output.accept(KoratioItems.BLUE_WHITE_CANDY_CANE.get());
-				output.accept(KoratioItems.BLUE_GREEN_CANDY_CANE.get());
-				output.accept(KoratioItems.BLUE_YELLOW_CANDY_CANE.get());
-				output.accept(KoratioItems.BLUE_RED_CANDY_CANE.get());
-				output.accept(KoratioItems.BLUE_RAINBOW_CANDY_CANE.get());
-
-				output.accept(KoratioItems.GREEN_CANDY_CANE.get());
-				output.accept(KoratioItems.GREEN_WHITE_CANDY_CANE.get());
-				output.accept(KoratioItems.GREEN_BLUE_CANDY_CANE.get());
-				output.accept(KoratioItems.GREEN_YELLOW_CANDY_CANE.get());
-				output.accept(KoratioItems.GREEN_RED_CANDY_CANE.get());
-				output.accept(KoratioItems.GREEN_RAINBOW_CANDY_CANE.get());
-
-				output.accept(KoratioItems.YELLOW_CANDY_CANE.get());
-				output.accept(KoratioItems.YELLOW_WHITE_CANDY_CANE.get());
-				output.accept(KoratioItems.YELLOW_BLUE_CANDY_CANE.get());
-				output.accept(KoratioItems.YELLOW_GREEN_CANDY_CANE.get());
-				output.accept(KoratioItems.YELLOW_RED_CANDY_CANE.get());
-				output.accept(KoratioItems.YELLOW_RAINBOW_CANDY_CANE.get());
-
-				output.accept(KoratioItems.RED_CANDY_CANE.get());
-				output.accept(KoratioItems.RED_WHITE_CANDY_CANE.get());
-				output.accept(KoratioItems.RED_BLUE_CANDY_CANE.get());
-				output.accept(KoratioItems.RED_GREEN_CANDY_CANE.get());
-				output.accept(KoratioItems.RED_YELLOW_CANDY_CANE.get());
-				output.accept(KoratioItems.RED_RAINBOW_CANDY_CANE.get());
-
-				output.accept(KoratioItems.WHITE_BLUE_LOLLIPOP.get());
-				output.accept(KoratioItems.WHITE_GREEN_LOLLIPOP.get());
-				output.accept(KoratioItems.WHITE_YELLOW_LOLLIPOP.get());
-				output.accept(KoratioItems.WHITE_RED_LOLLIPOP.get());
-
-				output.accept(KoratioItems.BLUE_LOLLIPOP.get());
-				output.accept(KoratioItems.BLUE_WHITE_LOLLIPOP.get());
-				output.accept(KoratioItems.BLUE_GREEN_LOLLIPOP.get());
-				output.accept(KoratioItems.BLUE_YELLOW_LOLLIPOP.get());
-				output.accept(KoratioItems.BLUE_RED_LOLLIPOP.get());
-				output.accept(KoratioItems.BLUE_RAINBOW_LOLLIPOP.get());
-
-				output.accept(KoratioItems.GREEN_LOLLIPOP.get());
-				output.accept(KoratioItems.GREEN_WHITE_LOLLIPOP.get());
-				output.accept(KoratioItems.GREEN_BLUE_LOLLIPOP.get());
-				output.accept(KoratioItems.GREEN_YELLOW_LOLLIPOP.get());
-				output.accept(KoratioItems.GREEN_RED_LOLLIPOP.get());
-				output.accept(KoratioItems.GREEN_RAINBOW_LOLLIPOP.get());
-
-				output.accept(KoratioItems.YELLOW_LOLLIPOP.get());
-				output.accept(KoratioItems.YELLOW_WHITE_LOLLIPOP.get());
-				output.accept(KoratioItems.YELLOW_BLUE_LOLLIPOP.get());
-				output.accept(KoratioItems.YELLOW_GREEN_LOLLIPOP.get());
-				output.accept(KoratioItems.YELLOW_RED_LOLLIPOP.get());
-				output.accept(KoratioItems.YELLOW_RAINBOW_LOLLIPOP.get());
-
-				output.accept(KoratioItems.RED_LOLLIPOP.get());
-				output.accept(KoratioItems.RED_WHITE_LOLLIPOP.get());
-				output.accept(KoratioItems.RED_BLUE_LOLLIPOP.get());
-				output.accept(KoratioItems.RED_GREEN_LOLLIPOP.get());
-				output.accept(KoratioItems.RED_YELLOW_LOLLIPOP.get());
-				output.accept(KoratioItems.RED_RAINBOW_LOLLIPOP.get());
+				output.accept(KoratioItems.COOKIE_BLOCK.get());
+				output.accept(KoratioItems.COOKIE_BLOCK_STAIRS.get());
+				output.accept(KoratioItems.COOKIE_BLOCK_SLAB.get());
 
 				output.accept(KoratioItems.RAW_GINGERBREAD_BLOCK.get());
 				output.accept(KoratioItems.RAW_GINGERBREAD_STAIRS.get());
@@ -250,43 +222,91 @@ public class KoratioCreativeTabs {
 				output.accept(KoratioItems.RAW_LARGE_GINGERBREAD_BRICK_WALL.get());
 				output.accept(KoratioItems.LARGE_GINGERBREAD_BRICK_WALL.get());
 				output.accept(KoratioItems.MARSHMALLOW_BLOCK.get());
-				output.accept(KoratioItems.SUGAR_BLOCK.get());
-				output.accept(KoratioItems.STICKY_SUGAR_BLOCK.get());
-				output.accept(KoratioItems.FROSTING_BLOCK.get());
-				output.accept(KoratioItems.BLUE_SUGAR_BLOCK.get());
-				output.accept(KoratioItems.STICKY_BLUE_SUGAR_BLOCK.get());
-				output.accept(KoratioItems.BLUE_FROSTING_BLOCK.get());
-				output.accept(KoratioItems.GREEN_SUGAR_BLOCK.get());
-				output.accept(KoratioItems.STICKY_GREEN_SUGAR_BLOCK.get());
-				output.accept(KoratioItems.GREEN_FROSTING_BLOCK.get());
-				output.accept(KoratioItems.YELLOW_SUGAR_BLOCK.get());
-				output.accept(KoratioItems.STICKY_YELLOW_SUGAR_BLOCK.get());
-				output.accept(KoratioItems.YELLOW_FROSTING_BLOCK.get());
+
+				output.accept(KoratioItems.WHITE_SUGAR_BLOCK.get());
+				output.accept(KoratioItems.LIGHT_GRAY_SUGAR_BLOCK.get());
+				output.accept(KoratioItems.GRAY_SUGAR_BLOCK.get());
+				output.accept(KoratioItems.BLACK_SUGAR_BLOCK.get());
+				output.accept(KoratioItems.BROWN_SUGAR_BLOCK.get());
 				output.accept(KoratioItems.RED_SUGAR_BLOCK.get());
+				output.accept(KoratioItems.ORANGE_SUGAR_BLOCK.get());
+				output.accept(KoratioItems.YELLOW_SUGAR_BLOCK.get());
+				output.accept(KoratioItems.LIME_SUGAR_BLOCK.get());
+				output.accept(KoratioItems.GREEN_SUGAR_BLOCK.get());
+				output.accept(KoratioItems.CYAN_SUGAR_BLOCK.get());
+				output.accept(KoratioItems.LIGHT_BLUE_SUGAR_BLOCK.get());
+				output.accept(KoratioItems.BLUE_SUGAR_BLOCK.get());
+				output.accept(KoratioItems.PURPLE_SUGAR_BLOCK.get());
+				output.accept(KoratioItems.MAGENTA_SUGAR_BLOCK.get());
+				output.accept(KoratioItems.PINK_SUGAR_BLOCK.get());
+
+				output.accept(KoratioItems.STICKY_WHITE_SUGAR_BLOCK.get());
+				output.accept(KoratioItems.STICKY_LIGHT_GRAY_SUGAR_BLOCK.get());
+				output.accept(KoratioItems.STICKY_GRAY_SUGAR_BLOCK.get());
+				output.accept(KoratioItems.STICKY_BLACK_SUGAR_BLOCK.get());
+				output.accept(KoratioItems.STICKY_BROWN_SUGAR_BLOCK.get());
 				output.accept(KoratioItems.STICKY_RED_SUGAR_BLOCK.get());
+				output.accept(KoratioItems.STICKY_ORANGE_SUGAR_BLOCK.get());
+				output.accept(KoratioItems.STICKY_YELLOW_SUGAR_BLOCK.get());
+				output.accept(KoratioItems.STICKY_LIME_SUGAR_BLOCK.get());
+				output.accept(KoratioItems.STICKY_GREEN_SUGAR_BLOCK.get());
+				output.accept(KoratioItems.STICKY_CYAN_SUGAR_BLOCK.get());
+				output.accept(KoratioItems.STICKY_LIGHT_BLUE_SUGAR_BLOCK.get());
+				output.accept(KoratioItems.STICKY_BLUE_SUGAR_BLOCK.get());
+				output.accept(KoratioItems.STICKY_PURPLE_SUGAR_BLOCK.get());
+				output.accept(KoratioItems.STICKY_MAGENTA_SUGAR_BLOCK.get());
+				output.accept(KoratioItems.STICKY_PINK_SUGAR_BLOCK.get());
+
+				output.accept(KoratioItems.WHITE_FROSTING_BLOCK.get());
+				output.accept(KoratioItems.LIGHT_GRAY_FROSTING_BLOCK.get());
+				output.accept(KoratioItems.GRAY_FROSTING_BLOCK.get());
+				output.accept(KoratioItems.BLACK_FROSTING_BLOCK.get());
+				output.accept(KoratioItems.BROWN_FROSTING_BLOCK.get());
 				output.accept(KoratioItems.RED_FROSTING_BLOCK.get());
+				output.accept(KoratioItems.ORANGE_FROSTING_BLOCK.get());
+				output.accept(KoratioItems.YELLOW_FROSTING_BLOCK.get());
+				output.accept(KoratioItems.LIME_FROSTING_BLOCK.get());
+				output.accept(KoratioItems.GREEN_FROSTING_BLOCK.get());
+				output.accept(KoratioItems.CYAN_FROSTING_BLOCK.get());
+				output.accept(KoratioItems.LIGHT_BLUE_FROSTING_BLOCK.get());
+				output.accept(KoratioItems.BLUE_FROSTING_BLOCK.get());
+				output.accept(KoratioItems.PURPLE_FROSTING_BLOCK.get());
+				output.accept(KoratioItems.MAGENTA_FROSTING_BLOCK.get());
+				output.accept(KoratioItems.PINK_FROSTING_BLOCK.get());
+
 				output.accept(KoratioItems.WHITE_CANDY_BLOCK.get());
-				output.accept(KoratioItems.BLUE_CANDY_BLOCK.get());
-				output.accept(KoratioItems.GREEN_CANDY_BLOCK.get());
-				output.accept(KoratioItems.YELLOW_CANDY_BLOCK.get());
+				output.accept(KoratioItems.LIGHT_GRAY_CANDY_BLOCK.get());
+				output.accept(KoratioItems.GRAY_CANDY_BLOCK.get());
+				output.accept(KoratioItems.BLACK_CANDY_BLOCK.get());
+				output.accept(KoratioItems.BROWN_CANDY_BLOCK.get());
 				output.accept(KoratioItems.RED_CANDY_BLOCK.get());
+				output.accept(KoratioItems.ORANGE_CANDY_BLOCK.get());
+				output.accept(KoratioItems.YELLOW_CANDY_BLOCK.get());
+				output.accept(KoratioItems.LIME_CANDY_BLOCK.get());
+				output.accept(KoratioItems.GREEN_CANDY_BLOCK.get());
+				output.accept(KoratioItems.CYAN_CANDY_BLOCK.get());
+				output.accept(KoratioItems.LIGHT_BLUE_CANDY_BLOCK.get());
+				output.accept(KoratioItems.BLUE_CANDY_BLOCK.get());
+				output.accept(KoratioItems.PURPLE_CANDY_BLOCK.get());
+				output.accept(KoratioItems.MAGENTA_CANDY_BLOCK.get());
+				output.accept(KoratioItems.PINK_CANDY_BLOCK.get());
 
 				output.accept(KoratioItems.WHITE_LEVITATING_WOOL.get());
+				output.accept(KoratioItems.LIGHT_GRAY_LEVITATING_WOOL.get());
+				output.accept(KoratioItems.GRAY_LEVITATING_WOOL.get());
+				output.accept(KoratioItems.BLACK_LEVITATING_WOOL.get());
+				output.accept(KoratioItems.BROWN_LEVITATING_WOOL.get());
+				output.accept(KoratioItems.RED_LEVITATING_WOOL.get());
 				output.accept(KoratioItems.ORANGE_LEVITATING_WOOL.get());
-				output.accept(KoratioItems.MAGENTA_LEVITATING_WOOL.get());
-				output.accept(KoratioItems.LIGHT_BLUE_LEVITATING_WOOL.get());
 				output.accept(KoratioItems.YELLOW_LEVITATING_WOOL.get());
 				output.accept(KoratioItems.LIME_LEVITATING_WOOL.get());
-				output.accept(KoratioItems.PINK_LEVITATING_WOOL.get());
-				output.accept(KoratioItems.GRAY_LEVITATING_WOOL.get());
-				output.accept(KoratioItems.LIGHT_GRAY_LEVITATING_WOOL.get());
-				output.accept(KoratioItems.CYAN_LEVITATING_WOOL.get());
-				output.accept(KoratioItems.PURPLE_LEVITATING_WOOL.get());
-				output.accept(KoratioItems.BLUE_LEVITATING_WOOL.get());
-				output.accept(KoratioItems.BROWN_LEVITATING_WOOL.get());
 				output.accept(KoratioItems.GREEN_LEVITATING_WOOL.get());
-				output.accept(KoratioItems.RED_LEVITATING_WOOL.get());
-				output.accept(KoratioItems.BLACK_LEVITATING_WOOL.get());
+				output.accept(KoratioItems.CYAN_LEVITATING_WOOL.get());
+				output.accept(KoratioItems.LIGHT_BLUE_LEVITATING_WOOL.get());
+				output.accept(KoratioItems.BLUE_LEVITATING_WOOL.get());
+				output.accept(KoratioItems.PURPLE_LEVITATING_WOOL.get());
+				output.accept(KoratioItems.MAGENTA_LEVITATING_WOOL.get());
+				output.accept(KoratioItems.PINK_LEVITATING_WOOL.get());
 
 				//Food
 				output.accept(KoratioItems.RAW_PANGO.get());
@@ -498,6 +518,15 @@ public class KoratioCreativeTabs {
 				
 				//Weapons, Tools & Armor
 				
+			}).build());
+
+	public static final DeferredHolder<CreativeModeTab, CreativeModeTab> CANDY = TABS.register("candy", () -> new CreativeModeTab.Builder(CreativeModeTab.Row.TOP, 1)
+			.withTabsBefore(FANTASIA.getKey()).icon(() -> new ItemStack(KoratioItems.CANDY_SHAPER.get()))
+			.title(Component.translatable("itemGroup.koratio.candy"))
+			.displayItems((parameters, output) -> {
+				for (CandyItem candy : CandyItem.CANDY_LIST) {
+					output.accept(candy);
+				}
 			}).build());
 
 	private static void createScrolls(CreativeModeTab.Output output) {

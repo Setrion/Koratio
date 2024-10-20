@@ -28,6 +28,7 @@ public class RegistryDataGenerator extends DatapackBuiltinEntriesProvider {
 			.add(Registries.TEMPLATE_POOL, KoratioPools::bootstrap)
 			.add(Registries.STRUCTURE, KoratioStructures::bootstrap)
 			.add(Registries.STRUCTURE_SET, KoratioStructureSets::bootstrap)
+			.add(Registries.ENCHANTMENT, KoratioEnchantments::bootstrap)
 			.add(Registries.PROCESSOR_LIST, KoratioProcessorLists::bootstrap);
 
 	// Use addProviders() instead

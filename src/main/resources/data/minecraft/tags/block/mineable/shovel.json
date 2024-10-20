@@ -1,10 +1,21 @@
 {
   "values": [
     "koratio:flipped_farmland",
-    "koratio:sugar_block",
-    "koratio:blue_sugar_block",
-    "koratio:green_sugar_block",
+    "koratio:white_sugar_block",
+    "koratio:light_gray_sugar_block",
+    "koratio:gray_sugar_block",
+    "koratio:black_sugar_block",
+    "koratio:brown_sugar_block",
+    "koratio:red_sugar_block",
+    "koratio:orange_sugar_block",
     "koratio:yellow_sugar_block",
-    "koratio:red_sugar_block"
+    "koratio:lime_sugar_block",
+    "koratio:green_sugar_block",
+    "koratio:cyan_sugar_block",
+    "koratio:light_blue_sugar_block",
+    "koratio:blue_sugar_block",
+    "koratio:purple_sugar_block",
+    "koratio:magenta_sugar_block",
+    "koratio:pink_sugar_block"
   ]
 }

@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/inner_stairs",
+  "textures": {
+    "bottom": "koratio:block/cookie_block",
+    "side": "koratio:block/cookie_block",
+    "top": "koratio:block/cookie_block"
+  }
+}

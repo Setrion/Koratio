@@ -54,6 +54,7 @@ public class RegistryEvents {
         KoratioItems.ITEMS.register(modEventBus);
         KoratioItems.SPAWN_EGGS.register(modEventBus);
         KoratioLootItemFunctions.LOOT_FUNCTION_TYPES.register(modEventBus);
+        KoratioLootModifiers.LOOT_MODIFIERS.register(modEventBus);
         KoratioEntityType.ENTITY_TYPES.register(modEventBus);
         KoratioRecipeType.RECIPE_TYPES.register(modEventBus);
         KoratioRecipeSerializer.RECIPE_SERIALIZERS.register(modEventBus);
@@ -81,11 +82,13 @@ public class RegistryEvents {
         KoratioTagsGenerator.BlockTagGenerator blockTags = new KoratioTagsGenerator.BlockTagGenerator(output, newLookup, helper);
         generator.addProvider(event.includeServer(), blockTags);
         generator.addProvider(event.includeServer(), new KoratioTagsGenerator.ItemTagGenerator(output, newLookup, blockTags.contentsGetter(), helper));
+        generator.addProvider(event.includeServer(), new KoratioTagsGenerator.EnchantmentTagGenerator(output, newLookup, helper));
         generator.addProvider(event.includeServer(), new KoratioTagsGenerator.EntityTagGenerator(output, newLookup, helper));
         generator.addProvider(event.includeServer(), new KoratioTagsGenerator.FluidTagGenerator(output, newLookup, helper));
         generator.addProvider(event.includeServer(), new KoratioCompatTagGenerator(output, newLookup, blockTags.contentsGetter(), helper));
         generator.addProvider(event.includeServer(), new KoratioTagsGenerator.BiomeTagGenerator(output, newLookup, helper));
         generator.addProvider(event.includeServer(), new LootGenerator(output, newLookup));
+        generator.addProvider(event.includeServer(), new LootModifierGenerator(output, newLookup));
         generator.addProvider(event.includeServer(), new RecipeGenerator(output, newLookup));
         generator.addProvider(event.includeServer(), new SoundGenerator(output, helper));
         generator.addProvider(event.includeServer(), new LanguageGenerator.English(output));
@@ -97,10 +100,22 @@ public class RegistryEvents {
 
     @SubscribeEvent
     public static void registerCauldronFluidContent(RegisterCauldronFluidContentEvent event) {
-        event.register(KoratioBlocks.MOLTEN_SUGAR_CAULDRON.get(), KoratioFluids.MOLTEN_SUGAR.get(), FluidType.BUCKET_VOLUME, null);
-        event.register(KoratioBlocks.MOLTEN_BLUE_SUGAR_CAULDRON.get(), KoratioFluids.MOLTEN_BLUE_SUGAR.get(), FluidType.BUCKET_VOLUME, null);
-        event.register(KoratioBlocks.MOLTEN_GREEN_SUGAR_CAULDRON.get(), KoratioFluids.MOLTEN_GREEN_SUGAR.get(), FluidType.BUCKET_VOLUME, null);
-        event.register(KoratioBlocks.MOLTEN_YELLOW_SUGAR_CAULDRON.get(), KoratioFluids.MOLTEN_YELLOW_SUGAR.get(), FluidType.BUCKET_VOLUME, null);
+        event.register(KoratioBlocks.MOLTEN_WHITE_SUGAR_CAULDRON.get(), KoratioFluids.MOLTEN_WHITE_SUGAR.get(), FluidType.BUCKET_VOLUME, null);
+        event.register(KoratioBlocks.MOLTEN_LIGHT_GRAY_SUGAR_CAULDRON.get(), KoratioFluids.MOLTEN_LIGHT_GRAY_SUGAR.get(), FluidType.BUCKET_VOLUME, null);
+        event.register(KoratioBlocks.MOLTEN_GRAY_SUGAR_CAULDRON.get(), KoratioFluids.MOLTEN_GRAY_SUGAR.get(), FluidType.BUCKET_VOLUME, null);
+        event.register(KoratioBlocks.MOLTEN_BLACK_SUGAR_CAULDRON.get(), KoratioFluids.MOLTEN_BLACK_SUGAR.get(), FluidType.BUCKET_VOLUME, null);
+        event.register(KoratioBlocks.MOLTEN_BROWN_SUGAR_CAULDRON.get(), KoratioFluids.MOLTEN_BROWN_SUGAR.get(), FluidType.BUCKET_VOLUME, null);
         event.register(KoratioBlocks.MOLTEN_RED_SUGAR_CAULDRON.get(), KoratioFluids.MOLTEN_RED_SUGAR.get(), FluidType.BUCKET_VOLUME, null);
+        event.register(KoratioBlocks.MOLTEN_ORANGE_SUGAR_CAULDRON.get(), KoratioFluids.MOLTEN_ORANGE_SUGAR.get(), FluidType.BUCKET_VOLUME, null);
+        event.register(KoratioBlocks.MOLTEN_YELLOW_SUGAR_CAULDRON.get(), KoratioFluids.MOLTEN_YELLOW_SUGAR.get(), FluidType.BUCKET_VOLUME, null);
+        event.register(KoratioBlocks.MOLTEN_LIME_SUGAR_CAULDRON.get(), KoratioFluids.MOLTEN_LIME_SUGAR.get(), FluidType.BUCKET_VOLUME, null);
+        event.register(KoratioBlocks.MOLTEN_GREEN_SUGAR_CAULDRON.get(), KoratioFluids.MOLTEN_GREEN_SUGAR.get(), FluidType.BUCKET_VOLUME, null);
+        event.register(KoratioBlocks.MOLTEN_CYAN_SUGAR_CAULDRON.get(), KoratioFluids.MOLTEN_CYAN_SUGAR.get(), FluidType.BUCKET_VOLUME, null);
+        event.register(KoratioBlocks.MOLTEN_LIGHT_BLUE_SUGAR_CAULDRON.get(), KoratioFluids.MOLTEN_LIGHT_BLUE_SUGAR.get(), FluidType.BUCKET_VOLUME, null);
+        event.register(KoratioBlocks.MOLTEN_BLUE_SUGAR_CAULDRON.get(), KoratioFluids.MOLTEN_BLUE_SUGAR.get(), FluidType.BUCKET_VOLUME, null);
+        event.register(KoratioBlocks.MOLTEN_PURPLE_SUGAR_CAULDRON.get(), KoratioFluids.MOLTEN_PURPLE_SUGAR.get(), FluidType.BUCKET_VOLUME, null);
+        event.register(KoratioBlocks.MOLTEN_MAGENTA_SUGAR_CAULDRON.get(), KoratioFluids.MOLTEN_MAGENTA_SUGAR.get(), FluidType.BUCKET_VOLUME, null);
+        event.register(KoratioBlocks.MOLTEN_PINK_SUGAR_CAULDRON.get(), KoratioFluids.MOLTEN_PINK_SUGAR.get(), FluidType.BUCKET_VOLUME, null);
+
     }
 }

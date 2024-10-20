@@ -29,11 +29,22 @@ public class EmptyCauldronInteraction extends CauldronInteraction {
     }
 
     public static final EmptyCauldronInteraction WATER = createLayered(Fluids.WATER);
-    public static final EmptyCauldronInteraction MOLTEN_SUGAR = createBasic(KoratioFluids.MOLTEN_SUGAR.get());
-    public static final EmptyCauldronInteraction MOLTEN_BLUE_SUGAR = createBasic(KoratioFluids.MOLTEN_BLUE_SUGAR.get());
-    public static final EmptyCauldronInteraction MOLTEN_GREEN_SUGAR = createBasic(KoratioFluids.MOLTEN_GREEN_SUGAR.get());
-    public static final EmptyCauldronInteraction MOLTEN_YELLOW_SUGAR = createBasic(KoratioFluids.MOLTEN_YELLOW_SUGAR.get());
+    public static final EmptyCauldronInteraction MOLTEN_WHITE_SUGAR = createBasic(KoratioFluids.MOLTEN_WHITE_SUGAR.get());
+    public static final EmptyCauldronInteraction MOLTEN_LIGHT_GRAY_SUGAR = createBasic(KoratioFluids.MOLTEN_LIGHT_GRAY_SUGAR.get());
+    public static final EmptyCauldronInteraction MOLTEN_GRAY_SUGAR = createBasic(KoratioFluids.MOLTEN_GRAY_SUGAR.get());
+    public static final EmptyCauldronInteraction MOLTEN_BLACK_SUGAR = createBasic(KoratioFluids.MOLTEN_BLACK_SUGAR.get());
+    public static final EmptyCauldronInteraction MOLTEN_BROWN_SUGAR = createBasic(KoratioFluids.MOLTEN_BROWN_SUGAR.get());
     public static final EmptyCauldronInteraction MOLTEN_RED_SUGAR = createBasic(KoratioFluids.MOLTEN_RED_SUGAR.get());
+    public static final EmptyCauldronInteraction MOLTEN_ORANGE_SUGAR = createBasic(KoratioFluids.MOLTEN_ORANGE_SUGAR.get());
+    public static final EmptyCauldronInteraction MOLTEN_YELLOW_SUGAR = createBasic(KoratioFluids.MOLTEN_YELLOW_SUGAR.get());
+    public static final EmptyCauldronInteraction MOLTEN_LIME_SUGAR = createBasic(KoratioFluids.MOLTEN_LIME_SUGAR.get());
+    public static final EmptyCauldronInteraction MOLTEN_GREEN_SUGAR = createBasic(KoratioFluids.MOLTEN_GREEN_SUGAR.get());
+    public static final EmptyCauldronInteraction MOLTEN_CYAN_SUGAR = createBasic(KoratioFluids.MOLTEN_CYAN_SUGAR.get());
+    public static final EmptyCauldronInteraction MOLTEN_LIGHT_BLUE_SUGAR = createBasic(KoratioFluids.MOLTEN_LIGHT_BLUE_SUGAR.get());
+    public static final EmptyCauldronInteraction MOLTEN_BLUE_SUGAR = createBasic(KoratioFluids.MOLTEN_BLUE_SUGAR.get());
+    public static final EmptyCauldronInteraction MOLTEN_PURPLE_SUGAR = createBasic(KoratioFluids.MOLTEN_PURPLE_SUGAR.get());
+    public static final EmptyCauldronInteraction MOLTEN_MAGENTA_SUGAR = createBasic(KoratioFluids.MOLTEN_MAGENTA_SUGAR.get());
+    public static final EmptyCauldronInteraction MOLTEN_PINK_SUGAR = createBasic(KoratioFluids.MOLTEN_PINK_SUGAR.get());
     public static final EmptyCauldronInteraction LAVA = createBasic(Fluids.LAVA);
 
     //Fills the bucket. Empties the cauldron.

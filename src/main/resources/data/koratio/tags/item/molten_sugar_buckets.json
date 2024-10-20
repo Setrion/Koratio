@@ -1,9 +1,20 @@
 {
   "values": [
-    "koratio:molten_sugar_bucket",
-    "koratio:molten_blue_sugar_bucket",
-    "koratio:molten_green_sugar_bucket",
+    "koratio:molten_white_sugar_bucket",
+    "koratio:molten_light_gray_sugar_bucket",
+    "koratio:molten_gray_sugar_bucket",
+    "koratio:molten_black_sugar_bucket",
+    "koratio:molten_brown_sugar_bucket",
+    "koratio:molten_red_sugar_bucket",
+    "koratio:molten_orange_sugar_bucket",
     "koratio:molten_yellow_sugar_bucket",
-    "koratio:molten_red_sugar_bucket"
+    "koratio:molten_lime_sugar_bucket",
+    "koratio:molten_green_sugar_bucket",
+    "koratio:molten_cyan_sugar_bucket",
+    "koratio:molten_light_blue_sugar_bucket",
+    "koratio:molten_blue_sugar_bucket",
+    "koratio:molten_purple_sugar_bucket",
+    "koratio:molten_magenta_sugar_bucket",
+    "koratio:molten_pink_sugar_bucket"
   ]
 }

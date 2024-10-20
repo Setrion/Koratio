@@ -1,0 +1,21 @@
+{
+  "type": "koratio:fiery_pick_smelting",
+  "conditions": [
+    {
+      "condition": "minecraft:match_tool",
+      "predicate": {
+        "items": "#minecraft:enchantable/mining",
+        "predicates": {
+          "minecraft:enchantments": [
+            {
+              "enchantments": "koratio:telekinesis",
+              "levels": {
+                "min": 1
+              }
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

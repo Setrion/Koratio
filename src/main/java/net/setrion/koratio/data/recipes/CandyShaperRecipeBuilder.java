@@ -11,45 +11,37 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.ItemLike;
-import net.neoforged.neoforge.fluids.FluidStack;
-import net.neoforged.neoforge.fluids.crafting.FluidIngredient;
-import net.setrion.koratio.fluids.capability.SizedFluidIngredient;
-import net.setrion.koratio.registry.KoratioFluids;
+import net.neoforged.neoforge.fluids.crafting.SizedFluidIngredient;
 import net.setrion.koratio.world.item.crafting.CandyShaperRecipe;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Optional;
 
 public class CandyShaperRecipeBuilder implements RecipeBuilder {
 
     private final Item result;
     private final ItemStack stackResult;
-    private SizedFluidIngredient ingredient;
-    private SizedFluidIngredient ingredient1;
-    private SizedFluidIngredient ingredient2;
-    private SizedFluidIngredient ingredient3;
-    private SizedFluidIngredient ingredient4;
+    private SizedFluidIngredient mainFluid;
+    private SizedFluidIngredient secondFluid;
     private final Map<String, Criterion<?>> criteria;
 
-    private CandyShaperRecipeBuilder(ItemLike result, SizedFluidIngredient ingredient, SizedFluidIngredient ingredient1, SizedFluidIngredient ingredient2, SizedFluidIngredient ingredient3, SizedFluidIngredient ingredient4) {
-        this(new ItemStack(result), ingredient, ingredient1, ingredient2, ingredient3, ingredient4);
+    private CandyShaperRecipeBuilder(ItemLike result, SizedFluidIngredient mainFluid, SizedFluidIngredient secondFluid) {
+        this(new ItemStack(result), mainFluid, secondFluid);
     }
 
-    private CandyShaperRecipeBuilder(ItemStack result, SizedFluidIngredient ingredient, SizedFluidIngredient ingredient1, SizedFluidIngredient ingredient2, SizedFluidIngredient ingredient3, SizedFluidIngredient ingredient4) {
-        this.criteria = new LinkedHashMap();
+    private CandyShaperRecipeBuilder(ItemStack result, SizedFluidIngredient mainFluid, SizedFluidIngredient secondFluid) {
+        this.criteria = new LinkedHashMap<>();
         this.result = result.getItem();
         this.stackResult = result;
-        this.ingredient = ingredient;
-        this.ingredient1 = ingredient1;
-        this.ingredient2 = ingredient2;
-        this.ingredient3 = ingredient3;
-        this.ingredient4 = ingredient4;
+        this.mainFluid = mainFluid;
+        this.secondFluid = secondFluid;
     }
 
-    public static CandyShaperRecipeBuilder recipe(ItemLike result, SizedFluidIngredient ingredient, SizedFluidIngredient ingredient1, SizedFluidIngredient ingredient2, SizedFluidIngredient ingredient3, SizedFluidIngredient ingredient4) {
-        return new CandyShaperRecipeBuilder(new ItemStack(result), ingredient, ingredient1, ingredient2, ingredient3, ingredient4);
+    public static CandyShaperRecipeBuilder recipe(ItemLike result, SizedFluidIngredient mainFluid, SizedFluidIngredient secondFluid) {
+        return new CandyShaperRecipeBuilder(new ItemStack(result), mainFluid, secondFluid);
     }
 
     @Override
@@ -72,23 +64,7 @@ public class CandyShaperRecipeBuilder implements RecipeBuilder {
         Advancement.Builder advancement$builder = recipeOutput.advancement().addCriterion("has_the_recipe", RecipeUnlockedTrigger.unlocked(id)).rewards(AdvancementRewards.Builder.recipe(id)).requirements(AdvancementRequirements.Strategy.OR);
         Objects.requireNonNull(advancement$builder);
         this.criteria.forEach(advancement$builder::addCriterion);
-        if (this.ingredient.ingredient() == FluidIngredient.empty()) {
-            this.ingredient = new SizedFluidIngredient(FluidIngredient.of(KoratioFluids.MOLTEN_SUGAR.get()), 0);
-        }
-        if (this.ingredient1.ingredient() == FluidIngredient.empty()) {
-            this.ingredient1 = new SizedFluidIngredient(FluidIngredient.of(KoratioFluids.MOLTEN_BLUE_SUGAR.get()), 0);
-        }
-        if (this.ingredient2.ingredient() == FluidIngredient.empty()) {
-            this.ingredient2 = new SizedFluidIngredient(FluidIngredient.of(KoratioFluids.MOLTEN_GREEN_SUGAR.get()), 0);
-        }
-        if (this.ingredient3.ingredient() == FluidIngredient.empty()) {
-            this.ingredient3 = new SizedFluidIngredient(FluidIngredient.of(KoratioFluids.MOLTEN_YELLOW_SUGAR.get()), 0);
-        }
-        if (this.ingredient4.ingredient() == FluidIngredient.empty()) {
-            this.ingredient4 = new SizedFluidIngredient(FluidIngredient.of(KoratioFluids.MOLTEN_RED_SUGAR.get()), 0);
-        }
-        CandyShaperRecipe candyShaperRecipe = new CandyShaperRecipe(this.ingredient, this.ingredient1, this.ingredient2, this.ingredient3, this.ingredient4, this.stackResult);
+        CandyShaperRecipe candyShaperRecipe = new CandyShaperRecipe(this.mainFluid, Optional.ofNullable(this.secondFluid), this.stackResult);
         recipeOutput.accept(id, candyShaperRecipe, advancement$builder.build(id.withPrefix("recipes/")));
-
     }
 }

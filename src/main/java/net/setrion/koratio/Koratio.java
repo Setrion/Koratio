@@ -53,16 +53,38 @@ public class Koratio {
 
     public void commonSetup(final FMLCommonSetupEvent event) {
         event.enqueueWork(() -> {
-            CauldronInteraction.MOLTEN_SUGAR.map().put(Items.BUCKET, EmptyCauldronInteraction.MOLTEN_SUGAR);
-            net.minecraft.core.cauldron.CauldronInteraction.EMPTY.map().put(KoratioItems.MOLTEN_SUGAR_BUCKET.get(), CauldronInteraction.EMPTY);
-            CauldronInteraction.MOLTEN_BLUE_SUGAR.map().put(Items.BUCKET, EmptyCauldronInteraction.MOLTEN_BLUE_SUGAR);
-            net.minecraft.core.cauldron.CauldronInteraction.EMPTY.map().put(KoratioItems.MOLTEN_BLUE_SUGAR_BUCKET.get(), CauldronInteraction.EMPTY);
-            CauldronInteraction.MOLTEN_GREEN_SUGAR.map().put(Items.BUCKET, EmptyCauldronInteraction.MOLTEN_GREEN_SUGAR);
-            net.minecraft.core.cauldron.CauldronInteraction.EMPTY.map().put(KoratioItems.MOLTEN_GREEN_SUGAR_BUCKET.get(), CauldronInteraction.EMPTY);
-            CauldronInteraction.MOLTEN_YELLOW_SUGAR.map().put(Items.BUCKET, EmptyCauldronInteraction.MOLTEN_YELLOW_SUGAR);
-            net.minecraft.core.cauldron.CauldronInteraction.EMPTY.map().put(KoratioItems.MOLTEN_YELLOW_SUGAR_BUCKET.get(), CauldronInteraction.EMPTY);
+            CauldronInteraction.MOLTEN_WHITE_SUGAR.map().put(Items.BUCKET, EmptyCauldronInteraction.MOLTEN_WHITE_SUGAR);
+            net.minecraft.core.cauldron.CauldronInteraction.EMPTY.map().put(KoratioItems.MOLTEN_WHITE_SUGAR_BUCKET.get(), CauldronInteraction.EMPTY);
+            CauldronInteraction.MOLTEN_LIGHT_GRAY_SUGAR.map().put(Items.BUCKET, EmptyCauldronInteraction.MOLTEN_LIGHT_GRAY_SUGAR);
+            net.minecraft.core.cauldron.CauldronInteraction.EMPTY.map().put(KoratioItems.MOLTEN_LIGHT_GRAY_SUGAR_BUCKET.get(), CauldronInteraction.EMPTY);
+            CauldronInteraction.MOLTEN_GRAY_SUGAR.map().put(Items.BUCKET, EmptyCauldronInteraction.MOLTEN_GRAY_SUGAR);
+            net.minecraft.core.cauldron.CauldronInteraction.EMPTY.map().put(KoratioItems.MOLTEN_GRAY_SUGAR_BUCKET.get(), CauldronInteraction.EMPTY);
+            CauldronInteraction.MOLTEN_BLACK_SUGAR.map().put(Items.BUCKET, EmptyCauldronInteraction.MOLTEN_BLACK_SUGAR);
+            net.minecraft.core.cauldron.CauldronInteraction.EMPTY.map().put(KoratioItems.MOLTEN_BLACK_SUGAR_BUCKET.get(), CauldronInteraction.EMPTY);
+            CauldronInteraction.MOLTEN_BROWN_SUGAR.map().put(Items.BUCKET, EmptyCauldronInteraction.MOLTEN_BROWN_SUGAR);
+            net.minecraft.core.cauldron.CauldronInteraction.EMPTY.map().put(KoratioItems.MOLTEN_BROWN_SUGAR_BUCKET.get(), CauldronInteraction.EMPTY);
             CauldronInteraction.MOLTEN_RED_SUGAR.map().put(Items.BUCKET, EmptyCauldronInteraction.MOLTEN_RED_SUGAR);
             net.minecraft.core.cauldron.CauldronInteraction.EMPTY.map().put(KoratioItems.MOLTEN_RED_SUGAR_BUCKET.get(), CauldronInteraction.EMPTY);
+            CauldronInteraction.MOLTEN_ORANGE_SUGAR.map().put(Items.BUCKET, EmptyCauldronInteraction.MOLTEN_ORANGE_SUGAR);
+            net.minecraft.core.cauldron.CauldronInteraction.EMPTY.map().put(KoratioItems.MOLTEN_ORANGE_SUGAR_BUCKET.get(), CauldronInteraction.EMPTY);
+            CauldronInteraction.MOLTEN_YELLOW_SUGAR.map().put(Items.BUCKET, EmptyCauldronInteraction.MOLTEN_YELLOW_SUGAR);
+            net.minecraft.core.cauldron.CauldronInteraction.EMPTY.map().put(KoratioItems.MOLTEN_YELLOW_SUGAR_BUCKET.get(), CauldronInteraction.EMPTY);
+            CauldronInteraction.MOLTEN_LIME_SUGAR.map().put(Items.BUCKET, EmptyCauldronInteraction.MOLTEN_LIME_SUGAR);
+            net.minecraft.core.cauldron.CauldronInteraction.EMPTY.map().put(KoratioItems.MOLTEN_LIME_SUGAR_BUCKET.get(), CauldronInteraction.EMPTY);
+            CauldronInteraction.MOLTEN_GREEN_SUGAR.map().put(Items.BUCKET, EmptyCauldronInteraction.MOLTEN_GREEN_SUGAR);
+            net.minecraft.core.cauldron.CauldronInteraction.EMPTY.map().put(KoratioItems.MOLTEN_GREEN_SUGAR_BUCKET.get(), CauldronInteraction.EMPTY);
+            CauldronInteraction.MOLTEN_CYAN_SUGAR.map().put(Items.BUCKET, EmptyCauldronInteraction.MOLTEN_CYAN_SUGAR);
+            net.minecraft.core.cauldron.CauldronInteraction.EMPTY.map().put(KoratioItems.MOLTEN_CYAN_SUGAR_BUCKET.get(), CauldronInteraction.EMPTY);
+            CauldronInteraction.MOLTEN_LIGHT_BLUE_SUGAR.map().put(Items.BUCKET, EmptyCauldronInteraction.MOLTEN_LIGHT_BLUE_SUGAR);
+            net.minecraft.core.cauldron.CauldronInteraction.EMPTY.map().put(KoratioItems.MOLTEN_LIGHT_BLUE_SUGAR_BUCKET.get(), CauldronInteraction.EMPTY);
+            CauldronInteraction.MOLTEN_BLUE_SUGAR.map().put(Items.BUCKET, EmptyCauldronInteraction.MOLTEN_BLUE_SUGAR);
+            net.minecraft.core.cauldron.CauldronInteraction.EMPTY.map().put(KoratioItems.MOLTEN_BLUE_SUGAR_BUCKET.get(), CauldronInteraction.EMPTY);
+            CauldronInteraction.MOLTEN_PURPLE_SUGAR.map().put(Items.BUCKET, EmptyCauldronInteraction.MOLTEN_PURPLE_SUGAR);
+            net.minecraft.core.cauldron.CauldronInteraction.EMPTY.map().put(KoratioItems.MOLTEN_PURPLE_SUGAR_BUCKET.get(), CauldronInteraction.EMPTY);
+            CauldronInteraction.MOLTEN_MAGENTA_SUGAR.map().put(Items.BUCKET, EmptyCauldronInteraction.MOLTEN_MAGENTA_SUGAR);
+            net.minecraft.core.cauldron.CauldronInteraction.EMPTY.map().put(KoratioItems.MOLTEN_MAGENTA_SUGAR_BUCKET.get(), CauldronInteraction.EMPTY);
+            CauldronInteraction.MOLTEN_PINK_SUGAR.map().put(Items.BUCKET, EmptyCauldronInteraction.MOLTEN_PINK_SUGAR);
+            net.minecraft.core.cauldron.CauldronInteraction.EMPTY.map().put(KoratioItems.MOLTEN_PINK_SUGAR_BUCKET.get(), CauldronInteraction.EMPTY);
         });
         KoratioBlocks.registerFlammables();
     	KoratioBlocks.registerPots();

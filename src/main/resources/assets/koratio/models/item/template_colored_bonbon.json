@@ -1,0 +1,7 @@
+{
+    "parent": "item/generated",
+    "textures": {
+        "layer0": "koratio:item/bonbon_base",
+        "layer1": "koratio:item/bonbon_overlay"
+    }
+}

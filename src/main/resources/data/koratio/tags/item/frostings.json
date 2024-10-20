@@ -1,9 +1,20 @@
 {
   "values": [
-    "koratio:frosting_block",
-    "koratio:blue_frosting_block",
-    "koratio:green_frosting_block",
+    "koratio:white_frosting_block",
+    "koratio:light_gray_frosting_block",
+    "koratio:gray_frosting_block",
+    "koratio:black_frosting_block",
+    "koratio:brown_frosting_block",
+    "koratio:red_frosting_block",
+    "koratio:orange_frosting_block",
     "koratio:yellow_frosting_block",
-    "koratio:red_frosting_block"
+    "koratio:lime_frosting_block",
+    "koratio:green_frosting_block",
+    "koratio:cyan_frosting_block",
+    "koratio:light_blue_frosting_block",
+    "koratio:blue_frosting_block",
+    "koratio:purple_frosting_block",
+    "koratio:magenta_frosting_block",
+    "koratio:pink_frosting_block"
   ]
 }

@@ -8,6 +8,8 @@ import net.neoforged.neoforge.common.data.LanguageProvider;
 import net.setrion.koratio.Koratio;
 import net.setrion.koratio.registry.*;
 import net.setrion.koratio.scroll.Scroll;
+import net.setrion.koratio.world.item.CandyItem;
+import net.setrion.koratio.world.item.ColoredCandyItem;
 
 import java.util.function.Supplier;
 
@@ -94,6 +96,7 @@ public abstract class LanguageGenerator extends LanguageProvider {
 
 			add("tooltip.koratio.piping_bag.empty", "Empty");
 			add("tooltip.koratio.piping_bag.filled", "Filled with %s units of Icing");
+			add("container.candy_shaper.missing_template_tooltip", "Add Candy Template");
 		}
 		
 		@Override
@@ -119,38 +122,9 @@ public abstract class LanguageGenerator extends LanguageProvider {
 			add(KoratioItems.FLUFFER.get(), "Fluffer");
 			add(KoratioItems.COOKED_FLUFFER.get(), "Cooked Fluffer");
 
-			add(KoratioItems.WHITE_BLUE_CANDY_CANE.get(), "White Blue Candy Cane");
-			add(KoratioItems.WHITE_GREEN_CANDY_CANE.get(), "White Green Candy Cane");
-			add(KoratioItems.WHITE_YELLOW_CANDY_CANE.get(), "White Yellow Candy Cane");
-			add(KoratioItems.WHITE_RED_CANDY_CANE.get(), "White Red Candy Cane");
-
-			add(KoratioItems.BLUE_CANDY_CANE.get(), "Blue Candy Cane");
-			add(KoratioItems.BLUE_WHITE_CANDY_CANE.get(), "Blue White Candy Cane");
-			add(KoratioItems.BLUE_GREEN_CANDY_CANE.get(), "Blue Green Candy Cane");
-			add(KoratioItems.BLUE_YELLOW_CANDY_CANE.get(), "Blue Yellow Candy Cane");
-			add(KoratioItems.BLUE_RED_CANDY_CANE.get(), "Blue Red Candy Cane");
-			add(KoratioItems.BLUE_RAINBOW_CANDY_CANE.get(), "Blue Rainbow Candy Cane");
-
-			add(KoratioItems.GREEN_CANDY_CANE.get(), "Green Candy Cane");
-			add(KoratioItems.GREEN_WHITE_CANDY_CANE.get(), "Green White Candy Cane");
-			add(KoratioItems.GREEN_BLUE_CANDY_CANE.get(), "Green Blue Candy Cane");
-			add(KoratioItems.GREEN_YELLOW_CANDY_CANE.get(), "Green Yellow Candy Cane");
-			add(KoratioItems.GREEN_RED_CANDY_CANE.get(), "Green Red Candy Cane");
-			add(KoratioItems.GREEN_RAINBOW_CANDY_CANE.get(), "Green Rainbow Candy Cane");
-
-			add(KoratioItems.YELLOW_CANDY_CANE.get(), "Yellow Candy Cane");
-			add(KoratioItems.YELLOW_WHITE_CANDY_CANE.get(), "Yellow White Candy Cane");
-			add(KoratioItems.YELLOW_BLUE_CANDY_CANE.get(), "Yellow Blue Candy Cane");
-			add(KoratioItems.YELLOW_GREEN_CANDY_CANE.get(), "Yellow Green Candy Cane");
-			add(KoratioItems.YELLOW_RED_CANDY_CANE.get(), "Yellow Red Candy Cane");
-			add(KoratioItems.YELLOW_RAINBOW_CANDY_CANE.get(), "Yellow Rainbow Candy Cane");
-
-			add(KoratioItems.RED_CANDY_CANE.get(), "Red Candy Cane");
-			add(KoratioItems.RED_WHITE_CANDY_CANE.get(), "Red White Candy Cane");
-			add(KoratioItems.RED_BLUE_CANDY_CANE.get(), "Red Blue Candy Cane");
-			add(KoratioItems.RED_GREEN_CANDY_CANE.get(), "Red Green Candy Cane");
-			add(KoratioItems.RED_YELLOW_CANDY_CANE.get(), "Red Yellow Candy Cane");
-			add(KoratioItems.RED_RAINBOW_CANDY_CANE.get(), "Red Rainbow Candy Cane");
+			for (CandyItem candy : CandyItem.CANDY_LIST) {
+				add(candy, createCandyName(candy));
+			}
 
 			add(KoratioItems.RAW_PANGO.get(), "Raw Pango");
 			add(KoratioItems.CRACKED_PANGO.get(), "Cracked Pango");
@@ -180,23 +154,56 @@ public abstract class LanguageGenerator extends LanguageProvider {
 			add(KoratioItems.TOPAZ.get(), "Topaz");
 			add(KoratioItems.ONYX.get(), "Onyx");
 			add(KoratioItems.WITHER_BONE.get(), "Wither Bone");
-			
+
+			add(KoratioItems.LIGHT_GRAY_SUGAR.get(), "Light Gray Sugar");
+			add(KoratioItems.GRAY_SUGAR.get(), "Gray Sugar");
+			add(KoratioItems.BLACK_SUGAR.get(), "Black Sugar");
+			add(KoratioItems.BROWN_SUGAR.get(), "Brown Sugar");
 			add(KoratioItems.RED_SUGAR.get(), "Red Sugar");
-			add(KoratioItems.BLUE_SUGAR.get(), "Blue Sugar");
+			add(KoratioItems.ORANGE_SUGAR.get(), "Orange Sugar");
 			add(KoratioItems.YELLOW_SUGAR.get(), "Yellow Sugar");
+			add(KoratioItems.LIME_SUGAR.get(), "Lime Sugar");
 			add(KoratioItems.GREEN_SUGAR.get(), "Green Sugar");
+			add(KoratioItems.CYAN_SUGAR.get(), "Cyan Sugar");
+			add(KoratioItems.LIGHT_BLUE_SUGAR.get(), "Light Blue Sugar");
+			add(KoratioItems.BLUE_SUGAR.get(), "Blue Sugar");
+			add(KoratioItems.PURPLE_SUGAR.get(), "Purple Sugar");
+			add(KoratioItems.MAGENTA_SUGAR.get(), "Magenta Sugar");
+			add(KoratioItems.PINK_SUGAR.get(), "Pink Sugar");
 
-			add(KoratioItems.STICKY_SUGAR_BUCKET.get(), "Sticky Sugar Bucket");
-			add(KoratioItems.STICKY_BLUE_SUGAR_BUCKET.get(), "Sticky Blue Sugar Bucket");
-			add(KoratioItems.STICKY_GREEN_SUGAR_BUCKET.get(), "Sticky Green Sugar Bucket");
-			add(KoratioItems.STICKY_YELLOW_SUGAR_BUCKET.get(), "Sticky Yellow Sugar Bucket");
+			add(KoratioItems.STICKY_WHITE_SUGAR_BUCKET.get(), "Sticky White Sugar Bucket");
+			add(KoratioItems.STICKY_LIGHT_GRAY_SUGAR_BUCKET.get(), "Sticky Light Gray Sugar Bucket");
+			add(KoratioItems.STICKY_GRAY_SUGAR_BUCKET.get(), "Sticky Gray Sugar Bucket");
+			add(KoratioItems.STICKY_BLACK_SUGAR_BUCKET.get(), "Sticky Black Sugar Bucket");
+			add(KoratioItems.STICKY_BROWN_SUGAR_BUCKET.get(), "Sticky Brown Sugar Bucket");
 			add(KoratioItems.STICKY_RED_SUGAR_BUCKET.get(), "Sticky Red Sugar Bucket");
+			add(KoratioItems.STICKY_ORANGE_SUGAR_BUCKET.get(), "Sticky Orange Sugar Bucket");
+			add(KoratioItems.STICKY_YELLOW_SUGAR_BUCKET.get(), "Sticky Yellow Sugar Bucket");
+			add(KoratioItems.STICKY_LIME_SUGAR_BUCKET.get(), "Sticky Lime Sugar Bucket");
+			add(KoratioItems.STICKY_GREEN_SUGAR_BUCKET.get(), "Sticky Green Sugar Bucket");
+			add(KoratioItems.STICKY_CYAN_SUGAR_BUCKET.get(), "Sticky Cyan Sugar Bucket");
+			add(KoratioItems.STICKY_LIGHT_BLUE_SUGAR_BUCKET.get(), "Sticky Light Blue Sugar Bucket");
+			add(KoratioItems.STICKY_BLUE_SUGAR_BUCKET.get(), "Sticky Blue Sugar Bucket");
+			add(KoratioItems.STICKY_PURPLE_SUGAR_BUCKET.get(), "Sticky Purple Sugar Bucket");
+			add(KoratioItems.STICKY_MAGENTA_SUGAR_BUCKET.get(), "Sticky Magenta Sugar Bucket");
+			add(KoratioItems.STICKY_PINK_SUGAR_BUCKET.get(), "Sticky Pink Sugar Bucket");
 
-			add(KoratioItems.MOLTEN_SUGAR_BUCKET.get(), "Molten Sugar Bucket");
-			add(KoratioItems.MOLTEN_BLUE_SUGAR_BUCKET.get(), "Molten Blue Sugar Bucket");
-			add(KoratioItems.MOLTEN_GREEN_SUGAR_BUCKET.get(), "Molten Green Sugar Bucket");
-			add(KoratioItems.MOLTEN_YELLOW_SUGAR_BUCKET.get(), "Molten Yellow Sugar Bucket");
+			add(KoratioItems.MOLTEN_WHITE_SUGAR_BUCKET.get(), "Molten White Sugar Bucket");
+			add(KoratioItems.MOLTEN_LIGHT_GRAY_SUGAR_BUCKET.get(), "Molten Light Gray Sugar Bucket");
+			add(KoratioItems.MOLTEN_GRAY_SUGAR_BUCKET.get(), "Molten Gray Sugar Bucket");
+			add(KoratioItems.MOLTEN_BLACK_SUGAR_BUCKET.get(), "Molten Black Sugar Bucket");
+			add(KoratioItems.MOLTEN_BROWN_SUGAR_BUCKET.get(), "Molten Brown Sugar Bucket");
 			add(KoratioItems.MOLTEN_RED_SUGAR_BUCKET.get(), "Molten Red Sugar Bucket");
+			add(KoratioItems.MOLTEN_ORANGE_SUGAR_BUCKET.get(), "Molten Orange Sugar Bucket");
+			add(KoratioItems.MOLTEN_YELLOW_SUGAR_BUCKET.get(), "Molten Yellow Sugar Bucket");
+			add(KoratioItems.MOLTEN_LIME_SUGAR_BUCKET.get(), "Molten Lime Sugar Bucket");
+			add(KoratioItems.MOLTEN_GREEN_SUGAR_BUCKET.get(), "Molten Green Sugar Bucket");
+			add(KoratioItems.MOLTEN_CYAN_SUGAR_BUCKET.get(), "Molten Cyan Sugar Bucket");
+			add(KoratioItems.MOLTEN_LIGHT_BLUE_SUGAR_BUCKET.get(), "Molten Light Blue Sugar Bucket");
+			add(KoratioItems.MOLTEN_BLUE_SUGAR_BUCKET.get(), "Molten Blue Sugar Bucket");
+			add(KoratioItems.MOLTEN_PURPLE_SUGAR_BUCKET.get(), "Molten Purple Sugar Bucket");
+			add(KoratioItems.MOLTEN_MAGENTA_SUGAR_BUCKET.get(), "Molten Magenta Sugar Bucket");
+			add(KoratioItems.MOLTEN_PINK_SUGAR_BUCKET.get(), "Molten Pink Sugar Bucket");
 
 			add(KoratioItems.WOODEN_ICING_SPATULA.get(), "Wooden Icing Spatula");
 			add(KoratioItems.STONE_ICING_SPATULA.get(), "Stone Icing Spatula");
@@ -249,11 +256,22 @@ public abstract class LanguageGenerator extends LanguageProvider {
 
 			add(KoratioBlocks.BLOOD.get(), "Blood");
 			add(KoratioBlocks.CHOCOLATE_MILK.get(), "Chocolate Milk");
-			add(KoratioBlocks.MOLTEN_SUGAR.get(), "Molten Sugar");
-			add(KoratioBlocks.MOLTEN_BLUE_SUGAR.get(), "Molten Blue Sugar");
-			add(KoratioBlocks.MOLTEN_GREEN_SUGAR.get(), "Molten Green Sugar");
-			add(KoratioBlocks.MOLTEN_YELLOW_SUGAR.get(), "Molten Yellow Sugar");
+			add(KoratioBlocks.MOLTEN_WHITE_SUGAR.get(), "Molten White Sugar");
+			add(KoratioBlocks.MOLTEN_LIGHT_GRAY_SUGAR.get(), "Molten Light Gray Sugar");
+			add(KoratioBlocks.MOLTEN_GRAY_SUGAR.get(), "Molten Gray Sugar");
+			add(KoratioBlocks.MOLTEN_BLACK_SUGAR.get(), "Molten Black Sugar");
+			add(KoratioBlocks.MOLTEN_BROWN_SUGAR.get(), "Molten Brown Sugar");
 			add(KoratioBlocks.MOLTEN_RED_SUGAR.get(), "Molten Red Sugar");
+			add(KoratioBlocks.MOLTEN_ORANGE_SUGAR.get(), "Molten Orange Sugar");
+			add(KoratioBlocks.MOLTEN_YELLOW_SUGAR.get(), "Molten Yellow Sugar");
+			add(KoratioBlocks.MOLTEN_LIME_SUGAR.get(), "Molten Lime Sugar");
+			add(KoratioBlocks.MOLTEN_GREEN_SUGAR.get(), "Molten Green Sugar");
+			add(KoratioBlocks.MOLTEN_CYAN_SUGAR.get(), "Molten Cyan Sugar");
+			add(KoratioBlocks.MOLTEN_LIGHT_BLUE_SUGAR.get(), "Molten Light Blue Sugar");
+			add(KoratioBlocks.MOLTEN_BLUE_SUGAR.get(), "Molten Blue Sugar");
+			add(KoratioBlocks.MOLTEN_PURPLE_SUGAR.get(), "Molten Purple Sugar");
+			add(KoratioBlocks.MOLTEN_MAGENTA_SUGAR.get(), "Molten Magenta Sugar");
+			add(KoratioBlocks.MOLTEN_PINK_SUGAR.get(), "Molten Pink Sugar");
 
 			add(KoratioBlocks.RUBY_ORE.get(), "Ruby Ore");
 			add(KoratioBlocks.DEEPSLATE_RUBY_ORE.get(), "Deepslate Ruby Ore");
@@ -522,30 +540,74 @@ public abstract class LanguageGenerator extends LanguageProvider {
 			add(KoratioBlocks.SAPPHIRE_BLOCK.get(), "Block of Sapphire");
 			add(KoratioBlocks.TOPAZ_BLOCK.get(), "Block of Topaz");
 			add(KoratioBlocks.ONYX_BLOCK.get(), "Block of Onyx");
-			
-			add(KoratioBlocks.SUGAR_BLOCK.get(), "Block of Sugar");
-			add(KoratioBlocks.RED_SUGAR_BLOCK.get(), "Block of Red Sugar");
-			add(KoratioBlocks.BLUE_SUGAR_BLOCK.get(), "Block of Blue Sugar");
-			add(KoratioBlocks.YELLOW_SUGAR_BLOCK.get(), "Block of Yellow Sugar");
-			add(KoratioBlocks.GREEN_SUGAR_BLOCK.get(), "Block of Green Sugar");
 
-			add(KoratioBlocks.STICKY_SUGAR_BLOCK.get(), "Block of Sticky Sugar");
+			add(KoratioBlocks.WHITE_SUGAR_BLOCK.get(), "Block of White Sugar");
+			add(KoratioBlocks.LIGHT_GRAY_SUGAR_BLOCK.get(), "Block of Light Gray Sugar");
+			add(KoratioBlocks.GRAY_SUGAR_BLOCK.get(), "Block of Gray Sugar");
+			add(KoratioBlocks.BLACK_SUGAR_BLOCK.get(), "Block of Black Sugar");
+			add(KoratioBlocks.BROWN_SUGAR_BLOCK.get(), "Block of Brown Sugar");
+			add(KoratioBlocks.RED_SUGAR_BLOCK.get(), "Block of Red Sugar");
+			add(KoratioBlocks.ORANGE_SUGAR_BLOCK.get(), "Block of Orange Sugar");
+			add(KoratioBlocks.YELLOW_SUGAR_BLOCK.get(), "Block of Yellow Sugar");
+			add(KoratioBlocks.LIME_SUGAR_BLOCK.get(), "Block of Lime Sugar");
+			add(KoratioBlocks.GREEN_SUGAR_BLOCK.get(), "Block of Green Sugar");
+			add(KoratioBlocks.CYAN_SUGAR_BLOCK.get(), "Block of Cyan Sugar");
+			add(KoratioBlocks.LIGHT_BLUE_SUGAR_BLOCK.get(), "Block of Light Blue Sugar");
+			add(KoratioBlocks.BLUE_SUGAR_BLOCK.get(), "Block of Blue Sugar");
+			add(KoratioBlocks.PURPLE_SUGAR_BLOCK.get(), "Block of Purple Sugar");
+			add(KoratioBlocks.MAGENTA_SUGAR_BLOCK.get(), "Block of Magenta Sugar");
+			add(KoratioBlocks.PINK_SUGAR_BLOCK.get(), "Block of Pink Sugar");
+
+			add(KoratioBlocks.STICKY_WHITE_SUGAR_BLOCK.get(), "Block of Sticky White Sugar");
+			add(KoratioBlocks.STICKY_LIGHT_GRAY_SUGAR_BLOCK.get(), "Block of Sticky Light Gray Sugar");
+			add(KoratioBlocks.STICKY_GRAY_SUGAR_BLOCK.get(), "Block of Sticky Gray Sugar");
+			add(KoratioBlocks.STICKY_BLACK_SUGAR_BLOCK.get(), "Block of Sticky Black Sugar");
+			add(KoratioBlocks.STICKY_BROWN_SUGAR_BLOCK.get(), "Block of Sticky Brown Sugar");
 			add(KoratioBlocks.STICKY_RED_SUGAR_BLOCK.get(), "Block of Sticky Red Sugar");
-			add(KoratioBlocks.STICKY_BLUE_SUGAR_BLOCK.get(), "Block of Sticky Blue Sugar");
+			add(KoratioBlocks.STICKY_ORANGE_SUGAR_BLOCK.get(), "Block of Sticky Orange Sugar");
 			add(KoratioBlocks.STICKY_YELLOW_SUGAR_BLOCK.get(), "Block of Sticky Yellow Sugar");
+			add(KoratioBlocks.STICKY_LIME_SUGAR_BLOCK.get(), "Block of Sticky Lime Sugar");
 			add(KoratioBlocks.STICKY_GREEN_SUGAR_BLOCK.get(), "Block of Sticky Green Sugar");
+			add(KoratioBlocks.STICKY_CYAN_SUGAR_BLOCK.get(), "Block of Sticky Cyan Sugar");
+			add(KoratioBlocks.STICKY_LIGHT_BLUE_SUGAR_BLOCK.get(), "Block of Sticky Light Blue Sugar");
+			add(KoratioBlocks.STICKY_BLUE_SUGAR_BLOCK.get(), "Block of Sticky Blue Sugar");
+			add(KoratioBlocks.STICKY_PURPLE_SUGAR_BLOCK.get(), "Block of Sticky Purple Sugar");
+			add(KoratioBlocks.STICKY_MAGENTA_SUGAR_BLOCK.get(), "Block of Sticky Magenta Sugar");
+			add(KoratioBlocks.STICKY_PINK_SUGAR_BLOCK.get(), "Block of Sticky Pink Sugar");
+
+			add(KoratioBlocks.WHITE_FROSTING_BLOCK.get(), "Block of White Frosting");
+			add(KoratioBlocks.LIGHT_GRAY_FROSTING_BLOCK.get(), "Block of Light Gray Frosting");
+			add(KoratioBlocks.GRAY_FROSTING_BLOCK.get(), "Block of Gray Frosting");
+			add(KoratioBlocks.BLACK_FROSTING_BLOCK.get(), "Block of Black Frosting");
+			add(KoratioBlocks.BROWN_FROSTING_BLOCK.get(), "Block of Brown Frosting");
+			add(KoratioBlocks.RED_FROSTING_BLOCK.get(), "Block of Red Frosting");
+			add(KoratioBlocks.ORANGE_FROSTING_BLOCK.get(), "Block of Orange Frosting");
+			add(KoratioBlocks.YELLOW_FROSTING_BLOCK.get(), "Block of Yellow Frosting");
+			add(KoratioBlocks.LIME_FROSTING_BLOCK.get(), "Block of Lime Frosting");
+			add(KoratioBlocks.GREEN_FROSTING_BLOCK.get(), "Block of Green Frosting");
+			add(KoratioBlocks.CYAN_FROSTING_BLOCK.get(), "Block of Cyan Frosting");
+			add(KoratioBlocks.LIGHT_BLUE_FROSTING_BLOCK.get(), "Block of Light Blue Frosting");
+			add(KoratioBlocks.BLUE_FROSTING_BLOCK.get(), "Block of Blue Frosting");
+			add(KoratioBlocks.PURPLE_FROSTING_BLOCK.get(), "Block of Purple Frosting");
+			add(KoratioBlocks.MAGENTA_FROSTING_BLOCK.get(), "Block of Magenta Frosting");
+			add(KoratioBlocks.PINK_FROSTING_BLOCK.get(), "Block of Pink Frosting");
 
 			add(KoratioBlocks.WHITE_CANDY_BLOCK.get(), "White Candy Block");
-			add(KoratioBlocks.BLUE_CANDY_BLOCK.get(), "Blue Candy Block");
-			add(KoratioBlocks.GREEN_CANDY_BLOCK.get(), "Green Candy Block");
-			add(KoratioBlocks.YELLOW_CANDY_BLOCK.get(), "Yellow Candy Block");
+			add(KoratioBlocks.LIGHT_GRAY_CANDY_BLOCK.get(), "Light Gray Candy Block");
+			add(KoratioBlocks.GRAY_CANDY_BLOCK.get(), "Gray Candy Block");
+			add(KoratioBlocks.BLACK_CANDY_BLOCK.get(), "Black Candy Block");
+			add(KoratioBlocks.BROWN_CANDY_BLOCK.get(), "Brown Candy Block");
 			add(KoratioBlocks.RED_CANDY_BLOCK.get(), "Red Candy Block");
-
-			add(KoratioBlocks.FROSTING_BLOCK.get(), "Block of Frosting");
-			add(KoratioBlocks.BLUE_FROSTING_BLOCK.get(), "Block of blue Frosting");
-			add(KoratioBlocks.GREEN_FROSTING_BLOCK.get(), "Block of green Frosting");
-			add(KoratioBlocks.YELLOW_FROSTING_BLOCK.get(), "Block of yellow Frosting");
-			add(KoratioBlocks.RED_FROSTING_BLOCK.get(), "Block of red Frosting");
+			add(KoratioBlocks.ORANGE_CANDY_BLOCK.get(), "Orange Candy Block");
+			add(KoratioBlocks.YELLOW_CANDY_BLOCK.get(), "Yellow Candy Block");
+			add(KoratioBlocks.LIME_CANDY_BLOCK.get(), "Lime Candy Block");
+			add(KoratioBlocks.GREEN_CANDY_BLOCK.get(), "Green Candy Block");
+			add(KoratioBlocks.CYAN_CANDY_BLOCK.get(), "Cyan Candy Block");
+			add(KoratioBlocks.LIGHT_BLUE_CANDY_BLOCK.get(), "Light Blue Candy Block");
+			add(KoratioBlocks.BLUE_CANDY_BLOCK.get(), "Blue Candy Block");
+			add(KoratioBlocks.PURPLE_CANDY_BLOCK.get(), "Purple Candy Block");
+			add(KoratioBlocks.MAGENTA_CANDY_BLOCK.get(), "Magenta Candy Block");
+			add(KoratioBlocks.PINK_CANDY_BLOCK.get(), "Pink Candy Block");
 
 			add(KoratioBlocks.RAW_GINGERBREAD_BLOCK.get(), "Raw Gingerbread Block");
 			add(KoratioBlocks.RAW_GINGERBREAD_STAIRS.get(), "Raw Gingerbread Stairs");
@@ -743,5 +805,13 @@ public abstract class LanguageGenerator extends LanguageProvider {
 		@Override
 		protected void addScrolls() {			
 		}
+	}
+
+	private static String createCandyName(CandyItem candy) {
+		String name = candy.getDescriptionId();
+		name = name.replaceFirst("item.koratio.", "");
+		name = name.replaceFirst("white", "White").replaceFirst("light_gray", "Light Gray").replaceFirst("gray", "Gray").replaceFirst("black", "Black").replaceFirst("brown", "Brown").replaceFirst("red", "Red").replaceFirst("orange", "Orange").replaceFirst("yellow", "Yellow").replaceFirst("lime", "Lime").replaceFirst("green", "Green").replaceFirst("cyan", "Cyan").replaceFirst("light_blue", "Light Blue").replaceFirst("blue", "Blue").replaceFirst("purple", "Purple").replaceFirst("magenta", "Magenta").replaceFirst("pink", "Pink").replaceFirst("candy_cane", "Candy Cane").replaceFirst("bonbon", "Bonbon").replaceFirst("lollipop", "Lollipop");
+		name = name.replace("_", " ");
+		return name;
 	}
 }

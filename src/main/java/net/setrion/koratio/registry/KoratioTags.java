@@ -27,6 +27,8 @@ public class KoratioTags {
 		public static final TagKey<Item> ONYX_GEMS = createItemKey(ResourceLocation.fromNamespaceAndPath("c", "gems/onyx"));
 
 		public static final TagKey<Item> MOLTEN_SUGAR_BUCKETS = createItemKey(Koratio.prefix("molten_sugar_buckets"));
+
+		public static final TagKey<Item> TELEKINESIS_ENCHANTABLE = createItemKey(Koratio.prefix("telekinesis_enchantable"));
 		//Block-Item Tags
 		public static final TagKey<Item> PANGO_LOGS = createItemKey(Koratio.prefix("pango_logs"));
 		public static final TagKey<Item> RUGONA_LOGS = createItemKey(Koratio.prefix("rugona_logs"));

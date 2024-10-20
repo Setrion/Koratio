@@ -69,8 +69,8 @@ public class GlazedBlockEntity extends BlockEntity {
         super.saveAdditional(tag, registries);
         CompoundTag Glaze = new CompoundTag();
         for (Direction facing : Direction.values()) {
+            CompoundTag Facing = new CompoundTag();
             if (facing == Direction.NORTH) {
-                CompoundTag Facing = new CompoundTag();
                 Facing.putBoolean(Part.LEFT.name, glazedNorth[Part.LEFT.id]);
                 Facing.putBoolean(Part.RIGHT.name, glazedNorth[Part.RIGHT.id]);
                 Facing.putBoolean(Part.TOP.name, glazedNorth[Part.TOP.id]);
@@ -83,7 +83,6 @@ public class GlazedBlockEntity extends BlockEntity {
                 }
                 Glaze.put(facing.getName(), Facing);
             } else if (facing == Direction.EAST) {
-                CompoundTag Facing = new CompoundTag();
                 Facing.putBoolean(Part.LEFT.name, glazedEast[Part.LEFT.id]);
                 Facing.putBoolean(Part.RIGHT.name, glazedEast[Part.RIGHT.id]);
                 Facing.putBoolean(Part.TOP.name, glazedEast[Part.TOP.id]);
@@ -96,7 +95,6 @@ public class GlazedBlockEntity extends BlockEntity {
                 }
                 Glaze.put(facing.getName(), Facing);
             } else if (facing == Direction.SOUTH) {
-                CompoundTag Facing = new CompoundTag();
                 Facing.putBoolean(Part.LEFT.name, glazedSouth[Part.LEFT.id]);
                 Facing.putBoolean(Part.RIGHT.name, glazedSouth[Part.RIGHT.id]);
                 Facing.putBoolean(Part.TOP.name, glazedSouth[Part.TOP.id]);
@@ -109,7 +107,6 @@ public class GlazedBlockEntity extends BlockEntity {
                 }
                 Glaze.put(facing.getName(), Facing);
             } else if (facing == Direction.WEST) {
-                CompoundTag Facing = new CompoundTag();
                 Facing.putBoolean(Part.LEFT.name, glazedWest[Part.LEFT.id]);
                 Facing.putBoolean(Part.RIGHT.name, glazedWest[Part.RIGHT.id]);
                 Facing.putBoolean(Part.TOP.name, glazedWest[Part.TOP.id]);
@@ -122,7 +119,6 @@ public class GlazedBlockEntity extends BlockEntity {
                 }
                 Glaze.put(facing.getName(), Facing);
             } else if (facing == Direction.UP) {
-                CompoundTag Facing = new CompoundTag();
                 Facing.putBoolean(Part.LEFT.name, glazedTop[Part.LEFT.id]);
                 Facing.putBoolean(Part.RIGHT.name, glazedTop[Part.RIGHT.id]);
                 Facing.putBoolean(Part.TOP.name, glazedTop[Part.TOP.id]);
@@ -135,7 +131,6 @@ public class GlazedBlockEntity extends BlockEntity {
                 }
                 Glaze.put(facing.getName(), Facing);
             } else if (facing == Direction.DOWN) {
-                CompoundTag Facing = new CompoundTag();
                 Facing.putBoolean(Part.LEFT.name, glazedBottom[Part.LEFT.id]);
                 Facing.putBoolean(Part.RIGHT.name, glazedBottom[Part.RIGHT.id]);
                 Facing.putBoolean(Part.TOP.name, glazedBottom[Part.TOP.id]);
@@ -276,6 +271,15 @@ public class GlazedBlockEntity extends BlockEntity {
         return false;
     }
 
+    public boolean isFaceFull(Direction facing) {
+        for (Part part : Part.values()) {
+            if (!getPart(facing, part)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     public boolean hasOverlayOnSide(Direction facing) {
         for (Part part : Part.values()) {
             if (getPart(facing, part)) {
@@ -367,11 +371,22 @@ public class GlazedBlockEntity extends BlockEntity {
 
     public enum PartColor implements StringRepresentable {
         NONE("none", 0xFFFFFF),
-        WHITE("white", 0xF3F5F6),
-        BLUE("blue", 0x3B89CB),
-        GREEN("green", 0x40C335),
-        YELLOW("yellow", 0xDDDF3D),
-        RED("red", 0xB22828);
+        WHITE("white", 0xFEFEFE),
+        LIGHT_GRAY("light_gray", 0x9D9D97),
+        GRAY("gray", 0x474F52),
+        BLACK("black", 0x252529),
+        BROWN("brown", 0x835432),
+        RED("red", 0xB8342C),
+        ORANGE("orange", 0xF9932B),
+        YELLOW("yellow", 0xFED93F),
+        LIME("lime", 0x86CC26),
+        GREEN("green", 0x658619),
+        CYAN("cyan", 0x169B9C),
+        LIGHT_BLUE("light_blue", 0x4EC5E7),
+        BLUE("blue", 0x3E4DB2),
+        PURPLE("purple", 0x9743CD),
+        MAGENTA("magenta", 0xD660D1),
+        PINK("pink", 0xF4B2C9);
 
         private final String name;
         private final int color;

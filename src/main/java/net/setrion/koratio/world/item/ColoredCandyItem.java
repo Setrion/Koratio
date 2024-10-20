@@ -10,6 +10,7 @@ public class ColoredCandyItem extends CandyItem {
     private static final List<ColoredCandyItem> CANDY = new ArrayList<>();
     private static final List<ColoredCandyItem> CANDY_CANES = new ArrayList<>();
     private static final List<ColoredCandyItem> LOLLIPOPS = new ArrayList<>();
+    private static final List<ColoredCandyItem> BONBONS = new ArrayList<>();
     private final int baseColor;
     private final int secondColor;
 
@@ -24,6 +25,7 @@ public class ColoredCandyItem extends CandyItem {
         CANDY.add(this);
         if (type == CandyType.CANDY_CANE) CANDY_CANES.add(this);
         if (type == CandyType.LOLLIPOP) LOLLIPOPS.add(this);
+        if (type == CandyType.BONBON) BONBONS.add(this);
     }
 
     public int getColor(int tintIndex) {
@@ -41,5 +43,9 @@ public class ColoredCandyItem extends CandyItem {
 
     public static Iterable<ColoredCandyItem> lollipops() {
         return Iterables.unmodifiableIterable(LOLLIPOPS);
+    }
+
+    public static Iterable<ColoredCandyItem> bonbons() {
+        return Iterables.unmodifiableIterable(BONBONS);
     }
 }

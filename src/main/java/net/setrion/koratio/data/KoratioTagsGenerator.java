@@ -5,6 +5,7 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.*;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.EnchantmentTags;
 import net.minecraft.tags.EntityTypeTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Items;
@@ -14,6 +15,7 @@ import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.setrion.koratio.Koratio;
 import net.setrion.koratio.registry.*;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -87,12 +89,26 @@ public class KoratioTagsGenerator {
             tag(ItemTags.MEAT).add(KoratioItems.SPIKED_PORKCHOP.get(), KoratioItems.COOKED_SPIKED_PORKCHOP.get(), KoratioItems.FLUFFER.get(), KoratioItems.COOKED_FLUFFER.get());
             tag(Tags.Items.FOODS_RAW_MEAT).add(KoratioItems.SPIKED_PORKCHOP.get(), KoratioItems.FLUFFER.get());
             tag(Tags.Items.FOODS_COOKED_MEAT).add(KoratioItems.COOKED_SPIKED_PORKCHOP.get(), KoratioItems.COOKED_FLUFFER.get());
-            tag(KoratioTags.Items.MOLTEN_SUGAR_BUCKETS).add(KoratioItems.MOLTEN_SUGAR_BUCKET.get(), KoratioItems.MOLTEN_BLUE_SUGAR_BUCKET.get(), KoratioItems.MOLTEN_GREEN_SUGAR_BUCKET.get(), KoratioItems.MOLTEN_YELLOW_SUGAR_BUCKET.get(), KoratioItems.MOLTEN_RED_SUGAR_BUCKET.get());
+            tag(KoratioTags.Items.MOLTEN_SUGAR_BUCKETS).add(KoratioItems.MOLTEN_WHITE_SUGAR_BUCKET.get(), KoratioItems.MOLTEN_LIGHT_GRAY_SUGAR_BUCKET.get(), KoratioItems.MOLTEN_GRAY_SUGAR_BUCKET.get(), KoratioItems.MOLTEN_BLACK_SUGAR_BUCKET.get(), KoratioItems.MOLTEN_BROWN_SUGAR_BUCKET.get(), KoratioItems.MOLTEN_RED_SUGAR_BUCKET.get(), KoratioItems.MOLTEN_ORANGE_SUGAR_BUCKET.get(), KoratioItems.MOLTEN_YELLOW_SUGAR_BUCKET.get(), KoratioItems.MOLTEN_LIME_SUGAR_BUCKET.get(), KoratioItems.MOLTEN_GREEN_SUGAR_BUCKET.get(), KoratioItems.MOLTEN_CYAN_SUGAR_BUCKET.get(), KoratioItems.MOLTEN_LIGHT_BLUE_SUGAR_BUCKET.get(), KoratioItems.MOLTEN_BLUE_SUGAR_BUCKET.get(), KoratioItems.MOLTEN_PURPLE_SUGAR_BUCKET.get(), KoratioItems.MOLTEN_MAGENTA_SUGAR_BUCKET.get(), KoratioItems.MOLTEN_PINK_SUGAR_BUCKET.get());
+
+            tag(KoratioTags.Items.TELEKINESIS_ENCHANTABLE).addTag(ItemTags.BOW_ENCHANTABLE).addTag(ItemTags.WEAPON_ENCHANTABLE).addTag(ItemTags.FISHING_ENCHANTABLE).addTag(ItemTags.MINING_ENCHANTABLE);
         }
 
         @Override
         public String getName() {
             return "Koratio Item Tags";
+        }
+    }
+
+    public static class EnchantmentTagGenerator extends EnchantmentTagsProvider {
+
+        public EnchantmentTagGenerator(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider, @Nullable ExistingFileHelper existingFileHelper) {
+            super(output, lookupProvider, Koratio.MOD_ID, existingFileHelper);
+        }
+
+        @Override
+        protected void addTags(HolderLookup.Provider provider) {
+            tag(EnchantmentTags.TREASURE).add(KoratioEnchantments.TELEKINESIS);
         }
     }
 
@@ -140,7 +156,7 @@ public class KoratioTagsGenerator {
             tag(BlockTags.CEILING_HANGING_SIGNS).add(KoratioBlocks.PANGO_HANGING_SIGN.get(), KoratioBlocks.RUGONA_HANGING_SIGN.get(), KoratioBlocks.VARESO_HANGING_SIGN.get(), KoratioBlocks.CANDY_HANGING_SIGN.get(), KoratioBlocks.ELVEN_HANGING_SIGN.get());
             tag(Tags.Blocks.CHESTS_WOODEN).add(KoratioBlocks.PANGO_CHEST.get(), KoratioBlocks.RUGONA_CHEST.get(), KoratioBlocks.VARESO_CHEST.get(), KoratioBlocks.CANDY_CHEST.get(), KoratioBlocks.ELVEN_CHEST.get(), KoratioBlocks.BLUE_ELVEN_CHEST.get(), KoratioBlocks.CYAN_ELVEN_CHEST.get(), KoratioBlocks.GREEN_ELVEN_CHEST.get());
             tag(Tags.Blocks.CHESTS).addTag(Tags.Blocks.CHESTS_WOODEN);
-            tag(KoratioTags.Blocks.FROSTINGS).add(KoratioBlocks.FROSTING_BLOCK.get(), KoratioBlocks.BLUE_FROSTING_BLOCK.get(), KoratioBlocks.GREEN_FROSTING_BLOCK.get(), KoratioBlocks.YELLOW_FROSTING_BLOCK.get(), KoratioBlocks.RED_FROSTING_BLOCK.get());
+            tag(KoratioTags.Blocks.FROSTINGS).add(KoratioBlocks.WHITE_FROSTING_BLOCK.get(), KoratioBlocks.LIGHT_GRAY_FROSTING_BLOCK.get(), KoratioBlocks.GRAY_FROSTING_BLOCK.get(), KoratioBlocks.BLACK_FROSTING_BLOCK.get(), KoratioBlocks.BROWN_FROSTING_BLOCK.get(), KoratioBlocks.RED_FROSTING_BLOCK.get(), KoratioBlocks.ORANGE_FROSTING_BLOCK.get(), KoratioBlocks.YELLOW_FROSTING_BLOCK.get(), KoratioBlocks.LIME_FROSTING_BLOCK.get(), KoratioBlocks.GREEN_FROSTING_BLOCK.get(), KoratioBlocks.CYAN_FROSTING_BLOCK.get(), KoratioBlocks.LIGHT_BLUE_FROSTING_BLOCK.get(), KoratioBlocks.BLUE_FROSTING_BLOCK.get(), KoratioBlocks.PURPLE_FROSTING_BLOCK.get(), KoratioBlocks.MAGENTA_FROSTING_BLOCK.get(), KoratioBlocks.PINK_FROSTING_BLOCK.get());
             tag(BlockTags.LAVA_POOL_STONE_CANNOT_REPLACE).add(KoratioBlocks.PANGO_CHEST.get(), KoratioBlocks.RUGONA_CHEST.get(), KoratioBlocks.VARESO_CHEST.get(), KoratioBlocks.CANDY_CHEST.get(), KoratioBlocks.ELVEN_CHEST.get(), KoratioBlocks.BLUE_ELVEN_CHEST.get(), KoratioBlocks.CYAN_ELVEN_CHEST.get(), KoratioBlocks.GREEN_ELVEN_CHEST.get());
             tag(BlockTags.FEATURES_CANNOT_REPLACE).add(KoratioBlocks.PANGO_CHEST.get(), KoratioBlocks.RUGONA_CHEST.get(), KoratioBlocks.VARESO_CHEST.get(), KoratioBlocks.CANDY_CHEST.get(), KoratioBlocks.ELVEN_CHEST.get(), KoratioBlocks.BLUE_ELVEN_CHEST.get(), KoratioBlocks.CYAN_ELVEN_CHEST.get(), KoratioBlocks.GREEN_ELVEN_CHEST.get());
             tag(BlockTags.PORTALS).add(KoratioBlocks.FANTASIA_PORTAL.get());
@@ -268,11 +284,22 @@ public class KoratioTagsGenerator {
             );
             tag(BlockTags.MINEABLE_WITH_SHOVEL).add(
                     KoratioBlocks.FLIPPED_FARMLAND.get(),
-                    KoratioBlocks.SUGAR_BLOCK.get(),
-                    KoratioBlocks.BLUE_SUGAR_BLOCK.get(),
-                    KoratioBlocks.GREEN_SUGAR_BLOCK.get(),
+                    KoratioBlocks.WHITE_SUGAR_BLOCK.get(),
+                    KoratioBlocks.LIGHT_GRAY_SUGAR_BLOCK.get(),
+                    KoratioBlocks.GRAY_SUGAR_BLOCK.get(),
+                    KoratioBlocks.BLACK_SUGAR_BLOCK.get(),
+                    KoratioBlocks.BROWN_SUGAR_BLOCK.get(),
+                    KoratioBlocks.RED_SUGAR_BLOCK.get(),
+                    KoratioBlocks.ORANGE_SUGAR_BLOCK.get(),
                     KoratioBlocks.YELLOW_SUGAR_BLOCK.get(),
-                    KoratioBlocks.RED_SUGAR_BLOCK.get()
+                    KoratioBlocks.LIME_SUGAR_BLOCK.get(),
+                    KoratioBlocks.GREEN_SUGAR_BLOCK.get(),
+                    KoratioBlocks.CYAN_SUGAR_BLOCK.get(),
+                    KoratioBlocks.LIGHT_BLUE_SUGAR_BLOCK.get(),
+                    KoratioBlocks.BLUE_SUGAR_BLOCK.get(),
+                    KoratioBlocks.PURPLE_SUGAR_BLOCK.get(),
+                    KoratioBlocks.MAGENTA_SUGAR_BLOCK.get(),
+                    KoratioBlocks.PINK_SUGAR_BLOCK.get()
             );
             tag(BlockTags.MINEABLE_WITH_HOE).addTag(
                     KoratioTags.Blocks.LEAF_PANES
@@ -292,12 +319,27 @@ public class KoratioTagsGenerator {
     public static class FluidTagGenerator extends FluidTagsProvider {
 
         public FluidTagGenerator(PackOutput output, CompletableFuture<HolderLookup.Provider> provider, @org.jetbrains.annotations.Nullable ExistingFileHelper existingFileHelper) {
-            super(output, provider);
+            super(output, provider, Koratio.MOD_ID, existingFileHelper);
         }
 
         @Override
         protected void addTags(HolderLookup.Provider provider) {
-            tag(KoratioTags.Fluids.MOLTEN_SUGAR).add(KoratioFluids.MOLTEN_SUGAR.get(), KoratioFluids.FLOWING_MOLTEN_SUGAR.get(), KoratioFluids.MOLTEN_BLUE_SUGAR.get(), KoratioFluids.FLOWING_MOLTEN_BLUE_SUGAR.get(), KoratioFluids.MOLTEN_GREEN_SUGAR.get(), KoratioFluids.FLOWING_MOLTEN_GREEN_SUGAR.get(), KoratioFluids.MOLTEN_YELLOW_SUGAR.get(), KoratioFluids.FLOWING_MOLTEN_YELLOW_SUGAR.get(), KoratioFluids.MOLTEN_RED_SUGAR.get(), KoratioFluids.FLOWING_MOLTEN_RED_SUGAR.get());
+            tag(KoratioTags.Fluids.MOLTEN_SUGAR).add(KoratioFluids.MOLTEN_WHITE_SUGAR.get(), KoratioFluids.FLOWING_MOLTEN_WHITE_SUGAR.get(),
+                    KoratioFluids.MOLTEN_LIGHT_GRAY_SUGAR.get(), KoratioFluids.FLOWING_MOLTEN_LIGHT_GRAY_SUGAR.get(),
+                    KoratioFluids.MOLTEN_GRAY_SUGAR.get(), KoratioFluids.FLOWING_MOLTEN_GRAY_SUGAR.get(),
+                    KoratioFluids.MOLTEN_BLACK_SUGAR.get(), KoratioFluids.FLOWING_MOLTEN_BLACK_SUGAR.get(),
+                    KoratioFluids.MOLTEN_BROWN_SUGAR.get(), KoratioFluids.FLOWING_MOLTEN_BROWN_SUGAR.get(),
+                    KoratioFluids.MOLTEN_RED_SUGAR.get(), KoratioFluids.FLOWING_MOLTEN_RED_SUGAR.get(),
+                    KoratioFluids.MOLTEN_ORANGE_SUGAR.get(), KoratioFluids.FLOWING_MOLTEN_ORANGE_SUGAR.get(),
+                    KoratioFluids.MOLTEN_YELLOW_SUGAR.get(), KoratioFluids.FLOWING_MOLTEN_YELLOW_SUGAR.get(),
+                    KoratioFluids.MOLTEN_LIME_SUGAR.get(), KoratioFluids.FLOWING_MOLTEN_LIME_SUGAR.get(),
+                    KoratioFluids.MOLTEN_GREEN_SUGAR.get(), KoratioFluids.FLOWING_MOLTEN_GREEN_SUGAR.get(),
+                    KoratioFluids.MOLTEN_CYAN_SUGAR.get(), KoratioFluids.FLOWING_MOLTEN_CYAN_SUGAR.get(),
+                    KoratioFluids.MOLTEN_LIGHT_BLUE_SUGAR.get(), KoratioFluids.FLOWING_MOLTEN_LIGHT_BLUE_SUGAR.get(),
+                    KoratioFluids.MOLTEN_BLUE_SUGAR.get(), KoratioFluids.FLOWING_MOLTEN_BLUE_SUGAR.get(),
+                    KoratioFluids.MOLTEN_PURPLE_SUGAR.get(), KoratioFluids.FLOWING_MOLTEN_PURPLE_SUGAR.get(),
+                    KoratioFluids.MOLTEN_MAGENTA_SUGAR.get(), KoratioFluids.FLOWING_MOLTEN_MAGENTA_SUGAR.get(),
+                    KoratioFluids.MOLTEN_PINK_SUGAR.get(), KoratioFluids.FLOWING_MOLTEN_PINK_SUGAR.get());
         }
     }
 

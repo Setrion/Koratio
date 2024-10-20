@@ -128,7 +128,6 @@ public class PipingBagItem extends Item {
                     return GlazedBlockEntity.Part.MIDDLE;
                 }
             } else if (direction == Direction.EAST || direction == Direction.WEST) {
-                System.out.println(d2 + ", " + d1);
                 if (d2 < 0.2 && d1 < 0.8) {
                     if (direction == Direction.EAST) return GlazedBlockEntity.Part.LEFT;
                     return GlazedBlockEntity.Part.RIGHT;
@@ -168,16 +167,38 @@ public class PipingBagItem extends Item {
                 ItemStack frosting = player.getItemInHand(InteractionHand.OFF_HAND);
                 if (isEmpty(player.getItemInHand(usedHand))) {
                     ItemStack stack = player.getItemInHand(usedHand);
-                    if (frosting.is(KoratioItems.FROSTING_BLOCK.get())) {
+                    if (frosting.is(KoratioItems.WHITE_FROSTING_BLOCK.get())) {
                         setColorAndAmount(stack, GlazedBlockEntity.PartColor.WHITE, 69);
-                    } else if (frosting.is(KoratioItems.BLUE_FROSTING_BLOCK.get())) {
-                        setColorAndAmount(stack, GlazedBlockEntity.PartColor.BLUE, 69);
-                    } else if (frosting.is(KoratioItems.GREEN_FROSTING_BLOCK.get())) {
-                        setColorAndAmount(stack, GlazedBlockEntity.PartColor.GREEN, 69);
-                    } else if (frosting.is(KoratioItems.YELLOW_FROSTING_BLOCK.get())) {
-                        setColorAndAmount(stack, GlazedBlockEntity.PartColor.YELLOW, 69);
+                    } else if (frosting.is(KoratioItems.LIGHT_GRAY_FROSTING_BLOCK.get())) {
+                        setColorAndAmount(stack, GlazedBlockEntity.PartColor.LIGHT_GRAY, 69);
+                    } else if (frosting.is(KoratioItems.GRAY_FROSTING_BLOCK.get())) {
+                        setColorAndAmount(stack, GlazedBlockEntity.PartColor.GRAY, 69);
+                    } else if (frosting.is(KoratioItems.BLACK_FROSTING_BLOCK.get())) {
+                        setColorAndAmount(stack, GlazedBlockEntity.PartColor.BLACK, 69);
+                    } else if (frosting.is(KoratioItems.BROWN_FROSTING_BLOCK.get())) {
+                        setColorAndAmount(stack, GlazedBlockEntity.PartColor.BROWN, 69);
                     } else if (frosting.is(KoratioItems.RED_FROSTING_BLOCK.get())) {
                         setColorAndAmount(stack, GlazedBlockEntity.PartColor.RED, 69);
+                    } else if (frosting.is(KoratioItems.ORANGE_FROSTING_BLOCK.get())) {
+                        setColorAndAmount(stack, GlazedBlockEntity.PartColor.ORANGE, 69);
+                    } else if (frosting.is(KoratioItems.YELLOW_FROSTING_BLOCK.get())) {
+                        setColorAndAmount(stack, GlazedBlockEntity.PartColor.YELLOW, 69);
+                    } else if (frosting.is(KoratioItems.LIME_FROSTING_BLOCK.get())) {
+                        setColorAndAmount(stack, GlazedBlockEntity.PartColor.LIME, 69);
+                    } else if (frosting.is(KoratioItems.GREEN_FROSTING_BLOCK.get())) {
+                        setColorAndAmount(stack, GlazedBlockEntity.PartColor.GREEN, 69);
+                    } else if (frosting.is(KoratioItems.CYAN_FROSTING_BLOCK.get())) {
+                        setColorAndAmount(stack, GlazedBlockEntity.PartColor.CYAN, 69);
+                    } else if (frosting.is(KoratioItems.LIGHT_BLUE_FROSTING_BLOCK.get())) {
+                        setColorAndAmount(stack, GlazedBlockEntity.PartColor.LIGHT_BLUE, 69);
+                    } else if (frosting.is(KoratioItems.BLUE_FROSTING_BLOCK.get())) {
+                        setColorAndAmount(stack, GlazedBlockEntity.PartColor.BLUE, 69);
+                    } else if (frosting.is(KoratioItems.PURPLE_FROSTING_BLOCK.get())) {
+                        setColorAndAmount(stack, GlazedBlockEntity.PartColor.PURPLE, 69);
+                    } else if (frosting.is(KoratioItems.MAGENTA_FROSTING_BLOCK.get())) {
+                        setColorAndAmount(stack, GlazedBlockEntity.PartColor.MAGENTA, 69);
+                    } else if (frosting.is(KoratioItems.PINK_FROSTING_BLOCK.get())) {
+                        setColorAndAmount(stack, GlazedBlockEntity.PartColor.PINK, 69);
                     }
                     player.getItemInHand(InteractionHand.OFF_HAND).shrink(1);
                 }
@@ -193,20 +214,8 @@ public class PipingBagItem extends Item {
             tooltipComponents.add(Component.translatable("tooltip.koratio.piping_bag.empty"));
         } else {
             GlazedBlockEntity.PartColor color = getColor(stack);
-            ChatFormatting chatFormatting = ChatFormatting.GRAY;
-            if (color == GlazedBlockEntity.PartColor.WHITE) {
-                chatFormatting = ChatFormatting.WHITE;
-            } else if (color == GlazedBlockEntity.PartColor.BLUE) {
-                chatFormatting = ChatFormatting.BLUE;
-            } else if (color == GlazedBlockEntity.PartColor.GREEN) {
-                chatFormatting = ChatFormatting.GREEN;
-            } else if (color == GlazedBlockEntity.PartColor.YELLOW) {
-                chatFormatting = ChatFormatting.YELLOW;
-            } else if (color == GlazedBlockEntity.PartColor.RED) {
-                chatFormatting = ChatFormatting.RED;
-            }
             int amount = getAmount(stack);
-            tooltipComponents.add(Component.translatable("tooltip.koratio.piping_bag.filled", amount).withStyle(chatFormatting));
+            tooltipComponents.add(Component.translatable("tooltip.koratio.piping_bag.filled", amount).withColor(color.getColor()));
         }
     }
 
