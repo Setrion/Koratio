@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/leaves",
+  "textures": {
+    "all": "koratio:block/light_blue_cotton_candy_leaves"
+  }
+}

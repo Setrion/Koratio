@@ -7,9 +7,14 @@ import net.minecraft.core.Vec3i;
 import net.minecraft.util.RandomSource;
 import net.minecraft.util.valueproviders.IntProvider;
 import net.minecraft.world.level.LevelSimulatedReader;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.levelgen.feature.TreeFeature;
 import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
 import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacer;
 import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacerType;
+import net.minecraft.world.level.material.Fluids;
+import net.setrion.koratio.registry.KoratioBlocks;
 import net.setrion.koratio.registry.KoratioFoliagePlacerTypes;
 
 public class CandyFoliagePlacer extends FoliagePlacer {
@@ -26,6 +31,17 @@ public class CandyFoliagePlacer extends FoliagePlacer {
 	@Override
 	protected void createFoliage(LevelSimulatedReader reader, FoliageSetter setter, RandomSource random, TreeConfiguration config, int p_225617_, FoliageAttachment attachment, int p_225619_, int p_225620_, int height) {
 		BlockPos currentPos;
+		BlockState leaves;
+		int l = random.nextInt(4);
+		if (l == 3) {
+			leaves = KoratioBlocks.PINK_COTTON_CANDY_LEAVES.get().defaultBlockState();
+		} else if (l == 2) {
+			leaves = KoratioBlocks.LIGHT_BLUE_COTTON_CANDY_LEAVES.get().defaultBlockState();
+		} else if (l == 1) {
+			leaves = KoratioBlocks.LIME_COTTON_CANDY_LEAVES.get().defaultBlockState();
+		} else {
+			leaves = KoratioBlocks.YELLOW_COTTON_CANDY_LEAVES.get().defaultBlockState();
+		}
 		int f = 4;
 		BlockPos spherecenter = attachment.pos().above(height-7 + f);
 		for (int y = height-7; y <= height; y++) {
@@ -33,10 +49,23 @@ public class CandyFoliagePlacer extends FoliagePlacer {
 				for (int z = -f; z < f; z++) {
 					currentPos = attachment.pos().above(y).east(x).north(z);
 					if (currentPos.distSqr(new Vec3i(spherecenter.getX(), spherecenter.getY(), spherecenter.getZ())) <= f*f-2.2) {
-						tryPlaceLeaf(reader, setter, random, config, currentPos);
+						tryPlaceLeaf(leaves, reader, setter, random, config, currentPos);
 					}
 				}
 			}
+		}
+	}
+
+	protected static boolean tryPlaceLeaf(BlockState leaves, LevelSimulatedReader level, FoliageSetter foliageSetter, RandomSource random, TreeConfiguration treeConfiguration, BlockPos pos) {
+		if (!TreeFeature.validTreePos(level, pos)) {
+			return false;
+		} else {
+			if (leaves.hasProperty(BlockStateProperties.WATERLOGGED)) {
+				leaves = leaves.setValue(BlockStateProperties.WATERLOGGED, level.isFluidAtPosition(pos, (p_225638_) -> p_225638_.isSourceOfType(Fluids.WATER)));
+			}
+
+			foliageSetter.set(pos, leaves);
+			return true;
 		}
 	}
 

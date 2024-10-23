@@ -1,0 +1,8 @@
+{
+  "parent": "koratio:block/template_glass_pane_side",
+  "render_type": "minecraft:cutout_mipped",
+  "textures": {
+    "edge": "koratio:block/lime_cotton_candy_leaves",
+    "pane": "koratio:block/lime_cotton_candy_leaves"
+  }
+}

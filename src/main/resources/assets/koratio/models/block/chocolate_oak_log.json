@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "koratio:block/chocolate_oak_log_top",
+    "side": "koratio:block/chocolate_oak_log"
+  }
+}

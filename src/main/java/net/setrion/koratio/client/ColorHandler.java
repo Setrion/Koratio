@@ -16,7 +16,6 @@ import net.setrion.koratio.registry.KoratioItems;
 import net.setrion.koratio.scroll.ScrollUtils;
 import net.setrion.koratio.world.item.ColoredCandyItem;
 import net.setrion.koratio.world.item.PipingBagItem;
-import net.setrion.koratio.world.item.RainbowCandyItem;
 import net.setrion.koratio.world.level.block.entity.GlazedBlockEntity;
 
 @EventBusSubscriber(modid = Koratio.MOD_ID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
@@ -96,21 +95,20 @@ public class ColorHandler {
 		event.register((stack, tintIndex) -> FoliageColor.getMangroveColor(), KoratioBlocks.MANGROVE_LEAF_PANE.get());
 		event.register((stack, tintIndex) -> {
 			if (!ScrollUtils.hasScrollData(stack) && tintIndex == 1) return 0;
-			return tintIndex == 1 ? (FastColor.ARGB32.opaque(ScrollUtils.getScroll(stack).getType().getColor())) : -1;
+			return tintIndex == 1 ? FastColor.ARGB32.opaque(ScrollUtils.getScroll(stack).getType().getColor()) : -1;
 		}, KoratioItems.SCROLL.get());
 		event.register((stack, tintIndex) -> {
 			if (stack.is(KoratioItems.PIPING_BAG)) {
 				PipingBagItem bag = (PipingBagItem) stack.getItem();
-				if (bag.isEmpty(stack) || tintIndex == 0) return -1;
-				return bag.getColor(stack).getColor();
+				if (bag.isEmpty(stack) || tintIndex == 0) {
+					return -1;
+				}
+				return FastColor.ARGB32.opaque(bag.getColor(stack).getColor());
 			}
 			return 0;
 		}, KoratioItems.PIPING_BAG.get());
 		for (ColoredCandyItem coloredCandyItem : ColoredCandyItem.candy()) {
 			event.register((stack, tintIndex) -> FastColor.ARGB32.opaque(coloredCandyItem.getColor(tintIndex)), coloredCandyItem);
-		}
-		for (RainbowCandyItem coloredCandyItem : RainbowCandyItem.candy()) {
-			event.register((stack, tintIndex) -> FastColor.ARGB32.opaque(coloredCandyItem.getRainbowColor(tintIndex)), coloredCandyItem);
 		}
 	}
 }

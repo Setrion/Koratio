@@ -9,5 +9,4 @@ public class GingerbreadMan extends Monster {
 	public GingerbreadMan(EntityType<? extends GingerbreadMan> type, Level level) {
 		super(type, level);
 	}
-
 }

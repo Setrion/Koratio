@@ -28,10 +28,12 @@
     "koratio:rugona_bookshelf",
     "koratio:vareso_bookshelf",
     "koratio:candy_bookshelf",
+    "koratio:chocolate_oak_bookshelf",
     "koratio:elven_bookshelf",
     "koratio:blue_elven_bookshelf",
     "koratio:cyan_elven_bookshelf",
     "koratio:green_elven_bookshelf",
-    "#koratio:tall_wooden_doors"
+    "#koratio:tall_wooden_doors",
+    "#koratio:gingerbread_labyrinth_blocks"
   ]
 }

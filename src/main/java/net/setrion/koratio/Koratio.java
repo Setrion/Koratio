@@ -111,7 +111,8 @@ public class Koratio {
                 KoratioBlocks.CYAN_ELVEN_SIGN.get(), KoratioBlocks.CYAN_ELVEN_WALL_SIGN.get(),
                 KoratioBlocks.GREEN_ELVEN_SIGN.get(), KoratioBlocks.GREEN_ELVEN_WALL_SIGN.get(),
                 KoratioBlocks.VARESO_SIGN.get(), KoratioBlocks.VARESO_WALL_SIGN.get(),
-                KoratioBlocks.CANDY_SIGN.get(), KoratioBlocks.CANDY_WALL_SIGN.get()
+                KoratioBlocks.CANDY_SIGN.get(), KoratioBlocks.CANDY_WALL_SIGN.get(),
+                KoratioBlocks.CHOCOLATE_OAK_SIGN.get(), KoratioBlocks.CHOCOLATE_OAK_WALL_SIGN.get()
         );
 
         event.modify(BlockEntityType.HANGING_SIGN,
@@ -122,7 +123,8 @@ public class Koratio {
                 KoratioBlocks.CYAN_ELVEN_HANGING_SIGN.get(), KoratioBlocks.CYAN_ELVEN_WALL_HANGING_SIGN.get(),
                 KoratioBlocks.GREEN_ELVEN_HANGING_SIGN.get(), KoratioBlocks.GREEN_ELVEN_WALL_HANGING_SIGN.get(),
                 KoratioBlocks.VARESO_HANGING_SIGN.get(), KoratioBlocks.VARESO_WALL_HANGING_SIGN.get(),
-                KoratioBlocks.CANDY_HANGING_SIGN.get(), KoratioBlocks.CANDY_WALL_HANGING_SIGN.get()
+                KoratioBlocks.CANDY_HANGING_SIGN.get(), KoratioBlocks.CANDY_WALL_HANGING_SIGN.get(),
+                KoratioBlocks.CHOCOLATE_OAK_HANGING_SIGN.get(), KoratioBlocks.CHOCOLATE_OAK_WALL_HANGING_SIGN.get()
         );
 
         event.modify(BlockEntityType.FURNACE, KoratioBlocks.ANCIENT_FURNACE.get());

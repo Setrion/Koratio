@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/stairs",
+  "textures": {
+    "bottom": "koratio:block/chocolate_oak_planks",
+    "side": "koratio:block/chocolate_oak_planks",
+    "top": "koratio:block/chocolate_oak_planks"
+  }
+}

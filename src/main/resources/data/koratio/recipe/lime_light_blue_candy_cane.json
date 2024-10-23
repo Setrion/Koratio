@@ -1,0 +1,25 @@
+{
+  "type": "koratio:candy_shaper",
+  "fluid_ingredients": [
+    {
+      "amount": 200,
+      "ingredient": {
+        "fluid": "koratio:molten_lime_sugar"
+      }
+    },
+    {
+      "amount": 200,
+      "ingredient": {
+        "fluid": "koratio:molten_light_blue_sugar"
+      }
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "koratio:lime_light_blue_candy_cane"
+  },
+  "template": {
+    "count": 1,
+    "id": "koratio:candy_cane_casting_template"
+  }
+}

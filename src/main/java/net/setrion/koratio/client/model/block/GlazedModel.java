@@ -136,7 +136,6 @@ public class GlazedModel extends BakedModelWrapper<BakedModel> {
                 cachedQuads.addAll(this.originalModel.getQuads(blockState, facing, randomSource, modelData, renderType));
                 MODEL_CACHE.put(key, cachedQuads);
             }
-            cachedQuads.addAll(this.originalModel.getQuads(blockState, facing, randomSource, modelData, renderType));
             return cachedQuads;
         } else {
             List<BakedQuad> quads = new ArrayList<>();

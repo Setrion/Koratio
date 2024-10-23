@@ -24,6 +24,8 @@ import net.setrion.koratio.registry.KoratioBlocks;
 import net.setrion.koratio.registry.KoratioFluids;
 import net.setrion.koratio.registry.KoratioItems;
 import net.setrion.koratio.registry.KoratioTags;
+import net.setrion.koratio.world.item.CandyItem;
+import net.setrion.koratio.world.item.ColoredCandyItem;
 import net.setrion.koratio.world.item.crafting.WoodcutterRecipe;
 
 import java.util.List;
@@ -228,7 +230,10 @@ public class RecipeGenerator extends RecipeProvider {
 		woodenBoat(output, KoratioItems.CANDY_BOAT.get(), KoratioBlocks.CANDY_PLANKS.get());
 		chest(KoratioItems.CANDY_CHEST.get(), KoratioBlocks.CANDY_PLANKS).save(output);
 		bookshelf(output, KoratioItems.CANDY_BOOKSHELF.get(), KoratioBlocks.CANDY_PLANKS);
-		leafPane(KoratioBlocks.COTTON_CANDY_LEAF_PANE.get(), KoratioBlocks.COTTON_CANDY_LEAVES.get()).save(output);
+		leafPane(KoratioBlocks.PINK_COTTON_CANDY_LEAF_PANE.get(), KoratioBlocks.PINK_COTTON_CANDY_LEAVES.get()).save(output);
+		leafPane(KoratioBlocks.LIGHT_BLUE_COTTON_CANDY_LEAF_PANE.get(), KoratioBlocks.LIGHT_BLUE_COTTON_CANDY_LEAVES.get()).save(output);
+		leafPane(KoratioBlocks.LIME_COTTON_CANDY_LEAF_PANE.get(), KoratioBlocks.LIME_COTTON_CANDY_LEAVES.get()).save(output);
+		leafPane(KoratioBlocks.YELLOW_COTTON_CANDY_LEAF_PANE.get(), KoratioBlocks.YELLOW_COTTON_CANDY_LEAVES.get()).save(output);
 
 		woodFromLogs(output, KoratioBlocks.VARESO_WOOD.get(), KoratioBlocks.VARESO_LOG.get());
 		woodFromLogs(output, KoratioBlocks.STRIPPED_VARESO_WOOD.get(), KoratioBlocks.STRIPPED_VARESO_LOG.get());
@@ -309,8 +314,15 @@ public class RecipeGenerator extends RecipeProvider {
 		ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, Items.CAKE).pattern("mmm").pattern("ses").pattern("www").define('m', Items.MILK_BUCKET).define('s', KoratioTags.Items.SUGAR).define('e', Tags.Items.EGGS).define('w', Items.WHEAT).unlockedBy("has_egg", has(Tags.Items.EGGS)).save(output);
 
 		//CandyShaperRecipes candyShaping(output, result, mainFluid, secondFluid)
-		//candyShaping(output, Items.DIAMOND, new SizedFluidIngredient(FluidIngredient.of(KoratioFluids.MOLTEN_BLACK_SUGAR.get()), 200), new SizedFluidIngredient(FluidIngredient.of(KoratioFluids.MOLTEN_BLUE_SUGAR.get()), 200));
-		//candyShaping(output, Items.EMERALD, new SizedFluidIngredient(FluidIngredient.of(KoratioFluids.MOLTEN_BLACK_SUGAR.get()), 400));
+		for (CandyItem candy : ColoredCandyItem.candy()) {
+			if (candy instanceof ColoredCandyItem colored) {
+				if (colored.getBaseColor() == colored.getSecondColor()) {
+					CandyShaperRecipeBuilder.recipe(candy, colored.getType().getTemplate()).requires(FluidIngredient.of(colored.getBaseColor().getFluid().get()), colored.getType().getCost()).unlockedBy("has_bucket", has(colored.getBaseColor().getFluid().get().getBucket())).save(output);
+				} else {
+					CandyShaperRecipeBuilder.recipe(candy, colored.getType().getTemplate()).requires(FluidIngredient.of(colored.getBaseColor().getFluid().get()), colored.getType().getCost()/2).requires(FluidIngredient.of(colored.getSecondColor().getFluid().get()), colored.getType().getCost()/2).unlockedBy("has_bucket", has(colored.getBaseColor().getFluid().get().getBucket())).save(output);
+				}
+			}
+		}
 
 		//BrewingRecipes
 		
@@ -875,20 +887,6 @@ public class RecipeGenerator extends RecipeProvider {
 
 	public static SingleItemRecipeBuilder woodcutting(Ingredient pIngredient, RecipeCategory pCategory, ItemLike pResult, int pCount) {
 		return new SingleItemRecipeBuilder(pCategory, WoodcutterRecipe::new, pIngredient, pResult, pCount);
-	}
-
-	public static void candyShaping(RecipeOutput output, ItemLike result, SizedFluidIngredient mainFluidIngredient) {
-		if (mainFluidIngredient.ingredient().isEmpty()) {
-			return;
-		}
-		CandyShaperRecipeBuilder.recipe(result, mainFluidIngredient, null).unlockedBy("has_molten_sugar", has(KoratioTags.Items.MOLTEN_SUGAR_BUCKETS)).save(output);
-	}
-
-	public static void candyShaping(RecipeOutput output, ItemLike result, SizedFluidIngredient mainFluidIngredient, SizedFluidIngredient secondFluidIngredient) {
-		if (mainFluidIngredient.ingredient().isEmpty()) {
-			return;
-		}
-		CandyShaperRecipeBuilder.recipe(result, mainFluidIngredient, secondFluidIngredient).unlockedBy("has_molten_sugar", has(KoratioTags.Items.MOLTEN_SUGAR_BUCKETS)).save(output);
 	}
 
 	protected static String getItemName(ItemLike item) {

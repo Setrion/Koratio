@@ -29,6 +29,7 @@ public class ItemStackBlockEntityRenderer extends BlockEntityWithoutLevelRendere
 		makeInstance(map, KoratioBlocks.RUGONA_CHEST);
 		makeInstance(map, KoratioBlocks.VARESO_CHEST);
 		makeInstance(map, KoratioBlocks.CANDY_CHEST);
+		makeInstance(map, KoratioBlocks.CHOCOLATE_OAK_CHEST);
 		makeInstance(map, KoratioBlocks.ELVEN_CHEST);
 		makeInstance(map, KoratioBlocks.BLUE_ELVEN_CHEST);
 		makeInstance(map, KoratioBlocks.CYAN_ELVEN_CHEST);
@@ -39,6 +40,7 @@ public class ItemStackBlockEntityRenderer extends BlockEntityWithoutLevelRendere
 		makeTrappedInstance(map, KoratioBlocks.TRAPPED_RUGONA_CHEST);
 		makeTrappedInstance(map, KoratioBlocks.TRAPPED_VARESO_CHEST);
 		makeTrappedInstance(map, KoratioBlocks.TRAPPED_CANDY_CHEST);
+		makeTrappedInstance(map, KoratioBlocks.TRAPPED_CHOCOLATE_OAK_CHEST);
 		makeTrappedInstance(map, KoratioBlocks.TRAPPED_ELVEN_CHEST);
 		makeTrappedInstance(map, KoratioBlocks.TRAPPED_BLUE_ELVEN_CHEST);
 		makeTrappedInstance(map, KoratioBlocks.TRAPPED_CYAN_ELVEN_CHEST);

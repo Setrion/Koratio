@@ -3,11 +3,6 @@ package net.setrion.koratio.data;
 import net.minecraft.core.Direction;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
-import net.minecraft.data.models.blockstates.MultiVariantGenerator;
-import net.minecraft.data.models.blockstates.PropertyDispatch;
-import net.minecraft.data.models.blockstates.Variant;
-import net.minecraft.data.models.blockstates.VariantProperties;
-import net.minecraft.data.models.model.ModelLocationUtils;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.properties.DoorHingeSide;
@@ -67,6 +62,23 @@ public class BlockStateGenerator extends BlockStateProvider {
 		simpleBlock(KoratioBlocks.GREEN_SUGARGLASS_FLOWER.get(), models().withExistingParent(Koratio.prefix("block/green_sugarglass_flower").getPath(), "minecraft:block/coral_fan").texture("fan", Koratio.prefix("block/green_sugarglass_flower")).renderType("tripwire"));
 		simpleBlock(KoratioBlocks.YELLOW_SUGARGLASS_FLOWER.get(), models().withExistingParent(Koratio.prefix("block/yellow_sugarglass_flower").getPath(), "minecraft:block/coral_fan").texture("fan", Koratio.prefix("block/yellow_sugarglass_flower")).renderType("tripwire"));
 		simpleBlock(KoratioBlocks.RED_SUGARGLASS_FLOWER.get(), models().withExistingParent(Koratio.prefix("block/red_sugarglass_flower").getPath(), "minecraft:block/coral_fan").texture("fan", Koratio.prefix("block/red_sugarglass_flower")).renderType("tripwire"));
+
+		fluid(KoratioBlocks.MOLTEN_WHITE_SUGAR.get(), "koratio:block/molten_white_sugar_still");
+		fluid(KoratioBlocks.MOLTEN_LIGHT_GRAY_SUGAR.get(), "koratio:block/molten_light_gray_sugar_still");
+		fluid(KoratioBlocks.MOLTEN_GRAY_SUGAR.get(), "koratio:block/molten_gray_sugar_still");
+		fluid(KoratioBlocks.MOLTEN_BLACK_SUGAR.get(), "koratio:block/molten_black_sugar_still");
+		fluid(KoratioBlocks.MOLTEN_BROWN_SUGAR.get(), "koratio:block/molten_brown_sugar_still");
+		fluid(KoratioBlocks.MOLTEN_RED_SUGAR.get(), "koratio:block/molten_red_sugar_still");
+		fluid(KoratioBlocks.MOLTEN_ORANGE_SUGAR.get(), "koratio:block/molten_orange_sugar_still");
+		fluid(KoratioBlocks.MOLTEN_YELLOW_SUGAR.get(), "koratio:block/molten_yellow_sugar_still");
+		fluid(KoratioBlocks.MOLTEN_LIME_SUGAR.get(), "koratio:block/molten_lime_sugar_still");
+		fluid(KoratioBlocks.MOLTEN_GREEN_SUGAR.get(), "koratio:block/molten_green_sugar_still");
+		fluid(KoratioBlocks.MOLTEN_CYAN_SUGAR.get(), "koratio:block/molten_cyan_sugar_still");
+		fluid(KoratioBlocks.MOLTEN_LIGHT_BLUE_SUGAR.get(), "koratio:block/molten_light_blue_sugar_still");
+		fluid(KoratioBlocks.MOLTEN_BLUE_SUGAR.get(), "koratio:block/molten_blue_sugar_still");
+		fluid(KoratioBlocks.MOLTEN_PURPLE_SUGAR.get(), "koratio:block/molten_purple_sugar_still");
+		fluid(KoratioBlocks.MOLTEN_MAGENTA_SUGAR.get(), "koratio:block/molten_magenta_sugar_still");
+		fluid(KoratioBlocks.MOLTEN_PINK_SUGAR.get(), "koratio:block/molten_pink_sugar_still");
 
 		cauldronBlock(KoratioBlocks.MOLTEN_WHITE_SUGAR_CAULDRON.get(), "koratio:block/molten_white_sugar_still");
 		cauldronBlock(KoratioBlocks.MOLTEN_LIGHT_GRAY_SUGAR_CAULDRON.get(), "koratio:block/molten_light_gray_sugar_still");
@@ -135,22 +147,22 @@ public class BlockStateGenerator extends BlockStateProvider {
 		simpleBlock(KoratioBlocks.STICKY_MAGENTA_SUGAR_BLOCK.get());
 		simpleBlock(KoratioBlocks.STICKY_PINK_SUGAR_BLOCK.get());
 
-		simpleBlock(KoratioBlocks.WHITE_FROSTING_BLOCK.get());
-		simpleBlock(KoratioBlocks.LIGHT_GRAY_FROSTING_BLOCK.get());
-		simpleBlock(KoratioBlocks.GRAY_FROSTING_BLOCK.get());
-		simpleBlock(KoratioBlocks.BLACK_FROSTING_BLOCK.get());
-		simpleBlock(KoratioBlocks.BROWN_FROSTING_BLOCK.get());
-		simpleBlock(KoratioBlocks.RED_FROSTING_BLOCK.get());
-		simpleBlock(KoratioBlocks.ORANGE_FROSTING_BLOCK.get());
-		simpleBlock(KoratioBlocks.YELLOW_FROSTING_BLOCK.get());
-		simpleBlock(KoratioBlocks.LIME_FROSTING_BLOCK.get());
-		simpleBlock(KoratioBlocks.GREEN_FROSTING_BLOCK.get());
-		simpleBlock(KoratioBlocks.CYAN_FROSTING_BLOCK.get());
-		simpleBlock(KoratioBlocks.LIGHT_BLUE_FROSTING_BLOCK.get());
-		simpleBlock(KoratioBlocks.BLUE_FROSTING_BLOCK.get());
-		simpleBlock(KoratioBlocks.PURPLE_FROSTING_BLOCK.get());
-		simpleBlock(KoratioBlocks.MAGENTA_FROSTING_BLOCK.get());
-		simpleBlock(KoratioBlocks.PINK_FROSTING_BLOCK.get());
+		simpleBlock(KoratioBlocks.WHITE_ICING_BLOCK.get());
+		simpleBlock(KoratioBlocks.LIGHT_GRAY_ICING_BLOCK.get());
+		simpleBlock(KoratioBlocks.GRAY_ICING_BLOCK.get());
+		simpleBlock(KoratioBlocks.BLACK_ICING_BLOCK.get());
+		simpleBlock(KoratioBlocks.BROWN_ICING_BLOCK.get());
+		simpleBlock(KoratioBlocks.RED_ICING_BLOCK.get());
+		simpleBlock(KoratioBlocks.ORANGE_ICING_BLOCK.get());
+		simpleBlock(KoratioBlocks.YELLOW_ICING_BLOCK.get());
+		simpleBlock(KoratioBlocks.LIME_ICING_BLOCK.get());
+		simpleBlock(KoratioBlocks.GREEN_ICING_BLOCK.get());
+		simpleBlock(KoratioBlocks.CYAN_ICING_BLOCK.get());
+		simpleBlock(KoratioBlocks.LIGHT_BLUE_ICING_BLOCK.get());
+		simpleBlock(KoratioBlocks.BLUE_ICING_BLOCK.get());
+		simpleBlock(KoratioBlocks.PURPLE_ICING_BLOCK.get());
+		simpleBlock(KoratioBlocks.MAGENTA_ICING_BLOCK.get());
+		simpleBlock(KoratioBlocks.PINK_ICING_BLOCK.get());
 
 		simpleBlock(KoratioBlocks.WHITE_CANDY_BLOCK.get());
 		simpleBlock(KoratioBlocks.LIGHT_GRAY_CANDY_BLOCK.get());
@@ -186,10 +198,6 @@ public class BlockStateGenerator extends BlockStateProvider {
 		simpleBlock(KoratioBlocks.RED_LEVITATING_WOOL.get(), models().cubeAll(KoratioBlocks.RED_LEVITATING_WOOL.getId().getPath(), blockTexture(Blocks.RED_WOOL)));
 		simpleBlock(KoratioBlocks.BLACK_LEVITATING_WOOL.get(), models().cubeAll(KoratioBlocks.BLACK_LEVITATING_WOOL.getId().getPath(), blockTexture(Blocks.BLACK_WOOL)));
 
-		simpleBlock(KoratioBlocks.COOKIE_BLOCK.get());
-		stairsBlock(KoratioBlocks.COOKIE_BLOCK_STAIRS.get(), Koratio.prefix("block/cookie_block"));
-		slabBlock(KoratioBlocks.COOKIE_BLOCK_SLAB.get(), KoratioBlocks.COOKIE_BLOCK.getId(), Koratio.prefix("block/cookie_block"));
-
 		glazedBlock(KoratioBlocks.RAW_GINGERBREAD_BLOCK);
 		stairsBlock(KoratioBlocks.RAW_GINGERBREAD_STAIRS.get(), Koratio.prefix("block/raw_gingerbread_block"));
 		slabBlock(KoratioBlocks.RAW_GINGERBREAD_SLAB.get(), KoratioBlocks.RAW_GINGERBREAD_BLOCK.getId(), Koratio.prefix("block/raw_gingerbread_block"));
@@ -214,6 +222,12 @@ public class BlockStateGenerator extends BlockStateProvider {
 		wallInventoryBlock(KoratioBlocks.GINGERBREAD_BRICK_WALL.get(), Koratio.prefix("block/gingerbread_bricks"));
 		wallInventoryBlock(KoratioBlocks.RAW_LARGE_GINGERBREAD_BRICK_WALL.get(), Koratio.prefix("block/raw_large_gingerbread_bricks"));
 		wallInventoryBlock(KoratioBlocks.LARGE_GINGERBREAD_BRICK_WALL.get(), Koratio.prefix("block/large_gingerbread_bricks"));
+
+		simpleBlock(KoratioBlocks.COOKIE_BLOCK.get());
+		stairsBlock(KoratioBlocks.COOKIE_BLOCK_STAIRS.get(), Koratio.prefix("block/cookie_block"));
+		slabBlock(KoratioBlocks.COOKIE_BLOCK_SLAB.get(), KoratioBlocks.COOKIE_BLOCK.getId(), Koratio.prefix("block/cookie_block"));
+		buttonBlock(KoratioBlocks.COOKIE_BLOCK_BUTTON.get(), Koratio.prefix("block/cookie_block"));
+		pressurePlateBlock(KoratioBlocks.COOKIE_BLOCK_PRESSURE_PLATE.get(), Koratio.prefix("block/cookie_block"));
 
 		eatableBlock(KoratioBlocks.MARSHMALLOW_BLOCK.get(), Koratio.prefix("block/marshmallow_block_top"), Koratio.prefix("block/marshmallow_block_side"), Koratio.prefix("block/marshmallow_block_bottom"));
 
@@ -316,10 +330,13 @@ public class BlockStateGenerator extends BlockStateProvider {
 		simpleBlock(KoratioBlocks.CANDY_PLANKS.get());
 		slabBlock(KoratioBlocks.CANDY_SLAB.get(), KoratioBlocks.CANDY_PLANKS.getId(), Koratio.prefix("block/candy_planks"));
 		stairsBlock(KoratioBlocks.CANDY_STAIRS.get(), Koratio.prefix("block/candy_planks"));
-		leavesBlock(KoratioBlocks.COTTON_CANDY_LEAVES.get());
+		leavesBlock(KoratioBlocks.PINK_COTTON_CANDY_LEAVES.get());
+		leavesBlock(KoratioBlocks.LIGHT_BLUE_COTTON_CANDY_LEAVES.get());
+		leavesBlock(KoratioBlocks.LIME_COTTON_CANDY_LEAVES.get());
+		leavesBlock(KoratioBlocks.YELLOW_COTTON_CANDY_LEAVES.get());
 		fenceBlock(KoratioBlocks.CANDY_FENCE.get(), Koratio.prefix("block/candy_planks"));
 		fenceGateBlock(KoratioBlocks.CANDY_FENCE_GATE.get(), Koratio.prefix("block/candy_planks"));
-		doorBlockInternalWithRenderType(KoratioBlocks.CANDY_DOOR.get(), Koratio.prefix("block/candy_door_bottom"), Koratio.prefix("block/candy_door_top"), Koratio.prefix("block/candy_door_sides"), Koratio.prefix("block/candy_door_top_bottom"), "cutout");
+		doorBlockWithRenderType(KoratioBlocks.CANDY_DOOR.get(), Koratio.prefix("block/candy_door_bottom"), Koratio.prefix("block/candy_door_top"), "cutout");
 		trapdoorBlockWithRenderType(KoratioBlocks.CANDY_TRAPDOOR.get(), Koratio.prefix("block/candy_trapdoor"), true, "cutout");
 		buttonBlock(KoratioBlocks.CANDY_BUTTON.get(), Koratio.prefix("block/candy_planks"));
 		pressurePlateBlock(KoratioBlocks.CANDY_PRESSURE_PLATE.get(), Koratio.prefix("block/candy_planks"));
@@ -329,6 +346,28 @@ public class BlockStateGenerator extends BlockStateProvider {
 		bookshelfBlock(KoratioBlocks.CANDY_BOOKSHELF.get(), "candy");
 		builtinEntity(KoratioBlocks.CANDY_CHEST.get(), "koratio:block/candy_planks");
 		builtinEntity(KoratioBlocks.TRAPPED_CANDY_CHEST.get(), "koratio:block/candy_planks");
+
+		crossBlock(KoratioBlocks.CHOCOLATE_OAK_SAPLING.get());
+		logBlock(KoratioBlocks.CHOCOLATE_OAK_LOG.get());
+		woodBlock(KoratioBlocks.CHOCOLATE_OAK_WOOD.get(), KoratioBlocks.CHOCOLATE_OAK_LOG.get());
+		logBlock(KoratioBlocks.STRIPPED_CHOCOLATE_OAK_LOG.get());
+		woodBlock(KoratioBlocks.STRIPPED_CHOCOLATE_OAK_WOOD.get(), KoratioBlocks.STRIPPED_CHOCOLATE_OAK_LOG.get());
+		simpleBlock(KoratioBlocks.CHOCOLATE_OAK_PLANKS.get());
+		slabBlock(KoratioBlocks.CHOCOLATE_OAK_SLAB.get(), KoratioBlocks.CHOCOLATE_OAK_PLANKS.getId(), Koratio.prefix("block/chocolate_oak_planks"));
+		stairsBlock(KoratioBlocks.CHOCOLATE_OAK_STAIRS.get(), Koratio.prefix("block/chocolate_oak_planks"));
+		leavesBlock(KoratioBlocks.CHOCOLATE_OAK_LEAVES.get());
+		fenceBlock(KoratioBlocks.CHOCOLATE_OAK_FENCE.get(), Koratio.prefix("block/chocolate_oak_planks"));
+		fenceGateBlock(KoratioBlocks.CHOCOLATE_OAK_FENCE_GATE.get(), Koratio.prefix("block/chocolate_oak_planks"));
+		doorBlockWithRenderType(KoratioBlocks.CHOCOLATE_OAK_DOOR.get(), Koratio.prefix("block/chocolate_oak_door_bottom"), Koratio.prefix("block/chocolate_oak_door_top"), "cutout");
+		trapdoorBlockWithRenderType(KoratioBlocks.CHOCOLATE_OAK_TRAPDOOR.get(), Koratio.prefix("block/chocolate_oak_trapdoor"), true, "cutout");
+		buttonBlock(KoratioBlocks.CHOCOLATE_OAK_BUTTON.get(), Koratio.prefix("block/chocolate_oak_planks"));
+		pressurePlateBlock(KoratioBlocks.CHOCOLATE_OAK_PRESSURE_PLATE.get(), Koratio.prefix("block/chocolate_oak_planks"));
+		signBlock(KoratioBlocks.CHOCOLATE_OAK_SIGN.get(), KoratioBlocks.CHOCOLATE_OAK_WALL_SIGN.get(), KoratioBlocks.CHOCOLATE_OAK_PLANKS.get());
+		builtinEntity(KoratioBlocks.CHOCOLATE_OAK_HANGING_SIGN.get(), "koratio:block/stripped_chocolate_oak_log");
+		builtinEntity(KoratioBlocks.CHOCOLATE_OAK_WALL_HANGING_SIGN.get(), "koratio:block/stripped_chocolate_oak_log");
+		bookshelfBlock(KoratioBlocks.CHOCOLATE_OAK_BOOKSHELF.get(), "chocolate_oak");
+		builtinEntity(KoratioBlocks.CHOCOLATE_OAK_CHEST.get(), "koratio:block/chocolate_oak_planks");
+		builtinEntity(KoratioBlocks.TRAPPED_CHOCOLATE_OAK_CHEST.get(), "koratio:block/chocolate_oak_planks");
 		
 		crossBlock(KoratioBlocks.ELVEN_SAPLING.get());
 		logBlock(KoratioBlocks.ELVEN_LOG.get());
@@ -430,13 +469,19 @@ public class BlockStateGenerator extends BlockStateProvider {
 		leafPaneBlock(KoratioBlocks.PANGO_LEAF_PANE.get(), KoratioBlocks.PANGO_LEAVES.get());
 		leafPaneBlock(KoratioBlocks.RUGONA_LEAF_PANE.get(), KoratioBlocks.RUGONA_LEAVES.get());
 		leafPaneBlock(KoratioBlocks.VARESO_LEAF_PANE.get(), KoratioBlocks.VARESO_LEAVES.get());
-		leafPaneBlock(KoratioBlocks.COTTON_CANDY_LEAF_PANE.get(), KoratioBlocks.COTTON_CANDY_LEAVES.get());
+		leafPaneBlock(KoratioBlocks.PINK_COTTON_CANDY_LEAF_PANE.get(), KoratioBlocks.PINK_COTTON_CANDY_LEAVES.get());
+		leafPaneBlock(KoratioBlocks.LIGHT_BLUE_COTTON_CANDY_LEAF_PANE.get(), KoratioBlocks.LIGHT_BLUE_COTTON_CANDY_LEAVES.get());
+		leafPaneBlock(KoratioBlocks.LIME_COTTON_CANDY_LEAF_PANE.get(), KoratioBlocks.LIME_COTTON_CANDY_LEAVES.get());
+		leafPaneBlock(KoratioBlocks.YELLOW_COTTON_CANDY_LEAF_PANE.get(), KoratioBlocks.YELLOW_COTTON_CANDY_LEAVES.get());
+		leafPaneBlock(KoratioBlocks.CHOCOLATE_OAK_LEAF_PANE.get(), KoratioBlocks.CHOCOLATE_OAK_LEAVES.get());
 		//leafPaneBlock(KoratioBlocks.ELVEN_LEAF_PANE.get(), KoratioBlocks.ELVEN_LEAVES.get());
 
 		pottedPlant(KoratioBlocks.POTTED_COOKIE_FLOWER.get());
 		pottedPlant(KoratioBlocks.POTTED_PANGO_SAPLING.get());
 		pottedPlant(KoratioBlocks.POTTED_RUGONA_SAPLING.get());
 		pottedPlant(KoratioBlocks.POTTED_VARESO_SAPLING.get());
+		pottedPlant(KoratioBlocks.POTTED_CANDY_SAPLING.get());
+		pottedPlant(KoratioBlocks.POTTED_CHOCOLATE_OAK_SAPLING.get());
 		pottedPlant(KoratioBlocks.POTTED_ELVEN_SAPLING.get());
 		pottedPlant(KoratioBlocks.POTTED_PURPLE_MUSHROOM.get());
 		pottedPlant(KoratioBlocks.POTTED_GREEN_MUSHROOM.get());
@@ -766,6 +811,11 @@ public class BlockStateGenerator extends BlockStateProvider {
 	protected void builtinEntity(Block block, String particle) {
 		simpleBlock(block, models().getBuilder(BuiltInRegistries.BLOCK.getKey(block).getPath())
 				.parent(new ModelFile.UncheckedModelFile("builtin/entity"))
+				.texture("particle", particle));
+	}
+
+	protected void fluid(Block block, String particle) {
+		simpleBlock(block, models().getBuilder(BuiltInRegistries.BLOCK.getKey(block).getPath())
 				.texture("particle", particle));
 	}
 	

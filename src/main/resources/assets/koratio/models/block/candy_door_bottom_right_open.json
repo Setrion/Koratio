@@ -1,10 +1,8 @@
 {
-  "parent": "koratio:block/template/door_bottom_right_open",
+  "parent": "minecraft:block/door_bottom_right_open",
   "render_type": "minecraft:cutout",
   "textures": {
-    "front_b": "koratio:block/candy_door_bottom",
-    "front_t": "koratio:block/candy_door_top",
-    "side": "koratio:block/candy_door_sides",
-    "top": "koratio:block/candy_door_top_bottom"
+    "bottom": "koratio:block/candy_door_bottom",
+    "top": "koratio:block/candy_door_top"
   }
 }

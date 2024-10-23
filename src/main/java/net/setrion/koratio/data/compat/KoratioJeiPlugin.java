@@ -40,6 +40,7 @@ public class KoratioJeiPlugin implements IModPlugin {
     @Override
     public void registerItemSubtypes(ISubtypeRegistration registration) {
         registration.registerSubtypeInterpreter(KoratioItems.SCROLL.get(), ScrollSubtypeInterpreter.INSTANCE);
+        registration.registerSubtypeInterpreter(KoratioItems.PIPING_BAG.get(), PipingBagSubtypeInterpreter.INSTANCE);
     }
 
     @Override

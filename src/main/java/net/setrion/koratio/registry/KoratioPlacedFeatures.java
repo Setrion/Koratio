@@ -21,7 +21,8 @@ public class KoratioPlacedFeatures {
 	public static final ResourceKey<PlacedFeature> PLACED_PATCH_COTTON_CANDY_GRASS = registerKey("patch_cotton_candy_grass");
 	public static final ResourceKey<PlacedFeature> PLACED_PANGO_BUSH = registerKey("tree/pango_bush");
 	public static final ResourceKey<PlacedFeature> PLACED_RUGONA = registerKey("tree/rugona");
-	public static final ResourceKey<PlacedFeature> PLACED_CANDY_TREE = registerKey("tree/candy");
+	public static final ResourceKey<PlacedFeature> PLACED_CANDY = registerKey("tree/candy");
+	public static final ResourceKey<PlacedFeature> PLACED_CHOCOLATE_OAK = registerKey("tree/chocolate_oak");
 	public static final ResourceKey<PlacedFeature> PLACED_VARESO = registerKey("tree/vareso");
 	public static final ResourceKey<PlacedFeature> PLACED_ELVEN = registerKey("tree/elven");
 	public static final ResourceKey<PlacedFeature> PLACED_CHOCOLATE_MILK_LAKE = registerKey("chocolate_milk_lake");
@@ -61,7 +62,8 @@ public class KoratioPlacedFeatures {
 		context.register(PLACED_PATCH_COTTON_CANDY_GRASS, new PlacedFeature(features.getOrThrow(KoratioConfiguredFeatures.PATCH_COTTON_CANDY_GRASS), List.of(NoiseThresholdCountPlacement.of(-0.8D, 5, 10), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome())));
 		context.register(PLACED_PANGO_BUSH, new PlacedFeature(features.getOrThrow(KoratioConfiguredFeatures.PANGO_BUSH), treeCheckArea(KoratioBlocks.PANGO_SAPLING.get().defaultBlockState())));
 		context.register(PLACED_RUGONA, new PlacedFeature(features.getOrThrow(KoratioConfiguredFeatures.RUGONA), treeCheckArea(KoratioBlocks.RUGONA_SAPLING.get().defaultBlockState())));
-		context.register(PLACED_CANDY_TREE, new PlacedFeature(features.getOrThrow(KoratioConfiguredFeatures.CANDY_TREE), treeCheckArea(KoratioBlocks.CANDY_SAPLING.get().defaultBlockState())));
+		context.register(PLACED_CANDY, new PlacedFeature(features.getOrThrow(KoratioConfiguredFeatures.CANDY), treeCheckArea(KoratioBlocks.CANDY_SAPLING.get().defaultBlockState())));
+		context.register(PLACED_CHOCOLATE_OAK, new PlacedFeature(features.getOrThrow(KoratioConfiguredFeatures.CHOCOLATE_OAK), treeCheckArea(KoratioBlocks.CHOCOLATE_OAK_SAPLING.get().defaultBlockState())));
 		context.register(PLACED_VARESO, new PlacedFeature(features.getOrThrow(KoratioConfiguredFeatures.VARESO), treeCheckArea(KoratioBlocks.VARESO_SAPLING.get().defaultBlockState())));
 		context.register(PLACED_ELVEN, new PlacedFeature(features.getOrThrow(KoratioConfiguredFeatures.ELVEN), treeCheckArea(KoratioBlocks.ELVEN_SAPLING.get().defaultBlockState())));
 		context.register(PLACED_CHOCOLATE_MILK_LAKE, new PlacedFeature(features.getOrThrow(KoratioConfiguredFeatures.CHOCOLATE_MILK_LAKE), List.of(RarityFilter.onAverageOnceEvery(20), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome())));

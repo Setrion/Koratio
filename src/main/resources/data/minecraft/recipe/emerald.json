@@ -1,0 +1,19 @@
+{
+  "type": "koratio:candy_shaper",
+  "fluid_ingredients": [
+    {
+      "amount": 400,
+      "ingredient": {
+        "fluid": "koratio:molten_red_sugar"
+      }
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "minecraft:emerald"
+  },
+  "template": {
+    "count": 1,
+    "id": "koratio:lollipop_casting_template"
+  }
+}

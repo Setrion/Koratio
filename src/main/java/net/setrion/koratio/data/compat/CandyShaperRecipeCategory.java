@@ -22,12 +22,12 @@ public class CandyShaperRecipeCategory implements IRecipeCategory<CandyShaperRec
     private final IDrawable background;
     private final IDrawable tank_overlay;
     private final IDrawable icon;
-    private final int xSize = 110;
-    private final int ySize = 58;
+    private final int xSize = 88;
+    private final int ySize = 46;
 
     public CandyShaperRecipeCategory(IGuiHelper guiHelper) {
         background = guiHelper.createDrawable(ResourceLocation.fromNamespaceAndPath(Koratio.MOD_ID, "textures/gui/jei/candy_shaper.png"), 0, 0, xSize, ySize);
-        tank_overlay = guiHelper.createDrawable(ResourceLocation.fromNamespaceAndPath(Koratio.MOD_ID, "textures/gui/jei/candy_shaper.png"), 110, 0, 9, 56);
+        tank_overlay = guiHelper.createDrawable(ResourceLocation.fromNamespaceAndPath(Koratio.MOD_ID, "textures/gui/jei/candy_shaper.png"), 88, 0, 18, 46);
         icon = guiHelper.createDrawableIngredient(VanillaTypes.ITEM_STACK, new ItemStack(KoratioBlocks.CANDY_SHAPER.get()));
     }
 
@@ -53,12 +53,13 @@ public class CandyShaperRecipeCategory implements IRecipeCategory<CandyShaperRec
 
     @Override
     public void setRecipe(IRecipeLayoutBuilder builder, CandyShaperRecipe recipe, IFocusGroup focuses) {
-        builder.addSlot(RecipeIngredientRole.OUTPUT, 89, 20).addIngredient(VanillaTypes.ITEM_STACK, recipe.getResultItem(Minecraft.getInstance().level.registryAccess()));
-        for (int i = 0; i < 5; i++) {
+        builder.addSlot(RecipeIngredientRole.OUTPUT, 67, 15).addIngredient(VanillaTypes.ITEM_STACK, recipe.getResultItem(Minecraft.getInstance().level.registryAccess()));
+        builder.addSlot(RecipeIngredientRole.CATALYST, 42, 24).addIngredient(VanillaTypes.ITEM_STACK, recipe.getTemplateItem(Minecraft.getInstance().level.registryAccess()));
+        for (int i = 0; i < recipe.getFluidIngredients().size(); i++) {
             if (recipe.getFluidIngredients().get(i).getFluids()[0].getAmount() > 0) {
-                builder.addSlot(RecipeIngredientRole.INPUT, 4 + (i * 8), 2)
+                builder.addSlot(RecipeIngredientRole.INPUT, 1 + (i * 19), 1)
                         .addIngredient(NeoForgeTypes.FLUID_STACK, recipe.getFluidIngredients().get(i).getFluids()[0])
-                        .setFluidRenderer(2000, false, 7, 54)
+                        .setFluidRenderer(2000, false, 16, 44)
                         .setOverlay(tank_overlay, -1, -1)
                         .addRichTooltipCallback((recipeSlotView, tooltip) -> recipeSlotView.getDisplayedIngredient(NeoForgeTypes.FLUID_STACK));
             }

@@ -15,7 +15,7 @@ public class DevToolItem extends Item {
 	RandomSource random = RandomSource.create();
 	int maxRadius, maxHeight;
 	public static BlockState LOGS = KoratioBlocks.CANDY_LOG.get().defaultBlockState();
-	public static BlockState LEAVES = KoratioBlocks.COTTON_CANDY_LEAVES.get().defaultBlockState();
+	public static BlockState LEAVES = KoratioBlocks.LIME_COTTON_CANDY_LEAVES.get().defaultBlockState();
 
 	public DevToolItem(Properties prop) {
 		super(prop);

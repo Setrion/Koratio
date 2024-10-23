@@ -233,22 +233,22 @@ public class BlockLootTables extends net.minecraft.data.loot.BlockLootSubProvide
 		add(KoratioBlocks.STICKY_MAGENTA_SUGAR_BLOCK.get(), block -> createSingleItemTableWithSilkTouch(block, KoratioItems.MAGENTA_SUGAR.get(), ConstantValue.exactly(9.0F)));
 		add(KoratioBlocks.STICKY_PINK_SUGAR_BLOCK.get(), block -> createSingleItemTableWithSilkTouch(block, KoratioItems.PINK_SUGAR.get(), ConstantValue.exactly(9.0F)));
 
-		add(KoratioBlocks.WHITE_FROSTING_BLOCK.get(), block -> createSingleItemTableWithSilkTouch(block, Items.SUGAR, ConstantValue.exactly(9.0F)));
-		add(KoratioBlocks.LIGHT_GRAY_FROSTING_BLOCK.get(), block -> createSingleItemTableWithSilkTouch(block, KoratioItems.LIGHT_GRAY_SUGAR.get(), ConstantValue.exactly(9.0F)));
-		add(KoratioBlocks.GRAY_FROSTING_BLOCK.get(), block -> createSingleItemTableWithSilkTouch(block, KoratioItems.GRAY_SUGAR.get(), ConstantValue.exactly(9.0F)));
-		add(KoratioBlocks.BLACK_FROSTING_BLOCK.get(), block -> createSingleItemTableWithSilkTouch(block, KoratioItems.BLACK_SUGAR.get(), ConstantValue.exactly(9.0F)));
-		add(KoratioBlocks.BROWN_FROSTING_BLOCK.get(), block -> createSingleItemTableWithSilkTouch(block, KoratioItems.BROWN_SUGAR.get(), ConstantValue.exactly(9.0F)));
-		add(KoratioBlocks.RED_FROSTING_BLOCK.get(), block -> createSingleItemTableWithSilkTouch(block, KoratioItems.RED_SUGAR.get(), ConstantValue.exactly(9.0F)));
-		add(KoratioBlocks.ORANGE_FROSTING_BLOCK.get(), block -> createSingleItemTableWithSilkTouch(block, KoratioItems.ORANGE_SUGAR.get(), ConstantValue.exactly(9.0F)));
-		add(KoratioBlocks.YELLOW_FROSTING_BLOCK.get(), block -> createSingleItemTableWithSilkTouch(block, KoratioItems.YELLOW_SUGAR.get(), ConstantValue.exactly(9.0F)));
-		add(KoratioBlocks.LIME_FROSTING_BLOCK.get(), block -> createSingleItemTableWithSilkTouch(block, KoratioItems.LIME_SUGAR.get(), ConstantValue.exactly(9.0F)));
-		add(KoratioBlocks.GREEN_FROSTING_BLOCK.get(), block -> createSingleItemTableWithSilkTouch(block, KoratioItems.GREEN_SUGAR.get(), ConstantValue.exactly(9.0F)));
-		add(KoratioBlocks.CYAN_FROSTING_BLOCK.get(), block -> createSingleItemTableWithSilkTouch(block, KoratioItems.CYAN_SUGAR.get(), ConstantValue.exactly(9.0F)));
-		add(KoratioBlocks.LIGHT_BLUE_FROSTING_BLOCK.get(), block -> createSingleItemTableWithSilkTouch(block, KoratioItems.LIGHT_BLUE_SUGAR.get(), ConstantValue.exactly(9.0F)));
-		add(KoratioBlocks.BLUE_FROSTING_BLOCK.get(), block -> createSingleItemTableWithSilkTouch(block, KoratioItems.BLUE_SUGAR.get(), ConstantValue.exactly(9.0F)));
-		add(KoratioBlocks.PURPLE_FROSTING_BLOCK.get(), block -> createSingleItemTableWithSilkTouch(block, KoratioItems.PURPLE_SUGAR.get(), ConstantValue.exactly(9.0F)));
-		add(KoratioBlocks.MAGENTA_FROSTING_BLOCK.get(), block -> createSingleItemTableWithSilkTouch(block, KoratioItems.MAGENTA_SUGAR.get(), ConstantValue.exactly(9.0F)));
-		add(KoratioBlocks.PINK_FROSTING_BLOCK.get(), block -> createSingleItemTableWithSilkTouch(block, KoratioItems.PINK_SUGAR.get(), ConstantValue.exactly(9.0F)));
+		add(KoratioBlocks.WHITE_ICING_BLOCK.get(), block -> createSingleItemTableWithSilkTouch(block, Items.SUGAR, ConstantValue.exactly(9.0F)));
+		add(KoratioBlocks.LIGHT_GRAY_ICING_BLOCK.get(), block -> createSingleItemTableWithSilkTouch(block, KoratioItems.LIGHT_GRAY_SUGAR.get(), ConstantValue.exactly(9.0F)));
+		add(KoratioBlocks.GRAY_ICING_BLOCK.get(), block -> createSingleItemTableWithSilkTouch(block, KoratioItems.GRAY_SUGAR.get(), ConstantValue.exactly(9.0F)));
+		add(KoratioBlocks.BLACK_ICING_BLOCK.get(), block -> createSingleItemTableWithSilkTouch(block, KoratioItems.BLACK_SUGAR.get(), ConstantValue.exactly(9.0F)));
+		add(KoratioBlocks.BROWN_ICING_BLOCK.get(), block -> createSingleItemTableWithSilkTouch(block, KoratioItems.BROWN_SUGAR.get(), ConstantValue.exactly(9.0F)));
+		add(KoratioBlocks.RED_ICING_BLOCK.get(), block -> createSingleItemTableWithSilkTouch(block, KoratioItems.RED_SUGAR.get(), ConstantValue.exactly(9.0F)));
+		add(KoratioBlocks.ORANGE_ICING_BLOCK.get(), block -> createSingleItemTableWithSilkTouch(block, KoratioItems.ORANGE_SUGAR.get(), ConstantValue.exactly(9.0F)));
+		add(KoratioBlocks.YELLOW_ICING_BLOCK.get(), block -> createSingleItemTableWithSilkTouch(block, KoratioItems.YELLOW_SUGAR.get(), ConstantValue.exactly(9.0F)));
+		add(KoratioBlocks.LIME_ICING_BLOCK.get(), block -> createSingleItemTableWithSilkTouch(block, KoratioItems.LIME_SUGAR.get(), ConstantValue.exactly(9.0F)));
+		add(KoratioBlocks.GREEN_ICING_BLOCK.get(), block -> createSingleItemTableWithSilkTouch(block, KoratioItems.GREEN_SUGAR.get(), ConstantValue.exactly(9.0F)));
+		add(KoratioBlocks.CYAN_ICING_BLOCK.get(), block -> createSingleItemTableWithSilkTouch(block, KoratioItems.CYAN_SUGAR.get(), ConstantValue.exactly(9.0F)));
+		add(KoratioBlocks.LIGHT_BLUE_ICING_BLOCK.get(), block -> createSingleItemTableWithSilkTouch(block, KoratioItems.LIGHT_BLUE_SUGAR.get(), ConstantValue.exactly(9.0F)));
+		add(KoratioBlocks.BLUE_ICING_BLOCK.get(), block -> createSingleItemTableWithSilkTouch(block, KoratioItems.BLUE_SUGAR.get(), ConstantValue.exactly(9.0F)));
+		add(KoratioBlocks.PURPLE_ICING_BLOCK.get(), block -> createSingleItemTableWithSilkTouch(block, KoratioItems.PURPLE_SUGAR.get(), ConstantValue.exactly(9.0F)));
+		add(KoratioBlocks.MAGENTA_ICING_BLOCK.get(), block -> createSingleItemTableWithSilkTouch(block, KoratioItems.MAGENTA_SUGAR.get(), ConstantValue.exactly(9.0F)));
+		add(KoratioBlocks.PINK_ICING_BLOCK.get(), block -> createSingleItemTableWithSilkTouch(block, KoratioItems.PINK_SUGAR.get(), ConstantValue.exactly(9.0F)));
 
 		dropOther(KoratioBlocks.MOLTEN_WHITE_SUGAR_CAULDRON.get(), Blocks.CAULDRON);
 		dropOther(KoratioBlocks.MOLTEN_LIGHT_GRAY_SUGAR_CAULDRON.get(), Blocks.CAULDRON);
@@ -284,10 +284,6 @@ public class BlockLootTables extends net.minecraft.data.loot.BlockLootSubProvide
 		dropSelf(KoratioBlocks.MAGENTA_CANDY_BLOCK.get());
 		dropSelf(KoratioBlocks.PINK_CANDY_BLOCK.get());
 
-		dropSelf(KoratioBlocks.COOKIE_BLOCK.get());
-		dropSelf(KoratioBlocks.COOKIE_BLOCK_STAIRS.get());
-		add(KoratioBlocks.COOKIE_BLOCK_SLAB.get(), this::createSlabItemTable);
-
 		dropSelf(KoratioBlocks.RAW_GINGERBREAD_BLOCK.get());
 		dropSelf(KoratioBlocks.RAW_GINGERBREAD_STAIRS.get());
 		add(KoratioBlocks.RAW_GINGERBREAD_SLAB.get(), this::createSlabItemTable);
@@ -312,6 +308,13 @@ public class BlockLootTables extends net.minecraft.data.loot.BlockLootSubProvide
 		dropSelf(KoratioBlocks.GINGERBREAD_BRICK_WALL.get());
 		dropSelf(KoratioBlocks.RAW_LARGE_GINGERBREAD_BRICK_WALL.get());
 		dropSelf(KoratioBlocks.LARGE_GINGERBREAD_BRICK_WALL.get());
+
+		dropSelf(KoratioBlocks.COOKIE_BLOCK.get());
+		dropSelf(KoratioBlocks.COOKIE_BLOCK_STAIRS.get());
+		add(KoratioBlocks.COOKIE_BLOCK_SLAB.get(), this::createSlabItemTable);
+		dropSelf(KoratioBlocks.COOKIE_BLOCK_BUTTON.get());
+		dropSelf(KoratioBlocks.COOKIE_BLOCK_PRESSURE_PLATE.get());
+
 		dropSelf(KoratioBlocks.MARSHMALLOW_BLOCK.get());
 
 		add(KoratioBlocks.GILDED_VINES.get(), this::createSilkTouchOnlyTable);
@@ -469,8 +472,14 @@ public class BlockLootTables extends net.minecraft.data.loot.BlockLootSubProvide
 		dropSelf(KoratioBlocks.CANDY_PLANKS.get());
 		add(KoratioBlocks.CANDY_SLAB.get(), this::createSlabItemTable);
 		dropSelf(KoratioBlocks.CANDY_STAIRS.get());
-		add(KoratioBlocks.COTTON_CANDY_LEAVES.get(), (block) -> createLeavesDrops(block, KoratioBlocks.CANDY_SAPLING.get(), DEFAULT_SAPLING_DROP_RATES).withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(2.0F)).when(doesNotHaveShearsOrSilkTouch()).add(applyExplosionCondition(block, LootItem.lootTableItem(KoratioItems.RAW_PANGO.get())).when(BonusLevelTableCondition.bonusLevelFlatChance(registrylookup.getOrThrow(Enchantments.FORTUNE), 0.25F, 0.255555557F, 0.3125F, 0.08333334F, 1.25F)))));
-		add(KoratioBlocks.COTTON_CANDY_LEAF_PANE.get(), createSilkTouchOrShearsDispatchTable(KoratioBlocks.COTTON_CANDY_LEAF_PANE.get(), applyExplosionCondition(KoratioBlocks.COTTON_CANDY_LEAF_PANE, LootItem.lootTableItem(Items.AIR))));
+		add(KoratioBlocks.PINK_COTTON_CANDY_LEAVES.get(), (block) -> createLeavesDrops(block, KoratioBlocks.CANDY_SAPLING.get(), DEFAULT_SAPLING_DROP_RATES).withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(2.0F)).when(doesNotHaveShearsOrSilkTouch()).add(applyExplosionCondition(block, LootItem.lootTableItem(KoratioItems.PINK_SUGAR.get())).when(BonusLevelTableCondition.bonusLevelFlatChance(registrylookup.getOrThrow(Enchantments.FORTUNE), 0.25F, 0.255555557F, 0.3125F, 0.08333334F, 1.25F)))));
+		add(KoratioBlocks.LIGHT_BLUE_COTTON_CANDY_LEAVES.get(), (block) -> createLeavesDrops(block, KoratioBlocks.CANDY_SAPLING.get(), DEFAULT_SAPLING_DROP_RATES).withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(2.0F)).when(doesNotHaveShearsOrSilkTouch()).add(applyExplosionCondition(block, LootItem.lootTableItem(KoratioItems.LIGHT_BLUE_SUGAR.get())).when(BonusLevelTableCondition.bonusLevelFlatChance(registrylookup.getOrThrow(Enchantments.FORTUNE), 0.25F, 0.255555557F, 0.3125F, 0.08333334F, 1.25F)))));
+		add(KoratioBlocks.LIME_COTTON_CANDY_LEAVES.get(), (block) -> createLeavesDrops(block, KoratioBlocks.CANDY_SAPLING.get(), DEFAULT_SAPLING_DROP_RATES).withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(2.0F)).when(doesNotHaveShearsOrSilkTouch()).add(applyExplosionCondition(block, LootItem.lootTableItem(KoratioItems.LIME_SUGAR.get())).when(BonusLevelTableCondition.bonusLevelFlatChance(registrylookup.getOrThrow(Enchantments.FORTUNE), 0.25F, 0.255555557F, 0.3125F, 0.08333334F, 1.25F)))));
+		add(KoratioBlocks.YELLOW_COTTON_CANDY_LEAVES.get(), (block) -> createLeavesDrops(block, KoratioBlocks.CANDY_SAPLING.get(), DEFAULT_SAPLING_DROP_RATES).withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(2.0F)).when(doesNotHaveShearsOrSilkTouch()).add(applyExplosionCondition(block, LootItem.lootTableItem(KoratioItems.YELLOW_SUGAR.get())).when(BonusLevelTableCondition.bonusLevelFlatChance(registrylookup.getOrThrow(Enchantments.FORTUNE), 0.25F, 0.255555557F, 0.3125F, 0.08333334F, 1.25F)))));
+		add(KoratioBlocks.PINK_COTTON_CANDY_LEAF_PANE.get(), createSilkTouchOrShearsDispatchTable(KoratioBlocks.PINK_COTTON_CANDY_LEAF_PANE.get(), applyExplosionCondition(KoratioBlocks.PINK_COTTON_CANDY_LEAF_PANE, LootItem.lootTableItem(KoratioItems.PINK_SUGAR.get()))));
+		add(KoratioBlocks.LIGHT_BLUE_COTTON_CANDY_LEAF_PANE.get(), createSilkTouchOrShearsDispatchTable(KoratioBlocks.LIGHT_BLUE_COTTON_CANDY_LEAF_PANE.get(), applyExplosionCondition(KoratioBlocks.LIGHT_BLUE_COTTON_CANDY_LEAF_PANE, LootItem.lootTableItem(KoratioItems.LIGHT_BLUE_SUGAR.get()))));
+		add(KoratioBlocks.LIME_COTTON_CANDY_LEAF_PANE.get(), createSilkTouchOrShearsDispatchTable(KoratioBlocks.LIME_COTTON_CANDY_LEAF_PANE.get(), applyExplosionCondition(KoratioBlocks.LIME_COTTON_CANDY_LEAF_PANE, LootItem.lootTableItem(KoratioItems.LIME_SUGAR.get()))));
+		add(KoratioBlocks.YELLOW_COTTON_CANDY_LEAF_PANE.get(), createSilkTouchOrShearsDispatchTable(KoratioBlocks.YELLOW_COTTON_CANDY_LEAF_PANE.get(), applyExplosionCondition(KoratioBlocks.YELLOW_COTTON_CANDY_LEAF_PANE, LootItem.lootTableItem(KoratioItems.YELLOW_SUGAR.get()))));
 		dropSelf(KoratioBlocks.CANDY_FENCE.get());
 		dropSelf(KoratioBlocks.CANDY_FENCE_GATE.get());
 		add(KoratioBlocks.CANDY_DOOR.get(), createSinglePropConditionTable(KoratioBlocks.CANDY_DOOR.get(), DoorBlock.HALF, DoubleBlockHalf.LOWER));
@@ -485,6 +494,31 @@ public class BlockLootTables extends net.minecraft.data.loot.BlockLootSubProvide
 		add(KoratioBlocks.CANDY_CHEST.get(), createNameableBlockEntityTable(KoratioBlocks.CANDY_CHEST.get()));
 		add(KoratioBlocks.TRAPPED_CANDY_CHEST.get(), createNameableBlockEntityTable(KoratioBlocks.TRAPPED_CANDY_CHEST.get()));
 		add(KoratioBlocks.CANDY_BOOKSHELF.get(), createSilkTouchDispatchTable(KoratioBlocks.CANDY_BOOKSHELF.get(), LootItem.lootTableItem(Items.BOOK).apply(SetItemCountFunction.setCount(ConstantValue.exactly(3)))));
+
+		dropSelf(KoratioBlocks.CHOCOLATE_OAK_SAPLING.get());
+		dropSelf(KoratioBlocks.CHOCOLATE_OAK_LOG.get());
+		dropSelf(KoratioBlocks.CHOCOLATE_OAK_WOOD.get());
+		dropSelf(KoratioBlocks.STRIPPED_CHOCOLATE_OAK_LOG.get());
+		dropSelf(KoratioBlocks.STRIPPED_CHOCOLATE_OAK_WOOD.get());
+		dropSelf(KoratioBlocks.CHOCOLATE_OAK_PLANKS.get());
+		add(KoratioBlocks.CHOCOLATE_OAK_SLAB.get(), this::createSlabItemTable);
+		dropSelf(KoratioBlocks.CHOCOLATE_OAK_STAIRS.get());
+		add(KoratioBlocks.CHOCOLATE_OAK_LEAVES.get(), (block) -> createLeavesDrops(block, KoratioBlocks.CHOCOLATE_OAK_SAPLING.get(), DEFAULT_SAPLING_DROP_RATES).withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(2.0F)).when(doesNotHaveShearsOrSilkTouch()).add(applyExplosionCondition(block, LootItem.lootTableItem(Items.COCOA_BEANS)).when(BonusLevelTableCondition.bonusLevelFlatChance(registrylookup.getOrThrow(Enchantments.FORTUNE), 0.25F, 0.255555557F, 0.3125F, 0.08333334F, 1.25F)))));
+		add(KoratioBlocks.CHOCOLATE_OAK_LEAF_PANE.get(), createSilkTouchOrShearsDispatchTable(KoratioBlocks.CHOCOLATE_OAK_LEAF_PANE.get(), applyExplosionCondition(KoratioBlocks.CHOCOLATE_OAK_LEAF_PANE, LootItem.lootTableItem(Items.AIR))));
+		dropSelf(KoratioBlocks.CHOCOLATE_OAK_FENCE.get());
+		dropSelf(KoratioBlocks.CHOCOLATE_OAK_FENCE_GATE.get());
+		add(KoratioBlocks.CHOCOLATE_OAK_DOOR.get(), createSinglePropConditionTable(KoratioBlocks.CHOCOLATE_OAK_DOOR.get(), DoorBlock.HALF, DoubleBlockHalf.LOWER));
+		//add(KoratioBlocks.TALL_CHOCOLATE_OAK_DOOR.get(), createSinglePropConditionTable(KoratioBlocks.TALL_CHOCOLATE_OAK_DOOR.get(), TallDoorBlock.PART, TripleBlockPart.LOWER));
+		dropSelf(KoratioBlocks.CHOCOLATE_OAK_TRAPDOOR.get());
+		dropSelf(KoratioBlocks.CHOCOLATE_OAK_BUTTON.get());
+		dropSelf(KoratioBlocks.CHOCOLATE_OAK_PRESSURE_PLATE.get());
+		dropOther(KoratioBlocks.CHOCOLATE_OAK_SIGN.get(), KoratioBlocks.CHOCOLATE_OAK_SIGN.get().asItem());
+		dropOther(KoratioBlocks.CHOCOLATE_OAK_WALL_SIGN.get(), KoratioBlocks.CHOCOLATE_OAK_SIGN.get().asItem());
+		dropOther(KoratioBlocks.CHOCOLATE_OAK_HANGING_SIGN.get(), KoratioBlocks.CHOCOLATE_OAK_HANGING_SIGN.get().asItem());
+		dropOther(KoratioBlocks.CHOCOLATE_OAK_WALL_HANGING_SIGN.get(), KoratioBlocks.CHOCOLATE_OAK_HANGING_SIGN.get().asItem());
+		add(KoratioBlocks.CHOCOLATE_OAK_CHEST.get(), createNameableBlockEntityTable(KoratioBlocks.CHOCOLATE_OAK_CHEST.get()));
+		add(KoratioBlocks.TRAPPED_CHOCOLATE_OAK_CHEST.get(), createNameableBlockEntityTable(KoratioBlocks.TRAPPED_CHOCOLATE_OAK_CHEST.get()));
+		add(KoratioBlocks.CHOCOLATE_OAK_BOOKSHELF.get(), createSilkTouchDispatchTable(KoratioBlocks.CHOCOLATE_OAK_BOOKSHELF.get(), LootItem.lootTableItem(Items.BOOK).apply(SetItemCountFunction.setCount(ConstantValue.exactly(3)))));
 
 		dropSelf(KoratioBlocks.ELVEN_SAPLING.get());
 		dropSelf(KoratioBlocks.ELVEN_LOG.get());
@@ -602,6 +636,8 @@ public class BlockLootTables extends net.minecraft.data.loot.BlockLootSubProvide
 		dropPottedContents(KoratioBlocks.POTTED_PANGO_SAPLING.get());
 		dropPottedContents(KoratioBlocks.POTTED_RUGONA_SAPLING.get());
 		dropPottedContents(KoratioBlocks.POTTED_VARESO_SAPLING.get());
+		dropPottedContents(KoratioBlocks.POTTED_CANDY_SAPLING.get());
+		dropPottedContents(KoratioBlocks.POTTED_CHOCOLATE_OAK_SAPLING.get());
 		dropPottedContents(KoratioBlocks.POTTED_ELVEN_SAPLING.get());
 		dropPottedContents(KoratioBlocks.POTTED_PURPLE_MUSHROOM.get());
 		dropPottedContents(KoratioBlocks.POTTED_GREEN_MUSHROOM.get());

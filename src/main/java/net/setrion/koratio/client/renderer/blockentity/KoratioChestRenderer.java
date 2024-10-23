@@ -24,6 +24,7 @@ public class KoratioChestRenderer<T extends net.minecraft.world.level.block.enti
         builder.put(KoratioBlocks.RUGONA_CHEST.get(), chestMaterial("rugona", false));
         builder.put(KoratioBlocks.VARESO_CHEST.get(), chestMaterial("vareso", false));
         builder.put(KoratioBlocks.CANDY_CHEST.get(), chestMaterial("candy", false));
+        builder.put(KoratioBlocks.CHOCOLATE_OAK_CHEST.get(), chestMaterial("chocolate_oak", false));
         builder.put(KoratioBlocks.ELVEN_CHEST.get(), chestMaterial("elven", false));
         builder.put(KoratioBlocks.BLUE_ELVEN_CHEST.get(), chestMaterial("blue_elven", false));
         builder.put(KoratioBlocks.CYAN_ELVEN_CHEST.get(), chestMaterial("cyan_elven", false));
@@ -33,6 +34,7 @@ public class KoratioChestRenderer<T extends net.minecraft.world.level.block.enti
         builder.put(KoratioBlocks.TRAPPED_RUGONA_CHEST.get(), chestMaterial("rugona", true));
         builder.put(KoratioBlocks.TRAPPED_VARESO_CHEST.get(), chestMaterial("vareso", true));
         builder.put(KoratioBlocks.TRAPPED_CANDY_CHEST.get(), chestMaterial("candy", true));
+        builder.put(KoratioBlocks.TRAPPED_CHOCOLATE_OAK_CHEST.get(), chestMaterial("chocolate_oak", true));
         builder.put(KoratioBlocks.TRAPPED_ELVEN_CHEST.get(), chestMaterial("elven", true));
         builder.put(KoratioBlocks.TRAPPED_BLUE_ELVEN_CHEST.get(), chestMaterial("blue_elven", true));
         builder.put(KoratioBlocks.TRAPPED_CYAN_ELVEN_CHEST.get(), chestMaterial("cyan_elven", true));

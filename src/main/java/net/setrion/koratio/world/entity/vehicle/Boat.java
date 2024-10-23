@@ -862,6 +862,7 @@ public class Boat extends VehicleEntity implements Leashable, VariantHolder<Boat
 		RUGONA(KoratioBlocks.RUGONA_PLANKS.get(), "rugona"),
 		VARESO(KoratioBlocks.VARESO_PLANKS.get(), "vareso"),
 		CANDY(KoratioBlocks.CANDY_PLANKS.get(), "candy"),
+		CHOCOLATE_OAK(KoratioBlocks.CHOCOLATE_OAK_PLANKS.get(), "chocolate_oak"),
 		ELVEN(KoratioBlocks.ELVEN_PLANKS.get(), "elven"),
 		BLUE_ELVEN(KoratioBlocks.BLUE_ELVEN_PLANKS.get(), "blue_elven"),
 		CYAN_ELVEN(KoratioBlocks.CYAN_ELVEN_PLANKS.get(), "cyan_elven"),

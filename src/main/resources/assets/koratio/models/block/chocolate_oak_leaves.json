@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/leaves",
+  "textures": {
+    "all": "koratio:block/chocolate_oak_leaves"
+  }
+}

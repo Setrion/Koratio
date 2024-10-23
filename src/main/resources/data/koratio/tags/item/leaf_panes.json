@@ -13,7 +13,11 @@
     "koratio:pango_leaf_pane",
     "koratio:rugona_leaf_pane",
     "koratio:vareso_leaf_pane",
-    "koratio:cotton_candy_leaf_pane",
+    "koratio:pink_cotton_candy_leaf_pane",
+    "koratio:light_blue_cotton_candy_leaf_pane",
+    "koratio:lime_cotton_candy_leaf_pane",
+    "koratio:yellow_cotton_candy_leaf_pane",
+    "koratio:chocolate_oak_leaf_pane",
     "koratio:elven_leaf_pane"
   ]
 }

@@ -1,0 +1,33 @@
+{
+  "values": [
+    "koratio:raw_gingerbread_block",
+    "koratio:raw_gingerbread_stairs",
+    "koratio:raw_gingerbread_slab",
+    "koratio:gingerbread_block",
+    "koratio:gingerbread_stairs",
+    "koratio:gingerbread_slab",
+    "koratio:raw_gingerbread_bricks",
+    "koratio:raw_gingerbread_brick_stairs",
+    "koratio:raw_gingerbread_brick_slab",
+    "koratio:gingerbread_bricks",
+    "koratio:gingerbread_brick_stairs",
+    "koratio:gingerbread_brick_slab",
+    "koratio:raw_large_gingerbread_bricks",
+    "koratio:raw_large_gingerbread_brick_stairs",
+    "koratio:raw_large_gingerbread_brick_slab",
+    "koratio:large_gingerbread_bricks",
+    "koratio:large_gingerbread_brick_stairs",
+    "koratio:large_gingerbread_brick_slab",
+    "koratio:raw_gingerbread_wall",
+    "koratio:gingerbread_wall",
+    "koratio:raw_gingerbread_brick_wall",
+    "koratio:gingerbread_brick_wall",
+    "koratio:raw_large_gingerbread_brick_wall",
+    "koratio:large_gingerbread_brick_wall",
+    "koratio:cookie_block",
+    "koratio:cookie_block_stairs",
+    "koratio:cookie_block_slab",
+    "koratio:cookie_block_button",
+    "koratio:cookie_block_pressure_plate"
+  ]
+}

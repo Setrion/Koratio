@@ -19,8 +19,8 @@ import net.neoforged.neoforge.registries.DeferredItem;
 import net.setrion.koratio.Koratio;
 import net.setrion.koratio.registry.KoratioBlocks;
 import net.setrion.koratio.registry.KoratioItems;
+import net.setrion.koratio.world.item.CandyItem;
 import net.setrion.koratio.world.item.ColoredCandyItem;
-import net.setrion.koratio.world.item.RainbowCandyItem;
 
 public class ItemModelGenerator extends ItemModelProvider {
 
@@ -41,24 +41,14 @@ public class ItemModelGenerator extends ItemModelProvider {
 		basicItem(KoratioItems.CEINANA.get());
 		basicItem(KoratioItems.UPNIP.get());
 
-		for (ColoredCandyItem candy : ColoredCandyItem.candyCanes()) {
-			coloredCandyCaneItem(candy);
-		}
-
-		for (RainbowCandyItem candy : RainbowCandyItem.candyCanes()) {
-			rainbowCandyCaneItem(candy);
-		}
-
-		for (ColoredCandyItem candy : ColoredCandyItem.lollipops()) {
-			coloredLollipopItem(candy);
-		}
-
-		for (RainbowCandyItem candy : RainbowCandyItem.lollipops()) {
-			rainbowLollipopItem(candy);
-		}
-
-		for (ColoredCandyItem candy : ColoredCandyItem.bonbons()) {
-			coloredBonbonItem(candy);
+		for (ColoredCandyItem candy : ColoredCandyItem.candy()) {
+			if (candy.getType() == CandyItem.CandyType.CANDY_CANE) {
+				coloredCandyCaneItem(candy);
+			} else if (candy.getType() == CandyItem.CandyType.LOLLIPOP) {
+				coloredLollipopItem(candy);
+			} else if (candy.getType() == CandyItem.CandyType.BONBON) {
+				coloredBonbonItem(candy);
+			}
 		}
 
 		blockModel(KoratioBlocks.DECRYPTING_TABLE.get());
@@ -181,22 +171,22 @@ public class ItemModelGenerator extends ItemModelProvider {
 		blockModel(KoratioBlocks.STICKY_MAGENTA_SUGAR_BLOCK.get());
 		blockModel(KoratioBlocks.STICKY_PINK_SUGAR_BLOCK.get());
 
-		blockModel(KoratioBlocks.WHITE_FROSTING_BLOCK.get());
-		blockModel(KoratioBlocks.LIGHT_GRAY_FROSTING_BLOCK.get());
-		blockModel(KoratioBlocks.GRAY_FROSTING_BLOCK.get());
-		blockModel(KoratioBlocks.BLACK_FROSTING_BLOCK.get());
-		blockModel(KoratioBlocks.BROWN_FROSTING_BLOCK.get());
-		blockModel(KoratioBlocks.RED_FROSTING_BLOCK.get());
-		blockModel(KoratioBlocks.ORANGE_FROSTING_BLOCK.get());
-		blockModel(KoratioBlocks.YELLOW_FROSTING_BLOCK.get());
-		blockModel(KoratioBlocks.LIME_FROSTING_BLOCK.get());
-		blockModel(KoratioBlocks.GREEN_FROSTING_BLOCK.get());
-		blockModel(KoratioBlocks.CYAN_FROSTING_BLOCK.get());
-		blockModel(KoratioBlocks.LIGHT_BLUE_FROSTING_BLOCK.get());
-		blockModel(KoratioBlocks.BLUE_FROSTING_BLOCK.get());
-		blockModel(KoratioBlocks.PURPLE_FROSTING_BLOCK.get());
-		blockModel(KoratioBlocks.MAGENTA_FROSTING_BLOCK.get());
-		blockModel(KoratioBlocks.PINK_FROSTING_BLOCK.get());
+		blockModel(KoratioBlocks.WHITE_ICING_BLOCK.get());
+		blockModel(KoratioBlocks.LIGHT_GRAY_ICING_BLOCK.get());
+		blockModel(KoratioBlocks.GRAY_ICING_BLOCK.get());
+		blockModel(KoratioBlocks.BLACK_ICING_BLOCK.get());
+		blockModel(KoratioBlocks.BROWN_ICING_BLOCK.get());
+		blockModel(KoratioBlocks.RED_ICING_BLOCK.get());
+		blockModel(KoratioBlocks.ORANGE_ICING_BLOCK.get());
+		blockModel(KoratioBlocks.YELLOW_ICING_BLOCK.get());
+		blockModel(KoratioBlocks.LIME_ICING_BLOCK.get());
+		blockModel(KoratioBlocks.GREEN_ICING_BLOCK.get());
+		blockModel(KoratioBlocks.CYAN_ICING_BLOCK.get());
+		blockModel(KoratioBlocks.LIGHT_BLUE_ICING_BLOCK.get());
+		blockModel(KoratioBlocks.BLUE_ICING_BLOCK.get());
+		blockModel(KoratioBlocks.PURPLE_ICING_BLOCK.get());
+		blockModel(KoratioBlocks.MAGENTA_ICING_BLOCK.get());
+		blockModel(KoratioBlocks.PINK_ICING_BLOCK.get());
 
 		blockModel(KoratioBlocks.WHITE_CANDY_BLOCK.get());
 		blockModel(KoratioBlocks.LIGHT_GRAY_CANDY_BLOCK.get());
@@ -232,10 +222,6 @@ public class ItemModelGenerator extends ItemModelProvider {
 		blockModel(KoratioBlocks.RED_LEVITATING_WOOL.get());
 		blockModel(KoratioBlocks.BLACK_LEVITATING_WOOL.get());
 
-		blockModel(KoratioBlocks.COOKIE_BLOCK.get());
-		blockModel(KoratioBlocks.COOKIE_BLOCK_STAIRS.get());
-		blockModel(KoratioBlocks.COOKIE_BLOCK_SLAB.get());
-
 		blockModel(KoratioBlocks.RAW_GINGERBREAD_BLOCK.get());
 		blockModel(KoratioBlocks.RAW_GINGERBREAD_STAIRS.get());
 		blockModel(KoratioBlocks.RAW_GINGERBREAD_SLAB.get());
@@ -254,6 +240,11 @@ public class ItemModelGenerator extends ItemModelProvider {
 		blockModel(KoratioBlocks.LARGE_GINGERBREAD_BRICKS.get());
 		blockModel(KoratioBlocks.LARGE_GINGERBREAD_BRICK_STAIRS.get());
 		blockModel(KoratioBlocks.LARGE_GINGERBREAD_BRICK_SLAB.get());
+		blockModel(KoratioBlocks.COOKIE_BLOCK.get());
+		blockModel(KoratioBlocks.COOKIE_BLOCK_STAIRS.get());
+		blockModel(KoratioBlocks.COOKIE_BLOCK_SLAB.get());
+		withExistingParent(KoratioBlocks.COOKIE_BLOCK_BUTTON.getId().getPath(), "block/button_inventory").texture("texture", Koratio.prefix("block/cookie_block"));
+		blockModel(KoratioBlocks.COOKIE_BLOCK_PRESSURE_PLATE.get());
 		blockModel(KoratioBlocks.MARSHMALLOW_BLOCK.get());
 
 		blockModel(KoratioBlocks.ANCIENT_COBBLESTONE.get());
@@ -432,8 +423,14 @@ public class ItemModelGenerator extends ItemModelProvider {
 		blockModel(KoratioBlocks.STRIPPED_CANDY_LOG.get());
 		blockModel(KoratioBlocks.CANDY_WOOD.get());
 		blockModel(KoratioBlocks.STRIPPED_CANDY_WOOD.get());
-		blockModel(KoratioBlocks.COTTON_CANDY_LEAVES.get());
-		plantItem(KoratioItems.COTTON_CANDY_LEAF_PANE.get(), KoratioBlocks.COTTON_CANDY_LEAVES.get().asItem());
+		blockModel(KoratioBlocks.PINK_COTTON_CANDY_LEAVES.get());
+		blockModel(KoratioBlocks.LIGHT_BLUE_COTTON_CANDY_LEAVES.get());
+		blockModel(KoratioBlocks.LIME_COTTON_CANDY_LEAVES.get());
+		blockModel(KoratioBlocks.YELLOW_COTTON_CANDY_LEAVES.get());
+		plantItem(KoratioItems.PINK_COTTON_CANDY_LEAF_PANE.get(), KoratioBlocks.PINK_COTTON_CANDY_LEAVES.get().asItem());
+		plantItem(KoratioItems.LIGHT_BLUE_COTTON_CANDY_LEAF_PANE.get(), KoratioBlocks.LIGHT_BLUE_COTTON_CANDY_LEAVES.get().asItem());
+		plantItem(KoratioItems.LIME_COTTON_CANDY_LEAF_PANE.get(), KoratioBlocks.LIME_COTTON_CANDY_LEAVES.get().asItem());
+		plantItem(KoratioItems.YELLOW_COTTON_CANDY_LEAF_PANE.get(), KoratioBlocks.YELLOW_COTTON_CANDY_LEAVES.get().asItem());
 		blockModel(KoratioBlocks.CANDY_SLAB.get());
 		blockModel(KoratioBlocks.CANDY_STAIRS.get());
 		plantItem(KoratioItems.CANDY_SAPLING.get());
@@ -452,6 +449,32 @@ public class ItemModelGenerator extends ItemModelProvider {
 
 		basicItem(KoratioItems.CANDY_BOAT.get());
 		basicItem(KoratioItems.CANDY_CHEST_BOAT.get());
+
+		blockModel(KoratioBlocks.CHOCOLATE_OAK_PLANKS.get());
+		blockModel(KoratioBlocks.CHOCOLATE_OAK_LOG.get());
+		blockModel(KoratioBlocks.STRIPPED_CHOCOLATE_OAK_LOG.get());
+		blockModel(KoratioBlocks.CHOCOLATE_OAK_WOOD.get());
+		blockModel(KoratioBlocks.STRIPPED_CHOCOLATE_OAK_WOOD.get());
+		blockModel(KoratioBlocks.CHOCOLATE_OAK_LEAVES.get());
+		plantItem(KoratioItems.CHOCOLATE_OAK_LEAF_PANE.get(), KoratioBlocks.CHOCOLATE_OAK_LEAVES.get().asItem());
+		blockModel(KoratioBlocks.CHOCOLATE_OAK_SLAB.get());
+		blockModel(KoratioBlocks.CHOCOLATE_OAK_STAIRS.get());
+		plantItem(KoratioItems.CHOCOLATE_OAK_SAPLING.get());
+		withExistingParent(KoratioBlocks.CHOCOLATE_OAK_FENCE.getId().getPath(), "block/fence_inventory").texture("texture", Koratio.prefix("block/chocolate_oak_planks"));
+		signItem(KoratioItems.CHOCOLATE_OAK_SIGN.get());
+		signItem(KoratioItems.CHOCOLATE_OAK_HANGING_SIGN.get());
+		withExistingParent(KoratioBlocks.CHOCOLATE_OAK_BUTTON.getId().getPath(), "block/button_inventory").texture("texture", Koratio.prefix("block/chocolate_oak_planks"));
+		blockModel(KoratioBlocks.CHOCOLATE_OAK_PRESSURE_PLATE.get());
+		doorItem(KoratioItems.CHOCOLATE_OAK_DOOR.get());
+		//tallDoorItem(KoratioItems.TALL_CHOCOLATE_OAK_DOOR.getId(), KoratioItems.CHOCOLATE_OAK_DOOR.getId());
+		blockModel(KoratioBlocks.CHOCOLATE_OAK_TRAPDOOR.get(), "chocolate_oak_trapdoor_bottom");
+		blockModel(KoratioBlocks.CHOCOLATE_OAK_FENCE_GATE.get());
+		blockModel(KoratioBlocks.CHOCOLATE_OAK_BOOKSHELF.get());
+		withExistingParent(KoratioBlocks.CHOCOLATE_OAK_CHEST.getId().toString(), "item/chest");
+		withExistingParent(KoratioBlocks.TRAPPED_CHOCOLATE_OAK_CHEST.getId().toString(), "item/chest");
+
+		basicItem(KoratioItems.CHOCOLATE_OAK_BOAT.get());
+		basicItem(KoratioItems.CHOCOLATE_OAK_CHEST_BOAT.get());
 
 		blockModel(KoratioBlocks.ELVEN_PLANKS.get());
 		blockModel(KoratioBlocks.BLUE_ELVEN_PLANKS.get());

@@ -40,21 +40,25 @@ public class KoratioBlocks {
 	public static final BlockSetType PANGO_SET = new BlockSetType("pango");
 	public static final BlockSetType RUGONA_SET = new BlockSetType("rugona");
 	public static final BlockSetType VARESO_SET = new BlockSetType("vareso");
-	public static final BlockSetType CANDY_WOOD_SET = new BlockSetType("candy");
-	public static final BlockSetType ELVEN_WOOD_SET = new BlockSetType("elven_wood");
-	public static final BlockSetType BLUE_ELVEN_WOOD_SET = new BlockSetType("blue_elven_wood");
-	public static final BlockSetType CYAN_ELVEN_WOOD_SET = new BlockSetType("cyan_elven_wood");
-	public static final BlockSetType GREEN_ELVEN_WOOD_SET = new BlockSetType("green_elven_wood");
+	public static final BlockSetType CANDY_SET = new BlockSetType("candy");
+	public static final BlockSetType CHOCOLATE_OAK_SET = new BlockSetType("chocolate_oak");
+	public static final BlockSetType ELVEN_SET = new BlockSetType("elven");
+	public static final BlockSetType BLUE_ELVEN_SET = new BlockSetType("blue_elven");
+	public static final BlockSetType CYAN_ELVEN_SET = new BlockSetType("cyan_elven");
+	public static final BlockSetType GREEN_ELVEN_SET = new BlockSetType("green_elven");
+
+	public static final BlockSetType COOKIE_BLOCK_SET = new BlockSetType("cookie_block");
 
 	//WoodTypes
 	public static final WoodType PANGO_TYPE = new WoodType("pango", PANGO_SET);
 	public static final WoodType RUGONA_TYPE = new WoodType("rugona", RUGONA_SET);
 	public static final WoodType VARESO_TYPE = new WoodType("vareso", VARESO_SET);
-	public static final WoodType CANDY_WOOD_TYPE = new WoodType("candy", CANDY_WOOD_SET);
-	public static final WoodType ELVEN_WOOD_TYPE = new WoodType("elven", ELVEN_WOOD_SET);
-	public static final WoodType BLUE_ELVEN_WOOD_TYPE = new WoodType("blue_elven", BLUE_ELVEN_WOOD_SET);
-	public static final WoodType CYAN_ELVEN_WOOD_TYPE = new WoodType("cyan_elven", CYAN_ELVEN_WOOD_SET);
-	public static final WoodType GREEN_ELVEN_WOOD_TYPE = new WoodType("green_elven", GREEN_ELVEN_WOOD_SET);
+	public static final WoodType CANDY_TYPE = new WoodType("candy", CANDY_SET);
+	public static final WoodType CHOCOLATE_OAK_TYPE = new WoodType("chocolate_oak", CHOCOLATE_OAK_SET);
+	public static final WoodType ELVEN_TYPE = new WoodType("elven", ELVEN_SET);
+	public static final WoodType BLUE_ELVEN_TYPE = new WoodType("blue_elven", BLUE_ELVEN_SET);
+	public static final WoodType CYAN_ELVEN_TYPE = new WoodType("cyan_elven", CYAN_ELVEN_SET);
+	public static final WoodType GREEN_ELVEN_TYPE = new WoodType("green_elven", GREEN_ELVEN_SET);
 
 	//Portal
 	public static final DeferredBlock<Block> FANTASIA_PORTAL = BLOCKS.register("fantasia_portal", () -> new FantasiaPortalBlock(BlockBehaviour.Properties.of().noCollission().randomTicks().strength(-1.0F, 3600000.0F).sound(SoundType.GLASS).lightLevel((state) -> 11)));
@@ -101,9 +105,6 @@ public class KoratioBlocks {
 	//Cookie
 	public static final DeferredBlock<Block> COOKIE_ORE = BLOCKS.register("cookie_ore", () -> new DropExperienceBlock(ConstantInt.of(1), BlockBehaviour.Properties.of().mapColor(MapColor.STONE).instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops().strength(3.0F, 3.0F)));
 	public static final DeferredBlock<Block> DEEPSLATE_COOKIE_ORE = BLOCKS.register("deepslate_cookie_ore", () -> new DropExperienceBlock(ConstantInt.of(1), BlockBehaviour.Properties.ofFullCopy(COOKIE_ORE.get()).mapColor(MapColor.DEEPSLATE).strength(4.5F, 3.0F).sound(SoundType.DEEPSLATE)));
-	public static final DeferredBlock<Block> COOKIE_BLOCK = BLOCKS.register("cookie_block", () -> new Block(BlockBehaviour.Properties.of().sound(SoundType.TUFF).mapColor(MapColor.COLOR_BROWN).instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops().strength(3.0F, 3.0F)));
-	public static final DeferredBlock<StairBlock> COOKIE_BLOCK_STAIRS = BLOCKS.register("cookie_block_stairs", () -> new StairBlock(COOKIE_BLOCK.get().defaultBlockState(), BlockBehaviour.Properties.ofFullCopy(COOKIE_BLOCK.get())));
-	public static final DeferredBlock<SlabBlock> COOKIE_BLOCK_SLAB = BLOCKS.register("cookie_block_slab", () -> new SlabBlock(BlockBehaviour.Properties.of().sound(SoundType.TUFF).mapColor(MapColor.COLOR_BROWN).strength(3.0F)));
 
 	//Misc
 	public static final DeferredBlock<Block> FLIPPED_FARMLAND = BLOCKS.register("flipped_farmland", () -> new FlippedFarmBlock(BlockBehaviour.Properties.of().mapColor(MapColor.DIRT).randomTicks().strength(0.6F).sound(SoundType.GRAVEL).isViewBlocking(KoratioBlocks::always).isSuffocating(KoratioBlocks::always)));
@@ -207,22 +208,22 @@ public class KoratioBlocks {
 	public static final DeferredBlock<Block> MAGENTA_SUGAR_BLOCK = BLOCKS.register("magenta_sugar_block", () -> new SugarBlock(new ColorRGBA(16317178), STICKY_MAGENTA_SUGAR_BLOCK.get(), BlockBehaviour.Properties.of().strength(2.0F).sound(SoundType.SAND)));
 	public static final DeferredBlock<Block> PINK_SUGAR_BLOCK = BLOCKS.register("pink_sugar_block", () -> new SugarBlock(new ColorRGBA(16317178), STICKY_PINK_SUGAR_BLOCK.get(), BlockBehaviour.Properties.of().strength(2.0F).sound(SoundType.SAND)));
 
-	public static final DeferredBlock<Block> WHITE_FROSTING_BLOCK = BLOCKS.register("white_frosting_block", () -> new Block(BlockBehaviour.Properties.of().strength(2.5F).sound(SoundType.WET_SPONGE)));
-	public static final DeferredBlock<Block> LIGHT_GRAY_FROSTING_BLOCK = BLOCKS.register("light_gray_frosting_block", () -> new Block(BlockBehaviour.Properties.of().strength(2.5F).sound(SoundType.WET_SPONGE)));
-	public static final DeferredBlock<Block> GRAY_FROSTING_BLOCK = BLOCKS.register("gray_frosting_block", () -> new Block(BlockBehaviour.Properties.of().strength(2.5F).sound(SoundType.WET_SPONGE)));
-	public static final DeferredBlock<Block> BLACK_FROSTING_BLOCK = BLOCKS.register("black_frosting_block", () -> new Block(BlockBehaviour.Properties.of().strength(2.5F).sound(SoundType.WET_SPONGE)));
-	public static final DeferredBlock<Block> BROWN_FROSTING_BLOCK = BLOCKS.register("brown_frosting_block", () -> new Block(BlockBehaviour.Properties.of().strength(2.5F).sound(SoundType.WET_SPONGE)));
-	public static final DeferredBlock<Block> RED_FROSTING_BLOCK = BLOCKS.register("red_frosting_block", () -> new Block(BlockBehaviour.Properties.of().strength(2.5F).sound(SoundType.WET_SPONGE)));
-	public static final DeferredBlock<Block> ORANGE_FROSTING_BLOCK = BLOCKS.register("orange_frosting_block", () -> new Block(BlockBehaviour.Properties.of().strength(2.5F).sound(SoundType.WET_SPONGE)));
-	public static final DeferredBlock<Block> YELLOW_FROSTING_BLOCK = BLOCKS.register("yellow_frosting_block", () -> new Block(BlockBehaviour.Properties.of().strength(2.5F).sound(SoundType.WET_SPONGE)));
-	public static final DeferredBlock<Block> LIME_FROSTING_BLOCK = BLOCKS.register("lime_frosting_block", () -> new Block(BlockBehaviour.Properties.of().strength(2.5F).sound(SoundType.WET_SPONGE)));
-	public static final DeferredBlock<Block> GREEN_FROSTING_BLOCK = BLOCKS.register("green_frosting_block", () -> new Block(BlockBehaviour.Properties.of().strength(2.5F).sound(SoundType.WET_SPONGE)));
-	public static final DeferredBlock<Block> CYAN_FROSTING_BLOCK = BLOCKS.register("cyan_frosting_block", () -> new Block(BlockBehaviour.Properties.of().strength(2.5F).sound(SoundType.WET_SPONGE)));
-	public static final DeferredBlock<Block> LIGHT_BLUE_FROSTING_BLOCK = BLOCKS.register("light_blue_frosting_block", () -> new Block(BlockBehaviour.Properties.of().strength(2.5F).sound(SoundType.WET_SPONGE)));
-	public static final DeferredBlock<Block> BLUE_FROSTING_BLOCK = BLOCKS.register("blue_frosting_block", () -> new Block(BlockBehaviour.Properties.of().strength(2.5F).sound(SoundType.WET_SPONGE)));
-	public static final DeferredBlock<Block> PURPLE_FROSTING_BLOCK = BLOCKS.register("purple_frosting_block", () -> new Block(BlockBehaviour.Properties.of().strength(2.5F).sound(SoundType.WET_SPONGE)));
-	public static final DeferredBlock<Block> MAGENTA_FROSTING_BLOCK = BLOCKS.register("magenta_frosting_block", () -> new Block(BlockBehaviour.Properties.of().strength(2.5F).sound(SoundType.WET_SPONGE)));
-	public static final DeferredBlock<Block> PINK_FROSTING_BLOCK = BLOCKS.register("pink_frosting_block", () -> new Block(BlockBehaviour.Properties.of().strength(2.5F).sound(SoundType.WET_SPONGE)));
+	public static final DeferredBlock<Block> WHITE_ICING_BLOCK = BLOCKS.register("white_icing_block", () -> new Block(BlockBehaviour.Properties.of().strength(2.5F).sound(SoundType.WET_SPONGE)));
+	public static final DeferredBlock<Block> LIGHT_GRAY_ICING_BLOCK = BLOCKS.register("light_gray_icing_block", () -> new Block(BlockBehaviour.Properties.of().strength(2.5F).sound(SoundType.WET_SPONGE)));
+	public static final DeferredBlock<Block> GRAY_ICING_BLOCK = BLOCKS.register("gray_icing_block", () -> new Block(BlockBehaviour.Properties.of().strength(2.5F).sound(SoundType.WET_SPONGE)));
+	public static final DeferredBlock<Block> BLACK_ICING_BLOCK = BLOCKS.register("black_icing_block", () -> new Block(BlockBehaviour.Properties.of().strength(2.5F).sound(SoundType.WET_SPONGE)));
+	public static final DeferredBlock<Block> BROWN_ICING_BLOCK = BLOCKS.register("brown_icing_block", () -> new Block(BlockBehaviour.Properties.of().strength(2.5F).sound(SoundType.WET_SPONGE)));
+	public static final DeferredBlock<Block> RED_ICING_BLOCK = BLOCKS.register("red_icing_block", () -> new Block(BlockBehaviour.Properties.of().strength(2.5F).sound(SoundType.WET_SPONGE)));
+	public static final DeferredBlock<Block> ORANGE_ICING_BLOCK = BLOCKS.register("orange_icing_block", () -> new Block(BlockBehaviour.Properties.of().strength(2.5F).sound(SoundType.WET_SPONGE)));
+	public static final DeferredBlock<Block> YELLOW_ICING_BLOCK = BLOCKS.register("yellow_icing_block", () -> new Block(BlockBehaviour.Properties.of().strength(2.5F).sound(SoundType.WET_SPONGE)));
+	public static final DeferredBlock<Block> LIME_ICING_BLOCK = BLOCKS.register("lime_icing_block", () -> new Block(BlockBehaviour.Properties.of().strength(2.5F).sound(SoundType.WET_SPONGE)));
+	public static final DeferredBlock<Block> GREEN_ICING_BLOCK = BLOCKS.register("green_icing_block", () -> new Block(BlockBehaviour.Properties.of().strength(2.5F).sound(SoundType.WET_SPONGE)));
+	public static final DeferredBlock<Block> CYAN_ICING_BLOCK = BLOCKS.register("cyan_icing_block", () -> new Block(BlockBehaviour.Properties.of().strength(2.5F).sound(SoundType.WET_SPONGE)));
+	public static final DeferredBlock<Block> LIGHT_BLUE_ICING_BLOCK = BLOCKS.register("light_blue_icing_block", () -> new Block(BlockBehaviour.Properties.of().strength(2.5F).sound(SoundType.WET_SPONGE)));
+	public static final DeferredBlock<Block> BLUE_ICING_BLOCK = BLOCKS.register("blue_icing_block", () -> new Block(BlockBehaviour.Properties.of().strength(2.5F).sound(SoundType.WET_SPONGE)));
+	public static final DeferredBlock<Block> PURPLE_ICING_BLOCK = BLOCKS.register("purple_icing_block", () -> new Block(BlockBehaviour.Properties.of().strength(2.5F).sound(SoundType.WET_SPONGE)));
+	public static final DeferredBlock<Block> MAGENTA_ICING_BLOCK = BLOCKS.register("magenta_icing_block", () -> new Block(BlockBehaviour.Properties.of().strength(2.5F).sound(SoundType.WET_SPONGE)));
+	public static final DeferredBlock<Block> PINK_ICING_BLOCK = BLOCKS.register("pink_icing_block", () -> new Block(BlockBehaviour.Properties.of().strength(2.5F).sound(SoundType.WET_SPONGE)));
 
 	public static final DeferredBlock<Block> WHITE_CANDY_BLOCK = BLOCKS.register("white_candy_block", () -> new Block(BlockBehaviour.Properties.of().strength(4.0F).sound(SoundType.BONE_BLOCK)));
 	public static final DeferredBlock<Block> LIGHT_GRAY_CANDY_BLOCK = BLOCKS.register("light_gray_candy_block", () -> new Block(BlockBehaviour.Properties.of().strength(4.0F).sound(SoundType.BONE_BLOCK)));
@@ -265,6 +266,11 @@ public class KoratioBlocks {
 	public static final DeferredBlock<WallBlock> GINGERBREAD_BRICK_WALL = BLOCKS.register("gingerbread_brick_wall", () -> new WallBlock(BlockBehaviour.Properties.ofFullCopy(GINGERBREAD_BRICKS.get())));
 	public static final DeferredBlock<WallBlock> RAW_LARGE_GINGERBREAD_BRICK_WALL = BLOCKS.register("raw_large_gingerbread_brick_wall", () -> new WallBlock(BlockBehaviour.Properties.ofFullCopy(RAW_LARGE_GINGERBREAD_BRICKS.get())));
 	public static final DeferredBlock<WallBlock> LARGE_GINGERBREAD_BRICK_WALL = BLOCKS.register("large_gingerbread_brick_wall", () -> new WallBlock(BlockBehaviour.Properties.ofFullCopy(LARGE_GINGERBREAD_BRICKS.get())));
+	public static final DeferredBlock<Block> COOKIE_BLOCK = BLOCKS.register("cookie_block", () -> new Block(BlockBehaviour.Properties.of().sound(SoundType.TUFF).mapColor(MapColor.COLOR_BROWN).instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops().strength(3.0F, 3.0F)));
+	public static final DeferredBlock<StairBlock> COOKIE_BLOCK_STAIRS = BLOCKS.register("cookie_block_stairs", () -> new StairBlock(COOKIE_BLOCK.get().defaultBlockState(), BlockBehaviour.Properties.ofFullCopy(COOKIE_BLOCK.get())));
+	public static final DeferredBlock<SlabBlock> COOKIE_BLOCK_SLAB = BLOCKS.register("cookie_block_slab", () -> new SlabBlock(BlockBehaviour.Properties.of().sound(SoundType.TUFF).mapColor(MapColor.COLOR_BROWN).strength(3.0F)));
+	public static final DeferredBlock<ButtonBlock> COOKIE_BLOCK_BUTTON = BLOCKS.register("cookie_block_button", () -> new ButtonBlock(COOKIE_BLOCK_SET, 20, BlockBehaviour.Properties.of().noCollission().strength(0.5F).pushReaction(PushReaction.DESTROY)));
+	public static final DeferredBlock<PressurePlateBlock> COOKIE_BLOCK_PRESSURE_PLATE = BLOCKS.register("cookie_block_pressure_plate", () -> new PressurePlateBlock(COOKIE_BLOCK_SET, BlockBehaviour.Properties.of().mapColor(MapColor.STONE).forceSolidOn().instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops().noCollission().strength(0.5F).pushReaction(PushReaction.DESTROY)));
 	public static final DeferredBlock<EatableBlock> MARSHMALLOW_BLOCK = BLOCKS.register("marshmallow_block", () -> new EatableBlock(BlockBehaviour.Properties.of().strength(1.5F).sound(SoundType.WOOL)));
 
 	//Plants
@@ -452,30 +458,62 @@ public class KoratioBlocks {
 	public static final DeferredBlock<TrappedChestBlock> TRAPPED_VARESO_CHEST = BLOCKS.register("trapped_vareso_chest", () -> new TrappedChestBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.TRAPPED_CHEST)));
 
 	//Candy Wood
-	public static final DeferredBlock<Block> CANDY_PLANKS = BLOCKS.register("candy_planks", () -> new Block(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_PURPLE).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
-	public static final DeferredBlock<RotatedPillarBlock> CANDY_LOG = BLOCKS.register("candy_log", () -> log(MapColor.COLOR_PURPLE, MapColor.COLOR_PURPLE));
-	public static final DeferredBlock<RotatedPillarBlock> STRIPPED_CANDY_LOG = BLOCKS.register("stripped_candy_log", () -> log(MapColor.COLOR_PURPLE, MapColor.COLOR_PURPLE));
-	public static final DeferredBlock<RotatedPillarBlock> STRIPPED_CANDY_WOOD = BLOCKS.register("stripped_candy_wood", () -> new RotatedPillarBlock(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_PURPLE).strength(2.0F).sound(SoundType.WOOD)));
-	public static final DeferredBlock<RotatedPillarBlock> CANDY_WOOD = BLOCKS.register("candy_wood", () -> new RotatedPillarBlock(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_PURPLE).strength(2.0F).sound(SoundType.WOOD)));
-	public static final DeferredBlock<Block> COTTON_CANDY_LEAVES = BLOCKS.register("cotton_candy_leaves", () -> new LeavesBlock(BlockBehaviour.Properties.of().strength(0.2F).randomTicks().sound(SoundType.GRASS).noOcclusion().isValidSpawn(KoratioBlocks::ocelotOrParrot).isSuffocating(KoratioBlocks::never).isViewBlocking(KoratioBlocks::never)));
-	public static final DeferredBlock<LeafPaneBlock> COTTON_CANDY_LEAF_PANE = BLOCKS.register("cotton_candy_leaf_pane", () -> new LeafPaneBlock(BlockBehaviour.Properties.ofFullCopy(COTTON_CANDY_LEAVES.get())));
-	public static final DeferredBlock<SlabBlock> CANDY_SLAB = BLOCKS.register("candy_slab", () -> new SlabBlock(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_PURPLE).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
+	public static final DeferredBlock<Block> CANDY_PLANKS = BLOCKS.register("candy_planks", () -> new Block(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_PINK).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
+	public static final DeferredBlock<RotatedPillarBlock> CANDY_LOG = BLOCKS.register("candy_log", () -> log(MapColor.COLOR_LIGHT_GRAY, MapColor.COLOR_PINK));
+	public static final DeferredBlock<RotatedPillarBlock> STRIPPED_CANDY_LOG = BLOCKS.register("stripped_candy_log", () -> log(MapColor.COLOR_PINK, MapColor.COLOR_PINK));
+	public static final DeferredBlock<RotatedPillarBlock> STRIPPED_CANDY_WOOD = BLOCKS.register("stripped_candy_wood", () -> new RotatedPillarBlock(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_PINK).strength(2.0F).sound(SoundType.WOOD)));
+	public static final DeferredBlock<RotatedPillarBlock> CANDY_WOOD = BLOCKS.register("candy_wood", () -> new RotatedPillarBlock(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_PINK).strength(2.0F).sound(SoundType.WOOD)));
+	public static final DeferredBlock<Block> PINK_COTTON_CANDY_LEAVES = BLOCKS.register("pink_cotton_candy_leaves", () -> new LeavesBlock(BlockBehaviour.Properties.of().strength(0.2F).randomTicks().sound(SoundType.GRASS).noOcclusion().isValidSpawn(KoratioBlocks::ocelotOrParrot).isSuffocating(KoratioBlocks::never).isViewBlocking(KoratioBlocks::never)));
+	public static final DeferredBlock<Block> LIGHT_BLUE_COTTON_CANDY_LEAVES = BLOCKS.register("light_blue_cotton_candy_leaves", () -> new LeavesBlock(BlockBehaviour.Properties.of().strength(0.2F).randomTicks().sound(SoundType.GRASS).noOcclusion().isValidSpawn(KoratioBlocks::ocelotOrParrot).isSuffocating(KoratioBlocks::never).isViewBlocking(KoratioBlocks::never)));
+	public static final DeferredBlock<Block> LIME_COTTON_CANDY_LEAVES = BLOCKS.register("lime_cotton_candy_leaves", () -> new LeavesBlock(BlockBehaviour.Properties.of().strength(0.2F).randomTicks().sound(SoundType.GRASS).noOcclusion().isValidSpawn(KoratioBlocks::ocelotOrParrot).isSuffocating(KoratioBlocks::never).isViewBlocking(KoratioBlocks::never)));
+	public static final DeferredBlock<Block> YELLOW_COTTON_CANDY_LEAVES = BLOCKS.register("yellow_cotton_candy_leaves", () -> new LeavesBlock(BlockBehaviour.Properties.of().strength(0.2F).randomTicks().sound(SoundType.GRASS).noOcclusion().isValidSpawn(KoratioBlocks::ocelotOrParrot).isSuffocating(KoratioBlocks::never).isViewBlocking(KoratioBlocks::never)));
+	public static final DeferredBlock<LeafPaneBlock> PINK_COTTON_CANDY_LEAF_PANE = BLOCKS.register("pink_cotton_candy_leaf_pane", () -> new LeafPaneBlock(BlockBehaviour.Properties.ofFullCopy(PINK_COTTON_CANDY_LEAVES.get())));
+	public static final DeferredBlock<LeafPaneBlock> LIGHT_BLUE_COTTON_CANDY_LEAF_PANE = BLOCKS.register("light_blue_cotton_candy_leaf_pane", () -> new LeafPaneBlock(BlockBehaviour.Properties.ofFullCopy(LIGHT_BLUE_COTTON_CANDY_LEAVES.get())));
+	public static final DeferredBlock<LeafPaneBlock> LIME_COTTON_CANDY_LEAF_PANE = BLOCKS.register("lime_cotton_candy_leaf_pane", () -> new LeafPaneBlock(BlockBehaviour.Properties.ofFullCopy(LIME_COTTON_CANDY_LEAVES.get())));
+	public static final DeferredBlock<LeafPaneBlock> YELLOW_COTTON_CANDY_LEAF_PANE = BLOCKS.register("yellow_cotton_candy_leaf_pane", () -> new LeafPaneBlock(BlockBehaviour.Properties.ofFullCopy(YELLOW_COTTON_CANDY_LEAVES.get())));
+	public static final DeferredBlock<SlabBlock> CANDY_SLAB = BLOCKS.register("candy_slab", () -> new SlabBlock(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_PINK).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
 	public static final DeferredBlock<StairBlock> CANDY_STAIRS = BLOCKS.register("candy_stairs", () -> new StairBlock(CANDY_PLANKS.get().defaultBlockState(), BlockBehaviour.Properties.ofFullCopy(CANDY_PLANKS.get())));
 	public static final DeferredBlock<Block> CANDY_SAPLING = BLOCKS.register("candy_sapling", () -> new SaplingBlock(KoratioTreeGrower.CANDY, BlockBehaviour.Properties.of().noCollission().randomTicks().instabreak().sound(SoundType.GRASS)));
 	public static final DeferredBlock<FenceBlock> CANDY_FENCE = BLOCKS.register("candy_fence", () -> new FenceBlock(BlockBehaviour.Properties.of().mapColor(CANDY_PLANKS.get().defaultMapColor()).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
-	public static final DeferredBlock<StandingSignBlock> CANDY_SIGN = BLOCKS.register("candy_sign", () -> new StandingSignBlock(CANDY_WOOD_TYPE, BlockBehaviour.Properties.of().noCollission().strength(1.0F).sound(SoundType.WOOD)));
-	public static final DeferredBlock<WallSignBlock> CANDY_WALL_SIGN = BLOCKS.register("candy_wall_sign", () -> new WallSignBlock(CANDY_WOOD_TYPE, BlockBehaviour.Properties.of().noCollission().strength(1.0F).sound(SoundType.WOOD).lootFrom(CANDY_SIGN)));
-	public static final DeferredBlock<CeilingHangingSignBlock> CANDY_HANGING_SIGN = BLOCKS.register("candy_hanging_sign",() -> new CeilingHangingSignBlock(CANDY_WOOD_TYPE, BlockBehaviour.Properties.of().mapColor(CANDY_LOG.get().defaultMapColor()).noCollission().strength(1.0F)));
-	public static final DeferredBlock<WallHangingSignBlock> CANDY_WALL_HANGING_SIGN = BLOCKS.register("candy_wall_hanging_sign",() -> new WallHangingSignBlock(CANDY_WOOD_TYPE, BlockBehaviour.Properties.of().mapColor(CANDY_LOG.get().defaultMapColor()).noCollission().strength(1.0F).lootFrom(CANDY_HANGING_SIGN)));
-	public static final DeferredBlock<ButtonBlock> CANDY_BUTTON = BLOCKS.register("candy_button", () -> new ButtonBlock(CANDY_WOOD_SET, 30, BlockBehaviour.Properties.of().noCollission().strength(0.5F).sound(SoundType.WOOD)));
-	public static final DeferredBlock<PressurePlateBlock> CANDY_PRESSURE_PLATE = BLOCKS.register("candy_pressure_plate", () -> new PressurePlateBlock(CANDY_WOOD_SET, BlockBehaviour.Properties.of().mapColor(CANDY_PLANKS.get().defaultMapColor()).noCollission().strength(0.5F).sound(SoundType.WOOD)));
-	public static final DeferredBlock<DoorBlock> CANDY_DOOR = BLOCKS.register("candy_door", () -> new DoorBlock(CANDY_WOOD_SET, BlockBehaviour.Properties.of().mapColor(CANDY_PLANKS.get().defaultMapColor()).strength(3.0F).sound(SoundType.WOOD).noOcclusion()));
-	//public static final DeferredBlock<TallDoorBlock> TALL_CANDY_DOOR = BLOCKS.register("tall_candy_door", () -> new TallDoorBlock(CANDY_WOOD_SET, BlockBehaviour.Properties.ofFullCopy(CANDY_DOOR.get())));
-	public static final DeferredBlock<TrapDoorBlock> CANDY_TRAPDOOR = BLOCKS.register("candy_trapdoor", () -> new TrapDoorBlock(CANDY_WOOD_SET, BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_PURPLE).strength(3.0F).sound(SoundType.WOOD).noOcclusion().isValidSpawn(KoratioBlocks::never)));
-	public static final DeferredBlock<FenceGateBlock> CANDY_FENCE_GATE = BLOCKS.register("candy_fence_gate", () -> new FenceGateBlock(CANDY_WOOD_TYPE, BlockBehaviour.Properties.of().mapColor(CANDY_PLANKS.get().defaultMapColor()).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
-	public static final DeferredBlock<Block> CANDY_BOOKSHELF = BLOCKS.register("candy_bookshelf", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.BOOKSHELF).mapColor(MapColor.COLOR_PURPLE)));
+	public static final DeferredBlock<StandingSignBlock> CANDY_SIGN = BLOCKS.register("candy_sign", () -> new StandingSignBlock(CANDY_TYPE, BlockBehaviour.Properties.of().noCollission().strength(1.0F).sound(SoundType.WOOD)));
+	public static final DeferredBlock<WallSignBlock> CANDY_WALL_SIGN = BLOCKS.register("candy_wall_sign", () -> new WallSignBlock(CANDY_TYPE, BlockBehaviour.Properties.of().noCollission().strength(1.0F).sound(SoundType.WOOD).lootFrom(CANDY_SIGN)));
+	public static final DeferredBlock<CeilingHangingSignBlock> CANDY_HANGING_SIGN = BLOCKS.register("candy_hanging_sign",() -> new CeilingHangingSignBlock(CANDY_TYPE, BlockBehaviour.Properties.of().mapColor(CANDY_LOG.get().defaultMapColor()).noCollission().strength(1.0F)));
+	public static final DeferredBlock<WallHangingSignBlock> CANDY_WALL_HANGING_SIGN = BLOCKS.register("candy_wall_hanging_sign",() -> new WallHangingSignBlock(CANDY_TYPE, BlockBehaviour.Properties.of().mapColor(CANDY_LOG.get().defaultMapColor()).noCollission().strength(1.0F).lootFrom(CANDY_HANGING_SIGN)));
+	public static final DeferredBlock<ButtonBlock> CANDY_BUTTON = BLOCKS.register("candy_button", () -> new ButtonBlock(CANDY_SET, 30, BlockBehaviour.Properties.of().noCollission().strength(0.5F).sound(SoundType.WOOD)));
+	public static final DeferredBlock<PressurePlateBlock> CANDY_PRESSURE_PLATE = BLOCKS.register("candy_pressure_plate", () -> new PressurePlateBlock(CANDY_SET, BlockBehaviour.Properties.of().mapColor(CANDY_PLANKS.get().defaultMapColor()).noCollission().strength(0.5F).sound(SoundType.WOOD)));
+	public static final DeferredBlock<DoorBlock> CANDY_DOOR = BLOCKS.register("candy_door", () -> new DoorBlock(CANDY_SET, BlockBehaviour.Properties.of().mapColor(CANDY_PLANKS.get().defaultMapColor()).strength(3.0F).sound(SoundType.WOOD).noOcclusion()));
+	//public static final DeferredBlock<TallDoorBlock> TALL_CANDY_DOOR = BLOCKS.register("tall_candy_door", () -> new TallDoorBlock(CANDY_SET, BlockBehaviour.Properties.ofFullCopy(CANDY_DOOR.get())));
+	public static final DeferredBlock<TrapDoorBlock> CANDY_TRAPDOOR = BLOCKS.register("candy_trapdoor", () -> new TrapDoorBlock(CANDY_SET, BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_PINK).strength(3.0F).sound(SoundType.WOOD).noOcclusion().isValidSpawn(KoratioBlocks::never)));
+	public static final DeferredBlock<FenceGateBlock> CANDY_FENCE_GATE = BLOCKS.register("candy_fence_gate", () -> new FenceGateBlock(CANDY_TYPE, BlockBehaviour.Properties.of().mapColor(CANDY_PLANKS.get().defaultMapColor()).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
+	public static final DeferredBlock<Block> CANDY_BOOKSHELF = BLOCKS.register("candy_bookshelf", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.BOOKSHELF).mapColor(MapColor.COLOR_PINK)));
 	public static final DeferredBlock<net.minecraft.world.level.block.ChestBlock> CANDY_CHEST = BLOCKS.register("candy_chest", () -> new ChestBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.CHEST)));
 	public static final DeferredBlock<TrappedChestBlock> TRAPPED_CANDY_CHEST = BLOCKS.register("trapped_candy_chest", () -> new TrappedChestBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.TRAPPED_CHEST)));
+
+	//Pango Wood
+	public static final DeferredBlock<Block> CHOCOLATE_OAK_PLANKS = BLOCKS.register("chocolate_oak_planks", () -> new Block(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_BROWN).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
+	public static final DeferredBlock<RotatedPillarBlock> CHOCOLATE_OAK_LOG = BLOCKS.register("chocolate_oak_log", () -> log(MapColor.COLOR_BROWN, MapColor.COLOR_BROWN));
+	public static final DeferredBlock<RotatedPillarBlock> STRIPPED_CHOCOLATE_OAK_LOG = BLOCKS.register("stripped_chocolate_oak_log", () -> log(MapColor.COLOR_BROWN, MapColor.COLOR_BROWN));
+	public static final DeferredBlock<RotatedPillarBlock> STRIPPED_CHOCOLATE_OAK_WOOD = BLOCKS.register("stripped_chocolate_oak_wood", () -> new RotatedPillarBlock(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_BROWN).strength(2.0F).sound(SoundType.WOOD)));
+	public static final DeferredBlock<RotatedPillarBlock> CHOCOLATE_OAK_WOOD = BLOCKS.register("chocolate_oak_wood", () -> new RotatedPillarBlock(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_BROWN).strength(2.0F).sound(SoundType.WOOD)));
+	public static final DeferredBlock<Block> CHOCOLATE_OAK_LEAVES = BLOCKS.register("chocolate_oak_leaves", () -> new LeavesBlock(BlockBehaviour.Properties.of().strength(0.2F).randomTicks().sound(SoundType.GRASS).noOcclusion().isValidSpawn(KoratioBlocks::ocelotOrParrot).isSuffocating(KoratioBlocks::never).isViewBlocking(KoratioBlocks::never)));
+	public static final DeferredBlock<LeafPaneBlock> CHOCOLATE_OAK_LEAF_PANE = BLOCKS.register("chocolate_oak_leaf_pane", () -> new LeafPaneBlock(BlockBehaviour.Properties.ofFullCopy(CHOCOLATE_OAK_LEAVES.get())));
+	public static final DeferredBlock<SlabBlock> CHOCOLATE_OAK_SLAB = BLOCKS.register("chocolate_oak_slab", () -> new SlabBlock(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_BROWN).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
+	public static final DeferredBlock<StairBlock> CHOCOLATE_OAK_STAIRS = BLOCKS.register("chocolate_oak_stairs", () -> new StairBlock(CHOCOLATE_OAK_PLANKS.get().defaultBlockState(), BlockBehaviour.Properties.ofFullCopy(CHOCOLATE_OAK_PLANKS.get())));
+	public static final DeferredBlock<Block> CHOCOLATE_OAK_SAPLING = BLOCKS.register("chocolate_oak_sapling", () -> new SaplingBlock(KoratioTreeGrower.CHOCOLATE_OAK, BlockBehaviour.Properties.of().noCollission().randomTicks().instabreak().sound(SoundType.GRASS)));
+	public static final DeferredBlock<FenceBlock> CHOCOLATE_OAK_FENCE = BLOCKS.register("chocolate_oak_fence", () -> new FenceBlock(BlockBehaviour.Properties.of().mapColor(CHOCOLATE_OAK_PLANKS.get().defaultMapColor()).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
+	public static final DeferredBlock<StandingSignBlock> CHOCOLATE_OAK_SIGN = BLOCKS.register("chocolate_oak_sign", () -> new StandingSignBlock(CHOCOLATE_OAK_TYPE, BlockBehaviour.Properties.of().noCollission().strength(1.0F).sound(SoundType.WOOD)));
+	public static final DeferredBlock<WallSignBlock> CHOCOLATE_OAK_WALL_SIGN = BLOCKS.register("chocolate_oak_wall_sign", () -> new WallSignBlock(CHOCOLATE_OAK_TYPE, BlockBehaviour.Properties.of().noCollission().strength(1.0F).sound(SoundType.WOOD).lootFrom(CHOCOLATE_OAK_SIGN)));
+	public static final DeferredBlock<CeilingHangingSignBlock> CHOCOLATE_OAK_HANGING_SIGN = BLOCKS.register("chocolate_oak_hanging_sign",() -> new CeilingHangingSignBlock(CHOCOLATE_OAK_TYPE, BlockBehaviour.Properties.of().mapColor(CHOCOLATE_OAK_LOG.get().defaultMapColor()).noCollission().strength(1.0F)));
+	public static final DeferredBlock<WallHangingSignBlock> CHOCOLATE_OAK_WALL_HANGING_SIGN = BLOCKS.register("chocolate_oak_wall_hanging_sign",() -> new WallHangingSignBlock(CHOCOLATE_OAK_TYPE, BlockBehaviour.Properties.of().mapColor(CHOCOLATE_OAK_LOG.get().defaultMapColor()).noCollission().strength(1.0F).lootFrom(CHOCOLATE_OAK_HANGING_SIGN)));
+	public static final DeferredBlock<ButtonBlock> CHOCOLATE_OAK_BUTTON = BLOCKS.register("chocolate_oak_button", () -> new ButtonBlock(CHOCOLATE_OAK_SET, 30, BlockBehaviour.Properties.of().noCollission().strength(0.5F).sound(SoundType.WOOD)));
+	public static final DeferredBlock<PressurePlateBlock> CHOCOLATE_OAK_PRESSURE_PLATE = BLOCKS.register("chocolate_oak_pressure_plate", () -> new PressurePlateBlock(CHOCOLATE_OAK_SET, BlockBehaviour.Properties.of().mapColor(CHOCOLATE_OAK_PLANKS.get().defaultMapColor()).noCollission().strength(0.5F).sound(SoundType.WOOD)));
+	public static final DeferredBlock<DoorBlock> CHOCOLATE_OAK_DOOR = BLOCKS.register("chocolate_oak_door", () -> new DoorBlock(CHOCOLATE_OAK_SET, BlockBehaviour.Properties.of().mapColor(CHOCOLATE_OAK_PLANKS.get().defaultMapColor()).strength(3.0F).sound(SoundType.WOOD).noOcclusion()));
+	//public static final DeferredBlock<TallDoorBlock> TALL_CHOCOLATE_OAK_DOOR = BLOCKS.register("tall_chocolate_oak_door", () -> new TallDoorBlock(CHOCOLATE_OAK_SET, BlockBehaviour.Properties.ofFullCopy(CHOCOLATE_OAK_DOOR.get())));
+	public static final DeferredBlock<TrapDoorBlock> CHOCOLATE_OAK_TRAPDOOR = BLOCKS.register("chocolate_oak_trapdoor", () -> new TrapDoorBlock(CHOCOLATE_OAK_SET, BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_BROWN).strength(3.0F).sound(SoundType.WOOD).noOcclusion().isValidSpawn(KoratioBlocks::never)));
+	public static final DeferredBlock<FenceGateBlock> CHOCOLATE_OAK_FENCE_GATE = BLOCKS.register("chocolate_oak_fence_gate", () -> new FenceGateBlock(CHOCOLATE_OAK_TYPE, BlockBehaviour.Properties.of().mapColor(CHOCOLATE_OAK_PLANKS.get().defaultMapColor()).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
+	public static final DeferredBlock<Block> CHOCOLATE_OAK_BOOKSHELF = BLOCKS.register("chocolate_oak_bookshelf", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.BOOKSHELF).mapColor(MapColor.COLOR_BROWN)));
+	public static final DeferredBlock<net.minecraft.world.level.block.ChestBlock> CHOCOLATE_OAK_CHEST = BLOCKS.register("chocolate_oak_chest", () -> new ChestBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.CHEST)));
+	public static final DeferredBlock<TrappedChestBlock> TRAPPED_CHOCOLATE_OAK_CHEST = BLOCKS.register("trapped_chocolate_oak_chest", () -> new TrappedChestBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.TRAPPED_CHEST)));
 
 	//Elven Wood
 	public static final DeferredBlock<Block> ELVEN_PLANKS = BLOCKS.register("elven_planks", () -> new Block(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_GREEN).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
@@ -507,46 +545,46 @@ public class KoratioBlocks {
 	public static final DeferredBlock<FenceBlock> BLUE_ELVEN_FENCE = BLOCKS.register("blue_elven_fence", () -> new FenceBlock(BlockBehaviour.Properties.of().mapColor(BLUE_ELVEN_PLANKS.get().defaultMapColor()).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
 	public static final DeferredBlock<FenceBlock> CYAN_ELVEN_FENCE = BLOCKS.register("cyan_elven_fence", () -> new FenceBlock(BlockBehaviour.Properties.of().mapColor(CYAN_ELVEN_PLANKS.get().defaultMapColor()).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
 	public static final DeferredBlock<FenceBlock> GREEN_ELVEN_FENCE = BLOCKS.register("green_elven_fence", () -> new FenceBlock(BlockBehaviour.Properties.of().mapColor(GREEN_ELVEN_PLANKS.get().defaultMapColor()).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
-	public static final DeferredBlock<StandingSignBlock> ELVEN_SIGN = BLOCKS.register("elven_sign", () -> new StandingSignBlock(ELVEN_WOOD_TYPE, BlockBehaviour.Properties.of().noCollission().strength(1.0F).sound(SoundType.WOOD)));
-	public static final DeferredBlock<StandingSignBlock> BLUE_ELVEN_SIGN = BLOCKS.register("blue_elven_sign", () -> new StandingSignBlock(BLUE_ELVEN_WOOD_TYPE, BlockBehaviour.Properties.of().noCollission().strength(1.0F).sound(SoundType.WOOD)));
-	public static final DeferredBlock<StandingSignBlock> CYAN_ELVEN_SIGN = BLOCKS.register("cyan_elven_sign", () -> new StandingSignBlock(CYAN_ELVEN_WOOD_TYPE, BlockBehaviour.Properties.of().noCollission().strength(1.0F).sound(SoundType.WOOD)));
-	public static final DeferredBlock<StandingSignBlock> GREEN_ELVEN_SIGN = BLOCKS.register("green_elven_sign", () -> new StandingSignBlock(GREEN_ELVEN_WOOD_TYPE, BlockBehaviour.Properties.of().noCollission().strength(1.0F).sound(SoundType.WOOD)));
-	public static final DeferredBlock<WallSignBlock> ELVEN_WALL_SIGN = BLOCKS.register("elven_wall_sign", () -> new WallSignBlock(ELVEN_WOOD_TYPE, BlockBehaviour.Properties.of().noCollission().strength(1.0F).sound(SoundType.WOOD).lootFrom(ELVEN_SIGN)));
-	public static final DeferredBlock<WallSignBlock> BLUE_ELVEN_WALL_SIGN = BLOCKS.register("blue_elven_wall_sign", () -> new WallSignBlock(BLUE_ELVEN_WOOD_TYPE, BlockBehaviour.Properties.of().noCollission().strength(1.0F).sound(SoundType.WOOD).lootFrom(BLUE_ELVEN_SIGN)));
-	public static final DeferredBlock<WallSignBlock> CYAN_ELVEN_WALL_SIGN = BLOCKS.register("cyan_elven_wall_sign", () -> new WallSignBlock(CYAN_ELVEN_WOOD_TYPE, BlockBehaviour.Properties.of().noCollission().strength(1.0F).sound(SoundType.WOOD).lootFrom(CYAN_ELVEN_SIGN)));
-	public static final DeferredBlock<WallSignBlock> GREEN_ELVEN_WALL_SIGN = BLOCKS.register("green_elven_wall_sign", () -> new WallSignBlock(GREEN_ELVEN_WOOD_TYPE, BlockBehaviour.Properties.of().noCollission().strength(1.0F).sound(SoundType.WOOD).lootFrom(GREEN_ELVEN_SIGN)));
-	public static final DeferredBlock<CeilingHangingSignBlock> ELVEN_HANGING_SIGN = BLOCKS.register("elven_hanging_sign",() -> new CeilingHangingSignBlock(ELVEN_WOOD_TYPE, BlockBehaviour.Properties.of().mapColor(ELVEN_LOG.get().defaultMapColor()).noCollission().strength(1.0F)));
-	public static final DeferredBlock<CeilingHangingSignBlock> BLUE_ELVEN_HANGING_SIGN = BLOCKS.register("blue_elven_hanging_sign",() -> new CeilingHangingSignBlock(BLUE_ELVEN_WOOD_TYPE, BlockBehaviour.Properties.of().mapColor(ELVEN_LOG.get().defaultMapColor()).noCollission().strength(1.0F)));
-	public static final DeferredBlock<CeilingHangingSignBlock> CYAN_ELVEN_HANGING_SIGN = BLOCKS.register("cyan_elven_hanging_sign",() -> new CeilingHangingSignBlock(CYAN_ELVEN_WOOD_TYPE, BlockBehaviour.Properties.of().mapColor(ELVEN_LOG.get().defaultMapColor()).noCollission().strength(1.0F)));
-	public static final DeferredBlock<CeilingHangingSignBlock> GREEN_ELVEN_HANGING_SIGN = BLOCKS.register("green_elven_hanging_sign",() -> new CeilingHangingSignBlock(GREEN_ELVEN_WOOD_TYPE, BlockBehaviour.Properties.of().mapColor(ELVEN_LOG.get().defaultMapColor()).noCollission().strength(1.0F)));
-	public static final DeferredBlock<WallHangingSignBlock> ELVEN_WALL_HANGING_SIGN = BLOCKS.register("elven_wall_hanging_sign",() -> new WallHangingSignBlock(ELVEN_WOOD_TYPE, BlockBehaviour.Properties.of().mapColor(ELVEN_LOG.get().defaultMapColor()).noCollission().strength(1.0F).lootFrom(ELVEN_HANGING_SIGN)));
-	public static final DeferredBlock<WallHangingSignBlock> BLUE_ELVEN_WALL_HANGING_SIGN = BLOCKS.register("blue_elven_wall_hanging_sign",() -> new WallHangingSignBlock(BLUE_ELVEN_WOOD_TYPE, BlockBehaviour.Properties.of().mapColor(ELVEN_LOG.get().defaultMapColor()).noCollission().strength(1.0F).lootFrom(BLUE_ELVEN_HANGING_SIGN)));
-	public static final DeferredBlock<WallHangingSignBlock> CYAN_ELVEN_WALL_HANGING_SIGN = BLOCKS.register("cyan_elven_wall_hanging_sign",() -> new WallHangingSignBlock(CYAN_ELVEN_WOOD_TYPE, BlockBehaviour.Properties.of().mapColor(ELVEN_LOG.get().defaultMapColor()).noCollission().strength(1.0F).lootFrom(CYAN_ELVEN_HANGING_SIGN)));
-	public static final DeferredBlock<WallHangingSignBlock> GREEN_ELVEN_WALL_HANGING_SIGN = BLOCKS.register("green_elven_wall_hanging_sign",() -> new WallHangingSignBlock(GREEN_ELVEN_WOOD_TYPE, BlockBehaviour.Properties.of().mapColor(ELVEN_LOG.get().defaultMapColor()).noCollission().strength(1.0F).lootFrom(GREEN_ELVEN_HANGING_SIGN)));
-	public static final DeferredBlock<ButtonBlock> ELVEN_BUTTON = BLOCKS.register("elven_button", () -> new ButtonBlock(ELVEN_WOOD_SET, 30, BlockBehaviour.Properties.of().noCollission().strength(0.5F).sound(SoundType.WOOD)));
-	public static final DeferredBlock<ButtonBlock> BLUE_ELVEN_BUTTON = BLOCKS.register("blue_elven_button", () -> new ButtonBlock(BLUE_ELVEN_WOOD_SET, 30, BlockBehaviour.Properties.of().noCollission().strength(0.5F).sound(SoundType.WOOD)));
-	public static final DeferredBlock<ButtonBlock> CYAN_ELVEN_BUTTON = BLOCKS.register("cyan_elven_button", () -> new ButtonBlock(CYAN_ELVEN_WOOD_SET, 30, BlockBehaviour.Properties.of().noCollission().strength(0.5F).sound(SoundType.WOOD)));
-	public static final DeferredBlock<ButtonBlock> GREEN_ELVEN_BUTTON = BLOCKS.register("green_elven_button", () -> new ButtonBlock(GREEN_ELVEN_WOOD_SET, 30, BlockBehaviour.Properties.of().noCollission().strength(0.5F).sound(SoundType.WOOD)));
-	public static final DeferredBlock<PressurePlateBlock> ELVEN_PRESSURE_PLATE = BLOCKS.register("elven_pressure_plate", () -> new PressurePlateBlock(ELVEN_WOOD_SET, BlockBehaviour.Properties.of().mapColor(ELVEN_PLANKS.get().defaultMapColor()).noCollission().strength(0.5F).sound(SoundType.WOOD)));
-	public static final DeferredBlock<PressurePlateBlock> BLUE_ELVEN_PRESSURE_PLATE = BLOCKS.register("blue_elven_pressure_plate", () -> new PressurePlateBlock(BLUE_ELVEN_WOOD_SET, BlockBehaviour.Properties.of().mapColor(BLUE_ELVEN_PLANKS.get().defaultMapColor()).noCollission().strength(0.5F).sound(SoundType.WOOD)));
-	public static final DeferredBlock<PressurePlateBlock> CYAN_ELVEN_PRESSURE_PLATE = BLOCKS.register("cyan_elven_pressure_plate", () -> new PressurePlateBlock(CYAN_ELVEN_WOOD_SET, BlockBehaviour.Properties.of().mapColor(CYAN_ELVEN_PLANKS.get().defaultMapColor()).noCollission().strength(0.5F).sound(SoundType.WOOD)));
-	public static final DeferredBlock<PressurePlateBlock> GREEN_ELVEN_PRESSURE_PLATE = BLOCKS.register("green_elven_pressure_plate", () -> new PressurePlateBlock(GREEN_ELVEN_WOOD_SET, BlockBehaviour.Properties.of().mapColor(GREEN_ELVEN_PLANKS.get().defaultMapColor()).noCollission().strength(0.5F).sound(SoundType.WOOD)));
-	public static final DeferredBlock<DoorBlock> ELVEN_DOOR = BLOCKS.register("elven_door", () -> new DoorBlock(ELVEN_WOOD_SET, BlockBehaviour.Properties.of().mapColor(ELVEN_PLANKS.get().defaultMapColor()).strength(3.0F).sound(SoundType.WOOD).noOcclusion()));
-	public static final DeferredBlock<DoorBlock> BLUE_ELVEN_DOOR = BLOCKS.register("blue_elven_door", () -> new DoorBlock(BLUE_ELVEN_WOOD_SET, BlockBehaviour.Properties.of().mapColor(BLUE_ELVEN_PLANKS.get().defaultMapColor()).strength(3.0F).sound(SoundType.WOOD).noOcclusion()));
-	public static final DeferredBlock<DoorBlock> CYAN_ELVEN_DOOR = BLOCKS.register("cyan_elven_door", () -> new DoorBlock(CYAN_ELVEN_WOOD_SET, BlockBehaviour.Properties.of().mapColor(CYAN_ELVEN_PLANKS.get().defaultMapColor()).strength(3.0F).sound(SoundType.WOOD).noOcclusion()));
-	public static final DeferredBlock<DoorBlock> GREEN_ELVEN_DOOR = BLOCKS.register("green_elven_door", () -> new DoorBlock(GREEN_ELVEN_WOOD_SET, BlockBehaviour.Properties.of().mapColor(GREEN_ELVEN_PLANKS.get().defaultMapColor()).strength(3.0F).sound(SoundType.WOOD).noOcclusion()));
-	public static final DeferredBlock<TallDoorBlock> TALL_ELVEN_DOOR = BLOCKS.register("tall_elven_door", () -> new TallDoorBlock(ELVEN_WOOD_SET, BlockBehaviour.Properties.ofFullCopy(ELVEN_DOOR.get())));
-	public static final DeferredBlock<TallDoorBlock> TALL_BLUE_ELVEN_DOOR = BLOCKS.register("tall_blue_elven_door", () -> new TallDoorBlock(BLUE_ELVEN_WOOD_SET, BlockBehaviour.Properties.ofFullCopy(BLUE_ELVEN_DOOR.get())));
-	public static final DeferredBlock<TallDoorBlock> TALL_CYAN_ELVEN_DOOR = BLOCKS.register("tall_cyan_elven_door", () -> new TallDoorBlock(CYAN_ELVEN_WOOD_SET, BlockBehaviour.Properties.ofFullCopy(CYAN_ELVEN_DOOR.get())));
-	public static final DeferredBlock<TallDoorBlock> TALL_GREEN_ELVEN_DOOR = BLOCKS.register("tall_green_elven_door", () -> new TallDoorBlock(GREEN_ELVEN_WOOD_SET, BlockBehaviour.Properties.ofFullCopy(GREEN_ELVEN_DOOR.get())));
-	public static final DeferredBlock<TrapDoorBlock> ELVEN_TRAPDOOR = BLOCKS.register("elven_trapdoor", () -> new TrapDoorBlock(ELVEN_WOOD_SET, BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_CYAN).strength(3.0F).sound(SoundType.WOOD).noOcclusion().isValidSpawn(KoratioBlocks::never)));
-	public static final DeferredBlock<TrapDoorBlock> BLUE_ELVEN_TRAPDOOR = BLOCKS.register("blue_elven_trapdoor", () -> new TrapDoorBlock(BLUE_ELVEN_WOOD_SET, BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_BLUE).strength(3.0F).sound(SoundType.WOOD).noOcclusion().isValidSpawn(KoratioBlocks::never)));
-	public static final DeferredBlock<TrapDoorBlock> CYAN_ELVEN_TRAPDOOR = BLOCKS.register("cyan_elven_trapdoor", () -> new TrapDoorBlock(CYAN_ELVEN_WOOD_SET, BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_CYAN).strength(3.0F).sound(SoundType.WOOD).noOcclusion().isValidSpawn(KoratioBlocks::never)));
-	public static final DeferredBlock<TrapDoorBlock> GREEN_ELVEN_TRAPDOOR = BLOCKS.register("green_elven_trapdoor", () -> new TrapDoorBlock(GREEN_ELVEN_WOOD_SET, BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_GREEN).strength(3.0F).sound(SoundType.WOOD).noOcclusion().isValidSpawn(KoratioBlocks::never)));
-	public static final DeferredBlock<FenceGateBlock> ELVEN_FENCE_GATE = BLOCKS.register("elven_fence_gate", () -> new FenceGateBlock(ELVEN_WOOD_TYPE, BlockBehaviour.Properties.of().mapColor(ELVEN_PLANKS.get().defaultMapColor()).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
-	public static final DeferredBlock<FenceGateBlock> BLUE_ELVEN_FENCE_GATE = BLOCKS.register("blue_elven_fence_gate", () -> new FenceGateBlock(BLUE_ELVEN_WOOD_TYPE, BlockBehaviour.Properties.of().mapColor(BLUE_ELVEN_PLANKS.get().defaultMapColor()).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
-	public static final DeferredBlock<FenceGateBlock> CYAN_ELVEN_FENCE_GATE = BLOCKS.register("cyan_elven_fence_gate", () -> new FenceGateBlock(CYAN_ELVEN_WOOD_TYPE, BlockBehaviour.Properties.of().mapColor(CYAN_ELVEN_PLANKS.get().defaultMapColor()).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
-	public static final DeferredBlock<FenceGateBlock> GREEN_ELVEN_FENCE_GATE = BLOCKS.register("green_elven_fence_gate", () -> new FenceGateBlock(GREEN_ELVEN_WOOD_TYPE, BlockBehaviour.Properties.of().mapColor(GREEN_ELVEN_PLANKS.get().defaultMapColor()).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
+	public static final DeferredBlock<StandingSignBlock> ELVEN_SIGN = BLOCKS.register("elven_sign", () -> new StandingSignBlock(ELVEN_TYPE, BlockBehaviour.Properties.of().noCollission().strength(1.0F).sound(SoundType.WOOD)));
+	public static final DeferredBlock<StandingSignBlock> BLUE_ELVEN_SIGN = BLOCKS.register("blue_elven_sign", () -> new StandingSignBlock(BLUE_ELVEN_TYPE, BlockBehaviour.Properties.of().noCollission().strength(1.0F).sound(SoundType.WOOD)));
+	public static final DeferredBlock<StandingSignBlock> CYAN_ELVEN_SIGN = BLOCKS.register("cyan_elven_sign", () -> new StandingSignBlock(CYAN_ELVEN_TYPE, BlockBehaviour.Properties.of().noCollission().strength(1.0F).sound(SoundType.WOOD)));
+	public static final DeferredBlock<StandingSignBlock> GREEN_ELVEN_SIGN = BLOCKS.register("green_elven_sign", () -> new StandingSignBlock(GREEN_ELVEN_TYPE, BlockBehaviour.Properties.of().noCollission().strength(1.0F).sound(SoundType.WOOD)));
+	public static final DeferredBlock<WallSignBlock> ELVEN_WALL_SIGN = BLOCKS.register("elven_wall_sign", () -> new WallSignBlock(ELVEN_TYPE, BlockBehaviour.Properties.of().noCollission().strength(1.0F).sound(SoundType.WOOD).lootFrom(ELVEN_SIGN)));
+	public static final DeferredBlock<WallSignBlock> BLUE_ELVEN_WALL_SIGN = BLOCKS.register("blue_elven_wall_sign", () -> new WallSignBlock(BLUE_ELVEN_TYPE, BlockBehaviour.Properties.of().noCollission().strength(1.0F).sound(SoundType.WOOD).lootFrom(BLUE_ELVEN_SIGN)));
+	public static final DeferredBlock<WallSignBlock> CYAN_ELVEN_WALL_SIGN = BLOCKS.register("cyan_elven_wall_sign", () -> new WallSignBlock(CYAN_ELVEN_TYPE, BlockBehaviour.Properties.of().noCollission().strength(1.0F).sound(SoundType.WOOD).lootFrom(CYAN_ELVEN_SIGN)));
+	public static final DeferredBlock<WallSignBlock> GREEN_ELVEN_WALL_SIGN = BLOCKS.register("green_elven_wall_sign", () -> new WallSignBlock(GREEN_ELVEN_TYPE, BlockBehaviour.Properties.of().noCollission().strength(1.0F).sound(SoundType.WOOD).lootFrom(GREEN_ELVEN_SIGN)));
+	public static final DeferredBlock<CeilingHangingSignBlock> ELVEN_HANGING_SIGN = BLOCKS.register("elven_hanging_sign",() -> new CeilingHangingSignBlock(ELVEN_TYPE, BlockBehaviour.Properties.of().mapColor(ELVEN_LOG.get().defaultMapColor()).noCollission().strength(1.0F)));
+	public static final DeferredBlock<CeilingHangingSignBlock> BLUE_ELVEN_HANGING_SIGN = BLOCKS.register("blue_elven_hanging_sign",() -> new CeilingHangingSignBlock(BLUE_ELVEN_TYPE, BlockBehaviour.Properties.of().mapColor(ELVEN_LOG.get().defaultMapColor()).noCollission().strength(1.0F)));
+	public static final DeferredBlock<CeilingHangingSignBlock> CYAN_ELVEN_HANGING_SIGN = BLOCKS.register("cyan_elven_hanging_sign",() -> new CeilingHangingSignBlock(CYAN_ELVEN_TYPE, BlockBehaviour.Properties.of().mapColor(ELVEN_LOG.get().defaultMapColor()).noCollission().strength(1.0F)));
+	public static final DeferredBlock<CeilingHangingSignBlock> GREEN_ELVEN_HANGING_SIGN = BLOCKS.register("green_elven_hanging_sign",() -> new CeilingHangingSignBlock(GREEN_ELVEN_TYPE, BlockBehaviour.Properties.of().mapColor(ELVEN_LOG.get().defaultMapColor()).noCollission().strength(1.0F)));
+	public static final DeferredBlock<WallHangingSignBlock> ELVEN_WALL_HANGING_SIGN = BLOCKS.register("elven_wall_hanging_sign",() -> new WallHangingSignBlock(ELVEN_TYPE, BlockBehaviour.Properties.of().mapColor(ELVEN_LOG.get().defaultMapColor()).noCollission().strength(1.0F).lootFrom(ELVEN_HANGING_SIGN)));
+	public static final DeferredBlock<WallHangingSignBlock> BLUE_ELVEN_WALL_HANGING_SIGN = BLOCKS.register("blue_elven_wall_hanging_sign",() -> new WallHangingSignBlock(BLUE_ELVEN_TYPE, BlockBehaviour.Properties.of().mapColor(ELVEN_LOG.get().defaultMapColor()).noCollission().strength(1.0F).lootFrom(BLUE_ELVEN_HANGING_SIGN)));
+	public static final DeferredBlock<WallHangingSignBlock> CYAN_ELVEN_WALL_HANGING_SIGN = BLOCKS.register("cyan_elven_wall_hanging_sign",() -> new WallHangingSignBlock(CYAN_ELVEN_TYPE, BlockBehaviour.Properties.of().mapColor(ELVEN_LOG.get().defaultMapColor()).noCollission().strength(1.0F).lootFrom(CYAN_ELVEN_HANGING_SIGN)));
+	public static final DeferredBlock<WallHangingSignBlock> GREEN_ELVEN_WALL_HANGING_SIGN = BLOCKS.register("green_elven_wall_hanging_sign",() -> new WallHangingSignBlock(GREEN_ELVEN_TYPE, BlockBehaviour.Properties.of().mapColor(ELVEN_LOG.get().defaultMapColor()).noCollission().strength(1.0F).lootFrom(GREEN_ELVEN_HANGING_SIGN)));
+	public static final DeferredBlock<ButtonBlock> ELVEN_BUTTON = BLOCKS.register("elven_button", () -> new ButtonBlock(ELVEN_SET, 30, BlockBehaviour.Properties.of().noCollission().strength(0.5F).sound(SoundType.WOOD)));
+	public static final DeferredBlock<ButtonBlock> BLUE_ELVEN_BUTTON = BLOCKS.register("blue_elven_button", () -> new ButtonBlock(BLUE_ELVEN_SET, 30, BlockBehaviour.Properties.of().noCollission().strength(0.5F).sound(SoundType.WOOD)));
+	public static final DeferredBlock<ButtonBlock> CYAN_ELVEN_BUTTON = BLOCKS.register("cyan_elven_button", () -> new ButtonBlock(CYAN_ELVEN_SET, 30, BlockBehaviour.Properties.of().noCollission().strength(0.5F).sound(SoundType.WOOD)));
+	public static final DeferredBlock<ButtonBlock> GREEN_ELVEN_BUTTON = BLOCKS.register("green_elven_button", () -> new ButtonBlock(GREEN_ELVEN_SET, 30, BlockBehaviour.Properties.of().noCollission().strength(0.5F).sound(SoundType.WOOD)));
+	public static final DeferredBlock<PressurePlateBlock> ELVEN_PRESSURE_PLATE = BLOCKS.register("elven_pressure_plate", () -> new PressurePlateBlock(ELVEN_SET, BlockBehaviour.Properties.of().mapColor(ELVEN_PLANKS.get().defaultMapColor()).noCollission().strength(0.5F).sound(SoundType.WOOD)));
+	public static final DeferredBlock<PressurePlateBlock> BLUE_ELVEN_PRESSURE_PLATE = BLOCKS.register("blue_elven_pressure_plate", () -> new PressurePlateBlock(BLUE_ELVEN_SET, BlockBehaviour.Properties.of().mapColor(BLUE_ELVEN_PLANKS.get().defaultMapColor()).noCollission().strength(0.5F).sound(SoundType.WOOD)));
+	public static final DeferredBlock<PressurePlateBlock> CYAN_ELVEN_PRESSURE_PLATE = BLOCKS.register("cyan_elven_pressure_plate", () -> new PressurePlateBlock(CYAN_ELVEN_SET, BlockBehaviour.Properties.of().mapColor(CYAN_ELVEN_PLANKS.get().defaultMapColor()).noCollission().strength(0.5F).sound(SoundType.WOOD)));
+	public static final DeferredBlock<PressurePlateBlock> GREEN_ELVEN_PRESSURE_PLATE = BLOCKS.register("green_elven_pressure_plate", () -> new PressurePlateBlock(GREEN_ELVEN_SET, BlockBehaviour.Properties.of().mapColor(GREEN_ELVEN_PLANKS.get().defaultMapColor()).noCollission().strength(0.5F).sound(SoundType.WOOD)));
+	public static final DeferredBlock<DoorBlock> ELVEN_DOOR = BLOCKS.register("elven_door", () -> new DoorBlock(ELVEN_SET, BlockBehaviour.Properties.of().mapColor(ELVEN_PLANKS.get().defaultMapColor()).strength(3.0F).sound(SoundType.WOOD).noOcclusion()));
+	public static final DeferredBlock<DoorBlock> BLUE_ELVEN_DOOR = BLOCKS.register("blue_elven_door", () -> new DoorBlock(BLUE_ELVEN_SET, BlockBehaviour.Properties.of().mapColor(BLUE_ELVEN_PLANKS.get().defaultMapColor()).strength(3.0F).sound(SoundType.WOOD).noOcclusion()));
+	public static final DeferredBlock<DoorBlock> CYAN_ELVEN_DOOR = BLOCKS.register("cyan_elven_door", () -> new DoorBlock(CYAN_ELVEN_SET, BlockBehaviour.Properties.of().mapColor(CYAN_ELVEN_PLANKS.get().defaultMapColor()).strength(3.0F).sound(SoundType.WOOD).noOcclusion()));
+	public static final DeferredBlock<DoorBlock> GREEN_ELVEN_DOOR = BLOCKS.register("green_elven_door", () -> new DoorBlock(GREEN_ELVEN_SET, BlockBehaviour.Properties.of().mapColor(GREEN_ELVEN_PLANKS.get().defaultMapColor()).strength(3.0F).sound(SoundType.WOOD).noOcclusion()));
+	public static final DeferredBlock<TallDoorBlock> TALL_ELVEN_DOOR = BLOCKS.register("tall_elven_door", () -> new TallDoorBlock(ELVEN_SET, BlockBehaviour.Properties.ofFullCopy(ELVEN_DOOR.get())));
+	public static final DeferredBlock<TallDoorBlock> TALL_BLUE_ELVEN_DOOR = BLOCKS.register("tall_blue_elven_door", () -> new TallDoorBlock(BLUE_ELVEN_SET, BlockBehaviour.Properties.ofFullCopy(BLUE_ELVEN_DOOR.get())));
+	public static final DeferredBlock<TallDoorBlock> TALL_CYAN_ELVEN_DOOR = BLOCKS.register("tall_cyan_elven_door", () -> new TallDoorBlock(CYAN_ELVEN_SET, BlockBehaviour.Properties.ofFullCopy(CYAN_ELVEN_DOOR.get())));
+	public static final DeferredBlock<TallDoorBlock> TALL_GREEN_ELVEN_DOOR = BLOCKS.register("tall_green_elven_door", () -> new TallDoorBlock(GREEN_ELVEN_SET, BlockBehaviour.Properties.ofFullCopy(GREEN_ELVEN_DOOR.get())));
+	public static final DeferredBlock<TrapDoorBlock> ELVEN_TRAPDOOR = BLOCKS.register("elven_trapdoor", () -> new TrapDoorBlock(ELVEN_SET, BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_CYAN).strength(3.0F).sound(SoundType.WOOD).noOcclusion().isValidSpawn(KoratioBlocks::never)));
+	public static final DeferredBlock<TrapDoorBlock> BLUE_ELVEN_TRAPDOOR = BLOCKS.register("blue_elven_trapdoor", () -> new TrapDoorBlock(BLUE_ELVEN_SET, BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_BLUE).strength(3.0F).sound(SoundType.WOOD).noOcclusion().isValidSpawn(KoratioBlocks::never)));
+	public static final DeferredBlock<TrapDoorBlock> CYAN_ELVEN_TRAPDOOR = BLOCKS.register("cyan_elven_trapdoor", () -> new TrapDoorBlock(CYAN_ELVEN_SET, BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_CYAN).strength(3.0F).sound(SoundType.WOOD).noOcclusion().isValidSpawn(KoratioBlocks::never)));
+	public static final DeferredBlock<TrapDoorBlock> GREEN_ELVEN_TRAPDOOR = BLOCKS.register("green_elven_trapdoor", () -> new TrapDoorBlock(GREEN_ELVEN_SET, BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_GREEN).strength(3.0F).sound(SoundType.WOOD).noOcclusion().isValidSpawn(KoratioBlocks::never)));
+	public static final DeferredBlock<FenceGateBlock> ELVEN_FENCE_GATE = BLOCKS.register("elven_fence_gate", () -> new FenceGateBlock(ELVEN_TYPE, BlockBehaviour.Properties.of().mapColor(ELVEN_PLANKS.get().defaultMapColor()).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
+	public static final DeferredBlock<FenceGateBlock> BLUE_ELVEN_FENCE_GATE = BLOCKS.register("blue_elven_fence_gate", () -> new FenceGateBlock(BLUE_ELVEN_TYPE, BlockBehaviour.Properties.of().mapColor(BLUE_ELVEN_PLANKS.get().defaultMapColor()).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
+	public static final DeferredBlock<FenceGateBlock> CYAN_ELVEN_FENCE_GATE = BLOCKS.register("cyan_elven_fence_gate", () -> new FenceGateBlock(CYAN_ELVEN_TYPE, BlockBehaviour.Properties.of().mapColor(CYAN_ELVEN_PLANKS.get().defaultMapColor()).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
+	public static final DeferredBlock<FenceGateBlock> GREEN_ELVEN_FENCE_GATE = BLOCKS.register("green_elven_fence_gate", () -> new FenceGateBlock(GREEN_ELVEN_TYPE, BlockBehaviour.Properties.of().mapColor(GREEN_ELVEN_PLANKS.get().defaultMapColor()).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
 	public static final DeferredBlock<Block> ELVEN_BOOKSHELF = BLOCKS.register("elven_bookshelf", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.BOOKSHELF).mapColor(MapColor.COLOR_CYAN)));
 	public static final DeferredBlock<Block> BLUE_ELVEN_BOOKSHELF = BLOCKS.register("blue_elven_bookshelf", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.BOOKSHELF).mapColor(MapColor.COLOR_BLUE)));
 	public static final DeferredBlock<Block> CYAN_ELVEN_BOOKSHELF = BLOCKS.register("cyan_elven_bookshelf", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.BOOKSHELF).mapColor(MapColor.COLOR_CYAN)));
@@ -570,6 +608,8 @@ public class KoratioBlocks {
 	public static final DeferredBlock<FlowerPotBlock> POTTED_PANGO_SAPLING = BLOCKS.register("potted_pango_sapling", () -> new FlowerPotBlock(() -> (FlowerPotBlock) Blocks.FLOWER_POT, PANGO_SAPLING, BlockBehaviour.Properties.ofFullCopy(Blocks.FLOWER_POT)));
 	public static final DeferredBlock<FlowerPotBlock> POTTED_RUGONA_SAPLING = BLOCKS.register("potted_rugona_sapling", () -> new FlowerPotBlock(() -> (FlowerPotBlock) Blocks.FLOWER_POT, RUGONA_SAPLING, BlockBehaviour.Properties.ofFullCopy(Blocks.FLOWER_POT)));
 	public static final DeferredBlock<FlowerPotBlock> POTTED_VARESO_SAPLING = BLOCKS.register("potted_vareso_sapling", () -> new FlowerPotBlock(() -> (FlowerPotBlock) Blocks.FLOWER_POT, VARESO_SAPLING, BlockBehaviour.Properties.ofFullCopy(Blocks.FLOWER_POT)));
+	public static final DeferredBlock<FlowerPotBlock> POTTED_CANDY_SAPLING = BLOCKS.register("potted_candy_sapling", () -> new FlowerPotBlock(() -> (FlowerPotBlock) Blocks.FLOWER_POT, CANDY_SAPLING, BlockBehaviour.Properties.ofFullCopy(Blocks.FLOWER_POT)));
+	public static final DeferredBlock<FlowerPotBlock> POTTED_CHOCOLATE_OAK_SAPLING = BLOCKS.register("potted_chocolate_oak_sapling", () -> new FlowerPotBlock(() -> (FlowerPotBlock) Blocks.FLOWER_POT, CHOCOLATE_OAK_SAPLING, BlockBehaviour.Properties.ofFullCopy(Blocks.FLOWER_POT)));
 	public static final DeferredBlock<FlowerPotBlock> POTTED_ELVEN_SAPLING = BLOCKS.register("potted_elven_sapling", () -> new FlowerPotBlock(() -> (FlowerPotBlock) Blocks.FLOWER_POT, ELVEN_SAPLING, BlockBehaviour.Properties.ofFullCopy(Blocks.FLOWER_POT)));
 
 
@@ -601,20 +641,22 @@ public class KoratioBlocks {
 	public static void registerWoodTypes() {
 		WoodType.register(PANGO_TYPE);
 		WoodType.register(RUGONA_TYPE);
-		WoodType.register(ELVEN_WOOD_TYPE);
-		WoodType.register(BLUE_ELVEN_WOOD_TYPE);
-		WoodType.register(CYAN_ELVEN_WOOD_TYPE);
-		WoodType.register(GREEN_ELVEN_WOOD_TYPE);
+		WoodType.register(ELVEN_TYPE);
+		WoodType.register(BLUE_ELVEN_TYPE);
+		WoodType.register(CYAN_ELVEN_TYPE);
+		WoodType.register(GREEN_ELVEN_TYPE);
 		WoodType.register(VARESO_TYPE);
-		WoodType.register(CANDY_WOOD_TYPE);
+		WoodType.register(CANDY_TYPE);
+		WoodType.register(CHOCOLATE_OAK_TYPE);
 		BlockSetType.register(PANGO_SET);
 		BlockSetType.register(RUGONA_SET);
-		BlockSetType.register(ELVEN_WOOD_SET);
-		BlockSetType.register(BLUE_ELVEN_WOOD_SET);
-		BlockSetType.register(CYAN_ELVEN_WOOD_SET);
-		BlockSetType.register(GREEN_ELVEN_WOOD_SET);
+		BlockSetType.register(ELVEN_SET);
+		BlockSetType.register(BLUE_ELVEN_SET);
+		BlockSetType.register(CYAN_ELVEN_SET);
+		BlockSetType.register(GREEN_ELVEN_SET);
 		BlockSetType.register(VARESO_SET);
-		BlockSetType.register(CANDY_WOOD_SET);
+		BlockSetType.register(CANDY_SET);
+		BlockSetType.register(CHOCOLATE_OAK_SET);
 	}
 
 	public static void registerStrippables() {
@@ -629,6 +671,8 @@ public class KoratioBlocks {
 		AxeItem.STRIPPABLES.put(KoratioBlocks.VARESO_WOOD.get(), KoratioBlocks.STRIPPED_VARESO_WOOD.get());
 		AxeItem.STRIPPABLES.put(KoratioBlocks.CANDY_LOG.get(), KoratioBlocks.STRIPPED_CANDY_LOG.get());
 		AxeItem.STRIPPABLES.put(KoratioBlocks.CANDY_WOOD.get(), KoratioBlocks.STRIPPED_CANDY_WOOD.get());
+		AxeItem.STRIPPABLES.put(KoratioBlocks.CHOCOLATE_OAK_LOG.get(), KoratioBlocks.STRIPPED_CHOCOLATE_OAK_LOG.get());
+		AxeItem.STRIPPABLES.put(KoratioBlocks.CHOCOLATE_OAK_WOOD.get(), KoratioBlocks.STRIPPED_CHOCOLATE_OAK_WOOD.get());
 	}
 
 	public static void registerPots() {
@@ -638,6 +682,8 @@ public class KoratioBlocks {
 		pot.addPlant(RUGONA_SAPLING.getId(), POTTED_RUGONA_SAPLING);
 		pot.addPlant(ELVEN_SAPLING.getId(), POTTED_ELVEN_SAPLING);
 		pot.addPlant(VARESO_SAPLING.getId(), POTTED_VARESO_SAPLING);
+		pot.addPlant(CANDY_SAPLING.getId(), POTTED_CANDY_SAPLING);
+		pot.addPlant(CHOCOLATE_OAK_SAPLING.getId(), POTTED_CHOCOLATE_OAK_SAPLING);
 		pot.addPlant(RAINBOW_ROSE.getId(), POTTED_RAINBOW_ROSE);
 		pot.addPlant(RAINBOW_ALLIUM.getId(), POTTED_RAINBOW_ALLIUM);
 		pot.addPlant(RAINBOW_LILY_OF_THE_VALLEY.getId(), POTTED_RAINBOW_LILY_OF_THE_VALLEY);
@@ -686,12 +732,26 @@ public class KoratioBlocks {
 		fireblock.setFlammable(KoratioBlocks.CANDY_WOOD.get(), 5, 5);
 		fireblock.setFlammable(KoratioBlocks.STRIPPED_CANDY_LOG.get(), 5, 5);
 		fireblock.setFlammable(KoratioBlocks.STRIPPED_CANDY_WOOD.get(), 5, 5);
-		fireblock.setFlammable(KoratioBlocks.COTTON_CANDY_LEAVES.get(), 30, 60);
+		fireblock.setFlammable(KoratioBlocks.PINK_COTTON_CANDY_LEAVES.get(), 30, 60);
+		fireblock.setFlammable(KoratioBlocks.LIGHT_BLUE_COTTON_CANDY_LEAVES.get(), 30, 60);
+		fireblock.setFlammable(KoratioBlocks.LIME_COTTON_CANDY_LEAVES.get(), 30, 60);
+		fireblock.setFlammable(KoratioBlocks.YELLOW_COTTON_CANDY_LEAVES.get(), 30, 60);
 		fireblock.setFlammable(KoratioBlocks.CANDY_PLANKS.get(), 5, 20);
 		fireblock.setFlammable(KoratioBlocks.CANDY_SLAB.get(), 5, 20);
 		fireblock.setFlammable(KoratioBlocks.CANDY_STAIRS.get(), 5, 20);
 		fireblock.setFlammable(KoratioBlocks.CANDY_FENCE.get(), 5, 20);
 		fireblock.setFlammable(KoratioBlocks.CANDY_FENCE_GATE.get(), 5, 20);
+
+		fireblock.setFlammable(KoratioBlocks.CHOCOLATE_OAK_LOG.get(), 5, 5);
+		fireblock.setFlammable(KoratioBlocks.CHOCOLATE_OAK_WOOD.get(), 5, 5);
+		fireblock.setFlammable(KoratioBlocks.STRIPPED_CHOCOLATE_OAK_LOG.get(), 5, 5);
+		fireblock.setFlammable(KoratioBlocks.STRIPPED_CHOCOLATE_OAK_WOOD.get(), 5, 5);
+		fireblock.setFlammable(KoratioBlocks.CHOCOLATE_OAK_LEAVES.get(), 30, 60);
+		fireblock.setFlammable(KoratioBlocks.CHOCOLATE_OAK_PLANKS.get(), 5, 20);
+		fireblock.setFlammable(KoratioBlocks.CHOCOLATE_OAK_SLAB.get(), 5, 20);
+		fireblock.setFlammable(KoratioBlocks.CHOCOLATE_OAK_STAIRS.get(), 5, 20);
+		fireblock.setFlammable(KoratioBlocks.CHOCOLATE_OAK_FENCE.get(), 5, 20);
+		fireblock.setFlammable(KoratioBlocks.CHOCOLATE_OAK_FENCE_GATE.get(), 5, 20);
 
 		fireblock.setFlammable(KoratioBlocks.ELVEN_LOG.get(), 5, 5);
 		fireblock.setFlammable(KoratioBlocks.ELVEN_WOOD.get(), 5, 5);

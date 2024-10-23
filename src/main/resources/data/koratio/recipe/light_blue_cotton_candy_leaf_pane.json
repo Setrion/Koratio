@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "leaf_pane",
+  "key": {
+    "x": {
+      "item": "koratio:light_blue_cotton_candy_leaves"
+    }
+  },
+  "pattern": [
+    "xxx",
+    "xxx"
+  ],
+  "result": {
+    "count": 16,
+    "id": "koratio:light_blue_cotton_candy_leaf_pane"
+  }
+}

@@ -29,11 +29,13 @@ public class KoratioTags {
 		public static final TagKey<Item> MOLTEN_SUGAR_BUCKETS = createItemKey(Koratio.prefix("molten_sugar_buckets"));
 
 		public static final TagKey<Item> TELEKINESIS_ENCHANTABLE = createItemKey(Koratio.prefix("telekinesis_enchantable"));
+
 		//Block-Item Tags
 		public static final TagKey<Item> PANGO_LOGS = createItemKey(Koratio.prefix("pango_logs"));
 		public static final TagKey<Item> RUGONA_LOGS = createItemKey(Koratio.prefix("rugona_logs"));
 		public static final TagKey<Item> VARESO_LOGS = createItemKey(Koratio.prefix("vareso_logs"));
 		public static final TagKey<Item> CANDY_LOGS = createItemKey(Koratio.prefix("candy_logs"));
+		public static final TagKey<Item> CHOCOLATE_OAK_LOGS = createItemKey(Koratio.prefix("chocolate_oak_logs"));
 		public static final TagKey<Item> ELVEN_LOGS = createItemKey(Koratio.prefix("elven_logs"));
 		
 		public static final TagKey<Item> LOGS = createItemKey(Koratio.prefix("logs"));
@@ -46,7 +48,7 @@ public class KoratioTags {
 		public static final TagKey<Item> TALL_WOODEN_DOORS = createItemKey(Koratio.prefix("tall_wooden_doors"));
 		public static final TagKey<Item> TALL_DOORS = createItemKey(Koratio.prefix("tall_doors"));
 
-		public static final TagKey<Item> FROSTINGS = createItemKey(Koratio.prefix("frostings"));
+		public static final TagKey<Item> ICINGS = createItemKey(Koratio.prefix("icings"));
 
 		public static final TagKey<Item> RAINBOW_GEM_STORAGE_BLOCKS = createItemKey(ResourceLocation.fromNamespaceAndPath("c", "storage_blocks/rainbow_gem"));
 		public static final TagKey<Item> RUBY_STORAGE_BLOCKS = createItemKey(ResourceLocation.fromNamespaceAndPath("c", "storage_blocks/ruby"));
@@ -65,6 +67,7 @@ public class KoratioTags {
 		public static final TagKey<Block> RUGONA_LOGS = createBlockKey(Koratio.prefix("rugona_logs"));
 		public static final TagKey<Block> VARESO_LOGS = createBlockKey(Koratio.prefix("vareso_logs"));
 		public static final TagKey<Block> CANDY_LOGS = createBlockKey(Koratio.prefix("candy_logs"));
+		public static final TagKey<Block> CHOCOLATE_OAK_LOGS = createBlockKey(Koratio.prefix("chocolate_oak_logs"));
 		public static final TagKey<Block> ELVEN_LOGS = createBlockKey(Koratio.prefix("elven_logs"));
 		
 		public static final TagKey<Block> LOGS = createBlockKey(Koratio.prefix("logs"));
@@ -77,7 +80,7 @@ public class KoratioTags {
 		public static final TagKey<Block> TALL_WOODEN_DOORS = createBlockKey(Koratio.prefix("tall_wooden_doors"));
 		public static final TagKey<Block> TALL_DOORS = createBlockKey(Koratio.prefix("tall_doors"));
 
-		public static final TagKey<Block> FROSTINGS = createBlockKey(Koratio.prefix("frostings"));
+		public static final TagKey<Block> ICINGS = createBlockKey(Koratio.prefix("icings"));
 
 		public static final TagKey<Block> MUSHROOMS = createBlockKey(Koratio.prefix("mushrooms"));
 	    
@@ -100,6 +103,8 @@ public class KoratioTags {
 		public static final TagKey<Block> ONYX_ORES = createBlockKey(ResourceLocation.fromNamespaceAndPath("c", "ores/onyx"));
 
 		public static final TagKey<Block> SPATULA_EFFICIENT = createBlockKey(Koratio.prefix("spatula_efficient"));
+
+		public static final TagKey<Block> GINGERBREAD_LABYRINTH_BLOCKS = createBlockKey(Koratio.prefix("gingerbread_labyrinth_blocks"));
 
 		public static final TagKey<Block> NEEDS_BONE_TOOL = createBlockKey(Koratio.prefix("need_bone_tool"));
 	    public static final TagKey<Block> NEEDS_WITHER_BONE_TOOL = createBlockKey(Koratio.prefix("need_wither_bone_tool"));

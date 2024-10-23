@@ -60,12 +60,13 @@ public class ClientEvents {
 		event.enqueueWork(() -> {
 			Sheets.addWoodType(KoratioBlocks.PANGO_TYPE);
 			Sheets.addWoodType(KoratioBlocks.RUGONA_TYPE);
-			Sheets.addWoodType(KoratioBlocks.ELVEN_WOOD_TYPE);
-			Sheets.addWoodType(KoratioBlocks.BLUE_ELVEN_WOOD_TYPE);
-			Sheets.addWoodType(KoratioBlocks.CYAN_ELVEN_WOOD_TYPE);
-			Sheets.addWoodType(KoratioBlocks.GREEN_ELVEN_WOOD_TYPE);
+			Sheets.addWoodType(KoratioBlocks.ELVEN_TYPE);
+			Sheets.addWoodType(KoratioBlocks.BLUE_ELVEN_TYPE);
+			Sheets.addWoodType(KoratioBlocks.CYAN_ELVEN_TYPE);
+			Sheets.addWoodType(KoratioBlocks.GREEN_ELVEN_TYPE);
 			Sheets.addWoodType(KoratioBlocks.VARESO_TYPE);
-			Sheets.addWoodType(KoratioBlocks.CANDY_WOOD_TYPE);
+			Sheets.addWoodType(KoratioBlocks.CANDY_TYPE);
+			Sheets.addWoodType(KoratioBlocks.CHOCOLATE_OAK_TYPE);
 			ItemProperties.register(KoratioItems.PIPING_BAG.get(),
 					ResourceLocation.fromNamespaceAndPath(Koratio.MOD_ID, "empty"), (itemStack, clientLevel, livingEntity, i) -> {
 						if (itemStack.is(KoratioItems.PIPING_BAG)) {
@@ -276,7 +277,7 @@ public class ClientEvents {
 			public BlockEntityWithoutLevelRenderer getCustomRenderer() {
 				return new ItemStackBlockEntityRenderer();
 			}
-		}, KoratioItems.PANGO_CHEST.asItem(), KoratioItems.RUGONA_CHEST.asItem(), KoratioItems.VARESO_CHEST.asItem(), KoratioItems.CANDY_CHEST.asItem(), KoratioItems.ELVEN_CHEST.asItem(), KoratioItems.BLUE_ELVEN_CHEST.asItem(), KoratioItems.CYAN_ELVEN_CHEST.asItem(), KoratioItems.GREEN_ELVEN_CHEST.asItem(), KoratioItems.TRAPPED_PANGO_CHEST.asItem(), KoratioItems.TRAPPED_RUGONA_CHEST.asItem(), KoratioItems.TRAPPED_VARESO_CHEST.asItem(), KoratioItems.TRAPPED_CANDY_CHEST.asItem(), KoratioItems.TRAPPED_ELVEN_CHEST.asItem(), KoratioItems.TRAPPED_BLUE_ELVEN_CHEST.asItem(), KoratioItems.TRAPPED_CYAN_ELVEN_CHEST.asItem(), KoratioItems.TRAPPED_GREEN_ELVEN_CHEST.asItem());
+		}, KoratioItems.PANGO_CHEST.asItem(), KoratioItems.RUGONA_CHEST.asItem(), KoratioItems.VARESO_CHEST.asItem(), KoratioItems.CANDY_CHEST.asItem(), KoratioItems.CHOCOLATE_OAK_CHEST.asItem(), KoratioItems.ELVEN_CHEST.asItem(), KoratioItems.BLUE_ELVEN_CHEST.asItem(), KoratioItems.CYAN_ELVEN_CHEST.asItem(), KoratioItems.GREEN_ELVEN_CHEST.asItem(), KoratioItems.TRAPPED_PANGO_CHEST.asItem(), KoratioItems.TRAPPED_RUGONA_CHEST.asItem(), KoratioItems.TRAPPED_VARESO_CHEST.asItem(), KoratioItems.TRAPPED_CANDY_CHEST.asItem(), KoratioItems.TRAPPED_CHOCOLATE_OAK_CHEST.asItem(), KoratioItems.TRAPPED_ELVEN_CHEST.asItem(), KoratioItems.TRAPPED_BLUE_ELVEN_CHEST.asItem(), KoratioItems.TRAPPED_CYAN_ELVEN_CHEST.asItem(), KoratioItems.TRAPPED_GREEN_ELVEN_CHEST.asItem());
 	}
 
 	private static IClientFluidTypeExtensions createSugarFluidExtensions(String name, Vector3f fogColor) {

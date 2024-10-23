@@ -1,0 +1,19 @@
+{
+  "type": "koratio:candy_shaper",
+  "fluid_ingredients": [
+    {
+      "amount": 300,
+      "ingredient": {
+        "fluid": "koratio:molten_red_sugar"
+      }
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "koratio:red_lollipop"
+  },
+  "template": {
+    "count": 1,
+    "id": "koratio:lollipop_casting_template"
+  }
+}

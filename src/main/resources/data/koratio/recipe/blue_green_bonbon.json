@@ -1,0 +1,25 @@
+{
+  "type": "koratio:candy_shaper",
+  "fluid_ingredients": [
+    {
+      "amount": 100,
+      "ingredient": {
+        "fluid": "koratio:molten_blue_sugar"
+      }
+    },
+    {
+      "amount": 100,
+      "ingredient": {
+        "fluid": "koratio:molten_green_sugar"
+      }
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "koratio:blue_green_bonbon"
+  },
+  "template": {
+    "count": 1,
+    "id": "koratio:bonbon_casting_template"
+  }
+}

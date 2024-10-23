@@ -11,7 +11,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "koratio:cookie_stairs"
+          "name": "koratio:cookie_block_stairs"
         }
       ],
       "rolls": 1.0

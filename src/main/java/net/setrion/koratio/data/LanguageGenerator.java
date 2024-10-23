@@ -80,6 +80,7 @@ public abstract class LanguageGenerator extends LanguageProvider {
 		protected void addMisc() {
 			add("itemGroup.koratio.main", "Koratio");
 			add("itemGroup.koratio.fantasia", "Koratio - Fantasia");
+			add("itemGroup.koratio.candy", "Koratio - Candy");
 
 			add("koratio.woodcutter_category", "Woodcutter");
 			add("koratio.candy_shaper_category", "Candy Shaper");
@@ -94,7 +95,9 @@ public abstract class LanguageGenerator extends LanguageProvider {
 			add("container.candy_shaper", "Candy Shaper");
 			add("decrypting.chance", "Chance: ");
 
+			add("tooltip.koratio.hold_shift", "Hold §6Shift§r for more Information");
 			add("tooltip.koratio.piping_bag.empty", "Empty");
+			add("tooltip.koratio.piping_bag.empty_fill", "Right-click with this in your §6Mainhand§r, while holding any color of §6Icing§r in your §6Offhand§r");
 			add("tooltip.koratio.piping_bag.filled", "Filled with %s units of Icing");
 			add("container.candy_shaper.missing_template_tooltip", "Add Candy Template");
 		}
@@ -244,6 +247,7 @@ public abstract class LanguageGenerator extends LanguageProvider {
 		
 		@Override
 		protected void addEnchantments() {
+			add(KoratioEnchantments.TELEKINESIS.location().toLanguageKey("enchantment"), "Telekinesis");
 		}
 		
 		@Override
@@ -487,8 +491,14 @@ public abstract class LanguageGenerator extends LanguageProvider {
 			add(KoratioBlocks.STRIPPED_CANDY_LOG.get(), "Stripped Candy Log");
 			add(KoratioBlocks.CANDY_WOOD.get(), "Candy Wood");
 			add(KoratioBlocks.STRIPPED_CANDY_WOOD.get(), "Stripped Candy Wood");
-			add(KoratioBlocks.COTTON_CANDY_LEAVES.get(), "Cotton Candy Leaves");
-			add(KoratioBlocks.COTTON_CANDY_LEAF_PANE.get(), "Cotton Candy Leaf Pane");
+			add(KoratioBlocks.PINK_COTTON_CANDY_LEAVES.get(), "Pink Cotton Candy Leaves");
+			add(KoratioBlocks.LIGHT_BLUE_COTTON_CANDY_LEAVES.get(), "Light Blue Cotton Candy Leaves");
+			add(KoratioBlocks.LIME_COTTON_CANDY_LEAVES.get(), "Lime Cotton Candy Leaves");
+			add(KoratioBlocks.YELLOW_COTTON_CANDY_LEAVES.get(), "Yellow Cotton Candy Leaves");
+			add(KoratioBlocks.PINK_COTTON_CANDY_LEAF_PANE.get(), "Pink Cotton Candy Leaf Pane");
+			add(KoratioBlocks.LIGHT_BLUE_COTTON_CANDY_LEAF_PANE.get(), "Light Blue Cotton Candy Leaf Pane");
+			add(KoratioBlocks.LIME_COTTON_CANDY_LEAF_PANE.get(), "Lime Cotton Candy Leaf Pane");
+			add(KoratioBlocks.YELLOW_COTTON_CANDY_LEAF_PANE.get(), "Yellow Cotton Candy Leaf Pane");
 			add(KoratioBlocks.CANDY_SLAB.get(), "Candy Slab");
 			add(KoratioBlocks.CANDY_STAIRS.get(), "Candy Stairs");
 			add(KoratioBlocks.CANDY_SAPLING.get(), "Candy Sapling");
@@ -575,22 +585,22 @@ public abstract class LanguageGenerator extends LanguageProvider {
 			add(KoratioBlocks.STICKY_MAGENTA_SUGAR_BLOCK.get(), "Block of Sticky Magenta Sugar");
 			add(KoratioBlocks.STICKY_PINK_SUGAR_BLOCK.get(), "Block of Sticky Pink Sugar");
 
-			add(KoratioBlocks.WHITE_FROSTING_BLOCK.get(), "Block of White Frosting");
-			add(KoratioBlocks.LIGHT_GRAY_FROSTING_BLOCK.get(), "Block of Light Gray Frosting");
-			add(KoratioBlocks.GRAY_FROSTING_BLOCK.get(), "Block of Gray Frosting");
-			add(KoratioBlocks.BLACK_FROSTING_BLOCK.get(), "Block of Black Frosting");
-			add(KoratioBlocks.BROWN_FROSTING_BLOCK.get(), "Block of Brown Frosting");
-			add(KoratioBlocks.RED_FROSTING_BLOCK.get(), "Block of Red Frosting");
-			add(KoratioBlocks.ORANGE_FROSTING_BLOCK.get(), "Block of Orange Frosting");
-			add(KoratioBlocks.YELLOW_FROSTING_BLOCK.get(), "Block of Yellow Frosting");
-			add(KoratioBlocks.LIME_FROSTING_BLOCK.get(), "Block of Lime Frosting");
-			add(KoratioBlocks.GREEN_FROSTING_BLOCK.get(), "Block of Green Frosting");
-			add(KoratioBlocks.CYAN_FROSTING_BLOCK.get(), "Block of Cyan Frosting");
-			add(KoratioBlocks.LIGHT_BLUE_FROSTING_BLOCK.get(), "Block of Light Blue Frosting");
-			add(KoratioBlocks.BLUE_FROSTING_BLOCK.get(), "Block of Blue Frosting");
-			add(KoratioBlocks.PURPLE_FROSTING_BLOCK.get(), "Block of Purple Frosting");
-			add(KoratioBlocks.MAGENTA_FROSTING_BLOCK.get(), "Block of Magenta Frosting");
-			add(KoratioBlocks.PINK_FROSTING_BLOCK.get(), "Block of Pink Frosting");
+			add(KoratioBlocks.WHITE_ICING_BLOCK.get(), "Block of White Icing");
+			add(KoratioBlocks.LIGHT_GRAY_ICING_BLOCK.get(), "Block of Light Gray Icing");
+			add(KoratioBlocks.GRAY_ICING_BLOCK.get(), "Block of Gray Icing");
+			add(KoratioBlocks.BLACK_ICING_BLOCK.get(), "Block of Black Icing");
+			add(KoratioBlocks.BROWN_ICING_BLOCK.get(), "Block of Brown Icing");
+			add(KoratioBlocks.RED_ICING_BLOCK.get(), "Block of Red Icing");
+			add(KoratioBlocks.ORANGE_ICING_BLOCK.get(), "Block of Orange Icing");
+			add(KoratioBlocks.YELLOW_ICING_BLOCK.get(), "Block of Yellow Icing");
+			add(KoratioBlocks.LIME_ICING_BLOCK.get(), "Block of Lime Icing");
+			add(KoratioBlocks.GREEN_ICING_BLOCK.get(), "Block of Green Icing");
+			add(KoratioBlocks.CYAN_ICING_BLOCK.get(), "Block of Cyan Icing");
+			add(KoratioBlocks.LIGHT_BLUE_ICING_BLOCK.get(), "Block of Light Blue Icing");
+			add(KoratioBlocks.BLUE_ICING_BLOCK.get(), "Block of Blue Icing");
+			add(KoratioBlocks.PURPLE_ICING_BLOCK.get(), "Block of Purple Icing");
+			add(KoratioBlocks.MAGENTA_ICING_BLOCK.get(), "Block of Magenta Icing");
+			add(KoratioBlocks.PINK_ICING_BLOCK.get(), "Block of Pink Icing");
 
 			add(KoratioBlocks.WHITE_CANDY_BLOCK.get(), "White Candy Block");
 			add(KoratioBlocks.LIGHT_GRAY_CANDY_BLOCK.get(), "Light Gray Candy Block");

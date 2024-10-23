@@ -141,7 +141,7 @@ public class KoratioItems {
 					} else {
 						name = color.getSerializedName() + "_" + color2.getSerializedName() + "_" + type.getSerializedName();
 					}
-					ITEMS.register(name, () -> new ColoredCandyItem(new Item.Properties().food(type.getFood()), type, color.getColor(), color2.getColor()));
+					ITEMS.register(name, () -> new ColoredCandyItem(new Item.Properties().food(type.getFood()), type, color, color2));
 				}
 			}
 		}
@@ -196,10 +196,6 @@ public class KoratioItems {
 	public static final DeferredItem<BlockItem> COOKIE_ORE = ITEMS.register("cookie_ore", () -> new BlockItem(KoratioBlocks.COOKIE_ORE.get(), new Item.Properties()));
 	public static final DeferredItem<BlockItem> DEEPSLATE_COOKIE_ORE = ITEMS.register("deepslate_cookie_ore", () -> new BlockItem(KoratioBlocks.DEEPSLATE_COOKIE_ORE.get(), new Item.Properties()));
 
-	public static final DeferredItem<BlockItem> COOKIE_BLOCK = ITEMS.register("cookie_block", () -> new BlockItem(KoratioBlocks.COOKIE_BLOCK.get(), new Item.Properties()));
-	public static final DeferredItem<BlockItem> COOKIE_BLOCK_STAIRS = ITEMS.register("cookie_block_stairs", () -> new BlockItem(KoratioBlocks.COOKIE_BLOCK_STAIRS.get(), new Item.Properties()));
-	public static final DeferredItem<BlockItem> COOKIE_BLOCK_SLAB = ITEMS.register("cookie_block_slab", () -> new BlockItem(KoratioBlocks.COOKIE_BLOCK_SLAB.get(), new Item.Properties()));
-
 	public static final DeferredItem<BlockItem> WHITE_SUGAR_BLOCK = ITEMS.register("white_sugar_block", () -> new BlockItem(KoratioBlocks.WHITE_SUGAR_BLOCK.get(), new Item.Properties()));
 	public static final DeferredItem<BlockItem> LIGHT_GRAY_SUGAR_BLOCK = ITEMS.register("light_gray_sugar_block", () -> new BlockItem(KoratioBlocks.LIGHT_GRAY_SUGAR_BLOCK.get(), new Item.Properties()));
 	public static final DeferredItem<BlockItem> GRAY_SUGAR_BLOCK = ITEMS.register("gray_sugar_block", () -> new BlockItem(KoratioBlocks.GRAY_SUGAR_BLOCK.get(), new Item.Properties()));
@@ -234,22 +230,22 @@ public class KoratioItems {
 	public static final DeferredItem<BlockItem> STICKY_MAGENTA_SUGAR_BLOCK = ITEMS.register("sticky_magenta_sugar_block", () -> new BlockItem(KoratioBlocks.STICKY_MAGENTA_SUGAR_BLOCK.get(), new Item.Properties()));
 	public static final DeferredItem<BlockItem> STICKY_PINK_SUGAR_BLOCK = ITEMS.register("sticky_pink_sugar_block", () -> new BlockItem(KoratioBlocks.STICKY_PINK_SUGAR_BLOCK.get(), new Item.Properties()));
 	
-	public static final DeferredItem<BlockItem> WHITE_FROSTING_BLOCK = ITEMS.register("white_frosting_block", () -> new BlockItem(KoratioBlocks.WHITE_FROSTING_BLOCK.get(), new Item.Properties()));
-	public static final DeferredItem<BlockItem> LIGHT_GRAY_FROSTING_BLOCK = ITEMS.register("light_gray_frosting_block", () -> new BlockItem(KoratioBlocks.LIGHT_GRAY_FROSTING_BLOCK.get(), new Item.Properties()));
-	public static final DeferredItem<BlockItem> GRAY_FROSTING_BLOCK = ITEMS.register("gray_frosting_block", () -> new BlockItem(KoratioBlocks.GRAY_FROSTING_BLOCK.get(), new Item.Properties()));
-	public static final DeferredItem<BlockItem> BLACK_FROSTING_BLOCK = ITEMS.register("black_frosting_block", () -> new BlockItem(KoratioBlocks.BLACK_FROSTING_BLOCK.get(), new Item.Properties()));
-	public static final DeferredItem<BlockItem> BROWN_FROSTING_BLOCK = ITEMS.register("brown_frosting_block", () -> new BlockItem(KoratioBlocks.BROWN_FROSTING_BLOCK.get(), new Item.Properties()));
-	public static final DeferredItem<BlockItem> RED_FROSTING_BLOCK = ITEMS.register("red_frosting_block", () -> new BlockItem(KoratioBlocks.RED_FROSTING_BLOCK.get(), new Item.Properties()));
-	public static final DeferredItem<BlockItem> ORANGE_FROSTING_BLOCK = ITEMS.register("orange_frosting_block", () -> new BlockItem(KoratioBlocks.ORANGE_FROSTING_BLOCK.get(), new Item.Properties()));
-	public static final DeferredItem<BlockItem> YELLOW_FROSTING_BLOCK = ITEMS.register("yellow_frosting_block", () -> new BlockItem(KoratioBlocks.YELLOW_FROSTING_BLOCK.get(), new Item.Properties()));
-	public static final DeferredItem<BlockItem> LIME_FROSTING_BLOCK = ITEMS.register("lime_frosting_block", () -> new BlockItem(KoratioBlocks.LIME_FROSTING_BLOCK.get(), new Item.Properties()));
-	public static final DeferredItem<BlockItem> GREEN_FROSTING_BLOCK = ITEMS.register("green_frosting_block", () -> new BlockItem(KoratioBlocks.GREEN_FROSTING_BLOCK.get(), new Item.Properties()));
-	public static final DeferredItem<BlockItem> CYAN_FROSTING_BLOCK = ITEMS.register("cyan_frosting_block", () -> new BlockItem(KoratioBlocks.CYAN_FROSTING_BLOCK.get(), new Item.Properties()));
-	public static final DeferredItem<BlockItem> LIGHT_BLUE_FROSTING_BLOCK = ITEMS.register("light_blue_frosting_block", () -> new BlockItem(KoratioBlocks.LIGHT_BLUE_FROSTING_BLOCK.get(), new Item.Properties()));
-	public static final DeferredItem<BlockItem> BLUE_FROSTING_BLOCK = ITEMS.register("blue_frosting_block", () -> new BlockItem(KoratioBlocks.BLUE_FROSTING_BLOCK.get(), new Item.Properties()));
-	public static final DeferredItem<BlockItem> PURPLE_FROSTING_BLOCK = ITEMS.register("purple_frosting_block", () -> new BlockItem(KoratioBlocks.PURPLE_FROSTING_BLOCK.get(), new Item.Properties()));
-	public static final DeferredItem<BlockItem> MAGENTA_FROSTING_BLOCK = ITEMS.register("magenta_frosting_block", () -> new BlockItem(KoratioBlocks.MAGENTA_FROSTING_BLOCK.get(), new Item.Properties()));
-	public static final DeferredItem<BlockItem> PINK_FROSTING_BLOCK = ITEMS.register("pink_frosting_block", () -> new BlockItem(KoratioBlocks.PINK_FROSTING_BLOCK.get(), new Item.Properties()));
+	public static final DeferredItem<BlockItem> WHITE_ICING_BLOCK = ITEMS.register("white_icing_block", () -> new BlockItem(KoratioBlocks.WHITE_ICING_BLOCK.get(), new Item.Properties()));
+	public static final DeferredItem<BlockItem> LIGHT_GRAY_ICING_BLOCK = ITEMS.register("light_gray_icing_block", () -> new BlockItem(KoratioBlocks.LIGHT_GRAY_ICING_BLOCK.get(), new Item.Properties()));
+	public static final DeferredItem<BlockItem> GRAY_ICING_BLOCK = ITEMS.register("gray_icing_block", () -> new BlockItem(KoratioBlocks.GRAY_ICING_BLOCK.get(), new Item.Properties()));
+	public static final DeferredItem<BlockItem> BLACK_ICING_BLOCK = ITEMS.register("black_icing_block", () -> new BlockItem(KoratioBlocks.BLACK_ICING_BLOCK.get(), new Item.Properties()));
+	public static final DeferredItem<BlockItem> BROWN_ICING_BLOCK = ITEMS.register("brown_icing_block", () -> new BlockItem(KoratioBlocks.BROWN_ICING_BLOCK.get(), new Item.Properties()));
+	public static final DeferredItem<BlockItem> RED_ICING_BLOCK = ITEMS.register("red_icing_block", () -> new BlockItem(KoratioBlocks.RED_ICING_BLOCK.get(), new Item.Properties()));
+	public static final DeferredItem<BlockItem> ORANGE_ICING_BLOCK = ITEMS.register("orange_icing_block", () -> new BlockItem(KoratioBlocks.ORANGE_ICING_BLOCK.get(), new Item.Properties()));
+	public static final DeferredItem<BlockItem> YELLOW_ICING_BLOCK = ITEMS.register("yellow_icing_block", () -> new BlockItem(KoratioBlocks.YELLOW_ICING_BLOCK.get(), new Item.Properties()));
+	public static final DeferredItem<BlockItem> LIME_ICING_BLOCK = ITEMS.register("lime_icing_block", () -> new BlockItem(KoratioBlocks.LIME_ICING_BLOCK.get(), new Item.Properties()));
+	public static final DeferredItem<BlockItem> GREEN_ICING_BLOCK = ITEMS.register("green_icing_block", () -> new BlockItem(KoratioBlocks.GREEN_ICING_BLOCK.get(), new Item.Properties()));
+	public static final DeferredItem<BlockItem> CYAN_ICING_BLOCK = ITEMS.register("cyan_icing_block", () -> new BlockItem(KoratioBlocks.CYAN_ICING_BLOCK.get(), new Item.Properties()));
+	public static final DeferredItem<BlockItem> LIGHT_BLUE_ICING_BLOCK = ITEMS.register("light_blue_icing_block", () -> new BlockItem(KoratioBlocks.LIGHT_BLUE_ICING_BLOCK.get(), new Item.Properties()));
+	public static final DeferredItem<BlockItem> BLUE_ICING_BLOCK = ITEMS.register("blue_icing_block", () -> new BlockItem(KoratioBlocks.BLUE_ICING_BLOCK.get(), new Item.Properties()));
+	public static final DeferredItem<BlockItem> PURPLE_ICING_BLOCK = ITEMS.register("purple_icing_block", () -> new BlockItem(KoratioBlocks.PURPLE_ICING_BLOCK.get(), new Item.Properties()));
+	public static final DeferredItem<BlockItem> MAGENTA_ICING_BLOCK = ITEMS.register("magenta_icing_block", () -> new BlockItem(KoratioBlocks.MAGENTA_ICING_BLOCK.get(), new Item.Properties()));
+	public static final DeferredItem<BlockItem> PINK_ICING_BLOCK = ITEMS.register("pink_icing_block", () -> new BlockItem(KoratioBlocks.PINK_ICING_BLOCK.get(), new Item.Properties()));
 
 	public static final DeferredItem<BlockItem> WHITE_CANDY_BLOCK = ITEMS.register("white_candy_block", () -> new BlockItem(KoratioBlocks.WHITE_CANDY_BLOCK.get(), new Item.Properties()));
 	public static final DeferredItem<BlockItem> LIGHT_GRAY_CANDY_BLOCK = ITEMS.register("light_gray_candy_block", () -> new BlockItem(KoratioBlocks.LIGHT_GRAY_CANDY_BLOCK.get(), new Item.Properties()));
@@ -323,6 +319,11 @@ public class KoratioItems {
 	public static final DeferredItem<BlockItem> GINGERBREAD_BRICK_WALL = ITEMS.register("gingerbread_brick_wall", () -> new BlockItem(KoratioBlocks.GINGERBREAD_BRICK_WALL.get(), new Item.Properties()));
 	public static final DeferredItem<BlockItem> RAW_LARGE_GINGERBREAD_BRICK_WALL = ITEMS.register("raw_large_gingerbread_brick_wall", () -> new BlockItem(KoratioBlocks.RAW_LARGE_GINGERBREAD_BRICK_WALL.get(), new Item.Properties()));
 	public static final DeferredItem<BlockItem> LARGE_GINGERBREAD_BRICK_WALL = ITEMS.register("large_gingerbread_brick_wall", () -> new BlockItem(KoratioBlocks.LARGE_GINGERBREAD_BRICK_WALL.get(), new Item.Properties()));
+	public static final DeferredItem<BlockItem> COOKIE_BLOCK = ITEMS.register("cookie_block", () -> new BlockItem(KoratioBlocks.COOKIE_BLOCK.get(), new Item.Properties()));
+	public static final DeferredItem<BlockItem> COOKIE_BLOCK_STAIRS = ITEMS.register("cookie_block_stairs", () -> new BlockItem(KoratioBlocks.COOKIE_BLOCK_STAIRS.get(), new Item.Properties()));
+	public static final DeferredItem<BlockItem> COOKIE_BLOCK_SLAB = ITEMS.register("cookie_block_slab", () -> new BlockItem(KoratioBlocks.COOKIE_BLOCK_SLAB.get(), new Item.Properties()));
+	public static final DeferredItem<BlockItem> COOKIE_BLOCK_BUTTON = ITEMS.register("cookie_block_button", () -> new BlockItem(KoratioBlocks.COOKIE_BLOCK_BUTTON.get(), new Item.Properties()));
+	public static final DeferredItem<BlockItem> COOKIE_BLOCK_PRESSURE_PLATE = ITEMS.register("cookie_block_pressure_plate", () -> new BlockItem(KoratioBlocks.COOKIE_BLOCK_PRESSURE_PLATE.get(), new Item.Properties()));
 	public static final DeferredItem<BlockItem> MARSHMALLOW_BLOCK = ITEMS.register("marshmallow_block", () -> new BlockItem(KoratioBlocks.MARSHMALLOW_BLOCK.get(), new Item.Properties()));
 
 	//Environmental
@@ -476,8 +477,14 @@ public class KoratioItems {
 	public static final DeferredItem<BlockItem> STRIPPED_CANDY_LOG = ITEMS.register("stripped_candy_log", () -> new BlockItem(KoratioBlocks.STRIPPED_CANDY_LOG.get(), new Item.Properties()));
 	public static final DeferredItem<BlockItem> CANDY_WOOD = ITEMS.register("candy_wood", () -> new BlockItem(KoratioBlocks.CANDY_WOOD.get(), new Item.Properties()));
 	public static final DeferredItem<BlockItem> STRIPPED_CANDY_WOOD = ITEMS.register("stripped_candy_wood", () -> new BlockItem(KoratioBlocks.STRIPPED_CANDY_WOOD.get(), new Item.Properties()));
-	public static final DeferredItem<BlockItem> COTTON_CANDY_LEAVES = ITEMS.register("cotton_candy_leaves", () -> new BlockItem(KoratioBlocks.COTTON_CANDY_LEAVES.get(), new Item.Properties()));
-	public static final DeferredItem<BlockItem> COTTON_CANDY_LEAF_PANE = ITEMS.register("cotton_candy_leaf_pane", () -> new BlockItem(KoratioBlocks.COTTON_CANDY_LEAF_PANE.get(), new Item.Properties()));
+	public static final DeferredItem<BlockItem> PINK_COTTON_CANDY_LEAVES = ITEMS.register("pink_cotton_candy_leaves", () -> new BlockItem(KoratioBlocks.PINK_COTTON_CANDY_LEAVES.get(), new Item.Properties()));
+	public static final DeferredItem<BlockItem> LIGHT_BLUE_COTTON_CANDY_LEAVES = ITEMS.register("light_blue_cotton_candy_leaves", () -> new BlockItem(KoratioBlocks.LIGHT_BLUE_COTTON_CANDY_LEAVES.get(), new Item.Properties()));
+	public static final DeferredItem<BlockItem> LIME_COTTON_CANDY_LEAVES = ITEMS.register("lime_cotton_candy_leaves", () -> new BlockItem(KoratioBlocks.LIME_COTTON_CANDY_LEAVES.get(), new Item.Properties()));
+	public static final DeferredItem<BlockItem> YELLOW_COTTON_CANDY_LEAVES = ITEMS.register("yellow_cotton_candy_leaves", () -> new BlockItem(KoratioBlocks.YELLOW_COTTON_CANDY_LEAVES.get(), new Item.Properties()));
+	public static final DeferredItem<BlockItem> PINK_COTTON_CANDY_LEAF_PANE = ITEMS.register("pink_cotton_candy_leaf_pane", () -> new BlockItem(KoratioBlocks.PINK_COTTON_CANDY_LEAF_PANE.get(), new Item.Properties()));
+	public static final DeferredItem<BlockItem> LIGHT_BLUE_COTTON_CANDY_LEAF_PANE = ITEMS.register("light_blue_cotton_candy_leaf_pane", () -> new BlockItem(KoratioBlocks.LIGHT_BLUE_COTTON_CANDY_LEAF_PANE.get(), new Item.Properties()));
+	public static final DeferredItem<BlockItem> LIME_COTTON_CANDY_LEAF_PANE = ITEMS.register("lime_cotton_candy_leaf_pane", () -> new BlockItem(KoratioBlocks.LIME_COTTON_CANDY_LEAF_PANE.get(), new Item.Properties()));
+	public static final DeferredItem<BlockItem> YELLOW_COTTON_CANDY_LEAF_PANE = ITEMS.register("yellow_cotton_candy_leaf_pane", () -> new BlockItem(KoratioBlocks.YELLOW_COTTON_CANDY_LEAF_PANE.get(), new Item.Properties()));
 	public static final DeferredItem<BlockItem> CANDY_SLAB = ITEMS.register("candy_slab", () -> new BlockItem(KoratioBlocks.CANDY_SLAB.get(), new Item.Properties()));
 	public static final DeferredItem<BlockItem> CANDY_STAIRS = ITEMS.register("candy_stairs", () -> new BlockItem(KoratioBlocks.CANDY_STAIRS.get(), new Item.Properties()));
 	public static final DeferredItem<BlockItem> CANDY_SAPLING = ITEMS.register("candy_sapling", () -> new BlockItem(KoratioBlocks.CANDY_SAPLING.get(), new Item.Properties()));
@@ -496,6 +503,33 @@ public class KoratioItems {
 	public static final DeferredItem<BlockItem> CANDY_BOOKSHELF = ITEMS.register("candy_bookshelf", () -> new BlockItem(KoratioBlocks.CANDY_BOOKSHELF.get(), new Item.Properties()));
 	public static final DeferredItem<BlockItem> CANDY_CHEST = ITEMS.register("candy_chest", () -> new BlockItem(KoratioBlocks.CANDY_CHEST.get(), new Item.Properties()));
 	public static final DeferredItem<BlockItem> TRAPPED_CANDY_CHEST = ITEMS.register("trapped_candy_chest", () -> new BlockItem(KoratioBlocks.TRAPPED_CANDY_CHEST.get(), new Item.Properties()));
+
+	//Pango Wood
+	public static final DeferredItem<BlockItem> CHOCOLATE_OAK_PLANKS = ITEMS.register("chocolate_oak_planks", () -> new BlockItem(KoratioBlocks.CHOCOLATE_OAK_PLANKS.get(), new Item.Properties()));
+	public static final DeferredItem<BlockItem> CHOCOLATE_OAK_LOG = ITEMS.register("chocolate_oak_log", () -> new BlockItem(KoratioBlocks.CHOCOLATE_OAK_LOG.get(), new Item.Properties()));
+	public static final DeferredItem<BlockItem> STRIPPED_CHOCOLATE_OAK_LOG = ITEMS.register("stripped_chocolate_oak_log", () -> new BlockItem(KoratioBlocks.STRIPPED_CHOCOLATE_OAK_LOG.get(), new Item.Properties()));
+	public static final DeferredItem<BlockItem> CHOCOLATE_OAK_WOOD = ITEMS.register("chocolate_oak_wood", () -> new BlockItem(KoratioBlocks.CHOCOLATE_OAK_WOOD.get(), new Item.Properties()));
+	public static final DeferredItem<BlockItem> STRIPPED_CHOCOLATE_OAK_WOOD = ITEMS.register("stripped_chocolate_oak_wood", () -> new BlockItem(KoratioBlocks.STRIPPED_CHOCOLATE_OAK_WOOD.get(), new Item.Properties()));
+	public static final DeferredItem<BlockItem> CHOCOLATE_OAK_LEAVES = ITEMS.register("chocolate_oak_leaves", () -> new BlockItem(KoratioBlocks.CHOCOLATE_OAK_LEAVES.get(), new Item.Properties()));
+	public static final DeferredItem<BlockItem> CHOCOLATE_OAK_LEAF_PANE = ITEMS.register("chocolate_oak_leaf_pane", () -> new BlockItem(KoratioBlocks.CHOCOLATE_OAK_LEAF_PANE.get(), new Item.Properties()));
+	public static final DeferredItem<BlockItem> CHOCOLATE_OAK_SLAB = ITEMS.register("chocolate_oak_slab", () -> new BlockItem(KoratioBlocks.CHOCOLATE_OAK_SLAB.get(), new Item.Properties()));
+	public static final DeferredItem<BlockItem> CHOCOLATE_OAK_STAIRS = ITEMS.register("chocolate_oak_stairs", () -> new BlockItem(KoratioBlocks.CHOCOLATE_OAK_STAIRS.get(), new Item.Properties()));
+	public static final DeferredItem<BlockItem> CHOCOLATE_OAK_SAPLING = ITEMS.register("chocolate_oak_sapling", () -> new BlockItem(KoratioBlocks.CHOCOLATE_OAK_SAPLING.get(), new Item.Properties()));
+	public static final DeferredItem<BlockItem> CHOCOLATE_OAK_FENCE = ITEMS.register("chocolate_oak_fence", () -> new BlockItem(KoratioBlocks.CHOCOLATE_OAK_FENCE.get(), new Item.Properties()));
+	public static final DeferredItem<Item> CHOCOLATE_OAK_SIGN = ITEMS.register("chocolate_oak_sign", () -> new SignItem((new Item.Properties()).stacksTo(16), KoratioBlocks.CHOCOLATE_OAK_SIGN.get(), KoratioBlocks.CHOCOLATE_OAK_WALL_SIGN.get()));
+	public static final DeferredItem<Item> CHOCOLATE_OAK_HANGING_SIGN = ITEMS.register("chocolate_oak_hanging_sign",() -> new HangingSignItem(KoratioBlocks.CHOCOLATE_OAK_HANGING_SIGN.get(), KoratioBlocks.CHOCOLATE_OAK_WALL_HANGING_SIGN.get(),new Item.Properties().stacksTo(16)));
+	public static final DeferredItem<BlockItem> CHOCOLATE_OAK_BUTTON = ITEMS.register("chocolate_oak_button", () -> new BlockItem(KoratioBlocks.CHOCOLATE_OAK_BUTTON.get(), new Item.Properties()));
+	public static final DeferredItem<BlockItem> CHOCOLATE_OAK_PRESSURE_PLATE = ITEMS.register("chocolate_oak_pressure_plate", () -> new BlockItem(KoratioBlocks.CHOCOLATE_OAK_PRESSURE_PLATE.get(), new Item.Properties()));
+	public static final DeferredItem<BlockItem> CHOCOLATE_OAK_DOOR = ITEMS.register("chocolate_oak_door", () -> new BlockItem(KoratioBlocks.CHOCOLATE_OAK_DOOR.get(), new Item.Properties()));
+	//public static final DeferredItem<BlockItem> TALL_CHOCOLATE_OAK_DOOR = ITEMS.register("tall_chocolate_oak_door", () -> new BlockItem(KoratioBlocks.TALL_CHOCOLATE_OAK_DOOR.get(), new Item.Properties()));
+	public static final DeferredItem<BlockItem> CHOCOLATE_OAK_TRAPDOOR = ITEMS.register("chocolate_oak_trapdoor", () -> new BlockItem(KoratioBlocks.CHOCOLATE_OAK_TRAPDOOR.get(), new Item.Properties()));
+	public static final DeferredItem<BlockItem> CHOCOLATE_OAK_FENCE_GATE = ITEMS.register("chocolate_oak_fence_gate", () -> new BlockItem(KoratioBlocks.CHOCOLATE_OAK_FENCE_GATE.get(), new Item.Properties()));
+
+	public static final DeferredItem<BoatItem> CHOCOLATE_OAK_BOAT = ITEMS.register("chocolate_oak_boat", () -> new BoatItem(false, Boat.Type.CHOCOLATE_OAK, new Item.Properties().stacksTo(1)));
+	public static final DeferredItem<BoatItem> CHOCOLATE_OAK_CHEST_BOAT = ITEMS.register("chocolate_oak_chest_boat", () -> new BoatItem(true, Boat.Type.CHOCOLATE_OAK, new Item.Properties().stacksTo(1)));
+	public static final DeferredItem<BlockItem> CHOCOLATE_OAK_BOOKSHELF = ITEMS.register("chocolate_oak_bookshelf", () -> new BlockItem(KoratioBlocks.CHOCOLATE_OAK_BOOKSHELF.get(), new Item.Properties()));
+	public static final DeferredItem<BlockItem> CHOCOLATE_OAK_CHEST = ITEMS.register("chocolate_oak_chest", () -> new BlockItem(KoratioBlocks.CHOCOLATE_OAK_CHEST.get(), new Item.Properties()));
+	public static final DeferredItem<BlockItem> TRAPPED_CHOCOLATE_OAK_CHEST = ITEMS.register("trapped_chocolate_oak_chest", () -> new BlockItem(KoratioBlocks.TRAPPED_CHOCOLATE_OAK_CHEST.get(), new Item.Properties()));
 
 	//Elven Wood
 	public static final DeferredItem<BlockItem> ELVEN_PLANKS = ITEMS.register("elven_planks", () -> new BlockItem(KoratioBlocks.ELVEN_PLANKS.get(), new Item.Properties()));

@@ -1,6 +1,5 @@
 {
-    "textures": {
-        "particle": "koratio:block/molten_green_sugar_still"
-    }
+  "textures": {
+    "particle": "koratio:block/molten_green_sugar_still"
+  }
 }
-

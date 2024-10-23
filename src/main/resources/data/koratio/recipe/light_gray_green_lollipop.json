@@ -1,0 +1,25 @@
+{
+  "type": "koratio:candy_shaper",
+  "fluid_ingredients": [
+    {
+      "amount": 150,
+      "ingredient": {
+        "fluid": "koratio:molten_light_gray_sugar"
+      }
+    },
+    {
+      "amount": 150,
+      "ingredient": {
+        "fluid": "koratio:molten_green_sugar"
+      }
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "koratio:light_gray_green_lollipop"
+  },
+  "template": {
+    "count": 1,
+    "id": "koratio:lollipop_casting_template"
+  }
+}
