@@ -20,8 +20,6 @@ import net.setrion.koratio.world.item.CandyTemplateItem;
 import net.setrion.koratio.world.item.crafting.CandyShaperRecipe;
 import net.setrion.koratio.world.level.block.entity.CandyShaperBlockEntity;
 
-import java.util.List;
-
 public class CandyShaperMenu extends AbstractFluidContainerMenu {
     private final ContainerLevelAccess access;
     private final Level level;
@@ -161,15 +159,15 @@ public class CandyShaperMenu extends AbstractFluidContainerMenu {
 
     public void takeRecipeIngredients(CandyShaperRecipe recipe) {
         int sugarAmount = recipe.getFluidIngredients().get(0).amount();
-        Fluid sugar = recipe.getFluidIngredients().get(0).ingredient().getStacks()[0].getFluid();
+        Fluid sugar = recipe.getFluidIngredients().get(0).ingredient().fluids().get(0).value();
         int blueSugarAmount = recipe.getFluidIngredients().get(1).amount();
-        Fluid blueSugar = recipe.getFluidIngredients().get(1).ingredient().getStacks()[0].getFluid();
+        Fluid blueSugar = recipe.getFluidIngredients().get(1).ingredient().fluids().get(0).value();
         int greenSugarAmount = recipe.getFluidIngredients().get(2).amount();
-        Fluid greenSugar = recipe.getFluidIngredients().get(2).ingredient().getStacks()[0].getFluid();
+        Fluid greenSugar = recipe.getFluidIngredients().get(2).ingredient().fluids().get(0).value();
         int yellowSugarAmount = recipe.getFluidIngredients().get(3).amount();
-        Fluid yellowSugar = recipe.getFluidIngredients().get(3).ingredient().getStacks()[0].getFluid();
+        Fluid yellowSugar = recipe.getFluidIngredients().get(3).ingredient().fluids().get(0).value();
         int redSugarAmount = recipe.getFluidIngredients().get(4).amount();
-        Fluid redSugar = recipe.getFluidIngredients().get(4).ingredient().getStacks()[0].getFluid();
+        Fluid redSugar = recipe.getFluidIngredients().get(4).ingredient().fluids().get(0).value();
         fluidTank.drain(new FluidStack(sugar, sugarAmount), IFluidHandler.FluidAction.EXECUTE);
         fluidTank.drain(new FluidStack(blueSugar, blueSugarAmount), IFluidHandler.FluidAction.EXECUTE);
         fluidTank.drain(new FluidStack(greenSugar, greenSugarAmount), IFluidHandler.FluidAction.EXECUTE);

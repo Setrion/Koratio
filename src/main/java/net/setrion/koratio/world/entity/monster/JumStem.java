@@ -34,7 +34,6 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
-import net.neoforged.neoforge.common.IShearable;
 import net.setrion.koratio.registry.KoratioBlocks;
 import net.setrion.koratio.world.entity.projectile.MushroomSpore;
 import org.jetbrains.annotations.NotNull;
@@ -93,9 +92,7 @@ public class JumStem extends Monster implements net.neoforged.neoforge.common.IS
 		this.goalSelector.addGoal(4, new JumStem.JumStemKeepOnJumpingGoal(this));
 		this.goalSelector.addGoal(8, new LookAtPlayerGoal(this, Player.class, 8.0F));
 		this.goalSelector.addGoal(8, new RandomLookAroundGoal(this));
-		this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, Player.class, 10, true, false, (target) -> {
-			return Math.abs(target.getY() - this.getY()) <= 4.0D;
-		}));
+		this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, Player.class, 10, true, false, (target, level) -> Math.abs(target.getY() - this.getY()) <= 4.0D));
 		this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, IronGolem.class, true));
 	}
 
@@ -131,7 +128,7 @@ public class JumStem extends Monster implements net.neoforged.neoforge.common.IS
 
 	@org.jetbrains.annotations.Nullable
 	@Override
-	public SpawnGroupData finalizeSpawn(ServerLevelAccessor level, DifficultyInstance difficulty, MobSpawnType spawnType, @org.jetbrains.annotations.Nullable SpawnGroupData spawnGroupData) {
+	public SpawnGroupData finalizeSpawn(ServerLevelAccessor level, DifficultyInstance difficulty, EntitySpawnReason spawnType, @org.jetbrains.annotations.Nullable SpawnGroupData spawnGroupData) {
 		this.setVariant(JumStem.Variant.BY_ID[level.getRandom().nextIntBetweenInclusive(1, 4)]);
 		this.setMushroomAmount(level.getRandom().nextInt(4));
 		return super.finalizeSpawn(level, difficulty, spawnType, spawnGroupData);
@@ -172,7 +169,7 @@ public class JumStem extends Monster implements net.neoforged.neoforge.common.IS
 	}
 	
 	@Override
-	public boolean hurt(DamageSource source, float amount) {
+	public boolean hurtServer(ServerLevel level, DamageSource source, float amount) {
 		Entity s = source.getDirectEntity();
 		if (--cloud <= 0 && this.getVariant() != JumStem.Variant.SHEARED && (s instanceof LivingEntity || source.is(DamageTypeTags.IS_PROJECTILE))) {
 			AreaEffectCloud areaeffectcloud = new AreaEffectCloud(this.level(), this.getX(), this.getY(), this.getZ());
@@ -186,7 +183,7 @@ public class JumStem extends Monster implements net.neoforged.neoforge.common.IS
 			this.level().addFreshEntity(areaeffectcloud);
 			cloud = 200;
 		}
-		return super.hurt(source, amount);
+		return super.hurtServer(level, source, amount);
 	}
 	
 	static class JumStemKeepOnJumpingGoal extends Goal {

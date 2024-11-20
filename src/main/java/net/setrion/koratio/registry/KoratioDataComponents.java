@@ -11,7 +11,6 @@ import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.setrion.koratio.Koratio;
 
-
 public class KoratioDataComponents {
 
     public record ScrollRecord(String name, boolean isEncrypted) {}
@@ -25,17 +24,8 @@ public class KoratioDataComponents {
 
     public static final DeferredRegister.DataComponents DATA_COMPONENTS = DeferredRegister.createDataComponents(Registries.DATA_COMPONENT_TYPE, Koratio.MOD_ID);
 
-    public static final DeferredHolder<DataComponentType<?>, DataComponentType<ScrollRecord>> SCROLL_DATA = DATA_COMPONENTS.registerComponentType(
-            "scroll_data",
-            builder -> builder
-                    .persistent(SCROLL_CODEC)
-                    .networkSynchronized(SCROLL_STREAM_CODEC)
-    );
+    public static final DeferredHolder<DataComponentType<?>, DataComponentType<ScrollRecord>> SCROLL_DATA = DATA_COMPONENTS.register("scroll_data", () -> DataComponentType.<ScrollRecord>builder().persistent(SCROLL_CODEC).networkSynchronized(SCROLL_STREAM_CODEC).build());
 
-    public static final DeferredHolder<DataComponentType<?>, DataComponentType<PipingBagRecord>> PIPING_BAG_DATA = DATA_COMPONENTS.registerComponentType(
-            "piping_bag_data",
-            builder -> builder
-                    .persistent(PIPING_BAG_CODEC)
-                    .networkSynchronized(PIPING_BAG_STREAM_CODEC)
-    );
+    public static final DeferredHolder<DataComponentType<?>, DataComponentType<PipingBagRecord>> PIPING_BAG_DATA = DATA_COMPONENTS.register("piping_bag_data", () -> DataComponentType.<PipingBagRecord>builder().persistent(PIPING_BAG_CODEC).networkSynchronized(PIPING_BAG_STREAM_CODEC).build());
+
 }

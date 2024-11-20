@@ -21,7 +21,7 @@ public class Layer {
 
 	public Holder<Biome> get(HolderGetter<Biome> registry, int x, int z) {
 		int i = this.area.get(x, z);
-		Optional<Holder.Reference<Biome>> biome = ServerLifecycleHooks.getCurrentServer().registryAccess().registryOrThrow(Registries.BIOME).getHolder(i);
+		Optional<Holder.Reference<Biome>> biome = ServerLifecycleHooks.getCurrentServer().registryAccess().lookupOrThrow(Registries.BIOME).get(i);
 		if (biome.isEmpty()) {
 			Util.logAndPauseIfInIde("Unknown biome id: " + i);
 			return registry.getOrThrow(KoratioBiomes.FANTASIA_FIELDLANDS);

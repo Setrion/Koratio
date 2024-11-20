@@ -22,6 +22,16 @@
           },
           {
             "biome_layers": {
+              "-1.0": "koratio:chocolate_hills",
+              "-3.0": "koratio:depths_of_fantasia",
+              "100.0": "koratio:skylands"
+            },
+            "depth": 12.31,
+            "key_biome": "koratio:chocolate_hills",
+            "scale": 0.2
+          },
+          {
+            "biome_layers": {
               "-1.0": "koratio:elven_forest",
               "-3.0": "koratio:depths_of_fantasia"
             },

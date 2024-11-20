@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "koratio:block/pile_of_bones"
+      },
+      {
+        "model": "koratio:block/pile_of_bones",
+        "y": 90
+      },
+      {
+        "model": "koratio:block/pile_of_bones",
+        "y": 180
+      },
+      {
+        "model": "koratio:block/pile_of_bones",
+        "y": 270
+      }
+    ]
+  }
+}

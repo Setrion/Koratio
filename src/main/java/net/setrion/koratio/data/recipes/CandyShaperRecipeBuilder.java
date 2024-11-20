@@ -8,11 +8,10 @@ import net.minecraft.advancements.critereon.RecipeUnlockedTrigger;
 import net.minecraft.core.NonNullList;
 import net.minecraft.data.recipes.RecipeBuilder;
 import net.minecraft.data.recipes.RecipeOutput;
-import net.minecraft.data.recipes.ShapelessRecipeBuilder;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.level.ItemLike;
 import net.neoforged.neoforge.fluids.crafting.FluidIngredient;
 import net.neoforged.neoforge.fluids.crafting.SizedFluidIngredient;
@@ -22,7 +21,6 @@ import org.jetbrains.annotations.Nullable;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Objects;
-import java.util.Optional;
 
 public class CandyShaperRecipeBuilder implements RecipeBuilder {
 
@@ -42,7 +40,7 @@ public class CandyShaperRecipeBuilder implements RecipeBuilder {
     }
 
     public CandyShaperRecipeBuilder requires(FluidIngredient ingredient, int amount) {
-        this.ingredients.add(SizedFluidIngredient.of(ingredient.getStacks()[0].getFluid(), amount));
+        this.ingredients.add(SizedFluidIngredient.of(ingredient.fluids().get(0).value(), amount));
         return this;
     }
 
@@ -66,11 +64,11 @@ public class CandyShaperRecipeBuilder implements RecipeBuilder {
     }
 
     @Override
-    public void save(RecipeOutput recipeOutput, ResourceLocation id) {
-        Advancement.Builder advancement$builder = recipeOutput.advancement().addCriterion("has_the_recipe", RecipeUnlockedTrigger.unlocked(id)).rewards(AdvancementRewards.Builder.recipe(id)).requirements(AdvancementRequirements.Strategy.OR);
+    public void save(RecipeOutput recipeOutput, ResourceKey<Recipe<?>> resourceKey) {
+        Advancement.Builder advancement$builder = recipeOutput.advancement().addCriterion("has_the_recipe", RecipeUnlockedTrigger.unlocked(resourceKey)).rewards(AdvancementRewards.Builder.recipe(resourceKey)).requirements(AdvancementRequirements.Strategy.OR);
         Objects.requireNonNull(advancement$builder);
         this.criteria.forEach(advancement$builder::addCriterion);
         CandyShaperRecipe candyShaperRecipe = new CandyShaperRecipe(this.result, this.template, this.ingredients);
-        recipeOutput.accept(id, candyShaperRecipe, advancement$builder.build(id.withPrefix("recipes/candy/")));
+        recipeOutput.accept(resourceKey, candyShaperRecipe, advancement$builder.build(resourceKey.location().withPrefix("recipes/candy/")));
     }
 }

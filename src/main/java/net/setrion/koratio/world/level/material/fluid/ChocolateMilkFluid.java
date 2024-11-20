@@ -2,6 +2,7 @@ package net.setrion.koratio.world.level.material.fluid;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.BlockGetter;
@@ -85,6 +86,11 @@ public abstract class ChocolateMilkFluid extends FlowingFluid {
 			state.add(LEVEL);
 		}
 
+		@Override
+		protected boolean canConvertToSource(ServerLevel serverLevel) {
+			return false;
+		}
+
 		public int getAmount(FluidState state) {
 			return state.getValue(LEVEL);
 		}
@@ -95,6 +101,11 @@ public abstract class ChocolateMilkFluid extends FlowingFluid {
 	}
 
 	public static class Source extends ChocolateMilkFluid {
+		@Override
+		protected boolean canConvertToSource(ServerLevel serverLevel) {
+			return false;
+		}
+
 		public int getAmount(FluidState state) {
 			return 8;
 		}

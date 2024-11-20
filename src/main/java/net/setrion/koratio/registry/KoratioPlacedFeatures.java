@@ -6,6 +6,7 @@ import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.data.worldgen.features.EndFeatures;
 import net.minecraft.data.worldgen.features.VegetationFeatures;
 import net.minecraft.data.worldgen.placement.PlacementUtils;
+import net.minecraft.data.worldgen.placement.VegetationPlacements;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.VerticalAnchor;
@@ -26,8 +27,9 @@ public class KoratioPlacedFeatures {
 	public static final ResourceKey<PlacedFeature> PLACED_VARESO = registerKey("tree/vareso");
 	public static final ResourceKey<PlacedFeature> PLACED_ELVEN = registerKey("tree/elven");
 	public static final ResourceKey<PlacedFeature> PLACED_CHOCOLATE_MILK_LAKE = registerKey("chocolate_milk_lake");
-	
+
 	public static final ResourceKey<PlacedFeature> PLACED_HUGE_CANDY_CANE = registerKey("huge_candy_cane");
+	public static final ResourceKey<PlacedFeature> PLACED_HUGE_LOLLIPOP = registerKey("huge_lollipop");
 	public static final ResourceKey<PlacedFeature> PLACED_PURPLE_MUSHROOM = registerKey("tree/purple_mushroom");
 	public static final ResourceKey<PlacedFeature> PLACED_GREEN_MUSHROOM = registerKey("tree/green_mushroom");
 	public static final ResourceKey<PlacedFeature> PLACED_RAINBOW_FLOWERS = registerKey("rainbow_flowers");
@@ -62,13 +64,14 @@ public class KoratioPlacedFeatures {
 		context.register(PLACED_PATCH_COTTON_CANDY_GRASS, new PlacedFeature(features.getOrThrow(KoratioConfiguredFeatures.PATCH_COTTON_CANDY_GRASS), List.of(NoiseThresholdCountPlacement.of(-0.8D, 5, 10), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome())));
 		context.register(PLACED_PANGO_BUSH, new PlacedFeature(features.getOrThrow(KoratioConfiguredFeatures.PANGO_BUSH), treeCheckArea(KoratioBlocks.PANGO_SAPLING.get().defaultBlockState())));
 		context.register(PLACED_RUGONA, new PlacedFeature(features.getOrThrow(KoratioConfiguredFeatures.RUGONA), treeCheckArea(KoratioBlocks.RUGONA_SAPLING.get().defaultBlockState())));
-		context.register(PLACED_CANDY, new PlacedFeature(features.getOrThrow(KoratioConfiguredFeatures.CANDY), treeCheckArea(KoratioBlocks.CANDY_SAPLING.get().defaultBlockState())));
-		context.register(PLACED_CHOCOLATE_OAK, new PlacedFeature(features.getOrThrow(KoratioConfiguredFeatures.CHOCOLATE_OAK), treeCheckArea(KoratioBlocks.CHOCOLATE_OAK_SAPLING.get().defaultBlockState())));
+		context.register(PLACED_CANDY, new PlacedFeature(features.getOrThrow(KoratioConfiguredFeatures.CANDY), VegetationPlacements.treePlacement(PlacementUtils.countExtra(8, 0.1F, 1), KoratioBlocks.CANDY_SAPLING.get())));
+		context.register(PLACED_CHOCOLATE_OAK, new PlacedFeature(features.getOrThrow(KoratioConfiguredFeatures.CHOCOLATE_OAK), VegetationPlacements.treePlacement(PlacementUtils.countExtra(0, 0.25F, 1), KoratioBlocks.CHOCOLATE_OAK_SAPLING.get())));
 		context.register(PLACED_VARESO, new PlacedFeature(features.getOrThrow(KoratioConfiguredFeatures.VARESO), treeCheckArea(KoratioBlocks.VARESO_SAPLING.get().defaultBlockState())));
 		context.register(PLACED_ELVEN, new PlacedFeature(features.getOrThrow(KoratioConfiguredFeatures.ELVEN), treeCheckArea(KoratioBlocks.ELVEN_SAPLING.get().defaultBlockState())));
 		context.register(PLACED_CHOCOLATE_MILK_LAKE, new PlacedFeature(features.getOrThrow(KoratioConfiguredFeatures.CHOCOLATE_MILK_LAKE), List.of(RarityFilter.onAverageOnceEvery(20), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome())));
 
-		context.register(PLACED_HUGE_CANDY_CANE, new PlacedFeature(features.getOrThrow(KoratioConfiguredFeatures.HUGE_CANDY_CANE), List.of(RarityFilter.onAverageOnceEvery(2), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome())));
+		context.register(PLACED_HUGE_CANDY_CANE, new PlacedFeature(features.getOrThrow(KoratioConfiguredFeatures.HUGE_CANDY_CANE), List.of(RarityFilter.onAverageOnceEvery(5), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome())));
+		context.register(PLACED_HUGE_LOLLIPOP, new PlacedFeature(features.getOrThrow(KoratioConfiguredFeatures.HUGE_LOLLIPOP), List.of(RarityFilter.onAverageOnceEvery(5), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome())));
 		context.register(PLACED_PURPLE_MUSHROOM, new PlacedFeature(features.getOrThrow(KoratioConfiguredFeatures.HUGE_PURPLE_MUSHROOM), mushroomCheckArea()));
 		context.register(PLACED_GREEN_MUSHROOM, new PlacedFeature(features.getOrThrow(KoratioConfiguredFeatures.HUGE_GREEN_MUSHROOM), mushroomCheckArea()));
 		context.register(PLACED_RAINBOW_FLOWERS, new PlacedFeature(features.getOrThrow(KoratioConfiguredFeatures.FLOWER_RAINBOW_FIELDS), List.of(RarityFilter.onAverageOnceEvery(8), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, BiomeFilter.biome())));

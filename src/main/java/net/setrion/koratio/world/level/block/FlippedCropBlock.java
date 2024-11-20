@@ -146,8 +146,10 @@ public class FlippedCropBlock extends FlippedBushBlock implements BonemealableBl
 
     @Override
     protected void entityInside(BlockState state, Level level, BlockPos pos, Entity entity) {
-        if (entity instanceof Ravager && net.neoforged.neoforge.event.EventHooks.canEntityGrief(level, entity)) {
-            level.destroyBlock(pos, true, entity);
+        if (!level.isClientSide()) {
+            if (entity instanceof Ravager && net.neoforged.neoforge.event.EventHooks.canEntityGrief((ServerLevel) level, entity)) {
+                level.destroyBlock(pos, true, entity);
+            }
         }
 
         super.entityInside(state, level, pos, entity);

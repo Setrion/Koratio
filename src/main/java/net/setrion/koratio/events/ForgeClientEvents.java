@@ -1,26 +1,18 @@
 package net.setrion.koratio.events;
 
-import com.google.gson.JsonParseException;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.client.renderer.FogRenderer.FogMode;
-import net.minecraft.client.renderer.RenderType;
-import net.minecraft.client.renderer.block.model.BlockModel;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.client.resources.model.BakedModel;
-import net.minecraft.client.resources.model.ModelBakery;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Holder;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.biome.Biome;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
@@ -31,6 +23,7 @@ import net.neoforged.neoforge.client.NeoForgeRenderTypes;
 import net.neoforged.neoforge.client.event.RenderLevelStageEvent;
 import net.neoforged.neoforge.client.event.ViewportEvent;
 import net.neoforged.neoforge.client.model.data.ModelData;
+import net.neoforged.neoforge.common.NeoForgeMod;
 import net.setrion.koratio.client.model.block.GlazedModel;
 import net.setrion.koratio.client.renderer.GhostVertexConsumer;
 import net.setrion.koratio.registry.KoratioDimensions;
@@ -39,10 +32,8 @@ import net.setrion.koratio.registry.KoratioTags;
 import net.setrion.koratio.world.item.PipingBagItem;
 import net.setrion.koratio.world.level.block.entity.GlazedBlockEntity;
 
+import javax.annotation.Nullable;
 import java.awt.*;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 
 @EventBusSubscriber(Dist.CLIENT)
 public class ForgeClientEvents {
@@ -84,7 +75,7 @@ public class ForgeClientEvents {
 									Minecraft.getInstance().getBlockRenderer().getModelRenderer().tesselateBlock(Minecraft.getInstance().level, model, Minecraft.getInstance().level.getBlockState(hit.getBlockPos()), hit.getBlockPos(), event.getPoseStack(), builder, true, RandomSource.create(), Minecraft.getInstance().level.getBlockState(hit.getBlockPos()).getSeed(hit.getBlockPos()), OverlayTexture.NO_OVERLAY, ModelData.EMPTY, null);
 								}
 							} else {
-								for (int i = 0; i < 5; i++) {
+								for (int i = 0; i < 9; i++) {
 									if (hit.getDirection() == Direction.NORTH) {
 										Minecraft.getInstance().getBlockRenderer().getModelRenderer().tesselateBlock(Minecraft.getInstance().level, GlazedModel.getNorthOverlays()[i], Minecraft.getInstance().level.getBlockState(hit.getBlockPos()), hit.getBlockPos(), event.getPoseStack(), builder, false, RandomSource.create(), Minecraft.getInstance().level.getBlockState(hit.getBlockPos()).getSeed(hit.getBlockPos()), OverlayTexture.NO_OVERLAY, ModelData.EMPTY, null);
 									} else if (hit.getDirection() == Direction.EAST) {
@@ -108,34 +99,29 @@ public class ForgeClientEvents {
 		}
 	}
 
+	@Nullable
 	private static BakedModel getModel(BlockHitResult hitResult) {
 		GlazedBlockEntity.Part i = getHitPart(hitResult);
-		int id = 10;
 		if (i != null) {
-			if (i == GlazedBlockEntity.Part.MIDDLE) id = 4;
-			else if (i == GlazedBlockEntity.Part.TOP) id = 2;
-			else if (i == GlazedBlockEntity.Part.RIGHT) id = 0;
-			else if (i == GlazedBlockEntity.Part.BOTTOM) id = 3;
-			else if (i == GlazedBlockEntity.Part.LEFT) id = 1;
-			if (id < 5) {
-				if (hitResult.getDirection() == Direction.NORTH) {
-					return GlazedModel.getNorthOverlays()[id];
-				} else if (hitResult.getDirection() == Direction.EAST) {
-					return GlazedModel.getEastOverlays()[id];
-				} else if (hitResult.getDirection() == Direction.SOUTH) {
-					return GlazedModel.getSouthOverlays()[id];
-				} else if (hitResult.getDirection() == Direction.WEST) {
-					return GlazedModel.getWestOverlays()[id];
-				} else if (hitResult.getDirection() == Direction.UP) {
-					return GlazedModel.getTopOverlays()[id];
-				} else if (hitResult.getDirection() == Direction.DOWN) {
-					return GlazedModel.getBottomOverlays()[id];
-				}
+			int id = i.getId();
+			if (hitResult.getDirection() == Direction.NORTH) {
+				return GlazedModel.getNorthOverlays()[id];
+			} else if (hitResult.getDirection() == Direction.EAST) {
+				return GlazedModel.getEastOverlays()[id];
+			} else if (hitResult.getDirection() == Direction.SOUTH) {
+				return GlazedModel.getSouthOverlays()[id];
+			} else if (hitResult.getDirection() == Direction.WEST) {
+				return GlazedModel.getWestOverlays()[id];
+			} else if (hitResult.getDirection() == Direction.UP) {
+				return GlazedModel.getTopOverlays()[id];
+			} else if (hitResult.getDirection() == Direction.DOWN) {
+				return GlazedModel.getBottomOverlays()[id];
 			}
 		}
 		return null;
 	}
 
+	@Nullable
 	private static GlazedBlockEntity.Part getHitPart(BlockHitResult hitResult) {
 		Direction direction = hitResult.getDirection();
 		BlockPos blockpos = hitResult.getBlockPos().relative(direction);
@@ -145,46 +131,102 @@ public class ForgeClientEvents {
 		double d2 = vec3.z();
 
 		if (direction == Direction.NORTH || direction == Direction.SOUTH) {
-			if (d0 < 0.2 && d1 < 0.8) {
-				if (direction == Direction.NORTH) return GlazedBlockEntity.Part.LEFT;
-				return GlazedBlockEntity.Part.RIGHT;
+			if (d1 > 0.8) {
+				if (d0 < 0.2) {
+					return direction == Direction.NORTH ? GlazedBlockEntity.Part.TOP_RIGHT : GlazedBlockEntity.Part.TOP_LEFT;
+				} else if (d0 > 0.8) {
+					return direction == Direction.NORTH ? GlazedBlockEntity.Part.TOP_LEFT : GlazedBlockEntity.Part.TOP_RIGHT;
+				} else {
+					return GlazedBlockEntity.Part.TOP_MIDDLE;
+				}
 			} else if (d1 < 0.2) {
-				return GlazedBlockEntity.Part.BOTTOM;
-			} else if (d1 > 0.8) {
-				return GlazedBlockEntity.Part.TOP;
-			} else if (d0 > 0.8 && d1 < 0.8) {
-				if (direction == Direction.NORTH) return GlazedBlockEntity.Part.RIGHT;
-				return GlazedBlockEntity.Part.LEFT;
+				if (d0 < 0.2) {
+					return direction == Direction.NORTH ? GlazedBlockEntity.Part.BOTTOM_RIGHT : GlazedBlockEntity.Part.BOTTOM_LEFT;
+				} else if (d0 > 0.8) {
+					return direction == Direction.NORTH ? GlazedBlockEntity.Part.BOTTOM_LEFT : GlazedBlockEntity.Part.BOTTOM_RIGHT;
+				} else {
+					return GlazedBlockEntity.Part.BOTTOM_MIDDLE;
+				}
 			} else {
-				return GlazedBlockEntity.Part.MIDDLE;
+				if (d0 < 0.2) {
+					return direction == Direction.NORTH ? GlazedBlockEntity.Part.RIGHT : GlazedBlockEntity.Part.LEFT;
+				} else if (d0 > 0.8) {
+					return direction == Direction.NORTH ? GlazedBlockEntity.Part.LEFT : GlazedBlockEntity.Part.RIGHT;
+				} else {
+					return GlazedBlockEntity.Part.MIDDLE;
+				}
 			}
 		} else if (direction == Direction.EAST || direction == Direction.WEST) {
-			if (d2 < 0.2 && d1 < 0.8) {
-				if (direction == Direction.EAST) return GlazedBlockEntity.Part.LEFT;
-				return GlazedBlockEntity.Part.RIGHT;
+			if (d1 > 0.8) {
+				if (d2 < 0.2) {
+					return direction == Direction.EAST ? GlazedBlockEntity.Part.TOP_RIGHT : GlazedBlockEntity.Part.TOP_LEFT;
+				} else if (d2 > 0.8) {
+					return direction == Direction.EAST ? GlazedBlockEntity.Part.TOP_LEFT : GlazedBlockEntity.Part.TOP_RIGHT;
+				} else {
+					return GlazedBlockEntity.Part.TOP_MIDDLE;
+				}
 			} else if (d1 < 0.2) {
-				return GlazedBlockEntity.Part.BOTTOM;
-			} else if (d1 > 0.8) {
-				return GlazedBlockEntity.Part.TOP;
-			} else if (d2 > 0.8 && d1 < 0.8) {
-				if (direction == Direction.EAST) return GlazedBlockEntity.Part.RIGHT;
-				return GlazedBlockEntity.Part.LEFT;
+				if (d2 < 0.2) {
+					return direction == Direction.EAST ? GlazedBlockEntity.Part.BOTTOM_RIGHT : GlazedBlockEntity.Part.BOTTOM_LEFT;
+				} else if (d2 > 0.8) {
+					return direction == Direction.EAST ? GlazedBlockEntity.Part.BOTTOM_LEFT : GlazedBlockEntity.Part.BOTTOM_RIGHT;
+				} else {
+					return GlazedBlockEntity.Part.BOTTOM_MIDDLE;
+				}
 			} else {
-				return GlazedBlockEntity.Part.MIDDLE;
+				if (d2 < 0.2) {
+					return direction == Direction.EAST ? GlazedBlockEntity.Part.RIGHT : GlazedBlockEntity.Part.LEFT;
+				} else if (d2 > 0.8) {
+					return direction == Direction.EAST ? GlazedBlockEntity.Part.LEFT : GlazedBlockEntity.Part.RIGHT;
+				} else {
+					return GlazedBlockEntity.Part.MIDDLE;
+				}
 			}
 		} else if (direction == Direction.UP || direction == Direction.DOWN) {
-			if (d0 < 0.2 && d2 < 0.8) {
-				return GlazedBlockEntity.Part.RIGHT;
-			} else if (d2 < 0.2) {
-				if (direction == Direction.UP) return GlazedBlockEntity.Part.TOP;
-				return GlazedBlockEntity.Part.BOTTOM;
+			if (d2 < 0.2) {
+				if (direction == Direction.UP) {
+					if (d0 < 0.2) {
+						return GlazedBlockEntity.Part.TOP_LEFT;
+					} else if (d0 > 0.8) {
+						return GlazedBlockEntity.Part.TOP_RIGHT;
+					} else {
+						return GlazedBlockEntity.Part.TOP_MIDDLE;
+					}
+				} else {
+					if (d0 < 0.2) {
+						return GlazedBlockEntity.Part.BOTTOM_LEFT;
+					} else if (d0 > 0.8) {
+						return GlazedBlockEntity.Part.BOTTOM_RIGHT;
+					} else {
+						return GlazedBlockEntity.Part.BOTTOM_MIDDLE;
+					}
+				}
 			} else if (d2 > 0.8) {
-				if (direction == Direction.UP) return GlazedBlockEntity.Part.BOTTOM;
-				return GlazedBlockEntity.Part.TOP;
-			} else if (d0 > 0.8 && d2 < 0.8) {
-				return GlazedBlockEntity.Part.LEFT;
+				if (direction == Direction.UP) {
+					if (d0 < 0.2) {
+						return GlazedBlockEntity.Part.BOTTOM_LEFT;
+					} else if (d0 > 0.8) {
+						return GlazedBlockEntity.Part.BOTTOM_RIGHT;
+					} else {
+						return GlazedBlockEntity.Part.BOTTOM_MIDDLE;
+					}
+				} else {
+					if (d0 < 0.2) {
+						return GlazedBlockEntity.Part.TOP_LEFT;
+					} else if (d0 > 0.8) {
+						return GlazedBlockEntity.Part.TOP_RIGHT;
+					} else {
+						return GlazedBlockEntity.Part.TOP_MIDDLE;
+					}
+				}
 			} else {
-				return GlazedBlockEntity.Part.MIDDLE;
+				if (d0 < 0.2) {
+					return GlazedBlockEntity.Part.LEFT;
+				} else if (d0 > 0.8) {
+					return GlazedBlockEntity.Part.RIGHT;
+				} else {
+					return GlazedBlockEntity.Part.MIDDLE;
+				}
 			}
 		}
 		return null;
@@ -194,7 +236,7 @@ public class ForgeClientEvents {
 	public static void onFogRenderDensity(ViewportEvent.RenderFog event) {
 		Minecraft minecraft = Minecraft.getInstance();
 		LocalPlayer player = minecraft.player;
-		if (event.getMode() != FogMode.FOG_TERRAIN || player == null || player.isSpectator() || player.isInLava() || player.isUnderWater() || !player.isAlive() || player.level().dimension() != KoratioDimensions.FANTASIA_DIMENSION_KEY || player.hasEffect(MobEffects.BLINDNESS) || player.hasEffect(MobEffects.DARKNESS)) {
+		if (event.getMode() != FogMode.FOG_TERRAIN || player == null || player.isSpectator() || player.isEyeInFluidType(NeoForgeMod.LAVA_TYPE.value()) || player.isUnderWater() || !player.isAlive() || player.level().dimension() != KoratioDimensions.FANTASIA_DIMENSION_KEY || player.hasEffect(MobEffects.BLINDNESS) || player.hasEffect(MobEffects.DARKNESS)) {
 			return;
 		}
 		

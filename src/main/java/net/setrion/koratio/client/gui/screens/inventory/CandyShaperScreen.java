@@ -2,40 +2,23 @@ package net.setrion.koratio.client.gui.screens.inventory;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.*;
-import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
-import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.gui.screens.inventory.CyclingSlotBackground;
-import net.minecraft.client.renderer.GameRenderer;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
-import net.minecraft.client.resources.sounds.SimpleSoundInstance;
-import net.minecraft.core.registries.Registries;
-import net.minecraft.data.models.model.TextureMapping;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.sounds.SoundEvents;
-import net.minecraft.util.Mth;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.InventoryMenu;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.SmithingTemplateItem;
-import net.minecraft.world.item.crafting.RecipeHolder;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.material.Fluid;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.client.extensions.common.IClientFluidTypeExtensions;
-import net.neoforged.neoforge.client.model.generators.BlockModelProvider;
-import net.neoforged.neoforge.fluids.FluidStack;
-import net.neoforged.neoforge.registries.NeoForgeRegistries;
 import net.setrion.koratio.Koratio;
-import net.setrion.koratio.registry.KoratioBlocks;
 import net.setrion.koratio.world.inventory.CandyShaperMenu;
-import net.setrion.koratio.world.item.CandyTemplateItem;
-import net.setrion.koratio.world.item.crafting.CandyShaperRecipe;
 import net.setrion.koratio.world.level.block.entity.CandyShaperBlockEntity;
 import org.joml.Matrix4f;
 
@@ -79,7 +62,7 @@ public class CandyShaperScreen extends AbstractContainerScreen<CandyShaperMenu> 
     protected void renderBg(GuiGraphics graphics, float tick, int mouseX, int mouseY) {
         int i = leftPos;
         int j = topPos;
-        graphics.blit(BG_LOCATION, i, j, 0, 0, imageWidth, imageHeight);
+        graphics.blit(RenderType::guiTextured, BG_LOCATION, i, j, 0F, 0F, imageWidth, imageHeight, 256, 256);
 
         if (!this.blockEntity.getFluidHandler().getFluidInTank(0).isEmpty()) {
             drawFluid(graphics, 16, 44, 0, this.blockEntity.getFluidHandler().getFluidInTank(0).getFluid(), i+8, j+19);
@@ -87,8 +70,8 @@ public class CandyShaperScreen extends AbstractContainerScreen<CandyShaperMenu> 
         if (!this.blockEntity.getFluidHandler().getFluidInTank(1).isEmpty()) {
             drawFluid(graphics, 16, 44, 1, this.blockEntity.getFluidHandler().getFluidInTank(1).getFluid(), i+44, j+19);
         }
-        graphics.blit(BG_LOCATION, i+7, j+18, 176, 0, 18, 46);
-        graphics.blit(BG_LOCATION, i+43, j+18, 176, 0, 18, 46);
+        graphics.blit(RenderType::guiTextured, BG_LOCATION, i+7, j+18, 176, 0, 18, 46, 256, 256);
+        graphics.blit(RenderType::guiTextured, BG_LOCATION, i+43, j+18, 176, 0, 18, 46, 256, 256);
         this.templateIcon.render(this.menu, graphics, tick, this.leftPos, this.topPos);
     }
 
@@ -191,7 +174,6 @@ public class CandyShaperScreen extends AbstractContainerScreen<CandyShaperMenu> 
                     uMax = uMax - (maskRight / 16F * (uMax - uMin));
                     vMax = vMax - (maskTop / 16F * (vMax - vMin));
 
-                    RenderSystem.setShader(GameRenderer::getPositionTexShader);
                     RenderSystem.disableDepthTest();
                     Tesselator tesselator = Tesselator.getInstance();
                     BufferBuilder bufferBuilder = tesselator.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX);

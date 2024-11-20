@@ -4,8 +4,6 @@ import com.google.common.annotations.VisibleForTesting;
 import com.google.common.base.Suppliers;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
-import com.mojang.serialization.MapCodec;
-import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.SharedConstants;
 import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
@@ -32,7 +30,6 @@ import net.minecraft.world.level.chunk.LevelChunkSection;
 import net.minecraft.world.level.chunk.ProtoChunk;
 import net.minecraft.world.level.levelgen.*;
 import net.minecraft.world.level.levelgen.blending.Blender;
-import net.setrion.koratio.registry.KoratioDimensions;
 import net.setrion.koratio.world.level.chunk.chunkgenerators.warp.KoratioChunkWarp;
 
 import javax.annotation.Nullable;
@@ -41,7 +38,6 @@ import java.util.Optional;
 import java.util.OptionalInt;
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.Executor;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
 
@@ -79,11 +75,11 @@ public abstract class KoratioChunkGenerator extends ChunkGeneratorBase {
 			return super.getBaseHeight(x, z, heightMap, level, random);
 		} else {
 			NoiseSettings settings = this.noiseGeneratorSettings.value().noiseSettings();
-			int minY = Math.max(settings.minY(), level.getMinBuildHeight());
-			int maxY = Math.min(settings.minY() + settings.height(), level.getMaxBuildHeight());
+			int minY = Math.max(settings.minY(), level.getMinY());
+			int maxY = Math.min(settings.minY() + settings.height(), level.getMaxY());
 			int minCell = Mth.floorDiv(minY, settings.getCellHeight());
 			int maxCell = Mth.floorDiv(maxY - minY, settings.getCellHeight());
-			return maxCell <= 0 ? level.getMinBuildHeight() : this.iterateNoiseColumn(random, x, z, null, heightMap.isOpaque(), minCell, maxCell).orElse(level.getMinBuildHeight());
+			return maxCell <= 0 ? level.getMinY() : this.iterateNoiseColumn(random, x, z, null, heightMap.isOpaque(), minCell, maxCell).orElse(level.getMinY());
 		}
 	}
 
@@ -93,8 +89,8 @@ public abstract class KoratioChunkGenerator extends ChunkGeneratorBase {
 			return super.getBaseColumn(x, z, level, random);
 		} else {
 			NoiseSettings settings = this.noiseGeneratorSettings.value().noiseSettings();
-			int minY = Math.max(settings.minY(), level.getMinBuildHeight());
-			int maxY = Math.min(settings.minY() + settings.height(), level.getMaxBuildHeight());
+			int minY = Math.max(settings.minY(), level.getMinY());
+			int maxY = Math.min(settings.minY() + settings.height(), level.getMaxY());
 			int minCell = Mth.floorDiv(minY, settings.getCellHeight());
 			int maxCell = Mth.floorDiv(maxY - minY, settings.getCellHeight());
 			if (maxCell <= 0) {
@@ -156,10 +152,10 @@ public abstract class KoratioChunkGenerator extends ChunkGeneratorBase {
 
 	@Override
 	public CompletableFuture<ChunkAccess> createBiomes(RandomState randomState, Blender blender, StructureManager structureManager, ChunkAccess chunkAccess) {
-		return CompletableFuture.supplyAsync(Util.wrapThreadWithTaskName("init_biomes", () -> {
+		return CompletableFuture.supplyAsync(() -> {
 			chunkAccess.fillBiomesFromNoise(this.getBiomeSource(), Climate.empty());
 			return chunkAccess;
-		}), Util.backgroundExecutor());
+		}, Util.backgroundExecutor());
 	}
 
 	@Override
@@ -169,8 +165,8 @@ public abstract class KoratioChunkGenerator extends ChunkGeneratorBase {
 		} else {
 			NoiseSettings settings = this.noiseGeneratorSettings.value().noiseSettings();
 			int cellHeight = settings.getCellHeight();
-			int minY = Math.max(settings.minY(), chunkAccess.getMinBuildHeight());
-			int maxY = Math.min(settings.minY() + settings.height(), chunkAccess.getMaxBuildHeight());
+			int minY = Math.max(settings.minY(), chunkAccess.getMinY());
+			int maxY = Math.min(settings.minY() + settings.height(), chunkAccess.getMaxY());
 			int mincell = Mth.floorDiv(minY, cellHeight);
 			int maxcell = Mth.floorDiv(maxY - minY, cellHeight);
 
@@ -295,7 +291,7 @@ public abstract class KoratioChunkGenerator extends ChunkGeneratorBase {
 	public void buildSurface(WorldGenRegion region, StructureManager structure, RandomState randomstate, ChunkAccess access) {
 		if (!SharedConstants.debugVoidTerrain(access.getPos())) {
 			WorldGenerationContext worldgenerationcontext = new WorldGenerationContext(this, region);
-			this.buildSurface(access, worldgenerationcontext, randomstate, structure, region.getBiomeManager(), region.registryAccess().registryOrThrow(Registries.BIOME), Blender.of(region));
+			this.buildSurface(access, worldgenerationcontext, randomstate, structure, region.getBiomeManager(), region.registryAccess().lookupOrThrow(Registries.BIOME), Blender.of(region));
 		}
 	}
 

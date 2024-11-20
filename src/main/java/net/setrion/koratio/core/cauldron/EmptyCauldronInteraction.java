@@ -5,7 +5,7 @@ import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.ItemInteractionResult;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
@@ -49,7 +49,7 @@ public class EmptyCauldronInteraction extends CauldronInteraction {
 
     //Fills the bucket. Empties the cauldron.
     @Override
-    public ItemInteractionResult interact(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, ItemStack stack) {
+    public InteractionResult interact(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, ItemStack stack) {
         IFluidHandlerItem fluidHandlerItem = stack.getCapability(Capabilities.FluidHandler.ITEM);
         if(fluidHandlerItem != null) {
             FluidStack fluidStack = new FluidStack(type, FluidType.BUCKET_VOLUME);
@@ -58,10 +58,10 @@ public class EmptyCauldronInteraction extends CauldronInteraction {
                     if(!player.getAbilities().instabuild) transferFluid(level, player, hand, pos);
                     emptyTheCauldron(player, level, stack, fluidStack, pos, Blocks.CAULDRON.defaultBlockState());
                 }
-                return ItemInteractionResult.sidedSuccess(level.isClientSide);
+                return InteractionResult.SUCCESS;
             }
         }
-        return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+        return InteractionResult.PASS;
     }
 
     protected void emptyTheCauldron(Player player, Level level, ItemStack stack, FluidStack fluidStack, BlockPos pos, BlockState newState) {
@@ -80,9 +80,9 @@ public class EmptyCauldronInteraction extends CauldronInteraction {
     private static EmptyCauldronInteraction createLayered(Fluid fluid) {
         return new EmptyCauldronInteraction(fluid) {
             @Override
-            public ItemInteractionResult interact(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, ItemStack stack) {
+            public InteractionResult interact(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, ItemStack stack) {
                 if (state.getValue(LayeredCauldronBlock.LEVEL) == 3) return super.interact(state, level, pos, player, hand, stack);
-                return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+                return InteractionResult.PASS;
             }
         };
     }

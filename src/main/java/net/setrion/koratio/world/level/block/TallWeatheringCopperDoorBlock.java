@@ -6,11 +6,9 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.block.WeatheringCopper;
-import net.minecraft.world.level.block.WeatheringCopperDoorBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
-import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 import net.setrion.koratio.world.level.block.state.properties.TripleBlockPart;
 
 public class TallWeatheringCopperDoorBlock extends TallDoorBlock implements WeatheringCopper {

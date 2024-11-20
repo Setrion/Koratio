@@ -6,7 +6,6 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
@@ -49,7 +48,7 @@ public abstract class CauldronInteraction implements net.minecraft.core.cauldron
     public static final CauldronInteraction EMPTY = new CauldronInteraction() {
         //Fills the cauldron empties the bucket.
         @Override
-        public ItemInteractionResult interact(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, ItemStack stack) {
+        public InteractionResult interact(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, ItemStack stack) {
             IFluidHandlerItem fluidHandlerItem = stack.getCapability(Capabilities.FluidHandler.ITEM);
             if (fluidHandlerItem != null) {
                 FluidStack fluidStack = fluidHandlerItem.getFluidInTank(0);
@@ -60,11 +59,11 @@ public abstract class CauldronInteraction implements net.minecraft.core.cauldron
                             if(!player.getAbilities().instabuild) transferFluid(level, player, hand, pos);
                             fillTheCauldron(player, level, stack, fluidStack, pos, newState);
                         }
-                        return ItemInteractionResult.sidedSuccess(level.isClientSide);
+                        return InteractionResult.SUCCESS;
                     }
                 }
             }
-            return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+            return InteractionResult.PASS;
         }
     };
 

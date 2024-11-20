@@ -4,11 +4,13 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.animal.CatVariant;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.material.Fluid;
 import net.setrion.koratio.Koratio;
+import net.setrion.koratio.world.entity.animal.MagicalCatVariant;
 
 public class KoratioTags {
 	
@@ -90,6 +92,7 @@ public class KoratioTags {
 	    public static final TagKey<Block> CRYSTAL_CAVE_CRYSTALS = createBlockKey(Koratio.prefix("crystal_cave_crystals"));
 
 	    public static final TagKey<Block> COOKIE_ORES = createBlockKey(Koratio.prefix("cookie_ores"));
+		public static final TagKey<Block> UNDEAD_REMAINS = createBlockKey(Koratio.prefix("undead_remains"));
 
 		public static final TagKey<Block> RAINBOW_GEM_STORAGE_BLOCKS = createBlockKey(ResourceLocation.fromNamespaceAndPath("c", "storage_blocks/rainbow_gem"));
 		public static final TagKey<Block> RUBY_STORAGE_BLOCKS = createBlockKey(ResourceLocation.fromNamespaceAndPath("c", "storage_blocks/ruby"));
@@ -117,6 +120,15 @@ public class KoratioTags {
 	public class Entities {
 		public static final TagKey<EntityType<?>> DEMONS = createEntityTypeKey(Koratio.prefix("demons"));
 	}
+
+	public class MagicalCatVariants {
+
+		public static final TagKey<MagicalCatVariant> DEFAULT_SPAWNS = create(Koratio.prefix("default_spawns"));
+
+		private static TagKey<MagicalCatVariant> create(ResourceLocation name) {
+			return TagKey.create(KoratioRegistries.MAGICAL_CAT_VARIANT, name);
+		}
+	}
 	
 	public class Biomes {
 		public static final TagKey<Biome> HAS_OUTCAST = createBiomeKey(Koratio.prefix("has_outcast"));
@@ -143,5 +155,4 @@ public class KoratioTags {
 	private static TagKey<Biome> createBiomeKey(ResourceLocation name) {
 		return TagKey.create(Registries.BIOME, name);
 	}
-	
 }

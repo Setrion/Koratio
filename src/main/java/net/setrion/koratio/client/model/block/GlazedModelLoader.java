@@ -3,7 +3,7 @@ package net.setrion.koratio.client.model.block;
 import com.google.gson.*;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.BlockModel;
-import net.minecraft.client.resources.model.ModelBakery;
+import net.minecraft.client.resources.model.SpecialModels;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.resources.ResourceManager;
 import net.neoforged.neoforge.client.model.generators.BlockModelBuilder;
@@ -22,47 +22,70 @@ public enum GlazedModelLoader implements IGeometryLoader<GlazedBlockGeometry> {
     @Override
     public GlazedBlockGeometry read(JsonObject jsonObject, JsonDeserializationContext deserializationContext) throws JsonParseException {
         BlockModel core = loadModel(ResourceLocation.parse(jsonObject.get("base").getAsString()));
-        BlockModel topTopOverlay = loadModel(Koratio.prefix("block/overlay/gingerbread_glaze_top_top"));
-        BlockModel topBottomOverlay = loadModel(Koratio.prefix("block/overlay/gingerbread_glaze_top_bottom"));
-        BlockModel topLeftOverlay = loadModel(Koratio.prefix("block/overlay/gingerbread_glaze_top_left"));
-        BlockModel topRightOverlay = loadModel(Koratio.prefix("block/overlay/gingerbread_glaze_top_right"));
-        BlockModel topMiddleOverlay = loadModel(Koratio.prefix("block/overlay/gingerbread_glaze_top_middle"));
-        BlockModel bottomTopOverlay = loadModel(Koratio.prefix("block/overlay/gingerbread_glaze_bottom_top"));
-        BlockModel bottomBottomOverlay = loadModel(Koratio.prefix("block/overlay/gingerbread_glaze_bottom_bottom"));
-        BlockModel bottomLeftOverlay = loadModel(Koratio.prefix("block/overlay/gingerbread_glaze_bottom_left"));
-        BlockModel bottomRightOverlay = loadModel(Koratio.prefix("block/overlay/gingerbread_glaze_bottom_right"));
-        BlockModel bottomMiddleOverlay = loadModel(Koratio.prefix("block/overlay/gingerbread_glaze_bottom_middle"));
-        BlockModel northTopOverlay = loadModel(Koratio.prefix("block/overlay/gingerbread_glaze_north_top"));
-        BlockModel northBottomOverlay = loadModel(Koratio.prefix("block/overlay/gingerbread_glaze_north_bottom"));
-        BlockModel northLeftOverlay = loadModel(Koratio.prefix("block/overlay/gingerbread_glaze_north_left"));
-        BlockModel northRightOverlay = loadModel(Koratio.prefix("block/overlay/gingerbread_glaze_north_right"));
-        BlockModel northMiddleOverlay = loadModel(Koratio.prefix("block/overlay/gingerbread_glaze_north_middle"));
-        BlockModel eastTopOverlay = loadModel(Koratio.prefix("block/overlay/gingerbread_glaze_east_top"));
-        BlockModel eastBottomOverlay = loadModel(Koratio.prefix("block/overlay/gingerbread_glaze_east_bottom"));
-        BlockModel eastLeftOverlay = loadModel(Koratio.prefix("block/overlay/gingerbread_glaze_east_left"));
-        BlockModel eastRightOverlay = loadModel(Koratio.prefix("block/overlay/gingerbread_glaze_east_right"));
-        BlockModel eastMiddleOverlay = loadModel(Koratio.prefix("block/overlay/gingerbread_glaze_east_middle"));
-        BlockModel southTopOverlay = loadModel(Koratio.prefix("block/overlay/gingerbread_glaze_south_top"));
-        BlockModel southBottomOverlay = loadModel(Koratio.prefix("block/overlay/gingerbread_glaze_south_bottom"));
-        BlockModel southLeftOverlay = loadModel(Koratio.prefix("block/overlay/gingerbread_glaze_south_left"));
-        BlockModel southRightOverlay = loadModel(Koratio.prefix("block/overlay/gingerbread_glaze_south_right"));
-        BlockModel southMiddleOverlay = loadModel(Koratio.prefix("block/overlay/gingerbread_glaze_south_middle"));
-        BlockModel westTopOverlay = loadModel(Koratio.prefix("block/overlay/gingerbread_glaze_west_top"));
-        BlockModel westBottomOverlay = loadModel(Koratio.prefix("block/overlay/gingerbread_glaze_west_bottom"));
-        BlockModel westLeftOverlay = loadModel(Koratio.prefix("block/overlay/gingerbread_glaze_west_left"));
-        BlockModel westRightOverlay = loadModel(Koratio.prefix("block/overlay/gingerbread_glaze_west_right"));
-        BlockModel westMiddleOverlay = loadModel(Koratio.prefix("block/overlay/gingerbread_glaze_west_middle"));
+        BlockModel topTopMiddleOverlay = loadModel(Koratio.prefix("block/overlay/glaze_top_top_middle"));
+        BlockModel topTopLeftOverlay = loadModel(Koratio.prefix("block/overlay/glaze_top_top_left"));
+        BlockModel topTopRightOverlay = loadModel(Koratio.prefix("block/overlay/glaze_top_top_right"));
+        BlockModel topBottomMiddleOverlay = loadModel(Koratio.prefix("block/overlay/glaze_top_bottom_middle"));
+        BlockModel topBottomLeftOverlay = loadModel(Koratio.prefix("block/overlay/glaze_top_bottom_left"));
+        BlockModel topBottomRightOverlay = loadModel(Koratio.prefix("block/overlay/glaze_top_bottom_right"));
+        BlockModel topLeftOverlay = loadModel(Koratio.prefix("block/overlay/glaze_top_left_middle"));
+        BlockModel topRightOverlay = loadModel(Koratio.prefix("block/overlay/glaze_top_right_middle"));
+        BlockModel topMiddleOverlay = loadModel(Koratio.prefix("block/overlay/glaze_top_middle"));
+        BlockModel bottomTopMiddleOverlay = loadModel(Koratio.prefix("block/overlay/glaze_bottom_top_middle"));
+        BlockModel bottomTopLeftOverlay = loadModel(Koratio.prefix("block/overlay/glaze_bottom_top_left"));
+        BlockModel bottomTopRightOverlay = loadModel(Koratio.prefix("block/overlay/glaze_bottom_top_right"));
+        BlockModel bottomBottomMiddleOverlay = loadModel(Koratio.prefix("block/overlay/glaze_bottom_bottom_middle"));
+        BlockModel bottomBottomLeftOverlay = loadModel(Koratio.prefix("block/overlay/glaze_bottom_bottom_left"));
+        BlockModel bottomBottomRightOverlay = loadModel(Koratio.prefix("block/overlay/glaze_bottom_bottom_right"));
+        BlockModel bottomLeftOverlay = loadModel(Koratio.prefix("block/overlay/glaze_bottom_left_middle"));
+        BlockModel bottomRightOverlay = loadModel(Koratio.prefix("block/overlay/glaze_bottom_right_middle"));
+        BlockModel bottomMiddleOverlay = loadModel(Koratio.prefix("block/overlay/glaze_bottom_middle"));
+        BlockModel northTopMiddleOverlay = loadModel(Koratio.prefix("block/overlay/glaze_north_top_middle"));
+        BlockModel northTopLeftOverlay = loadModel(Koratio.prefix("block/overlay/glaze_north_top_left"));
+        BlockModel northTopRightOverlay = loadModel(Koratio.prefix("block/overlay/glaze_north_top_right"));
+        BlockModel northBottomMiddleOverlay = loadModel(Koratio.prefix("block/overlay/glaze_north_bottom_middle"));
+        BlockModel northBottomLeftOverlay = loadModel(Koratio.prefix("block/overlay/glaze_north_bottom_left"));
+        BlockModel northBottomRightOverlay = loadModel(Koratio.prefix("block/overlay/glaze_north_bottom_right"));
+        BlockModel northLeftOverlay = loadModel(Koratio.prefix("block/overlay/glaze_north_left_middle"));
+        BlockModel northRightOverlay = loadModel(Koratio.prefix("block/overlay/glaze_north_right_middle"));
+        BlockModel northMiddleOverlay = loadModel(Koratio.prefix("block/overlay/glaze_north_middle"));
+        BlockModel eastTopMiddleOverlay = loadModel(Koratio.prefix("block/overlay/glaze_east_top_middle"));
+        BlockModel eastTopLeftOverlay = loadModel(Koratio.prefix("block/overlay/glaze_east_top_left"));
+        BlockModel eastTopRightOverlay = loadModel(Koratio.prefix("block/overlay/glaze_east_top_right"));
+        BlockModel eastBottomMiddleOverlay = loadModel(Koratio.prefix("block/overlay/glaze_east_bottom_middle"));
+        BlockModel eastBottomLeftOverlay = loadModel(Koratio.prefix("block/overlay/glaze_east_bottom_left"));
+        BlockModel eastBottomRightOverlay = loadModel(Koratio.prefix("block/overlay/glaze_east_bottom_right"));
+        BlockModel eastLeftOverlay = loadModel(Koratio.prefix("block/overlay/glaze_east_left_middle"));
+        BlockModel eastRightOverlay = loadModel(Koratio.prefix("block/overlay/glaze_east_right_middle"));
+        BlockModel eastMiddleOverlay = loadModel(Koratio.prefix("block/overlay/glaze_east_middle"));
+        BlockModel southTopMiddleOverlay = loadModel(Koratio.prefix("block/overlay/glaze_south_top_middle"));
+        BlockModel southTopLeftOverlay = loadModel(Koratio.prefix("block/overlay/glaze_south_top_left"));
+        BlockModel southTopRightOverlay = loadModel(Koratio.prefix("block/overlay/glaze_south_top_right"));
+        BlockModel southBottomMiddleOverlay = loadModel(Koratio.prefix("block/overlay/glaze_south_bottom_middle"));
+        BlockModel southBottomLeftOverlay = loadModel(Koratio.prefix("block/overlay/glaze_south_bottom_left"));
+        BlockModel southBottomRightOverlay = loadModel(Koratio.prefix("block/overlay/glaze_south_bottom_right"));
+        BlockModel southLeftOverlay = loadModel(Koratio.prefix("block/overlay/glaze_south_left_middle"));
+        BlockModel southRightOverlay = loadModel(Koratio.prefix("block/overlay/glaze_south_right_middle"));
+        BlockModel southMiddleOverlay = loadModel(Koratio.prefix("block/overlay/glaze_south_middle"));
+        BlockModel westTopMiddleOverlay = loadModel(Koratio.prefix("block/overlay/glaze_west_top_middle"));
+        BlockModel westTopLeftOverlay = loadModel(Koratio.prefix("block/overlay/glaze_west_top_left"));
+        BlockModel westTopRightOverlay = loadModel(Koratio.prefix("block/overlay/glaze_west_top_right"));
+        BlockModel westBottomMiddleOverlay = loadModel(Koratio.prefix("block/overlay/glaze_west_bottom_middle"));
+        BlockModel westBottomLeftOverlay = loadModel(Koratio.prefix("block/overlay/glaze_west_bottom_left"));
+        BlockModel westBottomRightOverlay = loadModel(Koratio.prefix("block/overlay/glaze_west_bottom_right"));
+        BlockModel westLeftOverlay = loadModel(Koratio.prefix("block/overlay/glaze_west_left_middle"));
+        BlockModel westRightOverlay = loadModel(Koratio.prefix("block/overlay/glaze_west_right_middle"));
+        BlockModel westMiddleOverlay = loadModel(Koratio.prefix("block/overlay/glaze_west_middle"));
 
-        return new GlazedBlockGeometry("gingerbread", core, topTopOverlay, topBottomOverlay, topLeftOverlay, topRightOverlay, topMiddleOverlay, bottomTopOverlay, bottomBottomOverlay, bottomLeftOverlay, bottomRightOverlay, bottomMiddleOverlay, northTopOverlay, northBottomOverlay, northLeftOverlay, northRightOverlay, northMiddleOverlay, eastTopOverlay, eastBottomOverlay, eastLeftOverlay, eastRightOverlay, eastMiddleOverlay, southTopOverlay, southBottomOverlay, southLeftOverlay, southRightOverlay, southMiddleOverlay, westTopOverlay, westBottomOverlay, westLeftOverlay, westRightOverlay, westMiddleOverlay);
+        return new GlazedBlockGeometry("gingerbread", core, topTopMiddleOverlay, topTopLeftOverlay, topTopRightOverlay, topBottomMiddleOverlay, topBottomLeftOverlay, topBottomRightOverlay, topLeftOverlay, topRightOverlay, topMiddleOverlay, bottomTopMiddleOverlay, bottomTopLeftOverlay, bottomTopRightOverlay, bottomBottomMiddleOverlay, bottomBottomLeftOverlay, bottomBottomRightOverlay, bottomLeftOverlay, bottomRightOverlay, bottomMiddleOverlay, northTopMiddleOverlay, northTopLeftOverlay, northTopRightOverlay, northBottomMiddleOverlay,northBottomLeftOverlay, northBottomRightOverlay, northLeftOverlay, northRightOverlay, northMiddleOverlay, eastTopMiddleOverlay, eastTopLeftOverlay, eastTopRightOverlay, eastBottomMiddleOverlay, eastBottomLeftOverlay, eastBottomRightOverlay, eastLeftOverlay, eastRightOverlay, eastMiddleOverlay, southTopMiddleOverlay, southTopLeftOverlay, southTopRightOverlay, southBottomMiddleOverlay, southBottomLeftOverlay, southBottomRightOverlay, southLeftOverlay, southRightOverlay, southMiddleOverlay, westTopMiddleOverlay, westTopLeftOverlay, westTopRightOverlay, westBottomMiddleOverlay, westBottomLeftOverlay, westBottomRightOverlay, westLeftOverlay, westRightOverlay, westMiddleOverlay);
     }
 
     private static BlockModel loadModel(ResourceLocation location) {
         ResourceManager manager = Minecraft.getInstance().getResourceManager();
-        ResourceLocation file = ModelBakery.MODEL_LISTER.idToFile(location);
-        try (InputStream stream = manager.getResourceOrThrow(file).open()) {
+        try (InputStream stream = manager.getResourceOrThrow(SpecialModels.builtinModelId(location.getPath())).open()) {
             return BlockModel.fromStream(new InputStreamReader(stream));
         } catch (IOException e) {
-            throw new JsonParseException("Failed to load part model '" + file + "'", e);
+            throw new JsonParseException("Failed to load part model '" + location + "'", e);
         }
     }
 

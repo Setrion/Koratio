@@ -8,14 +8,15 @@ import net.minecraft.util.Mth;
 import net.setrion.koratio.Koratio;
 import net.setrion.koratio.client.model.JumStemModel;
 import net.setrion.koratio.client.renderer.entity.layer.JumStemMushroomLayer;
+import net.setrion.koratio.client.renderer.entity.state.JumstemRenderState;
 import net.setrion.koratio.registry.ModelLayers;
 import net.setrion.koratio.world.entity.monster.JumStem;
 
-public class JumStemRenderer extends MobRenderer<JumStem, JumStemModel<JumStem>> {
+public class JumStemRenderer extends MobRenderer<JumStem, JumstemRenderState, JumStemModel> {
 
 	public JumStemRenderer(Context context) {
-		super(context, new JumStemModel<>(context.bakeLayer(ModelLayers.JUMSTEM)), 0.25F);
-		this.addLayer(new JumStemMushroomLayer<>(this, context.getBlockRenderDispatcher()));
+		super(context, new JumStemModel(context.bakeLayer(ModelLayers.JUMSTEM)), 0.25F);
+		this.addLayer(new JumStemMushroomLayer(this, context.getBlockRenderDispatcher()));
 	}
 	
 	protected void scale(JumStem jumstem, PoseStack stack, float f) {
@@ -27,7 +28,12 @@ public class JumStemRenderer extends MobRenderer<JumStem, JumStemModel<JumStem>>
 	}
 
 	@Override
-	public ResourceLocation getTextureLocation(JumStem jumstem) {
-		return ResourceLocation.fromNamespaceAndPath(Koratio.MOD_ID, "textures/entity/jumstem/"+jumstem.getVariant().getName()+".png");
+	public JumstemRenderState createRenderState() {
+		return new JumstemRenderState();
+	}
+
+	@Override
+	public ResourceLocation getTextureLocation(JumstemRenderState state) {
+		return ResourceLocation.fromNamespaceAndPath(Koratio.MOD_ID, "textures/entity/jumstem/"+state.getVariant().getName()+".png");
 	}
 }

@@ -9,7 +9,6 @@ import net.setrion.koratio.Koratio;
 import net.setrion.koratio.registry.*;
 import net.setrion.koratio.scroll.Scroll;
 import net.setrion.koratio.world.item.CandyItem;
-import net.setrion.koratio.world.item.ColoredCandyItem;
 
 import java.util.function.Supplier;
 
@@ -57,17 +56,17 @@ public abstract class LanguageGenerator extends LanguageProvider {
     }
 
     public void add(SoundEvent key, String name) {
-        add(key.getLocation().toLanguageKey("subtitles").replaceFirst("koratio.entity.koratio", "koratio.entity"), name);
+        add(key.location().toLanguageKey("subtitles").replaceFirst("koratio.entity.koratio", "koratio.entity"), name);
     }
     
     public void addScroll(Supplier<? extends Scroll> key, String name, String text) {
-    	add("scroll."+key.get().getName()+".title", name);
-    	add("scroll."+key.get().getName()+".text", text);
+    	add("scroll."+key.get().name()+".title", name);
+    	add("scroll."+key.get().name()+".text", text);
     }
     
     public void add(Scroll key, String name, String text) {
-    	add("scroll."+key.getName()+".title", name);
-    	add("scroll."+key.getName()+".text", text);
+    	add("scroll."+key.name()+".title", name);
+    	add("scroll."+key.name()+".text", text);
     }
 	
 	public static class English extends LanguageGenerator {
@@ -677,8 +676,8 @@ public abstract class LanguageGenerator extends LanguageProvider {
 			add(KoratioEntityType.DEMONIC_SKELETON.get(), "Demonic Skeleton");
 			add(KoratioEntityType.DEMONIC_SOLDIER.get(), "Demonic Soldier");
 
-			add(KoratioEntityType.BOAT.get(), "Boat");
-			add(KoratioEntityType.CHEST_BOAT.get(), "Chest Boat");
+			add(KoratioEntityType.PANGO_BOAT.get(), "Boat");
+			add(KoratioEntityType.PANGO_CHEST_BOAT.get(), "Chest Boat");
 			add(KoratioEntityType.LEVITATING_BLOCK.get(), "Levitating Block");
 		}
 

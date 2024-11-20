@@ -23,6 +23,7 @@ public class KoratioBiomes {
 	public static final ResourceKey<Biome> MUSHROOM_FOREST = makeKey("mushroom_forest");
 	
 	public static final ResourceKey<Biome> CANDY_CANE_VALLEY = makeKey("candy_cane_valley");
+	public static final ResourceKey<Biome> CHOCOLATE_HILLS = makeKey("chocolate_hills");
 	
 	public static final ResourceKey<Biome> RIVER = makeKey("river");
 	
@@ -42,6 +43,7 @@ public class KoratioBiomes {
 		context.register(MUSHROOM_FOREST, biomeWithDefaults(defaultFantasiaAmbientBuilder().ambientParticle(new AmbientParticleSettings(ParticleTypes.WITCH, 0.025F)).fogColor(16735130).foliageColorOverride(65535).grassColorOverride(16735130), mushroomForestSpawning(), mushroomForestGen(featureGetter, carverGetter)).build());
 		context.register(ELVEN_FOREST, biomeWithDefaults(defaultFantasiaAmbientBuilder().ambientParticle(new AmbientParticleSettings(ParticleTypes.MYCELIUM, 0.025F)).foliageColorOverride(16773070).grassColorOverride(16631551), defaultFantasiaMobSpawning(), elvenForestGen(featureGetter, carverGetter)).build());
 		context.register(CANDY_CANE_VALLEY, biomeWithDefaults(defaultFantasiaAmbientBuilder().foliageColorOverride(1687910).grassColorOverride(4176127), defaultFantasiaMobSpawning(), candycanevalleyGen(featureGetter, carverGetter)).temperature(0.7F).build());
+		context.register(CHOCOLATE_HILLS, biomeWithDefaults(defaultFantasiaAmbientBuilder().foliageColorOverride(15984043).grassColorOverride(15984043), defaultFantasiaMobSpawning(), chocolateHillsGen(featureGetter, carverGetter)).temperature(0.7F).build());
 
 		context.register(RIVER, biomeWithDefaults(defaultFantasiaAmbientBuilder(), defaultFantasiaMobSpawning(), rivers(featureGetter, carverGetter, false)).temperature(0.5F).downfall(0.1F).build());
 		

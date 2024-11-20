@@ -2,16 +2,12 @@ package net.setrion.koratio.world.level.block;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.item.context.BlockPlaceContext;
-import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LevelAccessor;
-import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.FenceGateBlock;
@@ -26,7 +22,6 @@ import net.minecraft.world.phys.shapes.BooleanOp;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.setrion.koratio.registry.KoratioParticles;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -40,12 +35,12 @@ public class FlippedFarmBlock extends Block {
         this.registerDefaultState(this.stateDefinition.any().setValue(MOISTURE, Integer.valueOf(0)));
     }
 
-    public BlockState updateShape(BlockState state, Direction direction, BlockState newState, LevelAccessor accessor, BlockPos pos, BlockPos newPos) {
-        if (direction == Direction.DOWN && !state.canSurvive(accessor, pos)) {
-            accessor.scheduleTick(pos, this, 1);
+    @Override
+    protected BlockState updateShape(BlockState state, LevelReader level, ScheduledTickAccess tickAccess, BlockPos currentPos, Direction facing, BlockPos facingPos, BlockState facingState, RandomSource random) {
+        if (facing == Direction.DOWN && !state.canSurvive(level, currentPos)) {
+            tickAccess.scheduleTick(currentPos, this, 1);
         }
-
-        return super.updateShape(state, direction, newState, accessor, pos, newPos);
+        return super.updateShape(state, level, tickAccess, currentPos, facing, facingPos, facingState, random);
     }
 
     public boolean canSurvive(BlockState state, LevelReader reader, BlockPos pos) {

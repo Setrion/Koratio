@@ -11,7 +11,7 @@ import net.setrion.koratio.world.level.block.entity.ChestBlockEntity;
 
 public class ChestBlock extends net.minecraft.world.level.block.ChestBlock {
 	public ChestBlock(Properties properties) {
-		super(properties, KoratioBlockEntityType.CHEST::get);
+		super(KoratioBlockEntityType.CHEST::get, properties);
 	}
 
 	@Override

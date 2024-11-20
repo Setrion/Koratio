@@ -22,13 +22,37 @@
               },
               {
                 "data": {
-                  "Name": "koratio:blue_sugarglass_flower"
+                  "Name": "koratio:light_gray_sugarglass_flower"
                 },
                 "weight": 1
               },
               {
                 "data": {
-                  "Name": "koratio:green_sugarglass_flower"
+                  "Name": "koratio:gray_sugarglass_flower"
+                },
+                "weight": 1
+              },
+              {
+                "data": {
+                  "Name": "koratio:black_sugarglass_flower"
+                },
+                "weight": 1
+              },
+              {
+                "data": {
+                  "Name": "koratio:brown_sugarglass_flower"
+                },
+                "weight": 1
+              },
+              {
+                "data": {
+                  "Name": "koratio:red_sugarglass_flower"
+                },
+                "weight": 1
+              },
+              {
+                "data": {
+                  "Name": "koratio:orange_sugarglass_flower"
                 },
                 "weight": 1
               },
@@ -40,7 +64,49 @@
               },
               {
                 "data": {
-                  "Name": "koratio:red_sugarglass_flower"
+                  "Name": "koratio:lime_sugarglass_flower"
+                },
+                "weight": 1
+              },
+              {
+                "data": {
+                  "Name": "koratio:green_sugarglass_flower"
+                },
+                "weight": 1
+              },
+              {
+                "data": {
+                  "Name": "koratio:cyan_sugarglass_flower"
+                },
+                "weight": 1
+              },
+              {
+                "data": {
+                  "Name": "koratio:light_blue_sugarglass_flower"
+                },
+                "weight": 1
+              },
+              {
+                "data": {
+                  "Name": "koratio:blue_sugarglass_flower"
+                },
+                "weight": 1
+              },
+              {
+                "data": {
+                  "Name": "koratio:purple_sugarglass_flower"
+                },
+                "weight": 1
+              },
+              {
+                "data": {
+                  "Name": "koratio:magenta_sugarglass_flower"
+                },
+                "weight": 1
+              },
+              {
+                "data": {
+                  "Name": "koratio:pink_sugarglass_flower"
                 },
                 "weight": 1
               }

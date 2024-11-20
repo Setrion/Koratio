@@ -89,9 +89,6 @@ public class MushroomSpore extends Projectile {
 		}
 	}
 
-	protected void defineSynchedData() {
-	}
-
 	public void recreateFromPacket(ClientboundAddEntityPacket packet) {
 		super.recreateFromPacket(packet);
 		double d0 = packet.getXa();

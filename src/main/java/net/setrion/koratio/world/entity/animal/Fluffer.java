@@ -6,11 +6,10 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
-import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
-import net.minecraft.util.FastColor;
+import net.minecraft.util.ARGB;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.DifficultyInstance;
@@ -26,20 +25,14 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.DyeItem;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.CraftingInput;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.gameevent.GameEvent;
-import net.minecraft.world.level.storage.loot.BuiltInLootTables;
-import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.phys.Vec3;
 import net.setrion.koratio.registry.KoratioBlocks;
 import net.setrion.koratio.registry.KoratioEntityType;
-import net.setrion.koratio.registry.KoratioLootTables;
 import net.setrion.koratio.registry.KoratioTags;
 
 import javax.annotation.Nullable;
@@ -58,8 +51,7 @@ public class Fluffer extends Animal implements Shearable {
             return -1644826;
         } else {
             int i = dyeColor.getTextureDiffuseColor();
-            float f = 0.75F;
-            return FastColor.ARGB32.color(255, Mth.floor((float) FastColor.ARGB32.red(i) * 0.75F), Mth.floor((float) FastColor.ARGB32.green(i) * 0.75F), Mth.floor((float) FastColor.ARGB32.blue(i) * 0.75F));
+            return ARGB.color(255, Mth.floor((float) ARGB.red(i) * 0.75F), Mth.floor((float) ARGB.green(i) * 0.75F), Mth.floor((float) ARGB.blue(i) * 0.75F));
         }
     }
 
@@ -80,8 +72,10 @@ public class Fluffer extends Animal implements Shearable {
     public void aiStep() {
         super.aiStep();
         Vec3 vec3 = getDeltaMovement();
-        if (!onGround() && vec3.y < 0.0) {
-            setDeltaMovement(vec3.multiply(1.0, 0.6, 1.0));
+        if (!isSheared()) {
+            if (!onGround() && vec3.y < 0.0) {
+                setDeltaMovement(vec3.multiply(1.0, 0.6, 1.0));
+            }
         }
     }
 
@@ -96,32 +90,6 @@ public class Fluffer extends Animal implements Shearable {
     }
 
     @Override
-    public ResourceKey<LootTable> getDefaultLootTable() {
-        if (isSheared()) {
-            return getType().getDefaultLootTable();
-        } else {
-            return switch (getColor()) {
-                case WHITE -> KoratioLootTables.FLUFFER_WHITE;
-                case ORANGE -> KoratioLootTables.FLUFFER_ORANGE;
-                case MAGENTA -> KoratioLootTables.FLUFFER_MAGENTA;
-                case LIGHT_BLUE -> KoratioLootTables.FLUFFER_LIGHT_BLUE;
-                case YELLOW -> KoratioLootTables.FLUFFER_YELLOW;
-                case LIME -> KoratioLootTables.FLUFFER_LIME;
-                case PINK -> KoratioLootTables.FLUFFER_PINK;
-                case GRAY -> KoratioLootTables.FLUFFER_GRAY;
-                case LIGHT_GRAY -> KoratioLootTables.FLUFFER_LIGHT_GRAY;
-                case CYAN -> KoratioLootTables.FLUFFER_CYAN;
-                case PURPLE -> KoratioLootTables.FLUFFER_PURPLE;
-                case BLUE -> KoratioLootTables.FLUFFER_BLUE;
-                case BROWN -> KoratioLootTables.FLUFFER_BROWN;
-                case GREEN -> KoratioLootTables.FLUFFER_GREEN;
-                case RED -> KoratioLootTables.FLUFFER_RED;
-                case BLACK -> KoratioLootTables.FLUFFER_BLACK;
-            };
-        }
-    }
-
-    @Override
     public InteractionResult mobInteract(Player player, InteractionHand hand) {
         ItemStack itemstack = player.getItemInHand(hand);
         if (itemstack.getItem() instanceof DyeItem dye) {
@@ -132,20 +100,20 @@ public class Fluffer extends Animal implements Shearable {
                     itemstack.shrink(1);
                 }
 
-                return InteractionResult.sidedSuccess(player.level().isClientSide);
+                return InteractionResult.SUCCESS;
             }
         }
         return super.mobInteract(player, hand);
     }
 
     @Override
-    public void shear(SoundSource category) {
+    public void shear(ServerLevel level, SoundSource category, ItemStack stack) {
         level().playSound(null, this, SoundEvents.SHEEP_SHEAR, category, 1.0F, 1.0F);
         setSheared(true);
         int i = 1 + random.nextInt(3);
 
         for (int j = 0; j < i; j++) {
-            ItemEntity itementity = spawnAtLocation(ITEM_BY_DYE.get(getColor()), 1);
+            ItemEntity itementity = spawnAtLocation((ServerLevel) level(), ITEM_BY_DYE.get(getColor()), 1);
             if (itementity != null) {
                 itementity.setDeltaMovement(
                         itementity.getDeltaMovement()
@@ -217,9 +185,9 @@ public class Fluffer extends Animal implements Shearable {
 
     @Nullable
     public Fluffer getBreedOffspring(ServerLevel level, AgeableMob otherParent) {
-        Fluffer fluffer = KoratioEntityType.FLUFFER.get().create(level);
+        Fluffer fluffer = KoratioEntityType.FLUFFER.get().create(level, EntitySpawnReason.BREEDING);
         if (fluffer != null) {
-            fluffer.setColor(getOffspringColor(this, (Sheep)otherParent));
+            fluffer.setColor(getOffspringColor(level, this, (Sheep)otherParent));
         }
 
         return fluffer;
@@ -236,17 +204,16 @@ public class Fluffer extends Animal implements Shearable {
 
     @Nullable
     @Override
-    public SpawnGroupData finalizeSpawn(ServerLevelAccessor level, DifficultyInstance difficulty, MobSpawnType spawnType, @Nullable SpawnGroupData spawnGroupData) {
+    public SpawnGroupData finalizeSpawn(ServerLevelAccessor level, DifficultyInstance difficulty, EntitySpawnReason spawnType, @Nullable SpawnGroupData spawnGroupData) {
         setColor(getRandomFlufferCollor(level.getRandom()));
         return super.finalizeSpawn(level, difficulty, spawnType, spawnGroupData);
     }
 
-    private DyeColor getOffspringColor(Animal father, Animal mother) {
+    private DyeColor getOffspringColor(ServerLevel level, Animal father, Animal mother) {
         DyeColor dyecolor = ((Fluffer)father).getColor();
         DyeColor dyecolor1 = ((Fluffer)mother).getColor();
         CraftingInput craftinginput = makeCraftInput(dyecolor, dyecolor1);
-        return level()
-                .getRecipeManager()
+        return level.recipeAccess()
                 .getRecipeFor(RecipeType.CRAFTING, craftinginput, level())
                 .map(recipe -> recipe.value().assemble(craftinginput, level().registryAccess()))
                 .map(ItemStack::getItem)

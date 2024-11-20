@@ -34,7 +34,7 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.material.Fluids;
-import net.minecraft.world.level.portal.DimensionTransition;
+import net.minecraft.world.level.portal.TeleportTransition;
 import net.minecraft.world.phys.Vec3;
 import net.setrion.koratio.registry.KoratioBlocks;
 import net.setrion.koratio.registry.KoratioEntityType;
@@ -43,7 +43,6 @@ import net.setrion.koratio.world.level.block.LevitatingBlock;
 import org.slf4j.Logger;
 
 import javax.annotation.Nullable;
-import java.util.Iterator;
 import java.util.function.Predicate;
 
 public class LevitatingBlockEntity extends Entity {
@@ -130,9 +129,9 @@ public class LevitatingBlockEntity extends Entity {
                 BlockPos blockpos = blockPosition();
 
                 if (!isOnCeiling(level(), blockpos)) {
-                    if (!level().isClientSide && (time > 100 && (blockpos.getY() <= level().getMinBuildHeight() || blockpos.getY() > level().getMaxBuildHeight()) || time > 600)) {
-                        if (dropItem && level().getGameRules().getBoolean(GameRules.RULE_DOENTITYDROPS)) {
-                            spawnAtLocation(block);
+                    if (!level().isClientSide && (time > 100 && (blockpos.getY() <= level().getMinY() || blockpos.getY() > level().getMaxY()) || time > 600)) {
+                        if (dropItem && ((ServerLevel)level()).getGameRules().getBoolean(GameRules.RULE_DOENTITYDROPS)) {
+                            spawnAtLocation((ServerLevel) level(), block);
                         }
 
                         discard();
@@ -155,10 +154,10 @@ public class LevitatingBlockEntity extends Entity {
                                 }
                                 if (!level().getBlockState(blockpos.above()).isFaceSturdy(level(), blockpos.above(), Direction.DOWN) && !level().getBlockState(blockpos.above()).canBeReplaced()) {
 
-                                    if (dropItem && level().getGameRules().getBoolean(GameRules.RULE_DOENTITYDROPS)) {
+                                    if (dropItem && ((ServerLevel)level()).getGameRules().getBoolean(GameRules.RULE_DOENTITYDROPS)) {
                                         discard();
                                         callOnBrokenAfterFall(block, blockpos);
-                                        spawnAtLocation(block);
+                                        spawnAtLocation((ServerLevel)level(), block);
                                     }
                                 } else if (level().setBlock(blockpos, blockState, 3)){
                                     ((ServerLevel)level()).getChunkSource().chunkMap.broadcast(this, new ClientboundBlockUpdatePacket(blockpos, level().getBlockState(blockpos)));
@@ -188,9 +187,9 @@ public class LevitatingBlockEntity extends Entity {
                                 }
                             } else {
                                 discard();
-                                if (dropItem && level().getGameRules().getBoolean(GameRules.RULE_DOENTITYDROPS)) {
+                                if (dropItem && ((ServerLevel)level()).getGameRules().getBoolean(GameRules.RULE_DOENTITYDROPS)) {
                                     callOnBrokenAfterFall(block, blockpos);
-                                    spawnAtLocation(block);
+                                    spawnAtLocation((ServerLevel)level(), block);
                                 }
                             }
                         }
@@ -285,6 +284,11 @@ public class LevitatingBlockEntity extends Entity {
         this.fallDamageMax = fallDamageMax;
     }
 
+    @Override
+    public boolean hurtServer(ServerLevel serverLevel, DamageSource damageSource, float v) {
+        return false;
+    }
+
     public void disableDrop() {
         cancelDrop = true;
     }
@@ -333,11 +337,11 @@ public class LevitatingBlockEntity extends Entity {
 
     @Nullable
     @Override
-    public Entity changeDimension(DimensionTransition transition) {
+    public Entity teleport(TeleportTransition transition) {
         ResourceKey<Level> resourcekey = transition.newLevel().dimension();
         ResourceKey<Level> resourcekey1 = level().dimension();
         boolean flag = (resourcekey1 == Level.END || resourcekey == Level.END) && resourcekey1 != resourcekey;
-        Entity entity = super.changeDimension(transition);
+        Entity entity = super.teleport(transition);
         forceTickAfterTeleportToDuplicate = entity != null && flag;
         return entity;
     }

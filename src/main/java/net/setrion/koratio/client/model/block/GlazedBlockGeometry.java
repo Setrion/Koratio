@@ -1,65 +1,89 @@
 package net.setrion.koratio.client.model.block;
 
 import net.minecraft.client.renderer.block.model.BlockModel;
-import net.minecraft.client.renderer.block.model.ItemOverrides;
+import net.minecraft.client.renderer.block.model.ItemOverride;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.resources.model.*;
-import net.minecraft.resources.ResourceLocation;
 import net.neoforged.neoforge.client.model.geometry.IGeometryBakingContext;
 import net.neoforged.neoforge.client.model.geometry.IUnbakedGeometry;
 
+import java.util.List;
 import java.util.function.Function;
 
-public record GlazedBlockGeometry(String name, BlockModel core, BlockModel topTopOverlay, BlockModel topBottomOverlay, BlockModel topLeftOverlay, BlockModel topRightOverlay, BlockModel topMiddleOverlay,
-                                  BlockModel bottomTopOverlay, BlockModel bottomBottomOverlay, BlockModel bottomLeftOverlay, BlockModel bottomRightOverlay, BlockModel bottomMiddleOverlay,
-                                  BlockModel northTopOverlay, BlockModel northBottomOverlay, BlockModel northLeftOverlay, BlockModel northRightOverlay, BlockModel northMiddleOverlay,
-                                  BlockModel eastTopOverlay, BlockModel eastBottomOverlay, BlockModel eastLeftOverlay, BlockModel eastRightOverlay, BlockModel eastMiddleOverlay,
-                                  BlockModel southTopOverlay, BlockModel southBottomOverlay, BlockModel southLeftOverlay, BlockModel southRightOverlay, BlockModel southMiddleOverlay,
-                                  BlockModel westTopOverlay, BlockModel westBottomOverlay, BlockModel westLeftOverlay, BlockModel westRightOverlay, BlockModel westMiddleOverlay) implements IUnbakedGeometry<GlazedBlockGeometry> {
+public record GlazedBlockGeometry(String name, BlockModel core, BlockModel topTopMiddleOverlay, BlockModel topTopLeftOverlay, BlockModel topTopRightOverlay, BlockModel topBottomMiddleOverlay, BlockModel topBottomLeftOverlay, BlockModel topBottomRightOverlay, BlockModel topLeftMiddleOverlay, BlockModel topRightMiddleOverlay, BlockModel topMiddleOverlay,
+                                  BlockModel bottomTopMiddleOverlay, BlockModel bottomTopLeftOverlay, BlockModel bottomTopRightOverlay, BlockModel bottomBottomMiddleOverlay, BlockModel bottomBottomLeftOverlay, BlockModel bottomBottomRightOverlay, BlockModel bottomLeftMiddleOverlay, BlockModel bottomRightMiddleOverlay, BlockModel bottomMiddleOverlay,
+                                  BlockModel northTopMiddleOverlay, BlockModel northTopLeftOverlay, BlockModel northTopRightOverlay, BlockModel northBottomMiddleOverlay, BlockModel northBottomLeftOverlay, BlockModel northBottomRightOverlay, BlockModel northLeftMiddleOverlay, BlockModel northRightMiddleOverlay, BlockModel northMiddleOverlay,
+                                  BlockModel eastTopMiddleOverlay, BlockModel eastTopLeftOverlay, BlockModel eastTopRightOverlay, BlockModel eastBottomMiddleOverlay, BlockModel eastBottomLeftOverlay, BlockModel eastBottomRightOverlay, BlockModel eastLeftMiddleOverlay, BlockModel eastRightMiddleOverlay, BlockModel eastMiddleOverlay,
+                                  BlockModel southTopMiddleOverlay, BlockModel southTopLeftOverlay, BlockModel southTopRightOverlay, BlockModel southBottomMiddleOverlay, BlockModel southBottomLeftOverlay, BlockModel southBottomRightOverlay, BlockModel southLeftMiddleOverlay, BlockModel southRightMiddleOverlay, BlockModel southMiddleOverlay,
+                                  BlockModel westTopMiddleOverlay, BlockModel westTopLeftOverlay, BlockModel westTopRightOverlay, BlockModel westBottomMiddleOverlay, BlockModel westBottomLeftOverlay, BlockModel westBottomRightOverlay, BlockModel westLeftMiddleOverlay, BlockModel westRightMiddleOverlay, BlockModel westMiddleOverlay) implements IUnbakedGeometry<GlazedBlockGeometry> {
 
     @Override
-    public BakedModel bake(IGeometryBakingContext iGeometryBakingContext, ModelBaker modelBaker, Function<Material, TextureAtlasSprite> function, ModelState modelState, ItemOverrides itemOverrides) {
-        BakedModel[] northOverlays = new BakedModel[5];
-        BakedModel[] eastOverlays = new BakedModel[5];
-        BakedModel[] southOverlays = new BakedModel[5];
-        BakedModel[] westOverlays = new BakedModel[5];
-        BakedModel[] topOverlays = new BakedModel[5];
-        BakedModel[] bottomOverlays = new BakedModel[5];
-        northOverlays[0] = northLeftOverlay.bake(modelBaker, northLeftOverlay, function, modelState, true);
-        northOverlays[1] = northRightOverlay.bake(modelBaker, northRightOverlay, function, modelState, true);
-        northOverlays[2] = northTopOverlay.bake(modelBaker, northTopOverlay, function, modelState, true);
-        northOverlays[3] = northBottomOverlay.bake(modelBaker, northBottomOverlay, function, modelState, true);
-        northOverlays[4] = northMiddleOverlay.bake(modelBaker, northMiddleOverlay, function, modelState, true);
-        eastOverlays[0] = eastLeftOverlay.bake(modelBaker, eastLeftOverlay, function, modelState, true);
-        eastOverlays[1] = eastRightOverlay.bake(modelBaker, eastRightOverlay, function, modelState, true);
-        eastOverlays[2] = eastTopOverlay.bake(modelBaker, eastTopOverlay, function, modelState, true);
-        eastOverlays[3] = eastBottomOverlay.bake(modelBaker, eastBottomOverlay, function, modelState, true);
-        eastOverlays[4] = eastMiddleOverlay.bake(modelBaker, eastMiddleOverlay, function, modelState, true);
-        southOverlays[0] = southLeftOverlay.bake(modelBaker, southLeftOverlay, function, modelState, true);
-        southOverlays[1] = southRightOverlay.bake(modelBaker, southRightOverlay, function, modelState, true);
-        southOverlays[2] = southTopOverlay.bake(modelBaker, southTopOverlay, function, modelState, true);
-        southOverlays[3] = southBottomOverlay.bake(modelBaker, southBottomOverlay, function, modelState, true);
-        southOverlays[4] = southMiddleOverlay.bake(modelBaker, southMiddleOverlay, function, modelState, true);
-        westOverlays[0] = westLeftOverlay.bake(modelBaker, westLeftOverlay, function, modelState, true);
-        westOverlays[1] = westRightOverlay.bake(modelBaker, westRightOverlay, function, modelState, true);
-        westOverlays[2] = westTopOverlay.bake(modelBaker, westTopOverlay, function, modelState, true);
-        westOverlays[3] = westBottomOverlay.bake(modelBaker, westBottomOverlay, function, modelState, true);
-        westOverlays[4] = westMiddleOverlay.bake(modelBaker, westMiddleOverlay, function, modelState, true);
-        topOverlays[0] = topLeftOverlay.bake(modelBaker, topLeftOverlay, function, modelState, true);
-        topOverlays[1] = topRightOverlay.bake(modelBaker, topRightOverlay, function, modelState, true);
-        topOverlays[2] = topTopOverlay.bake(modelBaker, topTopOverlay, function, modelState, true);
-        topOverlays[3] = topBottomOverlay.bake(modelBaker, topBottomOverlay, function, modelState, true);
-        topOverlays[4] = topMiddleOverlay.bake(modelBaker, topMiddleOverlay, function, modelState, true);
-        bottomOverlays[0] = bottomLeftOverlay.bake(modelBaker, bottomLeftOverlay, function, modelState, true);
-        bottomOverlays[1] = bottomRightOverlay.bake(modelBaker, bottomRightOverlay, function, modelState, true);
-        bottomOverlays[2] = bottomTopOverlay.bake(modelBaker, bottomTopOverlay, function, modelState, true);
-        bottomOverlays[3] = bottomBottomOverlay.bake(modelBaker, bottomBottomOverlay, function, modelState, true);
-        bottomOverlays[4] = bottomMiddleOverlay.bake(modelBaker, bottomMiddleOverlay, function, modelState, true);
-        return new GlazedModel(core.bake(modelBaker, core, function, modelState, true), northOverlays, eastOverlays, southOverlays, westOverlays, topOverlays, bottomOverlays);
+    public BakedModel bake(IGeometryBakingContext iGeometryBakingContext, ModelBaker modelBaker, Function<Material, TextureAtlasSprite> function, ModelState modelState, List<ItemOverride> list) {
+        BakedModel[] northOverlays = new BakedModel[9];
+        BakedModel[] eastOverlays = new BakedModel[9];
+        BakedModel[] southOverlays = new BakedModel[9];
+        BakedModel[] westOverlays = new BakedModel[9];
+        BakedModel[] topOverlays = new BakedModel[9];
+        BakedModel[] bottomOverlays = new BakedModel[9];
+        northOverlays[0] = northMiddleOverlay.bake(modelBaker, function, modelState);
+        northOverlays[1] = northTopMiddleOverlay.bake(modelBaker, function, modelState);
+        northOverlays[2] = northTopLeftOverlay.bake(modelBaker, function, modelState);
+        northOverlays[3] = northTopRightOverlay.bake(modelBaker, function, modelState);
+        northOverlays[4] = northBottomMiddleOverlay.bake(modelBaker, function, modelState);
+        northOverlays[5] = northBottomLeftOverlay.bake(modelBaker, function, modelState);
+        northOverlays[6] = northBottomRightOverlay.bake(modelBaker, function, modelState);
+        northOverlays[7] = northLeftMiddleOverlay.bake(modelBaker, function, modelState);
+        northOverlays[8] = northRightMiddleOverlay.bake(modelBaker, function, modelState);
+        eastOverlays[0] = eastMiddleOverlay.bake(modelBaker, function, modelState);
+        eastOverlays[1] = eastTopMiddleOverlay.bake(modelBaker, function, modelState);
+        eastOverlays[2] = eastTopLeftOverlay.bake(modelBaker, function, modelState);
+        eastOverlays[3] = eastTopRightOverlay.bake(modelBaker, function, modelState);
+        eastOverlays[4] = eastBottomMiddleOverlay.bake(modelBaker, function, modelState);
+        eastOverlays[5] = eastBottomLeftOverlay.bake(modelBaker, function, modelState);
+        eastOverlays[6] = eastBottomRightOverlay.bake(modelBaker, function, modelState);
+        eastOverlays[7] = eastLeftMiddleOverlay.bake(modelBaker, function, modelState);
+        eastOverlays[8] = eastRightMiddleOverlay.bake(modelBaker, function, modelState);
+        southOverlays[0] = southMiddleOverlay.bake(modelBaker, function, modelState);
+        southOverlays[1] = southTopMiddleOverlay.bake(modelBaker, function, modelState);
+        southOverlays[2] = southTopLeftOverlay.bake(modelBaker, function, modelState);
+        southOverlays[3] = southTopRightOverlay.bake(modelBaker, function, modelState);
+        southOverlays[4] = southBottomMiddleOverlay.bake(modelBaker, function, modelState);
+        southOverlays[5] = southBottomLeftOverlay.bake(modelBaker, function, modelState);
+        southOverlays[6] = southBottomRightOverlay.bake(modelBaker, function, modelState);
+        southOverlays[7] = southLeftMiddleOverlay.bake(modelBaker, function, modelState);
+        southOverlays[8] = southRightMiddleOverlay.bake(modelBaker, function, modelState);
+        westOverlays[0] = westMiddleOverlay.bake(modelBaker, function, modelState);
+        westOverlays[1] = westTopMiddleOverlay.bake(modelBaker, function, modelState);
+        westOverlays[2] = westTopLeftOverlay.bake(modelBaker, function, modelState);
+        westOverlays[3] = westTopRightOverlay.bake(modelBaker, function, modelState);
+        westOverlays[4] = westBottomMiddleOverlay.bake(modelBaker, function, modelState);
+        westOverlays[5] = westBottomLeftOverlay.bake(modelBaker, function, modelState);
+        westOverlays[6] = westBottomRightOverlay.bake(modelBaker, function, modelState);
+        westOverlays[7] = westLeftMiddleOverlay.bake(modelBaker, function, modelState);
+        westOverlays[8] = westRightMiddleOverlay.bake(modelBaker, function, modelState);
+        topOverlays[0] = topMiddleOverlay.bake(modelBaker, function, modelState);
+        topOverlays[1] = topTopMiddleOverlay.bake(modelBaker, function, modelState);
+        topOverlays[2] = topTopLeftOverlay.bake(modelBaker, function, modelState);
+        topOverlays[3] = topTopRightOverlay.bake(modelBaker, function, modelState);
+        topOverlays[4] = topBottomMiddleOverlay.bake(modelBaker, function, modelState);
+        topOverlays[5] = topBottomLeftOverlay.bake(modelBaker, function, modelState);
+        topOverlays[6] = topBottomRightOverlay.bake(modelBaker, function, modelState);
+        topOverlays[7] = topLeftMiddleOverlay.bake(modelBaker, function, modelState);
+        topOverlays[8] = topRightMiddleOverlay.bake(modelBaker, function, modelState);
+        bottomOverlays[0] = bottomMiddleOverlay.bake(modelBaker, function, modelState);
+        bottomOverlays[1] = bottomTopMiddleOverlay.bake(modelBaker, function, modelState);
+        bottomOverlays[2] = bottomTopLeftOverlay.bake(modelBaker, function, modelState);
+        bottomOverlays[3] = bottomTopRightOverlay.bake(modelBaker, function, modelState);
+        bottomOverlays[4] = bottomBottomMiddleOverlay.bake(modelBaker, function, modelState);
+        bottomOverlays[5] = bottomBottomLeftOverlay.bake(modelBaker, function, modelState);
+        bottomOverlays[6] = bottomBottomRightOverlay.bake(modelBaker, function, modelState);
+        bottomOverlays[7] = bottomLeftMiddleOverlay.bake(modelBaker, function, modelState);
+        bottomOverlays[8] = bottomRightMiddleOverlay.bake(modelBaker, function, modelState);
+        return new GlazedModel(core.bake(modelBaker, function, modelState), northOverlays, eastOverlays, southOverlays, westOverlays, topOverlays, bottomOverlays);
     }
 
     @Override
-    public void resolveParents(Function<ResourceLocation, UnbakedModel> modelGetter, IGeometryBakingContext context) {
-        core.resolveParents(modelGetter);
+    public void resolveDependencies(UnbakedModel.Resolver modelGetter, IGeometryBakingContext context) {
+        core.resolveDependencies(modelGetter);
     }
 }

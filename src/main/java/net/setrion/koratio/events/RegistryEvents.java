@@ -16,10 +16,9 @@ import net.neoforged.neoforge.fluids.RegisterCauldronFluidContentEvent;
 import net.neoforged.neoforge.registries.RegisterEvent;
 import net.setrion.koratio.Koratio;
 import net.setrion.koratio.data.*;
-import net.setrion.koratio.data.compat.KoratioCuriosCompat;
+//import net.setrion.koratio.data.compat.KoratioCuriosCompat;
 import net.setrion.koratio.registry.*;
 import net.setrion.koratio.world.level.biome.FantasiaBiomeProvider;
-import net.setrion.koratio.world.level.chunk.chunkgenerators.FantasiaChunkGenerator;
 
 import java.util.List;
 import java.util.Objects;
@@ -38,20 +37,19 @@ public class RegistryEvents {
     }
 	
 	public static void registerEverything(IEventBus modEventBus) {
+        KoratioItems.ITEMS.register(modEventBus);
 		KoratioCreativeTabs.TABS.register(modEventBus);
 		KoratioParticles.PARTICLES.register(modEventBus);
         KoratioFluids.FLUID_TYPES.register(modEventBus);
         KoratioCriteriaTriggers.TRIGGERS.register(modEventBus);
         KoratioDataComponents.DATA_COMPONENTS.register(modEventBus);
         KoratioDimensions.CHUNK_GENERATORS.register(modEventBus);
-        KoratioArmorMaterials.ARMOR_MATERIALS.register(modEventBus);
         KoratioStats.STATS.register(modEventBus);
         KoratioFluids.FLUIDS.register(modEventBus);
         KoratioBlocks.BLOCKS.register(modEventBus);
         KoratioFeatures.FEATURES.register(modEventBus);
         KoratioMenuTypes.MENU_TYPES.register(modEventBus);
         KoratioBlockEntityType.BLOCK_ENTITY_TYPES.register(modEventBus);
-        KoratioItems.ITEMS.register(modEventBus);
         KoratioItems.SPAWN_EGGS.register(modEventBus);
         KoratioLootItemFunctions.LOOT_FUNCTION_TYPES.register(modEventBus);
         KoratioLootModifiers.LOOT_MODIFIERS.register(modEventBus);
@@ -86,15 +84,16 @@ public class RegistryEvents {
         generator.addProvider(event.includeServer(), new KoratioTagsGenerator.EntityTagGenerator(output, newLookup, helper));
         generator.addProvider(event.includeServer(), new KoratioTagsGenerator.FluidTagGenerator(output, newLookup, helper));
         generator.addProvider(event.includeServer(), new KoratioCompatTagGenerator(output, newLookup, blockTags.contentsGetter(), helper));
+        generator.addProvider(event.includeServer(), new KoratioTagsGenerator.PoiTypeTagGenerator(output, newLookup, helper));
         generator.addProvider(event.includeServer(), new KoratioTagsGenerator.BiomeTagGenerator(output, newLookup, helper));
         generator.addProvider(event.includeServer(), new LootGenerator(output, newLookup));
         generator.addProvider(event.includeServer(), new LootModifierGenerator(output, newLookup));
-        generator.addProvider(event.includeServer(), new RecipeGenerator(output, newLookup));
+        generator.addProvider(event.includeServer(), new RecipeRunner(output, provider));
         generator.addProvider(event.includeServer(), new SoundGenerator(output, helper));
         generator.addProvider(event.includeServer(), new LanguageGenerator.English(output));
         generator.addProvider(event.includeServer(), new LanguageGenerator.German(output));
         if (ModList.get().isLoaded("curios")) {
-            generator.addProvider(event.includeServer(), new KoratioCuriosCompat.KoratioCuriosProvider(output, helper, newLookup));
+            //generator.addProvider(event.includeServer(), new KoratioCuriosCompat.KoratioCuriosProvider(output, helper, newLookup));
         }
 	}
 

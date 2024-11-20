@@ -118,6 +118,7 @@ public class ParticleGenerator extends ParticleDescriptionProvider {
         sprite(KoratioParticles.SMALL_RAINBOW_FIRE_FLAME.get(), Koratio.prefix("rainbow_fire_flame"));
         sprite(KoratioParticles.RAINBOW_LAVA.get(), Koratio.prefix("rainbow_lava"));
         sprite(KoratioParticles.DEMONIC_FIRE_FLAME.get(), Koratio.prefix("demonic_fire_flame"));
+        spriteSet(KoratioParticles.DEMONIC_SOUL.get(), Koratio.prefix("demonic_soul"), 11, false);
         sprite(KoratioParticles.TELEPORTER_ASCEND.get(), Koratio.prefix("teleport_ascend"));
         sprite(KoratioParticles.TELEPORTER_DESCEND.get(), Koratio.prefix("teleport_descend"));
     }

@@ -9,7 +9,6 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.ContainerLevelAccess;
 import net.minecraft.world.item.BucketItem;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.BaseEntityBlock;
 import net.minecraft.world.level.block.RenderShape;
@@ -41,7 +40,7 @@ public class CandyShaperBlock extends BaseEntityBlock {
     }
 
     @Override
-    protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
+    protected InteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
         if (stack.getItem() instanceof BucketItem bucket && bucket.content.is(KoratioTags.Fluids.MOLTEN_SUGAR)) {
             if (!level.isClientSide && player instanceof ServerPlayer) {
                 BlockEntity blockEntity = level.getBlockEntity(pos);
@@ -50,12 +49,12 @@ public class CandyShaperBlock extends BaseEntityBlock {
                         candyShaper.getFluidHandler().fill(new FluidStack(bucket.content, FluidType.BUCKET_VOLUME), IFluidHandler.FluidAction.EXECUTE);
                         player.setItemInHand(hand, BucketItem.getEmptySuccessItem(stack, player));
                     } else {
-                        return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+                        return InteractionResult.PASS;
                     }
                 }
-                return ItemInteractionResult.CONSUME;
+                return InteractionResult.CONSUME;
             }
-            return ItemInteractionResult.SUCCESS;
+            return InteractionResult.SUCCESS;
         }
         return super.useItemOn(stack, state, level, pos, player, hand, hitResult);
     }

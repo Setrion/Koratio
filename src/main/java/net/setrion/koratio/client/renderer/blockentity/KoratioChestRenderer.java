@@ -9,7 +9,6 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.properties.ChestType;
 import net.setrion.koratio.Koratio;
 import net.setrion.koratio.registry.KoratioBlocks;
-import net.setrion.koratio.world.level.block.entity.ChestBlockEntity;
 
 import java.util.EnumMap;
 import java.util.Map;

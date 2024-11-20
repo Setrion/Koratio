@@ -1,0 +1,16 @@
+{
+	"parent": "minecraft:block/cube",
+	"render_type": "cutout_mipped",
+	"textures": {
+		"glaze": "koratio:block/glaze_bottom_left"
+	},
+	"elements": [
+		{
+			"from": [0, 0, 16],
+			"to": [16, 16, 16],
+			"faces": {
+				"south": {"uv": [0, 0, 16, 16], "texture": "#glaze", "tintindex": 3}
+			}
+		}
+	]
+}

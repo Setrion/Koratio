@@ -1,33 +1,25 @@
 package net.setrion.koratio.client.model;
 
-import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
 import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.entity.state.LivingEntityRenderState;
 import net.minecraft.util.Mth;
-import net.setrion.koratio.world.entity.animal.GoldenFoxSpirit;
 
-public class GoldenFoxSpiritModel<T extends GoldenFoxSpirit> extends EntityModel<T> {
+public class GoldenFoxSpiritModel extends EntityModel<LivingEntityRenderState> {
 	private final ModelPart head;
 	private final ModelPart leaf1;
 	private final ModelPart leaf2;
 	private final ModelPart body;
-	private final ModelPart leg1;
-	private final ModelPart leg2;
-	private final ModelPart tail;
 
 	public GoldenFoxSpiritModel(ModelPart root) {
-		super(RenderType::entityTranslucent);
+		super(root, RenderType::entityTranslucent);
 		head = root.getChild("head");
 		leaf1 = head.getChild("leaf1");
 		leaf2 = head.getChild("leaf2");
 		body = root.getChild("body");
-		leg1 = body.getChild("leg1");
-		leg2 = body.getChild("leg2");
-		tail = body.getChild("tail");
 	}
 
 	public static LayerDefinition createBodyLayer() {
@@ -55,25 +47,19 @@ public class GoldenFoxSpiritModel<T extends GoldenFoxSpirit> extends EntityModel
 	}
 
 	@Override
-	public void setupAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-		if (entity.isTame()) {
+	public void setupAnim(LivingEntityRenderState state) {
+		/*if (state.) {
 			leaf1.visible = true;
 			leaf2.visible = true;
 		} else {
 			leaf1.visible = false;
 			leaf2.visible = false;
-		}
+		}*/
 		for(int i = 0; i < 4; ++i) {
-			body.y = 12.0F + Mth.cos(((float)(i * 3) + ageInTicks) * 0.125F);
-			head.y = 12.0F + Mth.cos(((float)(i * 3) + ageInTicks) * 0.125F);
+			body.y = 12.0F + Mth.cos(((float)(i * 3) + state.ageInTicks) * 0.125F);
+			head.y = 12.0F + Mth.cos(((float)(i * 3) + state.ageInTicks) * 0.125F);
 		}
-		head.yRot = netHeadYaw * ((float)Math.PI / 180F);
-		head.xRot = headPitch * ((float)Math.PI / 180F);
-	}
-
-	@Override
-	public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight, int packedOverlay, int color) {
-		head.render(poseStack, vertexConsumer, packedLight, packedOverlay, color);
-		body.render(poseStack, vertexConsumer, packedLight, packedOverlay, color);
+		head.yRot = state.xRot * ((float)Math.PI / 180F);
+		head.xRot = state.yRot * ((float)Math.PI / 180F);
 	}
 }

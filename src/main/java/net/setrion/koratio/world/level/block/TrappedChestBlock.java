@@ -15,7 +15,7 @@ import net.setrion.koratio.world.level.block.entity.TrappedChestBlockEntity;
 
 public class TrappedChestBlock extends net.minecraft.world.level.block.ChestBlock {
 	public TrappedChestBlock(Properties properties) {
-		super(properties, KoratioBlockEntityType.TRAPPED_CHEST::get);
+		super(KoratioBlockEntityType.TRAPPED_CHEST::get, properties);
 	}
 
 	@Override

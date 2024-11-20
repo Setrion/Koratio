@@ -7,13 +7,11 @@ import net.minecraft.world.level.StructureManager;
 import net.minecraft.world.level.biome.BiomeManager;
 import net.minecraft.world.level.chunk.ChunkAccess;
 import net.minecraft.world.level.chunk.ChunkGenerator;
-import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.levelgen.RandomState;
 import net.minecraft.world.level.levelgen.blending.Blender;
 
 import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.Executor;
 
 public abstract class ChunkGeneratorBase extends ChunkGenerator {
     public final ChunkGenerator delegate;
@@ -25,8 +23,8 @@ public abstract class ChunkGeneratorBase extends ChunkGenerator {
     }
 
     @Override
-    public void applyCarvers(WorldGenRegion region, long seed, RandomState random, BiomeManager biomeManager, StructureManager manager, ChunkAccess chunkAccess, GenerationStep.Carving carving) {
-        this.delegate.applyCarvers(region, seed, random, biomeManager, manager, chunkAccess, carving);
+    public void applyCarvers(WorldGenRegion region, long seed, RandomState random, BiomeManager biomeManager, StructureManager structureManager, ChunkAccess chunkAccess) {
+        this.delegate.applyCarvers(region, seed, random, biomeManager, structureManager, chunkAccess);
     }
 
     @Override

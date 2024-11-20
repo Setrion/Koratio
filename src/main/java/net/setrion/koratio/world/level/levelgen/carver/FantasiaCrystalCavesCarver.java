@@ -43,7 +43,7 @@ public class FantasiaCrystalCavesCarver extends FantasiaCavesCarver {
 			isSurface.setTrue();
 		}
 
-		if (pos.getY() < access.getMinBuildHeight() + 6) return false;
+		if (pos.getY() < access.getMinY() + 6) return false;
 
 		if (!this.canReplaceBlock(config, blockstate) && !isDebugEnabled(config)) {
 			return false;

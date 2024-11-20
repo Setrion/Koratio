@@ -30,15 +30,26 @@ public abstract class BiomeHelper {
 		
 		return biome;
 	}
-	
+
 	public static BiomeGenerationSettings.Builder candycanevalleyGen(HolderGetter<PlacedFeature> featureGetter, HolderGetter<ConfiguredWorldCarver<?>> carverGetter) {
 		BiomeGenerationSettings.Builder biome = defaultFantasiaGenSettingBuilder(featureGetter, carverGetter);
 
 		biome.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, KoratioPlacedFeatures.PLACED_PATCH_COTTON_CANDY_GRASS);
+		biome.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, KoratioPlacedFeatures.PLACED_CANDY_FLOWERS);
+		biome.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, KoratioPlacedFeatures.PLACED_CANDY);
+		biome.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, KoratioPlacedFeatures.PLACED_HUGE_CANDY_CANE);
+		biome.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, KoratioPlacedFeatures.PLACED_HUGE_LOLLIPOP);
+
+		return biome;
+	}
+
+	public static BiomeGenerationSettings.Builder chocolateHillsGen(HolderGetter<PlacedFeature> featureGetter, HolderGetter<ConfiguredWorldCarver<?>> carverGetter) {
+		BiomeGenerationSettings.Builder biome = defaultFantasiaGenSettingBuilder(featureGetter, carverGetter);
+
 		biome.addFeature(GenerationStep.Decoration.LAKES, KoratioPlacedFeatures.PLACED_CHOCOLATE_MILK_LAKE);
 		biome.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, KoratioPlacedFeatures.PLACED_CANDY_FLOWERS);
-		biome.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, KoratioPlacedFeatures.PLACED_HUGE_CANDY_CANE);
-		
+		biome.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, KoratioPlacedFeatures.PLACED_CHOCOLATE_OAK);
+
 		return biome;
 	}
 	
@@ -81,7 +92,7 @@ public abstract class BiomeHelper {
 
 		biome.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, isLake ? AquaticPlacements.SEAGRASS_DEEP : AquaticPlacements.SEAGRASS_NORMAL);
 
-		BiomeDefaultFeatures.addDefaultSeagrass(biome);
+		biome.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, AquaticPlacements.SEAGRASS_RIVER);
 
 		return biome;
 	}
@@ -110,11 +121,11 @@ public abstract class BiomeHelper {
 
 	//Caves!
 	public static void addFantasiaCaves(BiomeGenerationSettings.Builder biome) {
-		biome.addCarver(GenerationStep.Carving.AIR, KoratioCarvers.FANTASIA_CAVES_CONFIGURED);
+		biome.addCarver(KoratioCarvers.FANTASIA_CAVES_CONFIGURED);
 	}
 	
 	public static void addFantasiaCrystalCaves(BiomeGenerationSettings.Builder biome) {
-		biome.addCarver(GenerationStep.Carving.AIR, KoratioCarvers.FANTASIA_CRYSTAL_CAVES_CONFIGURED);
+		biome.addCarver(KoratioCarvers.FANTASIA_CRYSTAL_CAVES_CONFIGURED);
 	}
 
 	// Defaults
@@ -177,7 +188,9 @@ public abstract class BiomeHelper {
 	
 	public static MobSpawnSettings.Builder mushroomForestSpawning() {
 		MobSpawnSettings.Builder spawnInfo = defaultFantasiaMobSpawning();
-		
+
+		spawnInfo.addSpawn(MobCategory.CREATURE, new SpawnerData(EntityType.MOOSHROOM, 8, 4, 4));
+		spawnInfo.addSpawn(MobCategory.CREATURE, new SpawnerData(KoratioEntityType.MOOSHROOM.get(), 8, 4, 4));
 		spawnInfo.addSpawn(MobCategory.MONSTER, new SpawnerData(KoratioEntityType.JUMSTEM.get(), 100, 4, 4));
 		
 		return spawnInfo;

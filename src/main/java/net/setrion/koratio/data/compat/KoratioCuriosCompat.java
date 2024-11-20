@@ -1,6 +1,6 @@
 package net.setrion.koratio.data.compat;
 
-import net.minecraft.core.HolderLookup;
+/*import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -61,4 +61,4 @@ public class KoratioCuriosCompat {
                     .addSlots("ring", "necklace", "charm");
         }
     }
-}
+}*/

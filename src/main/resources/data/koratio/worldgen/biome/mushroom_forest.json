@@ -63,7 +63,20 @@
   "spawners": {
     "ambient": [],
     "axolotls": [],
-    "creature": [],
+    "creature": [
+      {
+        "type": "minecraft:mooshroom",
+        "maxCount": 4,
+        "minCount": 4,
+        "weight": 8
+      },
+      {
+        "type": "koratio:mooshroom",
+        "maxCount": 4,
+        "minCount": 4,
+        "weight": 8
+      }
+    ],
     "misc": [],
     "monster": [
       {

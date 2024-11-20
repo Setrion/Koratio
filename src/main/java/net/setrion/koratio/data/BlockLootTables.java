@@ -6,6 +6,7 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.flag.FeatureFlags;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.Enchantments;
@@ -80,7 +81,8 @@ public class BlockLootTables extends net.minecraft.data.loot.BlockLootSubProvide
 	
 	@Override
 	protected void generate() {
-		HolderLookup.RegistryLookup<Enchantment> registrylookup = registries.lookupOrThrow(Registries.ENCHANTMENT);
+		HolderLookup.RegistryLookup<Enchantment> enchantmentRegistryLookup = registries.lookupOrThrow(Registries.ENCHANTMENT);
+		HolderLookup.RegistryLookup<Item> itemRegistryLookup = registries.lookupOrThrow(Registries.ITEM);
 		dropOther(KoratioBlocks.FLIPPED_FARMLAND.get(), Blocks.DIRT);
 		dropSelf(KoratioBlocks.DECRYPTING_TABLE.get());
 		dropSelf(KoratioBlocks.WOODCUTTER.get());
@@ -102,6 +104,19 @@ public class BlockLootTables extends net.minecraft.data.loot.BlockLootSubProvide
 		dropSelf(KoratioBlocks.RED_LEVITATING_WOOL.get());
 		dropSelf(KoratioBlocks.BLACK_LEVITATING_WOOL.get());
 
+		dropWhenSilkTouch(KoratioBlocks.SKELETON_REMAINS.get());
+		dropWhenSilkTouch(KoratioBlocks.WITHER_SKELETON_REMAINS.get());
+		dropWhenSilkTouch(KoratioBlocks.STRAY_REMAINS.get());
+		dropWhenSilkTouch(KoratioBlocks.BOGGED_REMAINS.get());
+		dropWhenSilkTouch(KoratioBlocks.DEMONIC_SKELETON_REMAINS.get());
+		dropWhenSilkTouch(KoratioBlocks.ZOMBIE_REMAINS.get());
+		dropWhenSilkTouch(KoratioBlocks.HUSK_REMAINS.get());
+		dropWhenSilkTouch(KoratioBlocks.DROWNED_REMAINS.get());
+		dropWhenSilkTouch(KoratioBlocks.DEMONIC_ZOMBIE_REMAINS.get());
+		dropWhenSilkTouch(KoratioBlocks.ZOMBIE_VILLAGER_REMAINS.get());
+		dropWhenSilkTouch(KoratioBlocks.PHANTOM_REMAINS.get());
+		dropWhenSilkTouch(KoratioBlocks.ZOMBIFIED_PIGLIN_REMAINS.get());
+
 		dropSelf(KoratioBlocks.RAINBOW_CRYSTAL_BLOCK.get());
 		add(KoratioBlocks.BUDDING_RAINBOW_CRYSTAL.get(), noDrop());
 		add(
@@ -110,8 +125,8 @@ public class BlockLootTables extends net.minecraft.data.loot.BlockLootSubProvide
 						block,
 						LootItem.lootTableItem(KoratioItems.RAINBOW_CRYSTAL_SHARD.get())
 								.apply(SetItemCountFunction.setCount(ConstantValue.exactly(4.0F)))
-								.apply(ApplyBonusCount.addOreBonusCount(registrylookup.getOrThrow(Enchantments.FORTUNE)))
-								.when(MatchTool.toolMatches(ItemPredicate.Builder.item().of(ItemTags.CLUSTER_MAX_HARVESTABLES)))
+								.apply(ApplyBonusCount.addOreBonusCount(enchantmentRegistryLookup.getOrThrow(Enchantments.FORTUNE)))
+								.when(MatchTool.toolMatches(ItemPredicate.Builder.item().of(itemRegistryLookup, ItemTags.CLUSTER_MAX_HARVESTABLES)))
 								.otherwise(
                                         applyExplosionDecay(
 												block, LootItem.lootTableItem(KoratioItems.RAINBOW_CRYSTAL_SHARD.get()).apply(SetItemCountFunction.setCount(ConstantValue.exactly(2.0F)))
@@ -332,7 +347,7 @@ public class BlockLootTables extends net.minecraft.data.loot.BlockLootSubProvide
 												.when(lootitemcondition$ceinanas)
 												.add(
 														LootItem.lootTableItem(KoratioItems.CEINANA)
-																.apply(ApplyBonusCount.addBonusBinomialDistributionCount(registrylookup.getOrThrow(Enchantments.FORTUNE), 0.5714286F, 3))
+																.apply(ApplyBonusCount.addBonusBinomialDistributionCount(enchantmentRegistryLookup.getOrThrow(Enchantments.FORTUNE), 0.5714286F, 3))
 												)
 								)
 				)
@@ -350,7 +365,7 @@ public class BlockLootTables extends net.minecraft.data.loot.BlockLootSubProvide
 												.when(lootitemcondition$upnips)
 												.add(
 														LootItem.lootTableItem(KoratioItems.UPNIP)
-																.apply(ApplyBonusCount.addBonusBinomialDistributionCount(registrylookup.getOrThrow(Enchantments.FORTUNE), 0.5714286F, 3))
+																.apply(ApplyBonusCount.addBonusBinomialDistributionCount(enchantmentRegistryLookup.getOrThrow(Enchantments.FORTUNE), 0.5714286F, 3))
 												)
 								)
 				)
@@ -397,7 +412,7 @@ public class BlockLootTables extends net.minecraft.data.loot.BlockLootSubProvide
 		dropSelf(KoratioBlocks.PANGO_PLANKS.get());
 		add(KoratioBlocks.PANGO_SLAB.get(), this::createSlabItemTable);
 		dropSelf(KoratioBlocks.PANGO_STAIRS.get());
-		add(KoratioBlocks.PANGO_LEAVES.get(), (block) -> createLeavesDrops(block, KoratioBlocks.PANGO_SAPLING.get(), DEFAULT_SAPLING_DROP_RATES).withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(2.0F)).when(doesNotHaveShearsOrSilkTouch()).add(applyExplosionCondition(block, LootItem.lootTableItem(KoratioItems.RAW_PANGO.get())).when(BonusLevelTableCondition.bonusLevelFlatChance(registrylookup.getOrThrow(Enchantments.FORTUNE), 0.25F, 0.255555557F, 0.3125F, 0.08333334F, 1.25F)))));
+		add(KoratioBlocks.PANGO_LEAVES.get(), (block) -> createLeavesDrops(block, KoratioBlocks.PANGO_SAPLING.get(), DEFAULT_SAPLING_DROP_RATES).withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(2.0F)).when(doesNotHaveShearsOrSilkTouch()).add(applyExplosionCondition(block, LootItem.lootTableItem(KoratioItems.RAW_PANGO.get())).when(BonusLevelTableCondition.bonusLevelFlatChance(enchantmentRegistryLookup.getOrThrow(Enchantments.FORTUNE), 0.25F, 0.255555557F, 0.3125F, 0.08333334F, 1.25F)))));
 		add(KoratioBlocks.PANGO_LEAF_PANE.get(), createSilkTouchOrShearsDispatchTable(KoratioBlocks.PANGO_LEAF_PANE.get(), applyExplosionCondition(KoratioBlocks.PANGO_LEAF_PANE, LootItem.lootTableItem(Items.AIR))));
 		dropSelf(KoratioBlocks.PANGO_FENCE.get());
 		dropSelf(KoratioBlocks.PANGO_FENCE_GATE.get());
@@ -472,10 +487,10 @@ public class BlockLootTables extends net.minecraft.data.loot.BlockLootSubProvide
 		dropSelf(KoratioBlocks.CANDY_PLANKS.get());
 		add(KoratioBlocks.CANDY_SLAB.get(), this::createSlabItemTable);
 		dropSelf(KoratioBlocks.CANDY_STAIRS.get());
-		add(KoratioBlocks.PINK_COTTON_CANDY_LEAVES.get(), (block) -> createLeavesDrops(block, KoratioBlocks.CANDY_SAPLING.get(), DEFAULT_SAPLING_DROP_RATES).withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(2.0F)).when(doesNotHaveShearsOrSilkTouch()).add(applyExplosionCondition(block, LootItem.lootTableItem(KoratioItems.PINK_SUGAR.get())).when(BonusLevelTableCondition.bonusLevelFlatChance(registrylookup.getOrThrow(Enchantments.FORTUNE), 0.25F, 0.255555557F, 0.3125F, 0.08333334F, 1.25F)))));
-		add(KoratioBlocks.LIGHT_BLUE_COTTON_CANDY_LEAVES.get(), (block) -> createLeavesDrops(block, KoratioBlocks.CANDY_SAPLING.get(), DEFAULT_SAPLING_DROP_RATES).withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(2.0F)).when(doesNotHaveShearsOrSilkTouch()).add(applyExplosionCondition(block, LootItem.lootTableItem(KoratioItems.LIGHT_BLUE_SUGAR.get())).when(BonusLevelTableCondition.bonusLevelFlatChance(registrylookup.getOrThrow(Enchantments.FORTUNE), 0.25F, 0.255555557F, 0.3125F, 0.08333334F, 1.25F)))));
-		add(KoratioBlocks.LIME_COTTON_CANDY_LEAVES.get(), (block) -> createLeavesDrops(block, KoratioBlocks.CANDY_SAPLING.get(), DEFAULT_SAPLING_DROP_RATES).withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(2.0F)).when(doesNotHaveShearsOrSilkTouch()).add(applyExplosionCondition(block, LootItem.lootTableItem(KoratioItems.LIME_SUGAR.get())).when(BonusLevelTableCondition.bonusLevelFlatChance(registrylookup.getOrThrow(Enchantments.FORTUNE), 0.25F, 0.255555557F, 0.3125F, 0.08333334F, 1.25F)))));
-		add(KoratioBlocks.YELLOW_COTTON_CANDY_LEAVES.get(), (block) -> createLeavesDrops(block, KoratioBlocks.CANDY_SAPLING.get(), DEFAULT_SAPLING_DROP_RATES).withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(2.0F)).when(doesNotHaveShearsOrSilkTouch()).add(applyExplosionCondition(block, LootItem.lootTableItem(KoratioItems.YELLOW_SUGAR.get())).when(BonusLevelTableCondition.bonusLevelFlatChance(registrylookup.getOrThrow(Enchantments.FORTUNE), 0.25F, 0.255555557F, 0.3125F, 0.08333334F, 1.25F)))));
+		add(KoratioBlocks.PINK_COTTON_CANDY_LEAVES.get(), (block) -> createLeavesDrops(block, KoratioBlocks.CANDY_SAPLING.get(), DEFAULT_SAPLING_DROP_RATES).withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(2.0F)).when(doesNotHaveShearsOrSilkTouch()).add(applyExplosionCondition(block, LootItem.lootTableItem(KoratioItems.PINK_SUGAR.get())).when(BonusLevelTableCondition.bonusLevelFlatChance(enchantmentRegistryLookup.getOrThrow(Enchantments.FORTUNE), 0.25F, 0.255555557F, 0.3125F, 0.08333334F, 1.25F)))));
+		add(KoratioBlocks.LIGHT_BLUE_COTTON_CANDY_LEAVES.get(), (block) -> createLeavesDrops(block, KoratioBlocks.CANDY_SAPLING.get(), DEFAULT_SAPLING_DROP_RATES).withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(2.0F)).when(doesNotHaveShearsOrSilkTouch()).add(applyExplosionCondition(block, LootItem.lootTableItem(KoratioItems.LIGHT_BLUE_SUGAR.get())).when(BonusLevelTableCondition.bonusLevelFlatChance(enchantmentRegistryLookup.getOrThrow(Enchantments.FORTUNE), 0.25F, 0.255555557F, 0.3125F, 0.08333334F, 1.25F)))));
+		add(KoratioBlocks.LIME_COTTON_CANDY_LEAVES.get(), (block) -> createLeavesDrops(block, KoratioBlocks.CANDY_SAPLING.get(), DEFAULT_SAPLING_DROP_RATES).withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(2.0F)).when(doesNotHaveShearsOrSilkTouch()).add(applyExplosionCondition(block, LootItem.lootTableItem(KoratioItems.LIME_SUGAR.get())).when(BonusLevelTableCondition.bonusLevelFlatChance(enchantmentRegistryLookup.getOrThrow(Enchantments.FORTUNE), 0.25F, 0.255555557F, 0.3125F, 0.08333334F, 1.25F)))));
+		add(KoratioBlocks.YELLOW_COTTON_CANDY_LEAVES.get(), (block) -> createLeavesDrops(block, KoratioBlocks.CANDY_SAPLING.get(), DEFAULT_SAPLING_DROP_RATES).withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(2.0F)).when(doesNotHaveShearsOrSilkTouch()).add(applyExplosionCondition(block, LootItem.lootTableItem(KoratioItems.YELLOW_SUGAR.get())).when(BonusLevelTableCondition.bonusLevelFlatChance(enchantmentRegistryLookup.getOrThrow(Enchantments.FORTUNE), 0.25F, 0.255555557F, 0.3125F, 0.08333334F, 1.25F)))));
 		add(KoratioBlocks.PINK_COTTON_CANDY_LEAF_PANE.get(), createSilkTouchOrShearsDispatchTable(KoratioBlocks.PINK_COTTON_CANDY_LEAF_PANE.get(), applyExplosionCondition(KoratioBlocks.PINK_COTTON_CANDY_LEAF_PANE, LootItem.lootTableItem(KoratioItems.PINK_SUGAR.get()))));
 		add(KoratioBlocks.LIGHT_BLUE_COTTON_CANDY_LEAF_PANE.get(), createSilkTouchOrShearsDispatchTable(KoratioBlocks.LIGHT_BLUE_COTTON_CANDY_LEAF_PANE.get(), applyExplosionCondition(KoratioBlocks.LIGHT_BLUE_COTTON_CANDY_LEAF_PANE, LootItem.lootTableItem(KoratioItems.LIGHT_BLUE_SUGAR.get()))));
 		add(KoratioBlocks.LIME_COTTON_CANDY_LEAF_PANE.get(), createSilkTouchOrShearsDispatchTable(KoratioBlocks.LIME_COTTON_CANDY_LEAF_PANE.get(), applyExplosionCondition(KoratioBlocks.LIME_COTTON_CANDY_LEAF_PANE, LootItem.lootTableItem(KoratioItems.LIME_SUGAR.get()))));
@@ -503,7 +518,7 @@ public class BlockLootTables extends net.minecraft.data.loot.BlockLootSubProvide
 		dropSelf(KoratioBlocks.CHOCOLATE_OAK_PLANKS.get());
 		add(KoratioBlocks.CHOCOLATE_OAK_SLAB.get(), this::createSlabItemTable);
 		dropSelf(KoratioBlocks.CHOCOLATE_OAK_STAIRS.get());
-		add(KoratioBlocks.CHOCOLATE_OAK_LEAVES.get(), (block) -> createLeavesDrops(block, KoratioBlocks.CHOCOLATE_OAK_SAPLING.get(), DEFAULT_SAPLING_DROP_RATES).withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(2.0F)).when(doesNotHaveShearsOrSilkTouch()).add(applyExplosionCondition(block, LootItem.lootTableItem(Items.COCOA_BEANS)).when(BonusLevelTableCondition.bonusLevelFlatChance(registrylookup.getOrThrow(Enchantments.FORTUNE), 0.25F, 0.255555557F, 0.3125F, 0.08333334F, 1.25F)))));
+		add(KoratioBlocks.CHOCOLATE_OAK_LEAVES.get(), (block) -> createLeavesDrops(block, KoratioBlocks.CHOCOLATE_OAK_SAPLING.get(), DEFAULT_SAPLING_DROP_RATES).withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(2.0F)).when(doesNotHaveShearsOrSilkTouch()).add(applyExplosionCondition(block, LootItem.lootTableItem(Items.COCOA_BEANS)).when(BonusLevelTableCondition.bonusLevelFlatChance(enchantmentRegistryLookup.getOrThrow(Enchantments.FORTUNE), 0.25F, 0.255555557F, 0.3125F, 0.08333334F, 1.25F)))));
 		add(KoratioBlocks.CHOCOLATE_OAK_LEAF_PANE.get(), createSilkTouchOrShearsDispatchTable(KoratioBlocks.CHOCOLATE_OAK_LEAF_PANE.get(), applyExplosionCondition(KoratioBlocks.CHOCOLATE_OAK_LEAF_PANE, LootItem.lootTableItem(Items.AIR))));
 		dropSelf(KoratioBlocks.CHOCOLATE_OAK_FENCE.get());
 		dropSelf(KoratioBlocks.CHOCOLATE_OAK_FENCE_GATE.get());
@@ -625,10 +640,21 @@ public class BlockLootTables extends net.minecraft.data.loot.BlockLootSubProvide
 		dropSelf(KoratioBlocks.GOLDEN_TULIP.get());
 		add(KoratioBlocks.GOLD_ROSE_BUSH.get(), block -> createSinglePropConditionTable(block, DoublePlantBlock.HALF, DoubleBlockHalf.LOWER));
 		dropSelf(KoratioBlocks.WHITE_SUGARGLASS_FLOWER.get());
-		dropSelf(KoratioBlocks.BLUE_SUGARGLASS_FLOWER.get());
-		dropSelf(KoratioBlocks.GREEN_SUGARGLASS_FLOWER.get());
-		dropSelf(KoratioBlocks.YELLOW_SUGARGLASS_FLOWER.get());
+		dropSelf(KoratioBlocks.LIGHT_GRAY_SUGARGLASS_FLOWER.get());
+		dropSelf(KoratioBlocks.GRAY_SUGARGLASS_FLOWER.get());
+		dropSelf(KoratioBlocks.BLACK_SUGARGLASS_FLOWER.get());
+		dropSelf(KoratioBlocks.BROWN_SUGARGLASS_FLOWER.get());
 		dropSelf(KoratioBlocks.RED_SUGARGLASS_FLOWER.get());
+		dropSelf(KoratioBlocks.ORANGE_SUGARGLASS_FLOWER.get());
+		dropSelf(KoratioBlocks.YELLOW_SUGARGLASS_FLOWER.get());
+		dropSelf(KoratioBlocks.LIME_SUGARGLASS_FLOWER.get());
+		dropSelf(KoratioBlocks.GREEN_SUGARGLASS_FLOWER.get());
+		dropSelf(KoratioBlocks.CYAN_SUGARGLASS_FLOWER.get());
+		dropSelf(KoratioBlocks.LIGHT_BLUE_SUGARGLASS_FLOWER.get());
+		dropSelf(KoratioBlocks.BLUE_SUGARGLASS_FLOWER.get());
+		dropSelf(KoratioBlocks.PURPLE_SUGARGLASS_FLOWER.get());
+		dropSelf(KoratioBlocks.MAGENTA_SUGARGLASS_FLOWER.get());
+		dropSelf(KoratioBlocks.PINK_SUGARGLASS_FLOWER.get());
 		dropPottedContents(KoratioBlocks.POTTED_RAINBOW_ROSE.get());
 		dropPottedContents(KoratioBlocks.POTTED_RAINBOW_ALLIUM.get());
 		dropPottedContents(KoratioBlocks.POTTED_RAINBOW_LILY_OF_THE_VALLEY.get());

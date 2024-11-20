@@ -14,7 +14,6 @@ import net.setrion.koratio.world.level.chunk.chunkgenerators.warp.NoiseModifier;
 import net.setrion.koratio.world.level.chunk.chunkgenerators.warp.NoiseSlider;
 
 import java.util.Optional;
-import java.util.concurrent.CompletableFuture;
 
 public class FantasiaChunkGenerator extends KoratioChunkGenerator {
 	public static final MapCodec<FantasiaChunkGenerator> CODEC = RecordCodecBuilder.mapCodec((instance) -> instance.group(

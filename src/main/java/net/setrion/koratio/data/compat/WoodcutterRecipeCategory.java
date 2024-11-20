@@ -1,6 +1,6 @@
 package net.setrion.koratio.data.compat;
 
-import mezz.jei.api.constants.VanillaTypes;
+/*import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
 import mezz.jei.api.gui.drawable.IDrawable;
 import mezz.jei.api.helpers.IGuiHelper;
@@ -53,4 +53,4 @@ public class WoodcutterRecipeCategory implements IRecipeCategory<WoodcutterRecip
         builder.addSlot(RecipeIngredientRole.INPUT, 1, 9).addIngredient(VanillaTypes.ITEM_STACK, recipe.getIngredients().get(0).getItems()[0]);
         builder.addSlot(RecipeIngredientRole.OUTPUT, 61, 9).addIngredient(VanillaTypes.ITEM_STACK, recipe.getResultItem(Minecraft.getInstance().level.registryAccess()));
     }
-}
+}*/

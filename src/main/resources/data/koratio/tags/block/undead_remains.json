@@ -1,0 +1,14 @@
+{
+  "values": [
+    "koratio:skeleton_remains",
+    "koratio:wither_skeleton_remains",
+    "koratio:stray_remains",
+    "koratio:bogged_remains",
+    "koratio:demonic_skeleton_remains",
+    "koratio:zombie_remains",
+    "koratio:husk_remains",
+    "koratio:drowned_remains",
+    "koratio:demonic_zombie_remains",
+    "koratio:phantom_remains"
+  ]
+}

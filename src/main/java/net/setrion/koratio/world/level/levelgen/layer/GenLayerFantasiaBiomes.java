@@ -21,7 +21,8 @@ public enum GenLayerFantasiaBiomes implements AreaTransformer0 {
 	);
 	private static final List<ResourceKey<Biome>> rareBiomes = ImmutableList.of(
 			KoratioBiomes.MUSHROOM_FOREST,
-			KoratioBiomes.CANDY_CANE_VALLEY
+			KoratioBiomes.CANDY_CANE_VALLEY,
+			KoratioBiomes.CHOCOLATE_HILLS
 	);
 	private static final List<ResourceKey<Biome>> veryRareBiomes = ImmutableList.of(
 			KoratioBiomes.GILDED_FOREST,

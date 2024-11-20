@@ -2,6 +2,7 @@ package net.setrion.koratio.data;
 
 import net.minecraft.advancements.critereon.*;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
@@ -22,7 +23,7 @@ public class LootModifierGenerator extends GlobalLootModifierProvider {
 
     @Override
     protected void start() {
-        add("telekinesis_teleporting", new TelekinesisLootModifier(new LootItemCondition[]{MatchTool.toolMatches(ItemPredicate.Builder.item().of(ItemTags.MINING_ENCHANTABLE).withSubPredicate(ItemSubPredicates.ENCHANTMENTS,
+        add("telekinesis_teleporting", new TelekinesisLootModifier(new LootItemCondition[]{MatchTool.toolMatches(ItemPredicate.Builder.item().of(registries.lookupOrThrow(Registries.ITEM), ItemTags.MINING_ENCHANTABLE).withSubPredicate(ItemSubPredicates.ENCHANTMENTS,
                 ItemEnchantmentsPredicate.enchantments(
                         List.of(new EnchantmentPredicate(registries.holderOrThrow(KoratioEnchantments.TELEKINESIS), MinMaxBounds.Ints.atLeast(1)))
                 ))).build()}));

@@ -4,6 +4,7 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.model.geom.ModelPart;
+import net.minecraft.client.renderer.entity.state.HumanoidRenderState;
 import net.setrion.koratio.world.entity.demonic.DemonicSoldier;
 
 // Made with Blockbench 4.6.5
@@ -11,19 +12,9 @@ import net.setrion.koratio.world.entity.demonic.DemonicSoldier;
 // Paste this class into your mod and generate all required imports
 
 
-public class DemonicSoldierModel<T extends DemonicSoldier> extends HumanoidModel<T> {
+public class DemonicSoldierModel<S extends HumanoidRenderState> extends HumanoidModel<S> {
 
 	public DemonicSoldierModel(ModelPart root) {
 		super(root);
-	}
-
-	@Override
-	public void setupAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-		super.setupAnim(entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
-	}
-
-	@Override
-	public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight, int packedOverlay, int color) {
-		super.renderToBuffer(poseStack, vertexConsumer, packedLight, packedOverlay, color);
 	}
 }

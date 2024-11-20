@@ -3,8 +3,6 @@ package net.setrion.koratio.fluids.capability;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.neoforged.neoforge.fluids.FluidStack;
-import net.setrion.koratio.world.inventory.CandyShaperMenu;
-import net.setrion.koratio.world.inventory.WoodcutterMenu;
 
 import java.util.ArrayList;
 import java.util.List;

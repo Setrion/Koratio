@@ -5,31 +5,26 @@ import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
-import net.minecraft.client.renderer.entity.LivingEntityRenderer;
+import net.minecraft.client.renderer.entity.RenderLayerParent;
 import net.minecraft.client.renderer.entity.layers.RenderLayer;
+import net.minecraft.client.renderer.entity.state.EntityRenderState;
 import net.minecraft.client.renderer.texture.OverlayTexture;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.entity.LivingEntity;
-import org.jetbrains.annotations.NotNull;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
 
-public class GlowingLayer <T extends LivingEntity, M extends EntityModel<T>> extends RenderLayer<T, M> {
-    private final LivingEntityRenderer render;
-    private final ResourceLocation texture;
+@OnlyIn(Dist.CLIENT)
+public class GlowingLayer<S extends EntityRenderState, M extends EntityModel<S>> extends RenderLayer<S, M> {
 
-    public GlowingLayer(LivingEntityRenderer renderIn, ResourceLocation texture) {
-        super(renderIn);
-        this.render = renderIn;
-        this.texture = texture;
-    }
+    private final RenderType renderType;
 
-    public boolean shouldCombineTextures() {
-        return true;
+    public GlowingLayer(RenderLayerParent<S, M> renderer, RenderType renderType) {
+        super(renderer);
+        this.renderType = renderType;
     }
 
     @Override
-    public void render(@NotNull PoseStack matrixStackIn, MultiBufferSource bufferIn, int packedLightIn, @NotNull LivingEntity entity, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {
-        RenderType eyes = RenderType.eyes(texture);
-        VertexConsumer ivertexbuilder = bufferIn.getBuffer(eyes);
-        this.getParentModel().renderToBuffer(matrixStackIn, ivertexbuilder, packedLightIn, OverlayTexture.NO_OVERLAY);
+    public void render(PoseStack stack, MultiBufferSource buffer, int packedLight, S state, float p_116987_, float p_116988_) {
+        VertexConsumer vertexconsumer = buffer.getBuffer(this.renderType);
+        this.getParentModel().renderToBuffer(stack, vertexconsumer, packedLight, OverlayTexture.NO_OVERLAY);
     }
 }

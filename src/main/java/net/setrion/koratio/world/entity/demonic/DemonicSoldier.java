@@ -1,6 +1,5 @@
 package net.setrion.koratio.world.entity.demonic;
 
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.DifficultyInstance;
@@ -22,9 +21,7 @@ import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.Blocks;
 import net.setrion.koratio.registry.KoratioItems;
 
-import javax.annotation.Nullable;
 import java.time.LocalDate;
-import java.time.temporal.ChronoField;
 import java.util.function.Predicate;
 
 public class DemonicSoldier extends Monster {
@@ -110,7 +107,7 @@ public class DemonicSoldier extends Monster {
 
 	@org.jetbrains.annotations.Nullable
 	@Override
-	public SpawnGroupData finalizeSpawn(ServerLevelAccessor level, DifficultyInstance difficulty, MobSpawnType spawnType, @org.jetbrains.annotations.Nullable SpawnGroupData spawnGroupData) {
+	public SpawnGroupData finalizeSpawn(ServerLevelAccessor level, DifficultyInstance difficulty, EntitySpawnReason spawnType, @org.jetbrains.annotations.Nullable SpawnGroupData spawnGroupData) {
 		RandomSource randomsource = level.getRandom();
 		spawnGroupData = super.finalizeSpawn(level, difficulty, spawnType, spawnGroupData);
 		float f = difficulty.getSpecialMultiplier();

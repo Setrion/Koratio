@@ -49,7 +49,7 @@ public class MultiFluidContainer <T extends AbstractFluidTank> extends AbstractF
         ListTag tanksList = nbt.getList("Tanks", 10);
         for(int i = 0; i < tanksList.size() ; i++) {
             CompoundTag entry = tanksList.getCompound(i);
-            Fluid fluid = BuiltInRegistries.FLUID.get(ResourceLocation.parse(entry.getString("FluidName")));
+            Fluid fluid = BuiltInRegistries.FLUID.get(ResourceLocation.parse(entry.getString("FluidName"))).orElseThrow().value();
             FluidStack stack;
             if(fluid == Fluids.EMPTY) stack = FluidStack.EMPTY;
             else stack = new FluidStack(fluid, entry.getInt("Amount"));

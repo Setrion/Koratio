@@ -1,6 +1,6 @@
 package net.setrion.koratio.data.compat;
 
-import mezz.jei.api.IModPlugin;
+/*import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
 import mezz.jei.api.constants.RecipeTypes;
 import mezz.jei.api.helpers.IGuiHelper;
@@ -65,4 +65,4 @@ public class KoratioJeiPlugin implements IModPlugin {
     public ResourceLocation getPluginUid() {
         return ResourceLocation.fromNamespaceAndPath(Koratio.MOD_ID, "jei_plugin");
     }
-}
+}*/

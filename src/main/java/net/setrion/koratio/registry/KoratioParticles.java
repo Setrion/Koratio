@@ -99,6 +99,7 @@ public class KoratioParticles {
 	public static final DeferredHolder<ParticleType<?>, SimpleParticleType> SMALL_RAINBOW_FIRE_FLAME = PARTICLES.register("small_rainbow_fire_flame", () -> new SimpleParticleType(false));
 	public static final DeferredHolder<ParticleType<?>, SimpleParticleType> RAINBOW_LAVA = PARTICLES.register("rainbow_lava", () -> new SimpleParticleType(false));
 	public static final DeferredHolder<ParticleType<?>, SimpleParticleType> DEMONIC_FIRE_FLAME = PARTICLES.register("demonic_fire_flame", () -> new SimpleParticleType(false));
+	public static final DeferredHolder<ParticleType<?>, SimpleParticleType> DEMONIC_SOUL = PARTICLES.register("demonic_soul", () -> new SimpleParticleType(false));
 	public static final DeferredHolder<ParticleType<?>, SimpleParticleType> TELEPORTER_ASCEND = PARTICLES.register("teleporter_ascend", () -> new SimpleParticleType(false));
 	public static final DeferredHolder<ParticleType<?>, SimpleParticleType> TELEPORTER_DESCEND = PARTICLES.register("teleporter_descend", () -> new SimpleParticleType(false));
 }

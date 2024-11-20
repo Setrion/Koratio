@@ -4,8 +4,10 @@ import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
@@ -21,6 +23,7 @@ import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.level.pathfinder.PathComputationType;
+import net.minecraft.world.level.redstone.Orientation;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
@@ -35,7 +38,7 @@ public class TallDoorBlock extends Block {
             instance -> instance.group(BlockSetType.CODEC.fieldOf("block_set_type").forGetter(TallDoorBlock::type), propertiesCodec())
                     .apply(instance, TallDoorBlock::new)
     );
-    public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
+    public static final EnumProperty<Direction> FACING = HorizontalDirectionalBlock.FACING;
     public static final BooleanProperty OPEN = BlockStateProperties.OPEN;
     public static final EnumProperty<DoorHingeSide> HINGE = BlockStateProperties.DOOR_HINGE;
     public static final BooleanProperty POWERED = BlockStateProperties.POWERED;
@@ -85,21 +88,21 @@ public class TallDoorBlock extends Block {
     }
 
     @Override
-    protected BlockState updateShape(BlockState pState, Direction pFacing, BlockState pFacingState, LevelAccessor pLevel, BlockPos pCurrentPos, BlockPos pFacingPos) {
-        TripleBlockPart tripleblockpart = pState.getValue(PART);
-        if (pFacing.getAxis() != Direction.Axis.Y || tripleblockpart == TripleBlockPart.LOWER != (pFacing == Direction.UP) && tripleblockpart == TripleBlockPart.UPPER != (pFacing == Direction.DOWN)) {
-            return tripleblockpart == TripleBlockPart.LOWER && pFacing == Direction.DOWN && !pState.canSurvive(pLevel, pCurrentPos)
+    protected BlockState updateShape(BlockState state, LevelReader level, ScheduledTickAccess tickAccess, BlockPos currentPos, Direction facing, BlockPos facingPos, BlockState facingState, RandomSource random) {
+        TripleBlockPart tripleblockpart = state.getValue(PART);
+        if (facing.getAxis() != Direction.Axis.Y || tripleblockpart == TripleBlockPart.LOWER != (facing == Direction.UP) && tripleblockpart == TripleBlockPart.UPPER != (facing == Direction.DOWN)) {
+            return tripleblockpart == TripleBlockPart.LOWER && facing == Direction.DOWN && !state.canSurvive(level, currentPos)
                     ? Blocks.AIR.defaultBlockState()
-                    : super.updateShape(pState, pFacing, pFacingState, pLevel, pCurrentPos, pFacingPos);
+                    : super.updateShape(state, level, tickAccess, currentPos, facing, facingPos, facingState, random);
         } else {
-            return pFacingState.getBlock() instanceof TallDoorBlock && pFacingState.getValue(PART) != tripleblockpart
-                    ? pFacingState.setValue(PART, tripleblockpart)
+            return facingState.getBlock() instanceof TallDoorBlock && facingState.getValue(PART) != tripleblockpart
+                    ? facingState.setValue(PART, tripleblockpart)
                     : Blocks.AIR.defaultBlockState();
         }
     }
 
     @Override
-    protected void onExplosionHit(BlockState pState, Level pLevel, BlockPos pPos, Explosion pExplosion, BiConsumer<ItemStack, BlockPos> pDropConsumer) {
+    protected void onExplosionHit(BlockState pState, ServerLevel pLevel, BlockPos pPos, Explosion pExplosion, BiConsumer<ItemStack, BlockPos> pDropConsumer) {
         if (pExplosion.canTriggerBlocks()
                 && pState.getValue(PART) == TripleBlockPart.LOWER
                 && this.type.canOpenByWindCharge()
@@ -132,7 +135,7 @@ public class TallDoorBlock extends Block {
     public BlockState getStateForPlacement(BlockPlaceContext pContext) {
         BlockPos blockpos = pContext.getClickedPos();
         Level level = pContext.getLevel();
-        if (blockpos.getY() < level.getMaxBuildHeight() - 2 && level.getBlockState(blockpos.above()).canBeReplaced(pContext)) {
+        if (blockpos.getY() < level.getMaxY() - 2 && level.getBlockState(blockpos.above()).canBeReplaced(pContext)) {
             boolean flag = level.hasNeighborSignal(blockpos) || level.hasNeighborSignal(blockpos.above());
             return this.defaultBlockState()
                     .setValue(FACING, pContext.getHorizontalDirection())
@@ -198,7 +201,7 @@ public class TallDoorBlock extends Block {
             pLevel.setBlock(pPos, pState, 10);
             this.playSound(pPlayer, pLevel, pPos, pState.getValue(OPEN));
             pLevel.gameEvent(pPlayer, this.isOpen(pState) ? GameEvent.BLOCK_OPEN : GameEvent.BLOCK_CLOSE, pPos);
-            return InteractionResult.sidedSuccess(pLevel.isClientSide);
+            return InteractionResult.SUCCESS;
         }
     }
 
@@ -215,16 +218,16 @@ public class TallDoorBlock extends Block {
     }
 
     @Override
-    protected void neighborChanged(BlockState pState, Level pLevel, BlockPos pPos, Block pBlock, BlockPos pFromPos, boolean pIsMoving) {
-        boolean flag = pLevel.hasNeighborSignal(pPos)
-                || pLevel.hasNeighborSignal(pPos.relative(pState.getValue(PART) == TripleBlockPart.LOWER ? Direction.UP : Direction.DOWN));
-        if (!this.defaultBlockState().is(pBlock) && flag != pState.getValue(POWERED)) {
-            if (flag != pState.getValue(OPEN)) {
-                this.playSound(null, pLevel, pPos, flag);
-                pLevel.gameEvent(null, flag ? GameEvent.BLOCK_OPEN : GameEvent.BLOCK_CLOSE, pPos);
+    protected void neighborChanged(BlockState state, Level level, BlockPos pos, Block block, @org.jetbrains.annotations.Nullable Orientation orientation, boolean isMoving) {
+        boolean flag = level.hasNeighborSignal(pos)
+                || level.hasNeighborSignal(pos.relative(state.getValue(PART) == TripleBlockPart.LOWER ? Direction.UP : Direction.DOWN));
+        if (!this.defaultBlockState().is(block) && flag != state.getValue(POWERED)) {
+            if (flag != state.getValue(OPEN)) {
+                this.playSound(null, level, pos, flag);
+                level.gameEvent(null, flag ? GameEvent.BLOCK_OPEN : GameEvent.BLOCK_CLOSE, pos);
             }
 
-            pLevel.setBlock(pPos, pState.setValue(POWERED, Boolean.valueOf(flag)).setValue(OPEN, Boolean.valueOf(flag)), 2);
+            level.setBlock(pos, state.setValue(POWERED, Boolean.valueOf(flag)).setValue(OPEN, Boolean.valueOf(flag)), 2);
         }
     }
 

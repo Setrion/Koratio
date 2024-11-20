@@ -9,9 +9,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.ParticleUtils;
 import net.minecraft.util.RandomSource;
-import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
@@ -32,14 +30,14 @@ public abstract class LevitatingBlock extends Block implements Levitateable {
     }
 
     @Override
-    protected BlockState updateShape(BlockState state, Direction facing, BlockState facingState, LevelAccessor level, BlockPos currentPos, BlockPos facingPos) {
-        level.scheduleTick(currentPos, this, getDelayAfterPlace());
-        return super.updateShape(state, facing, facingState, level, currentPos, facingPos);
+    protected BlockState updateShape(BlockState state, LevelReader level, ScheduledTickAccess tickAccess, BlockPos currentPos, Direction facing, BlockPos facingPos, BlockState facingState, RandomSource random) {
+        tickAccess.scheduleTick(currentPos, this, getDelayAfterPlace());
+        return super.updateShape(state, level, tickAccess, currentPos, facing, facingPos, facingState, random);
     }
 
     @Override
     protected void tick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
-        if (isFree(level.getBlockState(pos.above())) && pos.getY() <= level.getMaxBuildHeight()) {
+        if (isFree(level.getBlockState(pos.above())) && pos.getY() <= level.getMaxY()) {
             LevitatingBlockEntity levitating = LevitatingBlockEntity.levitate(level, pos, state);
             levitating(levitating);
         }

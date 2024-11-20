@@ -1,6 +1,6 @@
 package net.setrion.koratio.data.compat;
 
-import mezz.jei.api.constants.VanillaTypes;
+/*import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
 import mezz.jei.api.gui.drawable.IDrawable;
 import mezz.jei.api.helpers.IGuiHelper;
@@ -65,4 +65,4 @@ public class CandyShaperRecipeCategory implements IRecipeCategory<CandyShaperRec
             }
         }
     }
-}
+}*/

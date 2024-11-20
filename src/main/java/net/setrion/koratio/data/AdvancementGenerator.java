@@ -60,7 +60,7 @@ public class AdvancementGenerator implements AdvancementProvider.AdvancementGene
 				.addCriterion("decrypted_scroll", DecryptScrollTrigger.TriggerInstance.decryptedItem())
 				.save(consumer, "koratio:koratio/decrypting");
 
-		AdvancementHolder enter_fantasia = Advancement.Builder.advancement().parent(decrypting).display(new ItemStack(KoratioItems.MINIATURE_FANTASIA_PORTAL.get()),
+		AdvancementHolder enter_fantasia = Advancement.Builder.advancement().parent(decrypting).display(new ItemStack(KoratioBlocks.MINIATURE_FANTASIA_PORTAL.get()),
 						Component.translatable("advancements.koratio.enter_fantasia.title"),
 						Component.translatable("advancements.koratio.enter_fantasia.desc"),
 						null,

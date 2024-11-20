@@ -27,7 +27,7 @@ public class TelekinesisLootModifier extends LootModifier {
     }
 
     private static ItemStack teleport(ItemStack stack, LootContext context) {
-        Entity entity = context.getParam(LootContext.EntityTarget.THIS.getParam());
+        Entity entity = context.getParameter(LootContext.EntityTarget.THIS.getParam());
         if (entity instanceof Player player) {
             return player.addItem(stack) ? ItemStack.EMPTY : stack;
         }

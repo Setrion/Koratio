@@ -10,10 +10,10 @@ import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.Level;
-import net.neoforged.neoforge.fluids.FluidStack;
+import net.minecraft.world.level.material.Fluids;
 import net.neoforged.neoforge.fluids.crafting.FluidIngredient;
 import net.neoforged.neoforge.fluids.crafting.SizedFluidIngredient;
-import net.setrion.koratio.registry.KoratioBlocks;
+import net.setrion.koratio.registry.KoratioRecipeBookCategories;
 import net.setrion.koratio.registry.KoratioRecipeSerializer;
 import net.setrion.koratio.registry.KoratioRecipeType;
 
@@ -41,13 +41,7 @@ public class CandyShaperRecipe implements Recipe<FakeInventory> {
         return ItemStack.EMPTY;
     }
 
-    @Override
-    public boolean canCraftInDimensions(int i, int i1) {
-        return true;
-    }
-
-    @Override
-    public ItemStack getResultItem(HolderLookup.Provider provider) {
+    public ItemStack getOutputItem() {
         return outputItem;
     }
 
@@ -60,18 +54,23 @@ public class CandyShaperRecipe implements Recipe<FakeInventory> {
     }
 
     @Override
-    public ItemStack getToastSymbol() {
-        return new ItemStack(KoratioBlocks.CANDY_SHAPER);
-    }
-
-    @Override
-    public RecipeSerializer<?> getSerializer() {
+    public RecipeSerializer<CandyShaperRecipe> getSerializer() {
         return KoratioRecipeSerializer.CANDY_SHAPER.get();
     }
 
     @Override
-    public RecipeType<?> getType() {
+    public RecipeType<CandyShaperRecipe> getType() {
         return KoratioRecipeType.CANDY_SHAPING.get();
+    }
+
+    @Override
+    public PlacementInfo placementInfo() {
+        return null;
+    }
+
+    @Override
+    public RecipeBookCategory recipeBookCategory() {
+        return KoratioRecipeBookCategories.CANDY_SHAPER;
     }
 
     public static class Serializer implements RecipeSerializer<CandyShaperRecipe> {
@@ -80,7 +79,7 @@ public class CandyShaperRecipe implements Recipe<FakeInventory> {
                 builder -> builder.group(
                                 ItemStack.STRICT_CODEC.fieldOf("result").forGetter(recipe -> recipe.outputItem),
                                 ItemStack.STRICT_CODEC.fieldOf("template").forGetter(recipe -> recipe.templateItem),
-                                SizedFluidIngredient.NESTED_CODEC
+                                SizedFluidIngredient.CODEC
                                         .listOf()
                                         .fieldOf("fluid_ingredients")
                                         .flatXmap(
@@ -91,7 +90,7 @@ public class CandyShaperRecipe implements Recipe<FakeInventory> {
                                                     } else {
                                                         return aingredient.length > 2
                                                                 ? DataResult.error(() -> "Too many ingredients for shapeless recipe. The maximum is: 2")
-                                                                : DataResult.success(NonNullList.of(new SizedFluidIngredient(FluidIngredient.empty(), 1), aingredient));
+                                                                : DataResult.success(NonNullList.of(new SizedFluidIngredient(FluidIngredient.of(Fluids.EMPTY), 1), aingredient));
                                                     }
                                                 },
                                                 DataResult::success
@@ -117,7 +116,7 @@ public class CandyShaperRecipe implements Recipe<FakeInventory> {
 
         private static CandyShaperRecipe fromNetwork(RegistryFriendlyByteBuf buffer) {
             int i = buffer.readVarInt();
-            NonNullList<SizedFluidIngredient> nonnulllist = NonNullList.withSize(i, new SizedFluidIngredient(FluidIngredient.empty(), 1));
+            NonNullList<SizedFluidIngredient> nonnulllist = NonNullList.withSize(i, new SizedFluidIngredient(FluidIngredient.of(Fluids.EMPTY), 1));
             nonnulllist.replaceAll(ingredient -> SizedFluidIngredient.STREAM_CODEC.decode(buffer));
             ItemStack template = ItemStack.STREAM_CODEC.decode(buffer);
             ItemStack itemstack = ItemStack.STREAM_CODEC.decode(buffer);

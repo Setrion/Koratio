@@ -1,7 +1,5 @@
 package net.setrion.koratio.world.item;
 
-import net.minecraft.ChatFormatting;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -11,7 +9,6 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -19,6 +16,7 @@ import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
+import net.setrion.koratio.registry.KoratioBlocks;
 import net.setrion.koratio.registry.KoratioDataComponents;
 import net.setrion.koratio.registry.KoratioItems;
 import net.setrion.koratio.registry.KoratioTags;
@@ -30,6 +28,13 @@ public class PipingBagItem extends Item {
 
     public PipingBagItem(Properties properties) {
         super(properties);
+    }
+
+    @Override
+    public ItemStack getDefaultInstance() {
+        ItemStack stack = super.getDefaultInstance();
+        stack.set(KoratioDataComponents.PIPING_BAG_DATA.get(), new KoratioDataComponents.PipingBagRecord("none", 0));
+        return stack;
     }
 
     @Override
@@ -116,90 +121,145 @@ public class PipingBagItem extends Item {
             double d2 = vec3.z();
 
             if (direction == Direction.NORTH || direction == Direction.SOUTH) {
-                if (d0 < 0.2 && d1 < 0.8) {
-                    if (direction == Direction.NORTH) return GlazedBlockEntity.Part.LEFT;
-                    return GlazedBlockEntity.Part.RIGHT;
+                if (d1 > 0.8) {
+                    if (d0 < 0.2) {
+                        return direction == Direction.NORTH ? GlazedBlockEntity.Part.TOP_RIGHT : GlazedBlockEntity.Part.TOP_LEFT;
+                    } else if (d0 > 0.8) {
+                        return direction == Direction.NORTH ? GlazedBlockEntity.Part.TOP_LEFT : GlazedBlockEntity.Part.TOP_RIGHT;
+                    } else {
+                        return GlazedBlockEntity.Part.TOP_MIDDLE;
+                    }
                 } else if (d1 < 0.2) {
-                    return GlazedBlockEntity.Part.BOTTOM;
-                } else if (d1 > 0.8) {
-                    return GlazedBlockEntity.Part.TOP;
-                } else if (d0 > 0.8 && d1 < 0.8) {
-                    if (direction == Direction.NORTH) return GlazedBlockEntity.Part.RIGHT;
-                    return GlazedBlockEntity.Part.LEFT;
+                    if (d0 < 0.2) {
+                        return direction == Direction.NORTH ? GlazedBlockEntity.Part.BOTTOM_RIGHT : GlazedBlockEntity.Part.BOTTOM_LEFT;
+                    } else if (d0 > 0.8) {
+                        return direction == Direction.NORTH ? GlazedBlockEntity.Part.BOTTOM_LEFT : GlazedBlockEntity.Part.BOTTOM_RIGHT;
+                    } else {
+                        return GlazedBlockEntity.Part.BOTTOM_MIDDLE;
+                    }
                 } else {
-                    return GlazedBlockEntity.Part.MIDDLE;
+                    if (d0 < 0.2) {
+                        return direction == Direction.NORTH ? GlazedBlockEntity.Part.RIGHT : GlazedBlockEntity.Part.LEFT;
+                    } else if (d0 > 0.8) {
+                        return direction == Direction.NORTH ? GlazedBlockEntity.Part.LEFT : GlazedBlockEntity.Part.RIGHT;
+                    } else {
+                        return GlazedBlockEntity.Part.MIDDLE;
+                    }
                 }
             } else if (direction == Direction.EAST || direction == Direction.WEST) {
-                if (d2 < 0.2 && d1 < 0.8) {
-                    if (direction == Direction.EAST) return GlazedBlockEntity.Part.LEFT;
-                    return GlazedBlockEntity.Part.RIGHT;
+                if (d1 > 0.8) {
+                    if (d2 < 0.2) {
+                        return direction == Direction.EAST ? GlazedBlockEntity.Part.TOP_RIGHT : GlazedBlockEntity.Part.TOP_LEFT;
+                    } else if (d2 > 0.8) {
+                        return direction == Direction.EAST ? GlazedBlockEntity.Part.TOP_LEFT : GlazedBlockEntity.Part.TOP_RIGHT;
+                    } else {
+                        return GlazedBlockEntity.Part.TOP_MIDDLE;
+                    }
                 } else if (d1 < 0.2) {
-                    return GlazedBlockEntity.Part.BOTTOM;
-                } else if (d1 > 0.8) {
-                    return GlazedBlockEntity.Part.TOP;
-                } else if (d2 > 0.8 && d1 < 0.8) {
-                    if (direction == Direction.EAST) return GlazedBlockEntity.Part.RIGHT;
-                    return GlazedBlockEntity.Part.LEFT;
+                    if (d2 < 0.2) {
+                        return direction == Direction.EAST ? GlazedBlockEntity.Part.BOTTOM_RIGHT : GlazedBlockEntity.Part.BOTTOM_LEFT;
+                    } else if (d2 > 0.8) {
+                        return direction == Direction.EAST ? GlazedBlockEntity.Part.BOTTOM_LEFT : GlazedBlockEntity.Part.BOTTOM_RIGHT;
+                    } else {
+                        return GlazedBlockEntity.Part.BOTTOM_MIDDLE;
+                    }
                 } else {
-                    return GlazedBlockEntity.Part.MIDDLE;
+                    if (d2 < 0.2) {
+                        return direction == Direction.EAST ? GlazedBlockEntity.Part.RIGHT : GlazedBlockEntity.Part.LEFT;
+                    } else if (d2 > 0.8) {
+                        return direction == Direction.EAST ? GlazedBlockEntity.Part.LEFT : GlazedBlockEntity.Part.RIGHT;
+                    } else {
+                        return GlazedBlockEntity.Part.MIDDLE;
+                    }
                 }
             } else if (direction == Direction.UP || direction == Direction.DOWN) {
-                if (d0 < 0.2 && d2 < 0.8) {
-                    return GlazedBlockEntity.Part.RIGHT;
-                } else if (d2 < 0.2) {
-                    if (direction == Direction.UP) return GlazedBlockEntity.Part.TOP;
-                    return GlazedBlockEntity.Part.BOTTOM;
+                if (d2 < 0.2) {
+                    if (direction == Direction.UP) {
+                        if (d0 < 0.2) {
+                            return GlazedBlockEntity.Part.TOP_LEFT;
+                        } else if (d0 > 0.8) {
+                            return GlazedBlockEntity.Part.TOP_RIGHT;
+                        } else {
+                            return GlazedBlockEntity.Part.TOP_MIDDLE;
+                        }
+                    } else {
+                        if (d0 < 0.2) {
+                            return GlazedBlockEntity.Part.BOTTOM_LEFT;
+                        } else if (d0 > 0.8) {
+                            return GlazedBlockEntity.Part.BOTTOM_RIGHT;
+                        } else {
+                            return GlazedBlockEntity.Part.BOTTOM_MIDDLE;
+                        }
+                    }
                 } else if (d2 > 0.8) {
-                    if (direction == Direction.UP) return GlazedBlockEntity.Part.BOTTOM;
-                    return GlazedBlockEntity.Part.TOP;
-                } else if (d0 > 0.8 && d2 < 0.8) {
-                    return GlazedBlockEntity.Part.LEFT;
+                    if (direction == Direction.UP) {
+                        if (d0 < 0.2) {
+                            return GlazedBlockEntity.Part.BOTTOM_LEFT;
+                        } else if (d0 > 0.8) {
+                            return GlazedBlockEntity.Part.BOTTOM_RIGHT;
+                        } else {
+                            return GlazedBlockEntity.Part.BOTTOM_MIDDLE;
+                        }
+                    } else {
+                        if (d0 < 0.2) {
+                            return GlazedBlockEntity.Part.TOP_LEFT;
+                        } else if (d0 > 0.8) {
+                            return GlazedBlockEntity.Part.TOP_RIGHT;
+                        } else {
+                            return GlazedBlockEntity.Part.TOP_MIDDLE;
+                        }
+                    }
                 } else {
-                    return GlazedBlockEntity.Part.MIDDLE;
+                    if (d0 < 0.2) {
+                        return GlazedBlockEntity.Part.LEFT;
+                    } else if (d0 > 0.8) {
+                        return GlazedBlockEntity.Part.RIGHT;
+                    } else {
+                        return GlazedBlockEntity.Part.MIDDLE;
+                    }
                 }
             }
         }
         return null;
     }
 
-    @Override
-    public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand usedHand) {
+    public InteractionResult use(Level level, Player player, InteractionHand usedHand) {
         if (usedHand == InteractionHand.MAIN_HAND) {
             if (player.getItemInHand(InteractionHand.OFF_HAND).is(KoratioTags.Items.ICINGS)) {
                 ItemStack frosting = player.getItemInHand(InteractionHand.OFF_HAND);
                 if (isEmpty(player.getItemInHand(usedHand))) {
                     ItemStack stack = player.getItemInHand(usedHand);
-                    if (frosting.is(KoratioItems.WHITE_ICING_BLOCK.get())) {
+                    if (frosting.is(KoratioBlocks.WHITE_ICING_BLOCK.asItem())) {
                         setColorAndAmount(stack, GlazedBlockEntity.PartColor.WHITE, 69);
-                    } else if (frosting.is(KoratioItems.LIGHT_GRAY_ICING_BLOCK.get())) {
+                    } else if (frosting.is(KoratioBlocks.LIGHT_GRAY_ICING_BLOCK.asItem())) {
                         setColorAndAmount(stack, GlazedBlockEntity.PartColor.LIGHT_GRAY, 69);
-                    } else if (frosting.is(KoratioItems.GRAY_ICING_BLOCK.get())) {
+                    } else if (frosting.is(KoratioBlocks.GRAY_ICING_BLOCK.asItem())) {
                         setColorAndAmount(stack, GlazedBlockEntity.PartColor.GRAY, 69);
-                    } else if (frosting.is(KoratioItems.BLACK_ICING_BLOCK.get())) {
+                    } else if (frosting.is(KoratioBlocks.BLACK_ICING_BLOCK.asItem())) {
                         setColorAndAmount(stack, GlazedBlockEntity.PartColor.BLACK, 69);
-                    } else if (frosting.is(KoratioItems.BROWN_ICING_BLOCK.get())) {
+                    } else if (frosting.is(KoratioBlocks.BROWN_ICING_BLOCK.asItem())) {
                         setColorAndAmount(stack, GlazedBlockEntity.PartColor.BROWN, 69);
-                    } else if (frosting.is(KoratioItems.RED_ICING_BLOCK.get())) {
+                    } else if (frosting.is(KoratioBlocks.RED_ICING_BLOCK.asItem())) {
                         setColorAndAmount(stack, GlazedBlockEntity.PartColor.RED, 69);
-                    } else if (frosting.is(KoratioItems.ORANGE_ICING_BLOCK.get())) {
+                    } else if (frosting.is(KoratioBlocks.ORANGE_ICING_BLOCK.asItem())) {
                         setColorAndAmount(stack, GlazedBlockEntity.PartColor.ORANGE, 69);
-                    } else if (frosting.is(KoratioItems.YELLOW_ICING_BLOCK.get())) {
+                    } else if (frosting.is(KoratioBlocks.YELLOW_ICING_BLOCK.asItem())) {
                         setColorAndAmount(stack, GlazedBlockEntity.PartColor.YELLOW, 69);
-                    } else if (frosting.is(KoratioItems.LIME_ICING_BLOCK.get())) {
+                    } else if (frosting.is(KoratioBlocks.LIME_ICING_BLOCK.asItem())) {
                         setColorAndAmount(stack, GlazedBlockEntity.PartColor.LIME, 69);
-                    } else if (frosting.is(KoratioItems.GREEN_ICING_BLOCK.get())) {
+                    } else if (frosting.is(KoratioBlocks.GREEN_ICING_BLOCK.asItem())) {
                         setColorAndAmount(stack, GlazedBlockEntity.PartColor.GREEN, 69);
-                    } else if (frosting.is(KoratioItems.CYAN_ICING_BLOCK.get())) {
+                    } else if (frosting.is(KoratioBlocks.CYAN_ICING_BLOCK.asItem())) {
                         setColorAndAmount(stack, GlazedBlockEntity.PartColor.CYAN, 69);
-                    } else if (frosting.is(KoratioItems.LIGHT_BLUE_ICING_BLOCK.get())) {
+                    } else if (frosting.is(KoratioBlocks.LIGHT_BLUE_ICING_BLOCK.asItem())) {
                         setColorAndAmount(stack, GlazedBlockEntity.PartColor.LIGHT_BLUE, 69);
-                    } else if (frosting.is(KoratioItems.BLUE_ICING_BLOCK.get())) {
+                    } else if (frosting.is(KoratioBlocks.BLUE_ICING_BLOCK.asItem())) {
                         setColorAndAmount(stack, GlazedBlockEntity.PartColor.BLUE, 69);
-                    } else if (frosting.is(KoratioItems.PURPLE_ICING_BLOCK.get())) {
+                    } else if (frosting.is(KoratioBlocks.PURPLE_ICING_BLOCK.asItem())) {
                         setColorAndAmount(stack, GlazedBlockEntity.PartColor.PURPLE, 69);
-                    } else if (frosting.is(KoratioItems.MAGENTA_ICING_BLOCK.get())) {
+                    } else if (frosting.is(KoratioBlocks.MAGENTA_ICING_BLOCK.asItem())) {
                         setColorAndAmount(stack, GlazedBlockEntity.PartColor.MAGENTA, 69);
-                    } else if (frosting.is(KoratioItems.PINK_ICING_BLOCK.get())) {
+                    } else if (frosting.is(KoratioBlocks.PINK_ICING_BLOCK.asItem())) {
                         setColorAndAmount(stack, GlazedBlockEntity.PartColor.PINK, 69);
                     }
                     player.getItemInHand(InteractionHand.OFF_HAND).shrink(1);

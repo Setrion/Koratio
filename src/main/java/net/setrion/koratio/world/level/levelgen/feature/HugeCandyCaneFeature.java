@@ -19,15 +19,21 @@ import net.minecraft.world.level.levelgen.structure.templatesystem.StructurePlac
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplate;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplateManager;
 import net.setrion.koratio.Koratio;
+import net.setrion.koratio.world.item.CandyItem;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class HugeCandyCaneFeature extends Feature<NoneFeatureConfiguration> {
 	
-	List<ResourceLocation> list = List.of(ResourceLocation.fromNamespaceAndPath(Koratio.MOD_ID, "candy_cane/red"), ResourceLocation.fromNamespaceAndPath(Koratio.MOD_ID, "candy_cane/blue"), ResourceLocation.fromNamespaceAndPath(Koratio.MOD_ID, "candy_cane/yellow"), ResourceLocation.fromNamespaceAndPath(Koratio.MOD_ID, "candy_cane/green"));
+	List<ResourceLocation> list = new ArrayList<>();
 
 	public HugeCandyCaneFeature(Codec<NoneFeatureConfiguration> codec) {
 		super(codec);
+		list.clear();
+		for (CandyItem.CandyColor color : CandyItem.CandyColor.values()) {
+			list.add(ResourceLocation.fromNamespaceAndPath(Koratio.MOD_ID, "candy_cane/"+color.getSerializedName()));
+		}
 	}
 
 	@Override
@@ -38,9 +44,9 @@ public class HugeCandyCaneFeature extends Feature<NoneFeatureConfiguration> {
 		Rotation rotation = Rotation.getRandom(randomsource);
 		
 		StructureTemplateManager structuretemplatemanager = worldgenlevel.getLevel().getServer().getStructureManager();
-		StructureTemplate structuretemplate = structuretemplatemanager.getOrCreate(list.get(randomsource.nextInt(4)));
+		StructureTemplate structuretemplate = structuretemplatemanager.getOrCreate(list.get(randomsource.nextInt(list.size())));
 		ChunkPos chunkpos = new ChunkPos(blockpos);
-		BoundingBox boundingbox = new BoundingBox(chunkpos.getMinBlockX() - 16, worldgenlevel.getMinBuildHeight(), chunkpos.getMinBlockZ() - 16, chunkpos.getMaxBlockX() + 16, worldgenlevel.getMaxBuildHeight(), chunkpos.getMaxBlockZ() + 16);
+		BoundingBox boundingbox = new BoundingBox(chunkpos.getMinBlockX() - 16, worldgenlevel.getMinY(), chunkpos.getMinBlockZ() - 16, chunkpos.getMaxBlockX() + 16, worldgenlevel.getMaxY(), chunkpos.getMaxBlockZ() + 16);
 		StructurePlaceSettings structureplacesettings = (new StructurePlaceSettings()).setRotation(rotation).setBoundingBox(boundingbox).setRandom(randomsource);
 		Vec3i vec3i = structuretemplate.getSize(rotation);
 		BlockPos blockpos1 = blockpos.offset(-vec3i.getX() / 2, 0, -vec3i.getZ() / 2);
@@ -53,7 +59,7 @@ public class HugeCandyCaneFeature extends Feature<NoneFeatureConfiguration> {
 		}
 	
 		BlockPos blockpos2 = structuretemplate.getZeroPositionWithTransform(blockpos1.atY(j), Mirror.NONE, rotation);
-		if (worldgenlevel.getBlockState(blockpos2).isAir() && worldgenlevel.getBlockState(blockpos2.below()).is(Blocks.GRASS_BLOCK)) {
+		if (worldgenlevel.getBlockState(blockpos1).isAir() && worldgenlevel.getBlockState(blockpos1.below()).is(Blocks.GRASS_BLOCK)) {
 			structureplacesettings.clearProcessors();
 			structuretemplate.placeInWorld(worldgenlevel, blockpos2, blockpos2, structureplacesettings, randomsource, 4);
 			return true;

@@ -1,10 +1,6 @@
 package net.setrion.koratio.scroll;
 
 import net.minecraft.core.component.DataComponentMap;
-import net.minecraft.core.component.DataComponentPatch;
-import net.minecraft.core.component.DataComponentType;
-import net.minecraft.core.component.DataComponents;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.item.ItemStack;
 import net.setrion.koratio.registry.KoratioDataComponents;
 import net.setrion.koratio.registry.KoratioItems;
@@ -20,7 +16,7 @@ public class ScrollUtils {
 		DataComponentMap map = stack.getComponents();
 		if (!hasScrollData(stack)) return KoratioScrolls.FAILURE;
 		for (Scroll scroll : KoratioScrolls.SCROLLS) {
-			if (map.get(KoratioDataComponents.SCROLL_DATA.get()).name().equals(scroll.getName())) {
+			if (map.get(KoratioDataComponents.SCROLL_DATA.get()).name().equals(scroll.name())) {
 				return scroll;
 			}
 		}
@@ -28,7 +24,7 @@ public class ScrollUtils {
 	}
 	
 	public static ItemStack addScrollToStack(ItemStack stack, Scroll scroll, boolean encrypted) {
-		KoratioDataComponents.ScrollRecord scrollRecord = new KoratioDataComponents.ScrollRecord(scroll.getName(), encrypted);
+		KoratioDataComponents.ScrollRecord scrollRecord = new KoratioDataComponents.ScrollRecord(scroll.name(), encrypted);
 		stack.set(KoratioDataComponents.SCROLL_DATA.get(), scrollRecord);
 		return stack;
 	}
@@ -51,7 +47,7 @@ public class ScrollUtils {
 	
 	public static Scroll getScrollByName(String name) {
 		for (Scroll scroll : KoratioScrolls.SCROLLS) {
-			if (name.equals(scroll.getName())) {
+			if (name.equals(scroll.name())) {
 				return scroll;
 			}
 		}

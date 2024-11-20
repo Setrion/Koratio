@@ -35,8 +35,8 @@ public enum GenLayerFantasiaRiver implements CastleTransformer {
 	//vanilla: desert=2.0, jungle=0.95, plains=0.8, snowy_plains=0.0
 	
 	boolean shouldStream(int biome1, int biome2) {
-		Registry<Biome> registry = ServerLifecycleHooks.getCurrentServer().registryAccess().registryOrThrow(Registries.BIOME);
-		float difference = registry.getHolder(biome1).get().value().getBaseTemperature() - registry.getHolder(biome2).get().value().getBaseTemperature();
+		Registry<Biome> registry = ServerLifecycleHooks.getCurrentServer().registryAccess().lookupOrThrow(Registries.BIOME);
+		float difference = registry.get(biome1).orElseThrow().value().getBaseTemperature() - registry.get(biome2).orElseThrow().value().getBaseTemperature();
 
         return difference < -0.1 || difference > 0.1;
     }

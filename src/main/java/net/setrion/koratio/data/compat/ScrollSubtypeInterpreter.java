@@ -1,6 +1,6 @@
 package net.setrion.koratio.data.compat;
 
-import mezz.jei.api.ingredients.subtypes.ISubtypeInterpreter;
+/*import mezz.jei.api.ingredients.subtypes.ISubtypeInterpreter;
 import mezz.jei.api.ingredients.subtypes.UidContext;
 import net.minecraft.world.item.ItemStack;
 import net.setrion.koratio.registry.KoratioDataComponents;
@@ -28,4 +28,4 @@ public class ScrollSubtypeInterpreter implements ISubtypeInterpreter<ItemStack> 
     public String getStringName(ItemStack itemStack) {
         return itemStack.getItem().getDescriptionId();
     }
-}
+}*/

@@ -4,10 +4,7 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.*;
-import net.minecraft.tags.BlockTags;
-import net.minecraft.tags.EnchantmentTags;
-import net.minecraft.tags.EntityTypeTags;
-import net.minecraft.tags.ItemTags;
+import net.minecraft.tags.*;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -15,6 +12,7 @@ import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.setrion.koratio.Koratio;
 import net.setrion.koratio.registry.*;
+import net.setrion.koratio.world.entity.animal.MagicalCatVariant;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.concurrent.CompletableFuture;
@@ -65,7 +63,7 @@ public class KoratioTagsGenerator {
             copy(Tags.Blocks.ORES_IN_GROUND_DEEPSLATE, Tags.Items.ORES_IN_GROUND_DEEPSLATE);
             tag(ItemTags.BOATS).add(KoratioItems.PANGO_BOAT.get(), KoratioItems.RUGONA_BOAT.get(), KoratioItems.VARESO_BOAT.get(), KoratioItems.CANDY_BOAT.get(), KoratioItems.ELVEN_BOAT.get(), KoratioItems.BLUE_ELVEN_BOAT.get(), KoratioItems.CYAN_ELVEN_BOAT.get(), KoratioItems.GREEN_ELVEN_BOAT.get());
             tag(ItemTags.CHEST_BOATS).add(KoratioItems.PANGO_CHEST_BOAT.get(), KoratioItems.RUGONA_CHEST_BOAT.get(), KoratioItems.VARESO_CHEST_BOAT.get(), KoratioItems.CANDY_CHEST_BOAT.get(), KoratioItems.ELVEN_CHEST_BOAT.get(), KoratioItems.BLUE_ELVEN_CHEST_BOAT.get(), KoratioItems.CYAN_ELVEN_CHEST_BOAT.get(), KoratioItems.GREEN_ELVEN_CHEST_BOAT.get());
-            tag(Tags.Items.MUSHROOMS).add(KoratioItems.PURPLE_MUSHROOM.get(), KoratioItems.GREEN_MUSHROOM.get());
+            tag(Tags.Items.MUSHROOMS).add(KoratioBlocks.PURPLE_MUSHROOM.asItem(), KoratioBlocks.GREEN_MUSHROOM.asItem());
             tag(ItemTags.BOOKSHELF_BOOKS).add(KoratioItems.DECRYPTING_BOOK.get(), KoratioItems.BETTER_DECRYPTING_BOOK.get(), KoratioItems.FANTASTIC_DECRYPTING_BOOK.get());
             copy(BlockTags.SMALL_FLOWERS, ItemTags.SMALL_FLOWERS);
             copy(BlockTags.CANDLES, ItemTags.CANDLES);
@@ -181,6 +179,8 @@ public class KoratioTagsGenerator {
             tag(BlockTags.CANDLES).add(KoratioBlocks.RAINBOW_CANDLE.get());
             tag(BlockTags.CANDLE_CAKES).add(KoratioBlocks.RAINBOW_CANDLE_CAKE.get());
 
+            tag(Tags.Blocks.VILLAGER_JOB_SITES).add(KoratioBlocks.DECRYPTING_TABLE.get());
+
             tag(BlockTags.BUTTONS).add(KoratioBlocks.COOKIE_BLOCK_BUTTON.get());
             tag(BlockTags.PRESSURE_PLATES).add(KoratioBlocks.COOKIE_BLOCK_PRESSURE_PLATE.get());
 
@@ -238,6 +238,8 @@ public class KoratioTagsGenerator {
             tag(BlockTags.CLIMBABLE).add(KoratioBlocks.GILDED_VINES.get());
 
             tag(KoratioTags.Blocks.BASE_STONE_FANTASIA).add(Blocks.STONE, Blocks.DEEPSLATE);
+
+            tag(KoratioTags.Blocks.UNDEAD_REMAINS).add(KoratioBlocks.SKELETON_REMAINS.get(), KoratioBlocks.WITHER_SKELETON_REMAINS.get(), KoratioBlocks.STRAY_REMAINS.get(), KoratioBlocks.BOGGED_REMAINS.get(), KoratioBlocks.DEMONIC_SKELETON_REMAINS.get(), KoratioBlocks.ZOMBIE_REMAINS.get(), KoratioBlocks.HUSK_REMAINS.get(), KoratioBlocks.DROWNED_REMAINS.get(), KoratioBlocks.DEMONIC_ZOMBIE_REMAINS.get(), KoratioBlocks.PHANTOM_REMAINS.get());
 
             tag(KoratioTags.Blocks.COOKIE_ORES).add(KoratioBlocks.COOKIE_ORE.get(), KoratioBlocks.DEEPSLATE_COOKIE_ORE.get());
 
@@ -387,6 +389,8 @@ public class KoratioTagsGenerator {
 
         @Override
         protected void addTags(HolderLookup.Provider provider) {
+            tag(EntityTypeTags.ZOMBIES).add(KoratioEntityType.DEMONIC_ZOMBIE.get(), KoratioEntityType.DEMONIC_ZOMBIE_HORSE.get());
+            tag(EntityTypeTags.SKELETONS).add(KoratioEntityType.DEMONIC_SKELETON.get(), KoratioEntityType.DEMONIC_SKELETON_HORSE.get());
             tag(KoratioTags.Entities.DEMONS).add(KoratioEntityType.DEMONIC_ZOMBIE.get(), KoratioEntityType.DEMONIC_SKELETON.get(), KoratioEntityType.DEMONIC_SOLDIER.get());
 
             tag(EntityTypeTags.FREEZE_IMMUNE_ENTITY_TYPES).add(KoratioEntityType.CRYSTALLIZE.get());
@@ -394,10 +398,34 @@ public class KoratioTagsGenerator {
         }
     }
 
+    public static class MagicalCatTagGenerator extends TagsProvider<MagicalCatVariant> {
+
+        public MagicalCatTagGenerator(PackOutput output, CompletableFuture<HolderLookup.Provider> provider, @org.jetbrains.annotations.Nullable ExistingFileHelper existingFileHelper) {
+            super(output, KoratioRegistries.MAGICAL_CAT_VARIANT, provider, Koratio.MOD_ID, existingFileHelper);
+        }
+
+        @Override
+        protected void addTags(HolderLookup.Provider provider) {
+            tag(KoratioTags.MagicalCatVariants.DEFAULT_SPAWNS).add(MagicalCatVariant.AKUMA, MagicalCatVariant.FUKU, MagicalCatVariant.FUUN, MagicalCatVariant.OJI, MagicalCatVariant.GEKIDO, MagicalCatVariant.GOMAN, MagicalCatVariant.SENBO, MagicalCatVariant.TAIDA);
+        }
+    }
+
+    public static class PoiTypeTagGenerator extends PoiTypeTagsProvider {
+
+        public PoiTypeTagGenerator(PackOutput output, CompletableFuture<HolderLookup.Provider> provider, ExistingFileHelper existingFileHelper) {
+            super(output, provider, Koratio.MOD_ID, existingFileHelper);
+        }
+
+        @Override
+        protected void addTags(HolderLookup.Provider provider) {
+            tag(PoiTypeTags.ACQUIRABLE_JOB_SITE).add(KoratioPoiTypes.OUTCAST.getKey());
+        }
+    }
+
     public static class BiomeTagGenerator extends BiomeTagsProvider {
 
-        public BiomeTagGenerator(PackOutput pack, CompletableFuture<HolderLookup.Provider> provider, ExistingFileHelper existingFileHelper) {
-            super(pack, provider, Koratio.MOD_ID, existingFileHelper);
+        public BiomeTagGenerator(PackOutput output, CompletableFuture<HolderLookup.Provider> provider, ExistingFileHelper existingFileHelper) {
+            super(output, provider, Koratio.MOD_ID, existingFileHelper);
         }
 
         @Override

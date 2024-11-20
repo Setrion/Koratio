@@ -37,4 +37,9 @@ public class DemonicZombie extends Zombie {
     public static AttributeSupplier.Builder createAttributes() {
         return Zombie.createMonsterAttributes().add(Attributes.FOLLOW_RANGE, 35.0D).add(Attributes.MAX_HEALTH, 20.0D).add(Attributes.MOVEMENT_SPEED, 0.27F).add(Attributes.ATTACK_DAMAGE, 3.0D);
     }
+
+    @Override
+    protected boolean isSunSensitive() {
+        return false;
+    }
 }

@@ -6,6 +6,7 @@ import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.ImageButton;
 import net.minecraft.client.gui.components.WidgetSprites;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
@@ -71,9 +72,9 @@ public class DecryptingScreen extends AbstractContainerScreen<DecryptingMenu> {
 	protected void renderBg(GuiGraphics graphics, float f, int mouseX, int mouseY) {
 		int i = leftPos;
 		int j = (height - imageHeight) / 2;
-		graphics.blit(DECRYPTING_TABLE_LOCATION, i, j, 0, 0, imageWidth, imageHeight);
+		graphics.blit(RenderType::guiTextured, DECRYPTING_TABLE_LOCATION, i, j, 0, 0, imageWidth, imageHeight, 256, 256);
 		int k = (int)(41.0F * scrollOffs);
-		graphics.blit(DECRYPTING_TABLE_LOCATION, i + 119, j + 14 + k, 176, 0, 12, 15);
+		graphics.blit(RenderType::guiTextured, DECRYPTING_TABLE_LOCATION, i + 119, j + 14 + k, 176, 0, 12, 15, 256, 256);
 	}
 	
 	@Override

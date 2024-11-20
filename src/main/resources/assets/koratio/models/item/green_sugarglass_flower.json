@@ -1,6 +1,8 @@
 {
   "parent": "minecraft:item/generated",
+  "render_type": "minecraft:tripwire",
   "textures": {
-    "layer0": "koratio:block/green_sugarglass_flower_item"
+    "layer0": "koratio:block/sugarglass_flower_item_base",
+    "layer1": "koratio:block/sugarglass_flower_item_overlay"
   }
 }

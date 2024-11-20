@@ -2,12 +2,9 @@ package net.setrion.koratio.fluids.capability;
 
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.world.level.material.Fluid;
 import net.neoforged.neoforge.common.util.INBTSerializable;
 import net.neoforged.neoforge.fluids.FluidStack;
-import net.neoforged.neoforge.fluids.FluidType;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
-import net.setrion.koratio.registry.KoratioFluids;
 
 import java.util.ArrayList;
 import java.util.List;

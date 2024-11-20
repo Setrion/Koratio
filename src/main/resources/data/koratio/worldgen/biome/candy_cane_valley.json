@@ -25,9 +25,7 @@
   },
   "features": [
     [],
-    [
-      "koratio:chocolate_milk_lake"
-    ],
+    [],
     [],
     [],
     [],
@@ -43,7 +41,9 @@
       "minecraft:patch_sugar_cane",
       "koratio:patch_cotton_candy_grass",
       "koratio:candy_flowers",
-      "koratio:huge_candy_cane"
+      "koratio:tree/candy",
+      "koratio:huge_candy_cane",
+      "koratio:huge_lollipop"
     ]
   ],
   "has_precipitation": true,

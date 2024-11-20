@@ -1,19 +1,11 @@
 package net.setrion.koratio;
 
-import net.minecraft.client.multiplayer.ClientLevel;
-import net.minecraft.client.renderer.ItemBlockRenderTypes;
-import net.minecraft.client.renderer.RenderType;
-import net.minecraft.client.renderer.item.ItemProperties;
-import net.minecraft.client.renderer.item.ItemPropertyFunction;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModList;
 import net.neoforged.fml.common.Mod;
-import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
@@ -24,11 +16,9 @@ import net.setrion.koratio.client.gui.screens.inventory.DecryptingScreen;
 import net.setrion.koratio.client.gui.screens.inventory.WoodcutterScreen;
 import net.setrion.koratio.core.cauldron.CauldronInteraction;
 import net.setrion.koratio.core.cauldron.EmptyCauldronInteraction;
-import net.setrion.koratio.data.compat.KoratioCuriosCompat;
+//import net.setrion.koratio.data.compat.KoratioCuriosCompat;
 import net.setrion.koratio.events.RegistryEvents;
 import net.setrion.koratio.registry.*;
-import net.setrion.koratio.world.item.PipingBagItem;
-import org.jetbrains.annotations.Nullable;
 
 @Mod(Koratio.MOD_ID)
 public class Koratio {
@@ -47,7 +37,7 @@ public class Koratio {
         KoratioBlocks.registerWoodTypes();
 
         if (ModList.get().isLoaded("curios")) {
-            bus.addListener(KoratioCuriosCompat::registerCuriosCapabilities);
+            //bus.addListener(KoratioCuriosCompat::registerCuriosCapabilities);
         }
     }
 

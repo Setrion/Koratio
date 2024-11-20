@@ -13,27 +13,28 @@ import net.minecraft.client.renderer.texture.TextureAtlas;
 import net.minecraft.client.resources.model.BakedModel;
 import net.minecraft.world.level.block.state.BlockState;
 import net.setrion.koratio.client.model.JumStemModel;
+import net.setrion.koratio.client.renderer.entity.state.JumstemRenderState;
 import net.setrion.koratio.world.entity.monster.JumStem;
 
-public class JumStemMushroomLayer<T extends JumStem> extends RenderLayer<T, JumStemModel<T>> {
+public class JumStemMushroomLayer extends RenderLayer<JumstemRenderState, JumStemModel> {
 
 	private final BlockRenderDispatcher blockRenderer;
 	
-	public JumStemMushroomLayer(RenderLayerParent<T, JumStemModel<T>> parent, BlockRenderDispatcher dispatcher) {
+	public JumStemMushroomLayer(RenderLayerParent<JumstemRenderState, JumStemModel> parent, BlockRenderDispatcher dispatcher) {
 		super(parent);
 		this.blockRenderer = dispatcher;
 	}
 
 	@Override
-	public void render(PoseStack stack, MultiBufferSource buffer, int p_117258_, T entity, float p_117260_, float p_117261_, float p_117262_, float p_117263_, float p_117264_, float p_117265_) {
-		if (!entity.isBaby()) {
+	public void render(PoseStack stack, MultiBufferSource buffer, int p_117258_, JumstemRenderState state, float limbSwing, float limbSwingAmount) {
+		if (!state.isBaby) {
 			Minecraft minecraft = Minecraft.getInstance();
-			boolean flag = minecraft.shouldEntityAppearGlowing(entity) && entity.isInvisible();
-			if ((!entity.isInvisible() || flag) && entity.getVariant() != JumStem.Variant.SHEARED) {
-				BlockState blockstate = entity.getVariant().getBlock().defaultBlockState();
-				int i = LivingEntityRenderer.getOverlayCoords(entity, 0.0F);
+			boolean flag = state.appearsGlowing && state.isInvisible;
+			if ((!state.isInvisible || flag) && state.variant != JumStem.Variant.SHEARED) {
+				BlockState blockstate = state.variant.getBlock().defaultBlockState();
+				int i = LivingEntityRenderer.getOverlayCoords(state, 0.0F);
 				BakedModel bakedmodel = this.blockRenderer.getBlockModel(blockstate);
-				if (entity.getMushroomAmount() > 0) {
+				if (state.mushrooms > 0) {
 					stack.pushPose();
 					stack.translate(0, (double)-0.05F, 0);
 					stack.mulPose(Axis.YP.rotationDegrees(-69.0F));
@@ -42,7 +43,7 @@ public class JumStemMushroomLayer<T extends JumStem> extends RenderLayer<T, JumS
 					this.renderMushroomBlock(stack, buffer, p_117258_, flag, blockstate, i, bakedmodel);
 					stack.popPose();
 				}
-				if (entity.getMushroomAmount() > 1) {
+				if (state.mushrooms > 1) {
 					stack.pushPose();
 					stack.translate(-0.35D, 0.45, -0.25F);
 					stack.mulPose(Axis.YP.rotationDegrees(-99.0F));
@@ -51,7 +52,7 @@ public class JumStemMushroomLayer<T extends JumStem> extends RenderLayer<T, JumS
 					this.renderMushroomBlock(stack, buffer, p_117258_, flag, blockstate, i, bakedmodel);
 					stack.popPose();
 				}
-				if (entity.getMushroomAmount() > 2) {
+				if (state.mushrooms > 2) {
 					stack.pushPose();
 					stack.translate(0.6D, 0.575F, 0.25F);
 					stack.mulPose(Axis.XP.rotationDegrees(135.0F));

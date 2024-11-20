@@ -22,6 +22,7 @@ public final class BiomeGenerator extends BiomeHelper {
 				biomeColumnWithUnderground(9.1F, 0.2F, biomeRegistry, KoratioBiomes.MUSHROOM_FOREST, undergroundBiome),
 				biomeColumnWithUnderground(9F, 0.0125F, biomeRegistry, KoratioBiomes.ELVEN_FOREST, undergroundBiome),
 				biomeColumnWithUndergroundAndSkyBiome(9.1F, 0.2F, biomeRegistry, KoratioBiomes.CANDY_CANE_VALLEY, undergroundBiome, skyBiome),
+				biomeColumnWithUndergroundAndSkyBiome(12.31F, 0.2F, biomeRegistry, KoratioBiomes.CHOCOLATE_HILLS, undergroundBiome, skyBiome),
 				biomeColumnWithUndergroundAndSkyBiome(7.35F, 0.35F, biomeRegistry, KoratioBiomes.RIVER, undergroundBiome, skyBiome)
 		);
 	}

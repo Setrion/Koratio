@@ -1,43 +1,32 @@
-/*package net.setrion.koratio.client.model;
+package net.setrion.koratio.client.model;
 
-import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.blaze3d.vertex.VertexConsumer;
-import net.minecraft.client.model.HierarchicalModel;
+import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
-import net.setrion.koratio.world.entity.demonic.NecromancerSkull;
+import net.minecraft.client.renderer.entity.state.EntityRenderState;
+import net.minecraft.client.renderer.entity.state.LivingEntityRenderState;
+import net.minecraft.util.Mth;
 
-public class NecromancerSkullModel<T extends NecromancerSkull> extends HierarchicalModel<T> {
-	private final ModelPart root;
-	private final ModelPart head;
+public class NecromancerSkullModel extends EntityModel<LivingEntityRenderState> {
+	private final ModelPart skull;
 
 	public NecromancerSkullModel(ModelPart root) {
-		this.root = root;
-		this.head = root.getChild("head");
+		super(root);
+		this.skull = root.getChild("skull");
 	}
 
 	public static LayerDefinition createBodyLayer() {
 		MeshDefinition meshdefinition = new MeshDefinition();
 		PartDefinition partdefinition = meshdefinition.getRoot();
 
-		partdefinition.addOrReplaceChild("head", CubeListBuilder.create().texOffs(0, 0).addBox(-4.0F, -12.0F, -4.0F, 8.0F, 8.0F, 8.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 24.0F, 0.0F));
+		partdefinition.addOrReplaceChild("skull", CubeListBuilder.create().texOffs(0, 0).addBox(-4.0F, -12.0F, -4.0F, 8.0F, 8.0F, 8.0F, new CubeDeformation(-1)), PartPose.offset(0.0F, 29.0F, 0.0F));
 
 		return LayerDefinition.create(meshdefinition, 64, 32);
 	}
 
 	@Override
-	public ModelPart root() {
-		return root;
+	public void setupAnim(LivingEntityRenderState state) {
+		skull.y = 28.5F+Mth.cos(((float)(1) + state.ageInTicks) * 0.125F);
 	}
-
-	@Override
-	public void setupAnim(NecromancerSkull entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-
-	}
-
-	@Override
-	public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight, int packedOverlay, int color) {
-		head.render(poseStack, vertexConsumer, packedLight, packedOverlay, color);
-	}
-}*/
+}

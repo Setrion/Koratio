@@ -5,6 +5,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleType;
 import net.minecraft.core.particles.SimpleParticleType;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.world.item.BucketItem;
 import net.minecraft.world.item.Item;
@@ -108,6 +109,11 @@ public abstract class MoltenSugarFluid extends FlowingFluid {
             return source.get();
         }
 
+        @Override
+        protected boolean canConvertToSource(ServerLevel serverLevel) {
+            return false;
+        }
+
         public Item getBucket() {
             return bucket.get();
         }
@@ -166,6 +172,11 @@ public abstract class MoltenSugarFluid extends FlowingFluid {
 
         public Fluid getSource() {
             return source.get();
+        }
+
+        @Override
+        protected boolean canConvertToSource(ServerLevel serverLevel) {
+            return false;
         }
 
         public Item getBucket() {

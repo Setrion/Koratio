@@ -19,45 +19,69 @@ public class GlazedBlockEntity extends BlockEntity {
 
     public static final ModelProperty<Boolean> GLAZED_NORTH_LEFT = new ModelProperty<>();
     public static final ModelProperty<Boolean> GLAZED_NORTH_RIGHT = new ModelProperty<>();
-    public static final ModelProperty<Boolean> GLAZED_NORTH_TOP = new ModelProperty<>();
-    public static final ModelProperty<Boolean> GLAZED_NORTH_BOTTOM = new ModelProperty<>();
+    public static final ModelProperty<Boolean> GLAZED_NORTH_TOP_MIDDLE = new ModelProperty<>();
+    public static final ModelProperty<Boolean> GLAZED_NORTH_TOP_LEFT = new ModelProperty<>();
+    public static final ModelProperty<Boolean> GLAZED_NORTH_TOP_RIGHT = new ModelProperty<>();
+    public static final ModelProperty<Boolean> GLAZED_NORTH_BOTTOM_MIDDLE = new ModelProperty<>();
+    public static final ModelProperty<Boolean> GLAZED_NORTH_BOTTOM_LEFT = new ModelProperty<>();
+    public static final ModelProperty<Boolean> GLAZED_NORTH_BOTTOM_RIGHT = new ModelProperty<>();
     public static final ModelProperty<Boolean> GLAZED_NORTH_MIDDLE = new ModelProperty<>();
-    private final boolean[] glazedNorth = new boolean[5];
+    private final boolean[] glazedNorth = new boolean[9];
 
     public static final ModelProperty<Boolean> GLAZED_EAST_LEFT = new ModelProperty<>();
     public static final ModelProperty<Boolean> GLAZED_EAST_RIGHT = new ModelProperty<>();
-    public static final ModelProperty<Boolean> GLAZED_EAST_TOP = new ModelProperty<>();
-    public static final ModelProperty<Boolean> GLAZED_EAST_BOTTOM = new ModelProperty<>();
+    public static final ModelProperty<Boolean> GLAZED_EAST_TOP_MIDDLE = new ModelProperty<>();
+    public static final ModelProperty<Boolean> GLAZED_EAST_TOP_LEFT = new ModelProperty<>();
+    public static final ModelProperty<Boolean> GLAZED_EAST_TOP_RIGHT = new ModelProperty<>();
+    public static final ModelProperty<Boolean> GLAZED_EAST_BOTTOM_MIDDLE = new ModelProperty<>();
+    public static final ModelProperty<Boolean> GLAZED_EAST_BOTTOM_LEFT = new ModelProperty<>();
+    public static final ModelProperty<Boolean> GLAZED_EAST_BOTTOM_RIGHT = new ModelProperty<>();
     public static final ModelProperty<Boolean> GLAZED_EAST_MIDDLE = new ModelProperty<>();
-    private final boolean[] glazedEast = new boolean[5];
+    private final boolean[] glazedEast = new boolean[9];
 
     public static final ModelProperty<Boolean> GLAZED_SOUTH_LEFT = new ModelProperty<>();
     public static final ModelProperty<Boolean> GLAZED_SOUTH_RIGHT = new ModelProperty<>();
-    public static final ModelProperty<Boolean> GLAZED_SOUTH_TOP = new ModelProperty<>();
-    public static final ModelProperty<Boolean> GLAZED_SOUTH_BOTTOM = new ModelProperty<>();
+    public static final ModelProperty<Boolean> GLAZED_SOUTH_TOP_MIDDLE = new ModelProperty<>();
+    public static final ModelProperty<Boolean> GLAZED_SOUTH_TOP_LEFT = new ModelProperty<>();
+    public static final ModelProperty<Boolean> GLAZED_SOUTH_TOP_RIGHT = new ModelProperty<>();
+    public static final ModelProperty<Boolean> GLAZED_SOUTH_BOTTOM_MIDDLE = new ModelProperty<>();
+    public static final ModelProperty<Boolean> GLAZED_SOUTH_BOTTOM_LEFT = new ModelProperty<>();
+    public static final ModelProperty<Boolean> GLAZED_SOUTH_BOTTOM_RIGHT = new ModelProperty<>();
     public static final ModelProperty<Boolean> GLAZED_SOUTH_MIDDLE = new ModelProperty<>();
-    private final boolean[] glazedSouth = new boolean[5];
+    private final boolean[] glazedSouth = new boolean[9];
 
     public static final ModelProperty<Boolean> GLAZED_WEST_LEFT = new ModelProperty<>();
     public static final ModelProperty<Boolean> GLAZED_WEST_RIGHT = new ModelProperty<>();
-    public static final ModelProperty<Boolean> GLAZED_WEST_TOP = new ModelProperty<>();
-    public static final ModelProperty<Boolean> GLAZED_WEST_BOTTOM = new ModelProperty<>();
+    public static final ModelProperty<Boolean> GLAZED_WEST_TOP_MIDDLE = new ModelProperty<>();
+    public static final ModelProperty<Boolean> GLAZED_WEST_TOP_LEFT = new ModelProperty<>();
+    public static final ModelProperty<Boolean> GLAZED_WEST_TOP_RIGHT = new ModelProperty<>();
+    public static final ModelProperty<Boolean> GLAZED_WEST_BOTTOM_MIDDLE = new ModelProperty<>();
+    public static final ModelProperty<Boolean> GLAZED_WEST_BOTTOM_LEFT = new ModelProperty<>();
+    public static final ModelProperty<Boolean> GLAZED_WEST_BOTTOM_RIGHT = new ModelProperty<>();
     public static final ModelProperty<Boolean> GLAZED_WEST_MIDDLE = new ModelProperty<>();
-    private final boolean[] glazedWest = new boolean[5];
+    private final boolean[] glazedWest = new boolean[9];
 
     public static final ModelProperty<Boolean> GLAZED_TOP_LEFT = new ModelProperty<>();
     public static final ModelProperty<Boolean> GLAZED_TOP_RIGHT = new ModelProperty<>();
-    public static final ModelProperty<Boolean> GLAZED_TOP_TOP = new ModelProperty<>();
-    public static final ModelProperty<Boolean> GLAZED_TOP_BOTTOM = new ModelProperty<>();
+    public static final ModelProperty<Boolean> GLAZED_TOP_TOP_MIDDLE = new ModelProperty<>();
+    public static final ModelProperty<Boolean> GLAZED_TOP_TOP_LEFT = new ModelProperty<>();
+    public static final ModelProperty<Boolean> GLAZED_TOP_TOP_RIGHT = new ModelProperty<>();
+    public static final ModelProperty<Boolean> GLAZED_TOP_BOTTOM_MIDDLE = new ModelProperty<>();
+    public static final ModelProperty<Boolean> GLAZED_TOP_BOTTOM_LEFT = new ModelProperty<>();
+    public static final ModelProperty<Boolean> GLAZED_TOP_BOTTOM_RIGHT = new ModelProperty<>();
     public static final ModelProperty<Boolean> GLAZED_TOP_MIDDLE = new ModelProperty<>();
-    private final boolean[] glazedTop = new boolean[5];
+    private final boolean[] glazedTop = new boolean[9];
 
     public static final ModelProperty<Boolean> GLAZED_BOTTOM_LEFT = new ModelProperty<>();
     public static final ModelProperty<Boolean> GLAZED_BOTTOM_RIGHT = new ModelProperty<>();
-    public static final ModelProperty<Boolean> GLAZED_BOTTOM_TOP = new ModelProperty<>();
-    public static final ModelProperty<Boolean> GLAZED_BOTTOM_BOTTOM = new ModelProperty<>();
+    public static final ModelProperty<Boolean> GLAZED_BOTTOM_TOP_MIDDLE = new ModelProperty<>();
+    public static final ModelProperty<Boolean> GLAZED_BOTTOM_TOP_LEFT = new ModelProperty<>();
+    public static final ModelProperty<Boolean> GLAZED_BOTTOM_TOP_RIGHT = new ModelProperty<>();
+    public static final ModelProperty<Boolean> GLAZED_BOTTOM_BOTTOM_MIDDLE = new ModelProperty<>();
+    public static final ModelProperty<Boolean> GLAZED_BOTTOM_BOTTOM_LEFT = new ModelProperty<>();
+    public static final ModelProperty<Boolean> GLAZED_BOTTOM_BOTTOM_RIGHT = new ModelProperty<>();
     public static final ModelProperty<Boolean> GLAZED_BOTTOM_MIDDLE = new ModelProperty<>();
-    private final boolean[] glazedBottom = new boolean[5];
+    private final boolean[] glazedBottom = new boolean[9];
     private final PartColor[] glazedColor = new PartColor[6];
 
     public GlazedBlockEntity(BlockPos pos, BlockState blockState) {
@@ -73,8 +97,12 @@ public class GlazedBlockEntity extends BlockEntity {
             if (facing == Direction.NORTH) {
                 Facing.putBoolean(Part.LEFT.name, glazedNorth[Part.LEFT.id]);
                 Facing.putBoolean(Part.RIGHT.name, glazedNorth[Part.RIGHT.id]);
-                Facing.putBoolean(Part.TOP.name, glazedNorth[Part.TOP.id]);
-                Facing.putBoolean(Part.BOTTOM.name, glazedNorth[Part.BOTTOM.id]);
+                Facing.putBoolean(Part.TOP_MIDDLE.name, glazedNorth[Part.TOP_MIDDLE.id]);
+                Facing.putBoolean(Part.TOP_LEFT.name, glazedNorth[Part.TOP_LEFT.id]);
+                Facing.putBoolean(Part.TOP_RIGHT.name, glazedNorth[Part.TOP_RIGHT.id]);
+                Facing.putBoolean(Part.BOTTOM_MIDDLE.name, glazedNorth[Part.BOTTOM_MIDDLE.id]);
+                Facing.putBoolean(Part.BOTTOM_LEFT.name, glazedNorth[Part.BOTTOM_LEFT.id]);
+                Facing.putBoolean(Part.BOTTOM_RIGHT.name, glazedNorth[Part.BOTTOM_RIGHT.id]);
                 Facing.putBoolean(Part.MIDDLE.name, glazedNorth[Part.MIDDLE.id]);
                 if (glazedColor[0] == null) {
                     Facing.putString("color", PartColor.NONE.name);
@@ -85,8 +113,12 @@ public class GlazedBlockEntity extends BlockEntity {
             } else if (facing == Direction.EAST) {
                 Facing.putBoolean(Part.LEFT.name, glazedEast[Part.LEFT.id]);
                 Facing.putBoolean(Part.RIGHT.name, glazedEast[Part.RIGHT.id]);
-                Facing.putBoolean(Part.TOP.name, glazedEast[Part.TOP.id]);
-                Facing.putBoolean(Part.BOTTOM.name, glazedEast[Part.BOTTOM.id]);
+                Facing.putBoolean(Part.TOP_MIDDLE.name, glazedEast[Part.TOP_MIDDLE.id]);
+                Facing.putBoolean(Part.TOP_LEFT.name, glazedEast[Part.TOP_LEFT.id]);
+                Facing.putBoolean(Part.TOP_RIGHT.name, glazedEast[Part.TOP_RIGHT.id]);
+                Facing.putBoolean(Part.BOTTOM_MIDDLE.name, glazedEast[Part.BOTTOM_MIDDLE.id]);
+                Facing.putBoolean(Part.BOTTOM_LEFT.name, glazedEast[Part.BOTTOM_LEFT.id]);
+                Facing.putBoolean(Part.BOTTOM_RIGHT.name, glazedEast[Part.BOTTOM_RIGHT.id]);
                 Facing.putBoolean(Part.MIDDLE.name, glazedEast[Part.MIDDLE.id]);
                 if (glazedColor[1] == null) {
                     Facing.putString("color", PartColor.NONE.name);
@@ -97,8 +129,12 @@ public class GlazedBlockEntity extends BlockEntity {
             } else if (facing == Direction.SOUTH) {
                 Facing.putBoolean(Part.LEFT.name, glazedSouth[Part.LEFT.id]);
                 Facing.putBoolean(Part.RIGHT.name, glazedSouth[Part.RIGHT.id]);
-                Facing.putBoolean(Part.TOP.name, glazedSouth[Part.TOP.id]);
-                Facing.putBoolean(Part.BOTTOM.name, glazedSouth[Part.BOTTOM.id]);
+                Facing.putBoolean(Part.TOP_MIDDLE.name, glazedSouth[Part.TOP_MIDDLE.id]);
+                Facing.putBoolean(Part.TOP_LEFT.name, glazedSouth[Part.TOP_LEFT.id]);
+                Facing.putBoolean(Part.TOP_RIGHT.name, glazedSouth[Part.TOP_RIGHT.id]);
+                Facing.putBoolean(Part.BOTTOM_MIDDLE.name, glazedSouth[Part.BOTTOM_MIDDLE.id]);
+                Facing.putBoolean(Part.BOTTOM_LEFT.name, glazedSouth[Part.BOTTOM_LEFT.id]);
+                Facing.putBoolean(Part.BOTTOM_RIGHT.name, glazedSouth[Part.BOTTOM_RIGHT.id]);
                 Facing.putBoolean(Part.MIDDLE.name, glazedSouth[Part.MIDDLE.id]);
                 if (glazedColor[2] == null) {
                     Facing.putString("color", PartColor.NONE.name);
@@ -109,8 +145,12 @@ public class GlazedBlockEntity extends BlockEntity {
             } else if (facing == Direction.WEST) {
                 Facing.putBoolean(Part.LEFT.name, glazedWest[Part.LEFT.id]);
                 Facing.putBoolean(Part.RIGHT.name, glazedWest[Part.RIGHT.id]);
-                Facing.putBoolean(Part.TOP.name, glazedWest[Part.TOP.id]);
-                Facing.putBoolean(Part.BOTTOM.name, glazedWest[Part.BOTTOM.id]);
+                Facing.putBoolean(Part.TOP_MIDDLE.name, glazedWest[Part.TOP_MIDDLE.id]);
+                Facing.putBoolean(Part.TOP_LEFT.name, glazedWest[Part.TOP_LEFT.id]);
+                Facing.putBoolean(Part.TOP_RIGHT.name, glazedWest[Part.TOP_RIGHT.id]);
+                Facing.putBoolean(Part.BOTTOM_MIDDLE.name, glazedWest[Part.BOTTOM_MIDDLE.id]);
+                Facing.putBoolean(Part.BOTTOM_LEFT.name, glazedWest[Part.BOTTOM_LEFT.id]);
+                Facing.putBoolean(Part.BOTTOM_RIGHT.name, glazedWest[Part.BOTTOM_RIGHT.id]);
                 Facing.putBoolean(Part.MIDDLE.name, glazedWest[Part.MIDDLE.id]);
                 if (glazedColor[3] == null) {
                     Facing.putString("color", PartColor.NONE.name);
@@ -121,8 +161,12 @@ public class GlazedBlockEntity extends BlockEntity {
             } else if (facing == Direction.UP) {
                 Facing.putBoolean(Part.LEFT.name, glazedTop[Part.LEFT.id]);
                 Facing.putBoolean(Part.RIGHT.name, glazedTop[Part.RIGHT.id]);
-                Facing.putBoolean(Part.TOP.name, glazedTop[Part.TOP.id]);
-                Facing.putBoolean(Part.BOTTOM.name, glazedTop[Part.BOTTOM.id]);
+                Facing.putBoolean(Part.TOP_MIDDLE.name, glazedTop[Part.TOP_MIDDLE.id]);
+                Facing.putBoolean(Part.TOP_LEFT.name, glazedTop[Part.TOP_LEFT.id]);
+                Facing.putBoolean(Part.TOP_RIGHT.name, glazedTop[Part.TOP_RIGHT.id]);
+                Facing.putBoolean(Part.BOTTOM_MIDDLE.name, glazedTop[Part.BOTTOM_MIDDLE.id]);
+                Facing.putBoolean(Part.BOTTOM_LEFT.name, glazedTop[Part.BOTTOM_LEFT.id]);
+                Facing.putBoolean(Part.BOTTOM_RIGHT.name, glazedTop[Part.BOTTOM_RIGHT.id]);
                 Facing.putBoolean(Part.MIDDLE.name, glazedTop[Part.MIDDLE.id]);
                 if (glazedColor[4] == null) {
                     Facing.putString("color", PartColor.NONE.name);
@@ -133,8 +177,12 @@ public class GlazedBlockEntity extends BlockEntity {
             } else if (facing == Direction.DOWN) {
                 Facing.putBoolean(Part.LEFT.name, glazedBottom[Part.LEFT.id]);
                 Facing.putBoolean(Part.RIGHT.name, glazedBottom[Part.RIGHT.id]);
-                Facing.putBoolean(Part.TOP.name, glazedBottom[Part.TOP.id]);
-                Facing.putBoolean(Part.BOTTOM.name, glazedBottom[Part.BOTTOM.id]);
+                Facing.putBoolean(Part.TOP_MIDDLE.name, glazedBottom[Part.TOP_MIDDLE.id]);
+                Facing.putBoolean(Part.TOP_LEFT.name, glazedBottom[Part.TOP_LEFT.id]);
+                Facing.putBoolean(Part.TOP_RIGHT.name, glazedBottom[Part.TOP_RIGHT.id]);
+                Facing.putBoolean(Part.BOTTOM_MIDDLE.name, glazedBottom[Part.BOTTOM_MIDDLE.id]);
+                Facing.putBoolean(Part.BOTTOM_LEFT.name, glazedBottom[Part.BOTTOM_LEFT.id]);
+                Facing.putBoolean(Part.BOTTOM_RIGHT.name, glazedBottom[Part.BOTTOM_RIGHT.id]);
                 Facing.putBoolean(Part.MIDDLE.name, glazedBottom[Part.MIDDLE.id]);
                 if (glazedColor[5] == null) {
                     Facing.putString("color", PartColor.NONE.name);
@@ -177,32 +225,32 @@ public class GlazedBlockEntity extends BlockEntity {
     protected void loadAdditional(CompoundTag tag, HolderLookup.Provider registries) {
         super.loadAdditional(tag, registries);
         CompoundTag north = tag.getCompound("Glaze").getCompound("north");
-        for (int n = 0; n < 5; n++) {
+        for (int n = 0; n < 9; n++) {
             glazedNorth[n] = north.getBoolean(Part.byId(n).name);
         }
         glazedColor[0] = PartColor.byName(north.getString("color"));
         CompoundTag east = tag.getCompound("Glaze").getCompound("east");
-        for (int e = 0; e < 5; e++) {
+        for (int e = 0; e < 9; e++) {
             glazedEast[e] = east.getBoolean(Part.byId(e).name);
         }
         glazedColor[1] = PartColor.byName(east.getString("color"));
         CompoundTag south = tag.getCompound("Glaze").getCompound("south");
-        for (int s = 0; s < 5; s++) {
+        for (int s = 0; s < 9; s++) {
             glazedSouth[s] = south.getBoolean(Part.byId(s).name);
         }
         glazedColor[2] = PartColor.byName(south.getString("color"));
         CompoundTag west = tag.getCompound("Glaze").getCompound("west");
-        for (int w = 0; w < 5; w++) {
+        for (int w = 0; w < 9; w++) {
             glazedWest[w] = west.getBoolean(Part.byId(w).name);
         }
         glazedColor[3] = PartColor.byName(west.getString("color"));
         CompoundTag top = tag.getCompound("Glaze").getCompound("up");
-        for (int t = 0; t < 5; t++) {
+        for (int t = 0; t < 9; t++) {
             glazedTop[t] = top.getBoolean(Part.byId(t).name);
         }
         glazedColor[4] = PartColor.byName(top.getString("color"));
         CompoundTag bottom = tag.getCompound("Glaze").getCompound("down");
-        for (int b = 0; b < 5; b++) {
+        for (int b = 0; b < 9; b++) {
             glazedBottom[b] = bottom.getBoolean(Part.byId(b).name);
         }
         glazedColor[5] = PartColor.byName(bottom.getString("color"));
@@ -307,7 +355,7 @@ public class GlazedBlockEntity extends BlockEntity {
     }
 
     public void clearOverlay(Direction facing) {
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 9; i++) {
             if (facing == Direction.NORTH) {
                 glazedNorth[i] = false;
                 glazedColor[0] = PartColor.NONE;
@@ -336,36 +384,60 @@ public class GlazedBlockEntity extends BlockEntity {
     @Override
     public ModelData getModelData() {
         return ModelData.builder()
-                .with(GlazedBlockEntity.GLAZED_NORTH_LEFT, glazedNorth[3])
-                .with(GlazedBlockEntity.GLAZED_NORTH_RIGHT, glazedNorth[4])
-                .with(GlazedBlockEntity.GLAZED_NORTH_TOP, glazedNorth[1])
-                .with(GlazedBlockEntity.GLAZED_NORTH_BOTTOM, glazedNorth[2])
                 .with(GlazedBlockEntity.GLAZED_NORTH_MIDDLE, glazedNorth[0])
-                .with(GlazedBlockEntity.GLAZED_EAST_LEFT, glazedEast[3])
-                .with(GlazedBlockEntity.GLAZED_EAST_RIGHT, glazedEast[4])
-                .with(GlazedBlockEntity.GLAZED_EAST_TOP, glazedEast[1])
-                .with(GlazedBlockEntity.GLAZED_EAST_BOTTOM, glazedEast[2])
+                .with(GlazedBlockEntity.GLAZED_NORTH_TOP_MIDDLE, glazedNorth[1])
+                .with(GlazedBlockEntity.GLAZED_NORTH_TOP_LEFT, glazedNorth[2])
+                .with(GlazedBlockEntity.GLAZED_NORTH_TOP_RIGHT, glazedNorth[3])
+                .with(GlazedBlockEntity.GLAZED_NORTH_BOTTOM_MIDDLE, glazedNorth[4])
+                .with(GlazedBlockEntity.GLAZED_NORTH_BOTTOM_LEFT, glazedNorth[5])
+                .with(GlazedBlockEntity.GLAZED_NORTH_BOTTOM_RIGHT, glazedNorth[6])
+                .with(GlazedBlockEntity.GLAZED_NORTH_LEFT, glazedNorth[7])
+                .with(GlazedBlockEntity.GLAZED_NORTH_RIGHT, glazedNorth[8])
                 .with(GlazedBlockEntity.GLAZED_EAST_MIDDLE, glazedEast[0])
-                .with(GlazedBlockEntity.GLAZED_SOUTH_LEFT, glazedSouth[3])
-                .with(GlazedBlockEntity.GLAZED_SOUTH_RIGHT, glazedSouth[4])
-                .with(GlazedBlockEntity.GLAZED_SOUTH_TOP, glazedSouth[1])
-                .with(GlazedBlockEntity.GLAZED_SOUTH_BOTTOM, glazedSouth[2])
+                .with(GlazedBlockEntity.GLAZED_EAST_TOP_MIDDLE, glazedEast[1])
+                .with(GlazedBlockEntity.GLAZED_EAST_TOP_LEFT, glazedEast[2])
+                .with(GlazedBlockEntity.GLAZED_EAST_TOP_RIGHT, glazedEast[3])
+                .with(GlazedBlockEntity.GLAZED_EAST_BOTTOM_MIDDLE, glazedEast[4])
+                .with(GlazedBlockEntity.GLAZED_EAST_BOTTOM_LEFT, glazedEast[5])
+                .with(GlazedBlockEntity.GLAZED_EAST_BOTTOM_RIGHT, glazedEast[6])
+                .with(GlazedBlockEntity.GLAZED_EAST_LEFT, glazedEast[7])
+                .with(GlazedBlockEntity.GLAZED_EAST_RIGHT, glazedEast[8])
                 .with(GlazedBlockEntity.GLAZED_SOUTH_MIDDLE, glazedSouth[0])
-                .with(GlazedBlockEntity.GLAZED_WEST_LEFT, glazedWest[3])
-                .with(GlazedBlockEntity.GLAZED_WEST_RIGHT, glazedWest[4])
-                .with(GlazedBlockEntity.GLAZED_WEST_TOP, glazedWest[1])
-                .with(GlazedBlockEntity.GLAZED_WEST_BOTTOM, glazedWest[2])
+                .with(GlazedBlockEntity.GLAZED_SOUTH_TOP_MIDDLE, glazedSouth[1])
+                .with(GlazedBlockEntity.GLAZED_SOUTH_TOP_LEFT, glazedSouth[2])
+                .with(GlazedBlockEntity.GLAZED_SOUTH_TOP_RIGHT, glazedSouth[3])
+                .with(GlazedBlockEntity.GLAZED_SOUTH_BOTTOM_MIDDLE, glazedSouth[4])
+                .with(GlazedBlockEntity.GLAZED_SOUTH_BOTTOM_LEFT, glazedSouth[5])
+                .with(GlazedBlockEntity.GLAZED_SOUTH_BOTTOM_RIGHT, glazedSouth[6])
+                .with(GlazedBlockEntity.GLAZED_SOUTH_LEFT, glazedSouth[7])
+                .with(GlazedBlockEntity.GLAZED_SOUTH_RIGHT, glazedSouth[8])
                 .with(GlazedBlockEntity.GLAZED_WEST_MIDDLE, glazedWest[0])
-                .with(GlazedBlockEntity.GLAZED_TOP_LEFT, glazedTop[3])
-                .with(GlazedBlockEntity.GLAZED_TOP_RIGHT, glazedTop[4])
-                .with(GlazedBlockEntity.GLAZED_TOP_TOP, glazedTop[1])
-                .with(GlazedBlockEntity.GLAZED_TOP_BOTTOM, glazedTop[2])
+                .with(GlazedBlockEntity.GLAZED_WEST_TOP_MIDDLE, glazedWest[1])
+                .with(GlazedBlockEntity.GLAZED_WEST_TOP_LEFT, glazedWest[2])
+                .with(GlazedBlockEntity.GLAZED_WEST_TOP_RIGHT, glazedWest[3])
+                .with(GlazedBlockEntity.GLAZED_WEST_BOTTOM_MIDDLE, glazedWest[4])
+                .with(GlazedBlockEntity.GLAZED_WEST_BOTTOM_LEFT, glazedWest[5])
+                .with(GlazedBlockEntity.GLAZED_WEST_BOTTOM_RIGHT, glazedWest[6])
+                .with(GlazedBlockEntity.GLAZED_WEST_LEFT, glazedWest[7])
+                .with(GlazedBlockEntity.GLAZED_WEST_RIGHT, glazedWest[8])
                 .with(GlazedBlockEntity.GLAZED_TOP_MIDDLE, glazedTop[0])
-                .with(GlazedBlockEntity.GLAZED_BOTTOM_LEFT, glazedBottom[3])
-                .with(GlazedBlockEntity.GLAZED_BOTTOM_RIGHT, glazedBottom[4])
-                .with(GlazedBlockEntity.GLAZED_BOTTOM_TOP, glazedBottom[1])
-                .with(GlazedBlockEntity.GLAZED_BOTTOM_BOTTOM, glazedBottom[2])
+                .with(GlazedBlockEntity.GLAZED_TOP_TOP_MIDDLE, glazedTop[1])
+                .with(GlazedBlockEntity.GLAZED_TOP_TOP_LEFT, glazedTop[2])
+                .with(GlazedBlockEntity.GLAZED_TOP_TOP_RIGHT, glazedTop[3])
+                .with(GlazedBlockEntity.GLAZED_TOP_BOTTOM_MIDDLE, glazedTop[4])
+                .with(GlazedBlockEntity.GLAZED_TOP_BOTTOM_LEFT, glazedTop[5])
+                .with(GlazedBlockEntity.GLAZED_TOP_BOTTOM_RIGHT, glazedTop[6])
+                .with(GlazedBlockEntity.GLAZED_TOP_LEFT, glazedTop[7])
+                .with(GlazedBlockEntity.GLAZED_TOP_RIGHT, glazedTop[8])
                 .with(GlazedBlockEntity.GLAZED_BOTTOM_MIDDLE, glazedBottom[0])
+                .with(GlazedBlockEntity.GLAZED_BOTTOM_TOP_MIDDLE, glazedBottom[1])
+                .with(GlazedBlockEntity.GLAZED_BOTTOM_TOP_LEFT, glazedBottom[2])
+                .with(GlazedBlockEntity.GLAZED_BOTTOM_TOP_RIGHT, glazedBottom[3])
+                .with(GlazedBlockEntity.GLAZED_BOTTOM_BOTTOM_MIDDLE, glazedBottom[4])
+                .with(GlazedBlockEntity.GLAZED_BOTTOM_BOTTOM_LEFT, glazedBottom[5])
+                .with(GlazedBlockEntity.GLAZED_BOTTOM_BOTTOM_RIGHT, glazedBottom[6])
+                .with(GlazedBlockEntity.GLAZED_BOTTOM_LEFT, glazedBottom[7])
+                .with(GlazedBlockEntity.GLAZED_BOTTOM_RIGHT, glazedBottom[8])
                 .build();
     }
 
@@ -416,10 +488,14 @@ public class GlazedBlockEntity extends BlockEntity {
     }
 
     public enum Part implements StringRepresentable {
-        TOP("top", 1),
-        BOTTOM("bottom", 2),
-        RIGHT("right", 3),
-        LEFT("left", 4),
+        TOP_MIDDLE("top_middle", 1),
+        TOP_LEFT("top_left", 2),
+        TOP_RIGHT("top_right", 3),
+        BOTTOM_MIDDLE("bottom_middle", 4),
+        BOTTOM_LEFT("bottom_left", 5),
+        BOTTOM_RIGHT("bottom_right", 6),
+        LEFT("left", 7),
+        RIGHT("right", 8),
         MIDDLE("middle", 0);
 
         private final String name;

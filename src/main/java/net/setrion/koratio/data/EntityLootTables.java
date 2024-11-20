@@ -5,9 +5,7 @@ import net.minecraft.data.loot.EntityLootSubProvider;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.flag.FeatureFlags;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.level.ItemLike;
-import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
@@ -15,15 +13,12 @@ import net.minecraft.world.level.storage.loot.entries.NestedLootTable;
 import net.minecraft.world.level.storage.loot.functions.EnchantedCountIncreaseFunction;
 import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
 import net.minecraft.world.level.storage.loot.functions.SmeltItemFunction;
-import net.minecraft.world.level.storage.loot.predicates.LootItemEntityPropertyCondition;
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
-import net.neoforged.neoforge.registries.DeferredHolder;
+import net.setrion.koratio.registry.KoratioBlocks;
 import net.setrion.koratio.registry.KoratioEntityType;
 import net.setrion.koratio.registry.KoratioItems;
 import net.setrion.koratio.registry.KoratioLootTables;
-import net.setrion.koratio.registry.KoratioScrolls;
-import net.setrion.koratio.world.level.storage.loot.functions.SetScrollFunction;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -72,27 +67,27 @@ public class EntityLootTables extends EntityLootSubProvider {
 										)
 						)
 		);
-		add(KoratioEntityType.FLUFFER.get(), KoratioLootTables.FLUFFER_WHITE, flufferLoot(KoratioItems.WHITE_LEVITATING_WOOL.get()));
-		add(KoratioEntityType.FLUFFER.get(), KoratioLootTables.FLUFFER_ORANGE, flufferLoot(KoratioItems.ORANGE_LEVITATING_WOOL.get()));
-		add(KoratioEntityType.FLUFFER.get(), KoratioLootTables.FLUFFER_MAGENTA, flufferLoot(KoratioItems.MAGENTA_LEVITATING_WOOL.get()));
-		add(KoratioEntityType.FLUFFER.get(), KoratioLootTables.FLUFFER_LIGHT_BLUE, flufferLoot(KoratioItems.LIGHT_BLUE_LEVITATING_WOOL.get()));
-		add(KoratioEntityType.FLUFFER.get(), KoratioLootTables.FLUFFER_YELLOW, flufferLoot(KoratioItems.YELLOW_LEVITATING_WOOL.get()));
-		add(KoratioEntityType.FLUFFER.get(), KoratioLootTables.FLUFFER_LIME, flufferLoot(KoratioItems.LIME_LEVITATING_WOOL.get()));
-		add(KoratioEntityType.FLUFFER.get(), KoratioLootTables.FLUFFER_PINK, flufferLoot(KoratioItems.PINK_LEVITATING_WOOL.get()));
-		add(KoratioEntityType.FLUFFER.get(), KoratioLootTables.FLUFFER_GRAY, flufferLoot(KoratioItems.GRAY_LEVITATING_WOOL.get()));
-		add(KoratioEntityType.FLUFFER.get(), KoratioLootTables.FLUFFER_LIGHT_GRAY, flufferLoot(KoratioItems.LIGHT_GRAY_LEVITATING_WOOL.get()));
-		add(KoratioEntityType.FLUFFER.get(), KoratioLootTables.FLUFFER_CYAN, flufferLoot(KoratioItems.CYAN_LEVITATING_WOOL.get()));
-		add(KoratioEntityType.FLUFFER.get(), KoratioLootTables.FLUFFER_PURPLE, flufferLoot(KoratioItems.PURPLE_LEVITATING_WOOL.get()));
-		add(KoratioEntityType.FLUFFER.get(), KoratioLootTables.FLUFFER_BLUE, flufferLoot(KoratioItems.BLUE_LEVITATING_WOOL.get()));
-		add(KoratioEntityType.FLUFFER.get(), KoratioLootTables.FLUFFER_BROWN, flufferLoot(KoratioItems.BROWN_LEVITATING_WOOL.get()));
-		add(KoratioEntityType.FLUFFER.get(), KoratioLootTables.FLUFFER_GREEN, flufferLoot(KoratioItems.GREEN_LEVITATING_WOOL.get()));
-		add(KoratioEntityType.FLUFFER.get(), KoratioLootTables.FLUFFER_RED, flufferLoot(KoratioItems.RED_LEVITATING_WOOL.get()));
-		add(KoratioEntityType.FLUFFER.get(), KoratioLootTables.FLUFFER_BLACK, flufferLoot(KoratioItems.BLACK_LEVITATING_WOOL.get()));
+		add(KoratioEntityType.FLUFFER.get(), KoratioLootTables.FLUFFER_WHITE, flufferLoot(KoratioBlocks.WHITE_LEVITATING_WOOL.get()));
+		add(KoratioEntityType.FLUFFER.get(), KoratioLootTables.FLUFFER_ORANGE, flufferLoot(KoratioBlocks.ORANGE_LEVITATING_WOOL.get()));
+		add(KoratioEntityType.FLUFFER.get(), KoratioLootTables.FLUFFER_MAGENTA, flufferLoot(KoratioBlocks.MAGENTA_LEVITATING_WOOL.get()));
+		add(KoratioEntityType.FLUFFER.get(), KoratioLootTables.FLUFFER_LIGHT_BLUE, flufferLoot(KoratioBlocks.LIGHT_BLUE_LEVITATING_WOOL.get()));
+		add(KoratioEntityType.FLUFFER.get(), KoratioLootTables.FLUFFER_YELLOW, flufferLoot(KoratioBlocks.YELLOW_LEVITATING_WOOL.get()));
+		add(KoratioEntityType.FLUFFER.get(), KoratioLootTables.FLUFFER_LIME, flufferLoot(KoratioBlocks.LIME_LEVITATING_WOOL.get()));
+		add(KoratioEntityType.FLUFFER.get(), KoratioLootTables.FLUFFER_PINK, flufferLoot(KoratioBlocks.PINK_LEVITATING_WOOL.get()));
+		add(KoratioEntityType.FLUFFER.get(), KoratioLootTables.FLUFFER_GRAY, flufferLoot(KoratioBlocks.GRAY_LEVITATING_WOOL.get()));
+		add(KoratioEntityType.FLUFFER.get(), KoratioLootTables.FLUFFER_LIGHT_GRAY, flufferLoot(KoratioBlocks.LIGHT_GRAY_LEVITATING_WOOL.get()));
+		add(KoratioEntityType.FLUFFER.get(), KoratioLootTables.FLUFFER_CYAN, flufferLoot(KoratioBlocks.CYAN_LEVITATING_WOOL.get()));
+		add(KoratioEntityType.FLUFFER.get(), KoratioLootTables.FLUFFER_PURPLE, flufferLoot(KoratioBlocks.PURPLE_LEVITATING_WOOL.get()));
+		add(KoratioEntityType.FLUFFER.get(), KoratioLootTables.FLUFFER_BLUE, flufferLoot(KoratioBlocks.BLUE_LEVITATING_WOOL.get()));
+		add(KoratioEntityType.FLUFFER.get(), KoratioLootTables.FLUFFER_BROWN, flufferLoot(KoratioBlocks.BROWN_LEVITATING_WOOL.get()));
+		add(KoratioEntityType.FLUFFER.get(), KoratioLootTables.FLUFFER_GREEN, flufferLoot(KoratioBlocks.GREEN_LEVITATING_WOOL.get()));
+		add(KoratioEntityType.FLUFFER.get(), KoratioLootTables.FLUFFER_RED, flufferLoot(KoratioBlocks.RED_LEVITATING_WOOL.get()));
+		add(KoratioEntityType.FLUFFER.get(), KoratioLootTables.FLUFFER_BLACK, flufferLoot(KoratioBlocks.BLACK_LEVITATING_WOOL.get()));
 	}
 	
 	@SuppressWarnings("unused")
 	private static LootTable.Builder flufferLoot(ItemLike wool) {
-		return LootTable.lootTable().withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1)).add(LootItem.lootTableItem(wool))).withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1)).add(NestedLootTable.lootTableReference(KoratioEntityType.FLUFFER.get().getDefaultLootTable())));
+		return LootTable.lootTable().withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1)).add(LootItem.lootTableItem(wool))).withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1)).add(NestedLootTable.lootTableReference(KoratioEntityType.FLUFFER.get().getDefaultLootTable().orElseThrow())));
 	}
 	
 	@Override

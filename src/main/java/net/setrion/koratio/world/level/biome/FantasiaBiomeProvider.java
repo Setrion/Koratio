@@ -67,7 +67,7 @@ public class FantasiaBiomeProvider extends BiomeSourceBase {
 	}
 
 	public static int getBiomeId(ResourceKey<Biome> biome, HolderGetter<Biome> registry) {
-		return ServerLifecycleHooks.getCurrentServer().registryAccess().registryOrThrow(Registries.BIOME).getId(registry.get(biome).get().key());
+		return ServerLifecycleHooks.getCurrentServer().registryAccess().lookupOrThrow(Registries.BIOME).getId(registry.get(biome).get().key());
 	}
 
 	private static <T extends Area, C extends BigContext<T>> AreaFactory<T> makeLayers(LongFunction<C> seed, HolderGetter<Biome> registry, long rawSeed) {
@@ -102,7 +102,7 @@ public class FantasiaBiomeProvider extends BiomeSourceBase {
 			@Override
 			public Holder<Biome> get(HolderGetter<Biome> registry, int x, int y) {
 				int i = this.area.get(x, y);
-				Optional<Holder.Reference<Biome>> biome = ServerLifecycleHooks.getCurrentServer().registryAccess().registryOrThrow(Registries.BIOME).getHolder(i);
+				Optional<Holder.Reference<Biome>> biome = ServerLifecycleHooks.getCurrentServer().registryAccess().lookupOrThrow(Registries.BIOME).get(i);
 				if (biome.isEmpty())
 					throw new IllegalStateException("Unknown biome id emitted by layers: " + i);
 				return biome.get();

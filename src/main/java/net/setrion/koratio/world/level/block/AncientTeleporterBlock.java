@@ -8,14 +8,13 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.RelativeMovement;
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.Relative;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
-import net.minecraft.world.level.block.state.properties.DirectionProperty;
+import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.phys.Vec3;
 import net.setrion.koratio.registry.KoratioParticles;
 
@@ -23,7 +22,7 @@ import java.util.EnumSet;
 
 public class AncientTeleporterBlock extends Block {
 
-    public static final DirectionProperty DIRECTION = DirectionProperty.create("direction", Direction.Plane.VERTICAL);
+    public static final EnumProperty<Direction> DIRECTION = EnumProperty.create("direction", Direction.class, Direction.Plane.VERTICAL);
 
     public AncientTeleporterBlock(Properties properties) {
         super(properties);
@@ -69,7 +68,7 @@ public class AncientTeleporterBlock extends Block {
                 var toElevator = getElevator(world.getBlockState(toPos));
                 if (toElevator != null && isValidPos(world, toPos)) {
                     double blockYOffset = world.getBlockState(toPos).getBlockSupportShape(world, toPos).max(Direction.Axis.Y);
-                    entity.teleportTo(serverworld, entity.getX(), Math.max(toPos.getY(), toPos.getY() + blockYOffset), entity.getZ(), EnumSet.noneOf(RelativeMovement.class), pitch, yaw);
+                    entity.teleportTo(serverworld, entity.getX(), Math.max(toPos.getY(), toPos.getY() + blockYOffset), entity.getZ(), EnumSet.noneOf(Relative.class), pitch, yaw, false);
                     entity.setDeltaMovement(entity.getDeltaMovement().multiply(new Vec3(1D, 0D, 1D)));
                     serverworld.playSound(null, toPos, SoundEvents.ENDERMAN_TELEPORT, SoundSource.BLOCKS, 1F, 1F);
                     entity.setPortalCooldown(50);

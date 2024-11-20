@@ -67,7 +67,7 @@ public class SoundGenerator extends SoundDefinitionsProvider {
 	public void generateSoundWithCustomSubtitle(DeferredHolder<SoundEvent, SoundEvent> event, SoundEvent referencedSound, String subtitle) {
 		this.add(event, SoundDefinition.definition()
 				.subtitle(subtitle)
-				.with(SoundDefinition.Sound.sound(referencedSound.getLocation(), SoundDefinition.SoundType.EVENT)));
+				.with(SoundDefinition.Sound.sound(referencedSound.location(), SoundDefinition.SoundType.EVENT)));
 	}
 
 	public void generateExistingSound(DeferredHolder<SoundEvent, SoundEvent> event, SoundEvent referencedSound, boolean subtitle) {
@@ -77,13 +77,13 @@ public class SoundGenerator extends SoundDefinitionsProvider {
 			definition.subtitle("subtitles.koratio." + splitSoundName[0] + "." + splitSoundName[2]);
 		}
 		this.add(event, definition
-				.with(SoundDefinition.Sound.sound(referencedSound.getLocation(), SoundDefinition.SoundType.EVENT)));
+				.with(SoundDefinition.Sound.sound(referencedSound.location(), SoundDefinition.SoundType.EVENT)));
 	}
 
 	public void makeStepSound(DeferredHolder<SoundEvent, SoundEvent> event, SoundEvent referencedSound) {
 		this.add(event, SoundDefinition.definition()
 				.subtitle("subtitles.block.generic.footsteps")
-				.with(SoundDefinition.Sound.sound(referencedSound.getLocation(), SoundDefinition.SoundType.EVENT)));
+				.with(SoundDefinition.Sound.sound(referencedSound.location(), SoundDefinition.SoundType.EVENT)));
 	}
 
 	public void makeMusicDisc(DeferredHolder<SoundEvent, SoundEvent> event, String discName) {
@@ -98,6 +98,6 @@ public class SoundGenerator extends SoundDefinitionsProvider {
 		definition.subtitle("subtitles.koratio." + splitSoundName[0] + "." + splitSoundName[2]);
 
 		this.add(event, definition
-				.with(SoundDefinition.Sound.sound(referencedSound.getLocation(), SoundDefinition.SoundType.EVENT).pitch(1.8F).volume(0.6F)));
+				.with(SoundDefinition.Sound.sound(referencedSound.location(), SoundDefinition.SoundType.EVENT).pitch(1.8F).volume(0.6F)));
 	}
 }

@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "koratio:block/cotton_candy_grass",
+    "layer1": "koratio:block/cotton_candy_grass_top"
+  }
+}

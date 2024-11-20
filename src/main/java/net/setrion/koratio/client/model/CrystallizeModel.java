@@ -1,30 +1,24 @@
 package net.setrion.koratio.client.model;
 
-import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.blaze3d.vertex.VertexConsumer;
-import net.minecraft.client.model.HierarchicalModel;
+import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
 import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.entity.state.LivingEntityRenderState;
 import net.minecraft.util.Mth;
-import net.minecraft.world.entity.Entity;
 
 import java.util.Arrays;
 
-public class CrystallizeModel<T extends Entity> extends HierarchicalModel<T> {
-	private final ModelPart root;
+public class CrystallizeModel extends EntityModel<LivingEntityRenderState> {
 	private final ModelPart head;
 	private final ModelPart[] crystals;
 
 	public CrystallizeModel(ModelPart root) {
-		super(RenderType::entityTranslucent);
-		this.root = root;
+		super(root, RenderType::entityTranslucent);
 		this.head = root.getChild("head");
 		this.crystals = new ModelPart[4];
-		Arrays.setAll(this.crystals, (i) -> {
-			return root.getChild(getPartName(i));
-		});
+		Arrays.setAll(this.crystals, (i) -> root.getChild(getPartName(i)));
 	}
 
 	private static String getPartName(int i) {
@@ -54,29 +48,16 @@ public class CrystallizeModel<T extends Entity> extends HierarchicalModel<T> {
 
 		return LayerDefinition.create(meshdefinition, 64, 32);
 	}
-	
-	public ModelPart root() {
-		return root;
-	}
 
 	@Override
-	public void renderToBuffer(PoseStack poseStack, VertexConsumer buffer, int packedLight, int packedOverlay, int color) {
-		for (ModelPart crystal : crystals) {
-			crystal.render(poseStack, buffer, packedLight, packedOverlay, color);
-		}
-		head.render(poseStack, buffer, packedLight, packedOverlay, color);
-	}
-
-	@Override
-	public void setupAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+	public void setupAnim(LivingEntityRenderState state) {
 		for(int i = 0; i < 4; ++i) {
-			crystals[i].y = 6.0F + Mth.cos(((float)(i * 3) + ageInTicks) * 0.25F);
-			Math.sin(Math.toRadians(90*(i+1)+(ageInTicks*5)));
-			crystals[i].x = (float) (Math.cos(Math.toRadians(90*(i+1)+(ageInTicks*5))) * 10.5F);
-			crystals[i].z = (float) (Math.sin(Math.toRadians(90*(i+1)+(ageInTicks*5))) * 10.5F);
-			crystals[i].yRot = i+ageInTicks/20;
+			crystals[i].y = 6.0F + Mth.cos(((float)(i * 3) + state.ageInTicks) * 0.25F);
+			crystals[i].x = (float) (Math.cos(Math.toRadians(90*(i+1)+(state.ageInTicks*5))) * 10.5F);
+			crystals[i].z = (float) (Math.sin(Math.toRadians(90*(i+1)+(state.ageInTicks*5))) * 10.5F);
+			crystals[i].yRot = i+state.ageInTicks/20;
 		}
-		head.yRot = netHeadYaw * ((float)Math.PI / 180F);
-		head.xRot = headPitch * ((float)Math.PI / 180F);
+		head.yRot = state.yRot * ((float)Math.PI / 180F);
+		head.xRot = state.xRot * ((float)Math.PI / 180F);
 	}
 }

@@ -122,7 +122,7 @@ public class DecryptingMenu extends AbstractContainerMenu {
 					getSlot(0).set(ScrollUtils.decryptScroll(getSlot(0).getItem()));
 					Scroll scroll = ScrollUtils.getScroll(getSlot(0).getItem());
 					access.execute((level, pos) -> level.playSound(null, pos, SoundEvents.ENCHANTMENT_TABLE_USE, SoundSource.BLOCKS, 1.0F, level.random.nextFloat() * 0.1F + 0.9F));
-					KoratioCriteriaTriggers.DECRYPTED_SCROLL.get().trigger((ServerPlayer) player, scroll.getName(), scroll.getType().getName());
+					KoratioCriteriaTriggers.DECRYPTED_SCROLL.get().trigger((ServerPlayer) player, scroll.name(), scroll.type().getName());
 				}
 				if (!flag) {
 					player.giveExperienceLevels(-getCost());
