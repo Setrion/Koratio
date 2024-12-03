@@ -1,0 +1,8 @@
+{
+  "type": "koratio:woodcutter",
+  "ingredient": "koratio:stripped_blue_elven_log",
+  "result": {
+    "count": 4,
+    "id": "koratio:green_elven_stairs"
+  }
+}

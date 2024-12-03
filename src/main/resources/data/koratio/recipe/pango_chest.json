@@ -3,12 +3,8 @@
   "category": "misc",
   "group": "chests",
   "key": {
-    "#": {
-      "item": "koratio:pango_planks"
-    },
-    "x": {
-      "tag": "c:chests/wooden"
-    }
+    "#": "koratio:pango_planks",
+    "x": "#c:chests/wooden"
   },
   "pattern": [
     "###",

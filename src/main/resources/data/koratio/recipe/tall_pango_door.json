@@ -3,12 +3,8 @@
   "category": "redstone",
   "group": "tall_wooden_door",
   "key": {
-    "#": {
-      "item": "koratio:pango_door"
-    },
-    "x": {
-      "item": "koratio:pango_planks"
-    }
+    "#": "koratio:pango_door",
+    "x": "koratio:pango_planks"
   },
   "pattern": [
     "x",

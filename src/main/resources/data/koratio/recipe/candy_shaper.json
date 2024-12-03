@@ -2,12 +2,8 @@
   "type": "minecraft:crafting_shaped",
   "category": "building",
   "key": {
-    "s": {
-      "item": "minecraft:stone_slab"
-    },
-    "w": {
-      "tag": "minecraft:planks"
-    }
+    "s": "minecraft:stone_slab",
+    "w": "#minecraft:planks"
   },
   "pattern": [
     "ss",

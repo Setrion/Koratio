@@ -401,12 +401,12 @@ public class KoratioTagsGenerator {
     public static class MagicalCatTagGenerator extends TagsProvider<MagicalCatVariant> {
 
         public MagicalCatTagGenerator(PackOutput output, CompletableFuture<HolderLookup.Provider> provider, @org.jetbrains.annotations.Nullable ExistingFileHelper existingFileHelper) {
-            super(output, KoratioRegistries.MAGICAL_CAT_VARIANT, provider, Koratio.MOD_ID, existingFileHelper);
+            super(output, KoratioRegistries.MAGICAL_CAT_VARIANT_KEY, provider, Koratio.MOD_ID, existingFileHelper);
         }
 
         @Override
         protected void addTags(HolderLookup.Provider provider) {
-            tag(KoratioTags.MagicalCatVariants.DEFAULT_SPAWNS).add(MagicalCatVariant.AKUMA, MagicalCatVariant.FUKU, MagicalCatVariant.FUUN, MagicalCatVariant.OJI, MagicalCatVariant.GEKIDO, MagicalCatVariant.GOMAN, MagicalCatVariant.SENBO, MagicalCatVariant.TAIDA);
+            tag(KoratioTags.MagicalCatVariants.DEFAULT_SPAWNS).add(MagicalCatVariants.AKUMA.getKey(), MagicalCatVariants.FUKU.getKey(), MagicalCatVariants.FUUN.getKey(), MagicalCatVariants.OJI.getKey(), MagicalCatVariants.GEKIDO.getKey(), MagicalCatVariants.GOMAN.getKey(), MagicalCatVariants.SENBO.getKey(), MagicalCatVariants.TAIDA.getKey());
         }
     }
 

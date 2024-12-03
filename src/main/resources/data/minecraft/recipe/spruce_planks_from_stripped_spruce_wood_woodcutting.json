@@ -1,0 +1,8 @@
+{
+  "type": "koratio:woodcutter",
+  "ingredient": "minecraft:stripped_spruce_wood",
+  "result": {
+    "count": 6,
+    "id": "minecraft:spruce_planks"
+  }
+}

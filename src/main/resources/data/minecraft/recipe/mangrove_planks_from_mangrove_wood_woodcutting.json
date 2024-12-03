@@ -1,0 +1,8 @@
+{
+  "type": "koratio:woodcutter",
+  "ingredient": "minecraft:mangrove_wood",
+  "result": {
+    "count": 6,
+    "id": "minecraft:mangrove_planks"
+  }
+}

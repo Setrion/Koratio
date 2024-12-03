@@ -3,9 +3,7 @@
   "category": "misc",
   "group": "leaf_pane",
   "key": {
-    "x": {
-      "item": "minecraft:acacia_leaves"
-    }
+    "x": "minecraft:acacia_leaves"
   },
   "pattern": [
     "xxx",

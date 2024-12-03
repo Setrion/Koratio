@@ -139,13 +139,7 @@ public class Events {
 	public static void onPlayerFish(ItemFishedEvent event) {
 		Player player = event.getEntity();
         if (EnchantmentHelper.getEnchantmentLevel(player.level().registryAccess().lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(KoratioEnchantments.TELEKINESIS), player) > 0) {
-            Iterator<ItemStack> drops = event.getDrops().iterator();
-            while (drops.hasNext()) {
-                ItemStack current = drops.next();
-                if (player.addItem(current)) {
-                    drops.remove();
-                }
-            }
+            event.getDrops().removeIf(player::addItem);
         }
     }
 }

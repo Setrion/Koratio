@@ -3,9 +3,7 @@
   "category": "misc",
   "group": "leaf_pane",
   "key": {
-    "x": {
-      "item": "koratio:rugona_leaves"
-    }
+    "x": "koratio:rugona_leaves"
   },
   "pattern": [
     "xxx",

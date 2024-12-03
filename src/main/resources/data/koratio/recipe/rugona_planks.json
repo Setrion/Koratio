@@ -3,9 +3,7 @@
   "category": "building",
   "group": "planks",
   "ingredients": [
-    {
-      "tag": "koratio:rugona_logs"
-    }
+    "#koratio:rugona_logs"
   ],
   "result": {
     "count": 4,

@@ -1,0 +1,8 @@
+{
+  "type": "koratio:woodcutter",
+  "ingredient": "koratio:pango_planks",
+  "result": {
+    "count": 2,
+    "id": "koratio:pango_slab"
+  }
+}

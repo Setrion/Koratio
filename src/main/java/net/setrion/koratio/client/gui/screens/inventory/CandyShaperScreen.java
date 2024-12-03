@@ -2,7 +2,6 @@ package net.setrion.koratio.client.gui.screens.inventory;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.*;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.gui.screens.inventory.CyclingSlotBackground;
@@ -26,7 +25,9 @@ import java.util.List;
 import java.util.Optional;
 
 @OnlyIn(Dist.CLIENT)
-public class CandyShaperScreen extends AbstractContainerScreen<CandyShaperMenu> {private static final ResourceLocation BG_LOCATION = ResourceLocation.fromNamespaceAndPath(Koratio.MOD_ID, "textures/gui/container/candy_shaper.png");
+public class CandyShaperScreen extends AbstractContainerScreen<CandyShaperMenu> {
+
+    private static final ResourceLocation BG_LOCATION = ResourceLocation.fromNamespaceAndPath(Koratio.MOD_ID, "textures/gui/container/candy_shaper.png");
 
     private final CandyShaperBlockEntity blockEntity;
     private static final Component MISSING_TEMPLATE_TOOLTIP = Component.translatable("container.candy_shaper.missing_template_tooltip");
@@ -65,13 +66,13 @@ public class CandyShaperScreen extends AbstractContainerScreen<CandyShaperMenu> 
         graphics.blit(RenderType::guiTextured, BG_LOCATION, i, j, 0F, 0F, imageWidth, imageHeight, 256, 256);
 
         if (!this.blockEntity.getFluidHandler().getFluidInTank(0).isEmpty()) {
-            drawFluid(graphics, 16, 44, 0, this.blockEntity.getFluidHandler().getFluidInTank(0).getFluid(), i+8, j+19);
+            drawFluid(graphics, 0, this.blockEntity.getFluidHandler().getFluidInTank(0).getFluid(), i+8, j+19);
         }
         if (!this.blockEntity.getFluidHandler().getFluidInTank(1).isEmpty()) {
-            drawFluid(graphics, 16, 44, 1, this.blockEntity.getFluidHandler().getFluidInTank(1).getFluid(), i+44, j+19);
+            drawFluid(graphics, 1, this.blockEntity.getFluidHandler().getFluidInTank(1).getFluid(), i+44, j+19);
         }
-        graphics.blit(RenderType::guiTextured, BG_LOCATION, i+7, j+18, 176, 0, 18, 46, 256, 256);
-        graphics.blit(RenderType::guiTextured, BG_LOCATION, i+43, j+18, 176, 0, 18, 46, 256, 256);
+        graphics.blit(RenderType::guiTexturedOverlay, BG_LOCATION, i+7, j+18, 176, 0, 18, 46, 256, 256);
+        graphics.blit(RenderType::guiTexturedOverlay, BG_LOCATION, i+43, j+18, 176, 0, 18, 46, 256, 256);
         this.templateIcon.render(this.menu, graphics, tick, this.leftPos, this.topPos);
     }
 
@@ -133,30 +134,34 @@ public class CandyShaperScreen extends AbstractContainerScreen<CandyShaperMenu> 
         return i != 0 ? i * 44 / 2000 : 0;
     }
 
-    private void drawFluid(GuiGraphics guiGraphics, final int width, final int height, int slot, Fluid fluid, int posX, int posY) {
+    private void drawFluid(GuiGraphics guiGraphics, int slot, Fluid fluid, int posX, int posY) {
         int scale = getFluidStoredScaled(slot);
         long amount = menu.getFluidSlot(slot).getFluid().getAmount();
         if (amount > 0 && scale < 1) {
             scale = 1;
         }
-        if (scale > height) {
-            scale = height;
+        if (scale > 44) {
+            scale = 44;
         }
-        TextureAtlasSprite still = Minecraft.getInstance().getModelManager().getAtlas(InventoryMenu.BLOCK_ATLAS).getSprite(IClientFluidTypeExtensions.of(fluid).getStillTexture());
 
-        drawTiledSprite(guiGraphics, width, height, scale, still, posX, posY);
+        IClientFluidTypeExtensions fluidTypeExtensions = IClientFluidTypeExtensions.of(fluid);
+        ResourceLocation stillTexture = fluidTypeExtensions.getStillTexture(menu.getFluidSlot(slot).getFluid());
+        if(stillTexture == null) return;
+
+        TextureAtlasSprite sprite = minecraft.getTextureAtlas(InventoryMenu.BLOCK_ATLAS).apply(stillTexture);
+        drawTiledSprite(guiGraphics, scale, sprite, posX, posY);
     }
 
-    private static void drawTiledSprite(GuiGraphics guiGraphics, final int tiledWidth, final int tiledHeight, long scaledAmount, TextureAtlasSprite sprite, int posX, int posY) {
+    private static void drawTiledSprite(GuiGraphics guiGraphics, long scaledAmount, TextureAtlasSprite sprite, int posX, int posY) {
         RenderSystem.setShaderTexture(0, InventoryMenu.BLOCK_ATLAS);
         Matrix4f matrix = guiGraphics.pose().last().pose();
 
-        final int xTileCount = tiledWidth / 16;
-        final int xRemainder = tiledWidth - (xTileCount * 16);
+        final int xTileCount = 1;
+        final int xRemainder = 16 - (xTileCount * 16);
         final long yTileCount = scaledAmount / 16;
         final long yRemainder = scaledAmount - (yTileCount * 16);
 
-        final int yStart = tiledHeight + posY;
+        final int yStart = 44 + posY;
 
         for (int xTile = 0; xTile <= xTileCount; xTile++) {
             for (int yTile = 0; yTile <= yTileCount; yTile++) {
@@ -166,22 +171,22 @@ public class CandyShaperScreen extends AbstractContainerScreen<CandyShaperMenu> 
                 int y = yStart - ((yTile + 1) * 16);
                 if (width > 0 && height > 0) {
                     long maskTop = 16 - height;
-                    int maskRight = 16 - width;
                     float uMin = sprite.getU0();
                     float uMax = sprite.getU1();
                     float vMin = sprite.getV0();
                     float vMax = sprite.getV1();
-                    uMax = uMax - (maskRight / 16F * (uMax - uMin));
+                    uMax = uMax - (0 / 16F * (uMax - uMin));
                     vMax = vMax - (maskTop / 16F * (vMax - vMin));
 
-                    RenderSystem.disableDepthTest();
                     Tesselator tesselator = Tesselator.getInstance();
                     BufferBuilder bufferBuilder = tesselator.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX);
                     bufferBuilder.addVertex(matrix, x, y + 16, 16).setUv(uMin, vMax);
-                    bufferBuilder.addVertex(matrix, x + 16 - maskRight, y + 16, 16).setUv(uMax, vMax);
-                    bufferBuilder.addVertex(matrix, x + 16 - maskRight, y + maskTop, 16).setUv(uMax, vMin);
+                    bufferBuilder.addVertex(matrix, x + 16, y + 16, 16).setUv(uMax, vMax);
+                    bufferBuilder.addVertex(matrix, x + 16, y + maskTop, 16).setUv(uMax, vMin);
                     bufferBuilder.addVertex(matrix, x, y + maskTop, 16).setUv(uMin, vMin);
+                    RenderSystem.enableDepthTest();
                     BufferUploader.drawWithShader(bufferBuilder.buildOrThrow());
+                    RenderSystem.disableDepthTest();
                 }
             }
         }

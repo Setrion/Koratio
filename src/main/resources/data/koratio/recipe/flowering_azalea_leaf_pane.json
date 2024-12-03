@@ -3,9 +3,7 @@
   "category": "misc",
   "group": "leaf_pane",
   "key": {
-    "x": {
-      "item": "minecraft:flowering_azalea_leaves"
-    }
+    "x": "minecraft:flowering_azalea_leaves"
   },
   "pattern": [
     "xxx",

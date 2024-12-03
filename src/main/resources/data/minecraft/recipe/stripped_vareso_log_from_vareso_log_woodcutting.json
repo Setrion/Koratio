@@ -1,0 +1,8 @@
+{
+  "type": "koratio:woodcutter",
+  "ingredient": "koratio:vareso_log",
+  "result": {
+    "count": 1,
+    "id": "koratio:stripped_vareso_log"
+  }
+}

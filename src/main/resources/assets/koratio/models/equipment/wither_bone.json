@@ -1,0 +1,14 @@
+{
+  "layers": {
+    "humanoid": [
+      {
+        "texture": "koratio:wither_bone"
+      }
+    ],
+    "humanoid_leggings": [
+      {
+        "texture": "koratio:wither_bone"
+      }
+    ]
+  }
+}

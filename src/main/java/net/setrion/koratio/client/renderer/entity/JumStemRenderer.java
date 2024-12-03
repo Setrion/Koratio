@@ -33,6 +33,13 @@ public class JumStemRenderer extends MobRenderer<JumStem, JumstemRenderState, Ju
 	}
 
 	@Override
+	public void extractRenderState(JumStem entity, JumstemRenderState state, float f) {
+		super.extractRenderState(entity, state, f);
+		state.variant = entity.getVariant();
+		state.mushrooms = entity.getMushroomAmount();
+	}
+
+	@Override
 	public ResourceLocation getTextureLocation(JumstemRenderState state) {
 		return ResourceLocation.fromNamespaceAndPath(Koratio.MOD_ID, "textures/entity/jumstem/"+state.getVariant().getName()+".png");
 	}

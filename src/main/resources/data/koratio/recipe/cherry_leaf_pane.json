@@ -3,9 +3,7 @@
   "category": "misc",
   "group": "leaf_pane",
   "key": {
-    "x": {
-      "item": "minecraft:cherry_leaves"
-    }
+    "x": "minecraft:cherry_leaves"
   },
   "pattern": [
     "xxx",

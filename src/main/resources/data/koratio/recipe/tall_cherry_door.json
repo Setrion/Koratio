@@ -3,12 +3,8 @@
   "category": "redstone",
   "group": "tall_wooden_door",
   "key": {
-    "#": {
-      "item": "minecraft:cherry_door"
-    },
-    "x": {
-      "item": "minecraft:cherry_planks"
-    }
+    "#": "minecraft:cherry_door",
+    "x": "minecraft:cherry_planks"
   },
   "pattern": [
     "x",

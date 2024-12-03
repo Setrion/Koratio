@@ -1,0 +1,8 @@
+{
+  "type": "koratio:woodcutter",
+  "ingredient": "koratio:elven_log",
+  "result": {
+    "count": 1,
+    "id": "koratio:stripped_cyan_elven_log"
+  }
+}

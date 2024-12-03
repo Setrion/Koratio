@@ -12,12 +12,16 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.event.RegisterColorHandlersEvent;
 import net.setrion.koratio.Koratio;
 import net.setrion.koratio.registry.KoratioBlocks;
+import net.setrion.koratio.registry.KoratioDataComponents;
 import net.setrion.koratio.registry.KoratioItems;
 import net.setrion.koratio.scroll.ScrollUtils;
 import net.setrion.koratio.world.item.ColoredCandyItem;
+import net.setrion.koratio.world.item.Convertible;
 import net.setrion.koratio.world.item.PipingBagItem;
 import net.setrion.koratio.world.level.block.SugarglassFlowerBlock;
 import net.setrion.koratio.world.level.block.entity.GlazedBlockEntity;
+
+import java.awt.*;
 
 @EventBusSubscriber(modid = Koratio.MOD_ID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public class ColorHandler {
@@ -136,5 +140,19 @@ public class ColorHandler {
 		for (ColoredCandyItem coloredCandyItem : ColoredCandyItem.candy()) {
 			event.register((stack, tintIndex) -> ARGB.opaque(coloredCandyItem.getColor(tintIndex)), coloredCandyItem);
 		}
+		event.register((stack, tintIndex) -> {
+			if (tintIndex == 1) {
+				if (stack.getItem() instanceof Convertible convertible && stack.has(KoratioDataComponents.CONVERTIBLE_DATA)) {
+					if (!convertible.getConvertibles().isEmpty() && convertible.getConvertibles().containsKey(stack.getComponents().get(KoratioDataComponents.CONVERTIBLE_DATA.get()).dimension())) {
+						Color color = convertible.getConvertibles().get(stack.getComponents().get(KoratioDataComponents.CONVERTIBLE_DATA.get()).dimension()).color();
+						float alpha = (255f / 600f) * stack.getComponents().get(KoratioDataComponents.CONVERTIBLE_DATA.get()).convert_time();
+						System.out.println(alpha + ", " + convertible.getConversionTime());
+						System.out.println(ARGB.color((int) alpha, color.getRed(), color.getGreen(), color.getBlue()));
+						return ARGB.color((int) alpha, 255, 255, 255);
+					}
+				}
+			}
+			return -1;
+		}, KoratioItems.VARYNIUM_INGOT.get());
 	}
 }

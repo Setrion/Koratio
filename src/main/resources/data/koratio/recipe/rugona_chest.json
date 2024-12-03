@@ -3,12 +3,8 @@
   "category": "misc",
   "group": "chests",
   "key": {
-    "#": {
-      "item": "koratio:rugona_planks"
-    },
-    "x": {
-      "tag": "c:chests/wooden"
-    }
+    "#": "koratio:rugona_planks",
+    "x": "#c:chests/wooden"
   },
   "pattern": [
     "###",

@@ -3,9 +3,7 @@
   "category": "misc",
   "group": "boat",
   "key": {
-    "#": {
-      "item": "koratio:candy_planks"
-    }
+    "#": "koratio:candy_planks"
   },
   "pattern": [
     "# #",

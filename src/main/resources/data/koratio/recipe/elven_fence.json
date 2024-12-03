@@ -3,12 +3,8 @@
   "category": "misc",
   "group": "wooden_fence",
   "key": {
-    "#": {
-      "item": "minecraft:stick"
-    },
-    "x": {
-      "item": "koratio:elven_planks"
-    }
+    "#": "minecraft:stick",
+    "x": "koratio:elven_planks"
   },
   "pattern": [
     "x#x",

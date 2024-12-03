@@ -1,0 +1,8 @@
+{
+  "type": "koratio:woodcutter",
+  "ingredient": "minecraft:cherry_log",
+  "result": {
+    "count": 6,
+    "id": "minecraft:cherry_planks"
+  }
+}

@@ -2,18 +2,10 @@
   "type": "minecraft:crafting_shaped",
   "category": "equipment",
   "key": {
-    "b": {
-      "tag": "minecraft:wooden_buttons"
-    },
-    "g": {
-      "item": "minecraft:glass_bottle"
-    },
-    "i": {
-      "item": "minecraft:bamboo"
-    },
-    "s": {
-      "item": "minecraft:string"
-    }
+    "b": "#minecraft:wooden_buttons",
+    "g": "minecraft:glass_bottle",
+    "i": "minecraft:bamboo",
+    "s": "minecraft:string"
   },
   "pattern": [
     " sb",

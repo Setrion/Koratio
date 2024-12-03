@@ -2,9 +2,7 @@
   "type": "minecraft:crafting_shapeless",
   "category": "redstone",
   "ingredients": [
-    {
-      "item": "koratio:green_elven_planks"
-    }
+    "koratio:green_elven_planks"
   ],
   "result": {
     "count": 1,

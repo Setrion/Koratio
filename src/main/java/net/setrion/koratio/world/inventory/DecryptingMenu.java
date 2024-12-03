@@ -27,9 +27,9 @@ import net.setrion.koratio.world.item.ScrollItem;
 public class DecryptingMenu extends AbstractContainerMenu {
 	
 	public static final ResourceLocation BLOCK_ATLAS = ResourceLocation.withDefaultNamespace("textures/atlas/blocks.png");
-	public static final ResourceLocation EMPTY_SCROLL_SLOT = ResourceLocation.fromNamespaceAndPath(Koratio.MOD_ID, "item/empty_scroll_slot");
-	public static final ResourceLocation EMPTY_BOOK_SLOT = ResourceLocation.fromNamespaceAndPath(Koratio.MOD_ID, "item/empty_book_slot");
-	public static final ResourceLocation EMPTY_PAPER_SLOT = ResourceLocation.fromNamespaceAndPath(Koratio.MOD_ID, "item/empty_paper_slot");
+	public static final ResourceLocation EMPTY_SCROLL_SLOT = ResourceLocation.fromNamespaceAndPath(Koratio.MOD_ID, "item/empty_slot_scroll");
+	public static final ResourceLocation EMPTY_BOOK_SLOT = ResourceLocation.fromNamespaceAndPath(Koratio.MOD_ID, "item/empty_slot_book");
+	public static final ResourceLocation EMPTY_PAPER_SLOT = ResourceLocation.fromNamespaceAndPath(Koratio.MOD_ID, "item/empty_slot_paper");
 	private final ContainerLevelAccess access;
 	private final DataSlot chance = DataSlot.standalone();
 	private final DataSlot cost = DataSlot.standalone();

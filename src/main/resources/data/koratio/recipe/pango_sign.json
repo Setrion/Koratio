@@ -3,12 +3,8 @@
   "category": "misc",
   "group": "wooden_sign",
   "key": {
-    "#": {
-      "item": "minecraft:stick"
-    },
-    "x": {
-      "item": "koratio:pango_planks"
-    }
+    "#": "minecraft:stick",
+    "x": "koratio:pango_planks"
   },
   "pattern": [
     "xxx",

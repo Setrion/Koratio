@@ -3,12 +3,8 @@
   "category": "redstone",
   "group": "tall_wooden_door",
   "key": {
-    "#": {
-      "item": "minecraft:warped_door"
-    },
-    "x": {
-      "item": "minecraft:warped_planks"
-    }
+    "#": "minecraft:warped_door",
+    "x": "minecraft:warped_planks"
   },
   "pattern": [
     "x",

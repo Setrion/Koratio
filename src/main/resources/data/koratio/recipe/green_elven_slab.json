@@ -3,9 +3,7 @@
   "category": "building",
   "group": "wooden_slab",
   "key": {
-    "x": {
-      "item": "koratio:green_elven_planks"
-    }
+    "x": "koratio:green_elven_planks"
   },
   "pattern": [
     "xxx"

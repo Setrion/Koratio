@@ -13,6 +13,8 @@ import net.setrion.koratio.client.model.block.RemainsModel;
 public class ModelLayers {
 	public static final ModelLayerLocation MAGICAL_CAT = createLocation("magical_cat", "main");
 	public static final ModelLayerLocation BABY_MAGICAL_CAT = createLocation("baby_magical_cat", "main");
+	public static final ModelLayerLocation MAGICAL_CAT_COLLAR = createLocation("magical_cat", "collar");
+	public static final ModelLayerLocation BABY_MAGICAL_CAT_COLLAR = createLocation("baby_magical_cat", "collar");
 	public static final ModelLayerLocation FLUFFER = createLocation("fluffer", "main");
 	public static final ModelLayerLocation FLUFFER_WOOL = createLocation("fluffer", "wool");
 	public static final ModelLayerLocation MOOSHROOM = createLocation("mooshroom", "main");
@@ -91,6 +93,8 @@ public class ModelLayers {
 	public static void register(EntityRenderersEvent.RegisterLayerDefinitions event) {
 		event.registerLayerDefinition(MAGICAL_CAT, MagicalCatModel::createBodyLayer);
 		event.registerLayerDefinition(BABY_MAGICAL_CAT, () -> MagicalCatModel.createBodyLayer().apply(MagicalCatModel.BABY_TRANSFORMER));
+		event.registerLayerDefinition(MAGICAL_CAT_COLLAR, MagicalCatModel::createBodyLayer);
+		event.registerLayerDefinition(BABY_MAGICAL_CAT_COLLAR, () -> MagicalCatModel.createBodyLayer().apply(MagicalCatModel.BABY_TRANSFORMER));
 		event.registerLayerDefinition(FLUFFER, FlufferModel::createBodyLayer);
 		event.registerLayerDefinition(FLUFFER_WOOL, FlufferWoolModel::createWoolLayer);
 		event.registerLayerDefinition(MOOSHROOM, CowModel::createBodyLayer);

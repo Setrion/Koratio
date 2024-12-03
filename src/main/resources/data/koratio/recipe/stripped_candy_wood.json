@@ -3,9 +3,7 @@
   "category": "building",
   "group": "bark",
   "key": {
-    "#": {
-      "item": "koratio:stripped_candy_log"
-    }
+    "#": "koratio:stripped_candy_log"
   },
   "pattern": [
     "##",

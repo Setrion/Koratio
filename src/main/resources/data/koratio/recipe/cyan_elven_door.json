@@ -3,9 +3,7 @@
   "category": "redstone",
   "group": "wooden_door",
   "key": {
-    "x": {
-      "item": "koratio:cyan_elven_planks"
-    }
+    "x": "koratio:cyan_elven_planks"
   },
   "pattern": [
     "xx",

@@ -3,12 +3,8 @@
   "category": "misc",
   "group": "chests",
   "key": {
-    "#": {
-      "item": "koratio:green_elven_planks"
-    },
-    "x": {
-      "tag": "c:chests/wooden"
-    }
+    "#": "koratio:green_elven_planks",
+    "x": "#c:chests/wooden"
   },
   "pattern": [
     "###",

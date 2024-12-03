@@ -2,12 +2,8 @@
   "type": "minecraft:crafting_shapeless",
   "category": "misc",
   "ingredients": [
-    {
-      "item": "minecraft:bucket"
-    },
-    {
-      "item": "koratio:sticky_white_sugar_block"
-    }
+    "minecraft:bucket",
+    "koratio:sticky_white_sugar_block"
   ],
   "result": {
     "count": 1,

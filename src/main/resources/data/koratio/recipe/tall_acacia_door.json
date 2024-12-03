@@ -3,12 +3,8 @@
   "category": "redstone",
   "group": "tall_wooden_door",
   "key": {
-    "#": {
-      "item": "minecraft:acacia_door"
-    },
-    "x": {
-      "item": "minecraft:acacia_planks"
-    }
+    "#": "minecraft:acacia_door",
+    "x": "minecraft:acacia_planks"
   },
   "pattern": [
     "x",

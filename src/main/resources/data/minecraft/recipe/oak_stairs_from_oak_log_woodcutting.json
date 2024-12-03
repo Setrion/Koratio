@@ -1,0 +1,8 @@
+{
+  "type": "koratio:woodcutter",
+  "ingredient": "minecraft:oak_log",
+  "result": {
+    "count": 8,
+    "id": "minecraft:oak_stairs"
+  }
+}

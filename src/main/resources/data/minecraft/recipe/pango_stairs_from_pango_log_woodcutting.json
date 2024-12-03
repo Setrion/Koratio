@@ -1,0 +1,8 @@
+{
+  "type": "koratio:woodcutter",
+  "ingredient": "koratio:pango_log",
+  "result": {
+    "count": 8,
+    "id": "koratio:pango_stairs"
+  }
+}

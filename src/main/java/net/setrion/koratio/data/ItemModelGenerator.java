@@ -17,6 +17,7 @@ import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.internal.versions.neoforge.NeoForgeVersion;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.setrion.koratio.Koratio;
+import net.setrion.koratio.client.model.item.ConvertibleItemModelBuilder;
 import net.setrion.koratio.registry.KoratioBlocks;
 import net.setrion.koratio.registry.KoratioItems;
 import net.setrion.koratio.world.item.CandyItem;
@@ -50,6 +51,8 @@ public class ItemModelGenerator extends ItemModelProvider {
 				coloredBonbonItem(candy);
 			}
 		}
+
+		convertibleItem(KoratioItems.VARYNIUM_INGOT);
 
 		blockModel(KoratioBlocks.DECRYPTING_TABLE.get());
 		blockModel(KoratioBlocks.CANDY_SHAPER.get());
@@ -615,6 +618,12 @@ public class ItemModelGenerator extends ItemModelProvider {
 		return withExistingParent(bucket.getId().getPath(), ResourceLocation.fromNamespaceAndPath(NeoForgeVersion.MOD_ID, "item/bucket_drip"))
 				.customLoader(DynamicFluidContainerModelBuilder::begin)
 				.fluid(bucket.get().content);
+	}
+
+	private ConvertibleItemModelBuilder<?> convertibleItem(DeferredItem<Item> item) {
+		return withExistingParent(item.getId().getPath(), ResourceLocation.fromNamespaceAndPath("minecraft", "generated"))
+				.customLoader(ConvertibleItemModelBuilder::begin)
+				.item(item);
 	}
 	
 	private ItemModelBuilder basicTool(DeferredItem<Item> item) {

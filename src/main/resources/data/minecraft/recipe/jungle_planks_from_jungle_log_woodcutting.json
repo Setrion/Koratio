@@ -1,0 +1,8 @@
+{
+  "type": "koratio:woodcutter",
+  "ingredient": "minecraft:jungle_log",
+  "result": {
+    "count": 6,
+    "id": "minecraft:jungle_planks"
+  }
+}

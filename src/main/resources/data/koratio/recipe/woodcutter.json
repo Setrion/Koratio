@@ -2,15 +2,9 @@
   "type": "minecraft:crafting_shaped",
   "category": "building",
   "key": {
-    "i": {
-      "tag": "c:ingots/iron"
-    },
-    "s": {
-      "item": "minecraft:stone"
-    },
-    "w": {
-      "tag": "minecraft:planks"
-    }
+    "i": "#c:ingots/iron",
+    "s": "minecraft:stone",
+    "w": "#minecraft:planks"
   },
   "pattern": [
     " i ",

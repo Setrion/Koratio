@@ -2,33 +2,15 @@
   "type": "minecraft:crafting_shapeless",
   "category": "misc",
   "ingredients": [
-    {
-      "item": "minecraft:lapis_lazuli"
-    },
-    {
-      "item": "minecraft:amethyst_shard"
-    },
-    {
-      "item": "minecraft:quartz"
-    },
-    {
-      "item": "koratio:topaz"
-    },
-    {
-      "item": "koratio:sapphire"
-    },
-    {
-      "item": "koratio:ruby"
-    },
-    {
-      "item": "minecraft:emerald"
-    },
-    {
-      "item": "koratio:onyx"
-    },
-    {
-      "item": "minecraft:diamond"
-    }
+    "minecraft:lapis_lazuli",
+    "minecraft:amethyst_shard",
+    "minecraft:quartz",
+    "koratio:topaz",
+    "koratio:sapphire",
+    "koratio:ruby",
+    "minecraft:emerald",
+    "koratio:onyx",
+    "minecraft:diamond"
   ],
   "result": {
     "count": 1,

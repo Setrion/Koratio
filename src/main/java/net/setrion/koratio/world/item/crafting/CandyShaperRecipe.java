@@ -13,6 +13,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.material.Fluids;
 import net.neoforged.neoforge.fluids.crafting.FluidIngredient;
 import net.neoforged.neoforge.fluids.crafting.SizedFluidIngredient;
+import net.setrion.koratio.registry.KoratioFluids;
 import net.setrion.koratio.registry.KoratioRecipeBookCategories;
 import net.setrion.koratio.registry.KoratioRecipeSerializer;
 import net.setrion.koratio.registry.KoratioRecipeType;
@@ -65,7 +66,7 @@ public class CandyShaperRecipe implements Recipe<FakeInventory> {
 
     @Override
     public PlacementInfo placementInfo() {
-        return null;
+        return PlacementInfo.NOT_PLACEABLE;
     }
 
     @Override
@@ -90,7 +91,7 @@ public class CandyShaperRecipe implements Recipe<FakeInventory> {
                                                     } else {
                                                         return aingredient.length > 2
                                                                 ? DataResult.error(() -> "Too many ingredients for shapeless recipe. The maximum is: 2")
-                                                                : DataResult.success(NonNullList.of(new SizedFluidIngredient(FluidIngredient.of(Fluids.EMPTY), 1), aingredient));
+                                                                : DataResult.success(NonNullList.of(new SizedFluidIngredient(FluidIngredient.of(KoratioFluids.MOLTEN_BLACK_SUGAR.get()), 1), aingredient));
                                                     }
                                                 },
                                                 DataResult::success
@@ -116,7 +117,7 @@ public class CandyShaperRecipe implements Recipe<FakeInventory> {
 
         private static CandyShaperRecipe fromNetwork(RegistryFriendlyByteBuf buffer) {
             int i = buffer.readVarInt();
-            NonNullList<SizedFluidIngredient> nonnulllist = NonNullList.withSize(i, new SizedFluidIngredient(FluidIngredient.of(Fluids.EMPTY), 1));
+            NonNullList<SizedFluidIngredient> nonnulllist = NonNullList.withSize(i, new SizedFluidIngredient(FluidIngredient.of(KoratioFluids.MOLTEN_BLACK_SUGAR.get()), 1));
             nonnulllist.replaceAll(ingredient -> SizedFluidIngredient.STREAM_CODEC.decode(buffer));
             ItemStack template = ItemStack.STREAM_CODEC.decode(buffer);
             ItemStack itemstack = ItemStack.STREAM_CODEC.decode(buffer);

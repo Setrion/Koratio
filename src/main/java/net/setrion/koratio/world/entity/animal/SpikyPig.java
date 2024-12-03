@@ -25,7 +25,7 @@ public class SpikyPig extends Pig {
 	}
 	
 	public static AttributeSupplier.Builder createAttributes() {
-		return Mob.createMobAttributes().add(Attributes.MAX_HEALTH, 25.0D).add(Attributes.MOVEMENT_SPEED, 0.325D);
+		return Pig.createAttributes();
 	}
 	
 	protected SoundEvent getAmbientSound() {

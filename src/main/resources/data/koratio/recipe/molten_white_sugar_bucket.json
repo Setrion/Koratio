@@ -3,9 +3,7 @@
   "category": "misc",
   "cookingtime": 200,
   "experience": 0.5,
-  "ingredient": {
-    "item": "koratio:sticky_white_sugar_bucket"
-  },
+  "ingredient": "koratio:sticky_white_sugar_bucket",
   "result": {
     "count": 1,
     "id": "koratio:molten_white_sugar_bucket"

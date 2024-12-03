@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:smelting",
+  "category": "misc",
+  "cookingtime": 200,
+  "experience": 1.0,
+  "group": "onyx",
+  "ingredient": "koratio:deepslate_onyx_ore",
+  "result": {
+    "count": 1,
+    "id": "koratio:onyx"
+  }
+}

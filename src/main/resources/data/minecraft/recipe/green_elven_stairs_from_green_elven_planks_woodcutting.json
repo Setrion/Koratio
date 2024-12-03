@@ -1,0 +1,8 @@
+{
+  "type": "koratio:woodcutter",
+  "ingredient": "koratio:green_elven_planks",
+  "result": {
+    "count": 1,
+    "id": "koratio:green_elven_stairs"
+  }
+}

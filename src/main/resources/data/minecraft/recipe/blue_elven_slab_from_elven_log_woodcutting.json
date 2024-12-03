@@ -1,0 +1,8 @@
+{
+  "type": "koratio:woodcutter",
+  "ingredient": "koratio:elven_log",
+  "result": {
+    "count": 8,
+    "id": "koratio:blue_elven_slab"
+  }
+}

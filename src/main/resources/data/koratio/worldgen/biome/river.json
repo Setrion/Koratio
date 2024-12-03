@@ -1,5 +1,5 @@
 {
-  "carvers": {},
+  "carvers": [],
   "downfall": 0.1,
   "effects": {
     "fog_color": 12648408,
@@ -33,7 +33,7 @@
     [],
     [
       "minecraft:seagrass_normal",
-      "minecraft:seagrass_simple"
+      "minecraft:seagrass_river"
     ]
   ],
   "has_precipitation": true,

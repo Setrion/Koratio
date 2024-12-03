@@ -3,9 +3,7 @@
   "category": "redstone",
   "group": "wooden_pressure_plate",
   "key": {
-    "x": {
-      "item": "koratio:green_elven_planks"
-    }
+    "x": "koratio:green_elven_planks"
   },
   "pattern": [
     "xx"

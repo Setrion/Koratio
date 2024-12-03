@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "koratio:rainbow_gem_block"
+  ],
+  "result": {
+    "count": 9,
+    "id": "koratio:rainbow_gem"
+  }
+}

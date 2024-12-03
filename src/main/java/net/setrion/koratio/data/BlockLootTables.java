@@ -413,7 +413,7 @@ public class BlockLootTables extends net.minecraft.data.loot.BlockLootSubProvide
 		add(KoratioBlocks.PANGO_SLAB.get(), this::createSlabItemTable);
 		dropSelf(KoratioBlocks.PANGO_STAIRS.get());
 		add(KoratioBlocks.PANGO_LEAVES.get(), (block) -> createLeavesDrops(block, KoratioBlocks.PANGO_SAPLING.get(), DEFAULT_SAPLING_DROP_RATES).withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(2.0F)).when(doesNotHaveShearsOrSilkTouch()).add(applyExplosionCondition(block, LootItem.lootTableItem(KoratioItems.RAW_PANGO.get())).when(BonusLevelTableCondition.bonusLevelFlatChance(enchantmentRegistryLookup.getOrThrow(Enchantments.FORTUNE), 0.25F, 0.255555557F, 0.3125F, 0.08333334F, 1.25F)))));
-		add(KoratioBlocks.PANGO_LEAF_PANE.get(), createSilkTouchOrShearsDispatchTable(KoratioBlocks.PANGO_LEAF_PANE.get(), applyExplosionCondition(KoratioBlocks.PANGO_LEAF_PANE, LootItem.lootTableItem(Items.AIR))));
+		add(KoratioBlocks.PANGO_LEAF_PANE.get(), createSilkTouchOrShearsDispatchTable(KoratioBlocks.PANGO_LEAF_PANE.get(), applyExplosionCondition(KoratioBlocks.PANGO_LEAF_PANE, LootItem.lootTableItem(Items.STICK))));
 		dropSelf(KoratioBlocks.PANGO_FENCE.get());
 		dropSelf(KoratioBlocks.PANGO_FENCE_GATE.get());
 		add(KoratioBlocks.PANGO_DOOR.get(), createSinglePropConditionTable(KoratioBlocks.PANGO_DOOR.get(), DoorBlock.HALF, DoubleBlockHalf.LOWER));
@@ -438,7 +438,7 @@ public class BlockLootTables extends net.minecraft.data.loot.BlockLootSubProvide
 		add(KoratioBlocks.RUGONA_SLAB.get(), createSlabItemTable(KoratioBlocks.RUGONA_SLAB.get()));
 		dropSelf(KoratioBlocks.RUGONA_STAIRS.get());
 		add(KoratioBlocks.RUGONA_LEAVES.get(), (block) -> createLeavesDrops(block, KoratioBlocks.RUGONA_SAPLING.get(), DEFAULT_SAPLING_DROP_RATES));
-		add(KoratioBlocks.RUGONA_LEAF_PANE.get(), createSilkTouchOrShearsDispatchTable(KoratioBlocks.RUGONA_LEAF_PANE.get(), applyExplosionCondition(KoratioBlocks.RUGONA_LEAF_PANE, LootItem.lootTableItem(Items.AIR))));
+		add(KoratioBlocks.RUGONA_LEAF_PANE.get(), createSilkTouchOrShearsDispatchTable(KoratioBlocks.RUGONA_LEAF_PANE.get(), applyExplosionCondition(KoratioBlocks.RUGONA_LEAF_PANE, LootItem.lootTableItem(Items.STICK))));
 		dropSelf(KoratioBlocks.RUGONA_FENCE.get());
 		dropSelf(KoratioBlocks.RUGONA_FENCE_GATE.get());
 		add(KoratioBlocks.RUGONA_DOOR.get(), createSinglePropConditionTable(KoratioBlocks.RUGONA_DOOR.get(), DoorBlock.HALF, DoubleBlockHalf.LOWER));
@@ -463,7 +463,7 @@ public class BlockLootTables extends net.minecraft.data.loot.BlockLootSubProvide
 		add(KoratioBlocks.VARESO_SLAB.get(), createSlabItemTable(KoratioBlocks.VARESO_SLAB.get()));
 		dropSelf(KoratioBlocks.VARESO_STAIRS.get());
 		add(KoratioBlocks.VARESO_LEAVES.get(), (block) -> createLeavesDrops(block, KoratioBlocks.VARESO_SAPLING.get(), DEFAULT_SAPLING_DROP_RATES).withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F)).when(doesNotHaveShearsOrSilkTouch()).add(LootItem.lootTableItem(Items.GOLDEN_APPLE).setWeight(99)).add(LootItem.lootTableItem(Items.ENCHANTED_GOLDEN_APPLE).setWeight(1))));
-		add(KoratioBlocks.VARESO_LEAF_PANE.get(), createSilkTouchOrShearsDispatchTable(KoratioBlocks.VARESO_LEAF_PANE.get(), applyExplosionCondition(KoratioBlocks.VARESO_LEAF_PANE, LootItem.lootTableItem(Items.AIR))));
+		add(KoratioBlocks.VARESO_LEAF_PANE.get(), createSilkTouchOrShearsDispatchTable(KoratioBlocks.VARESO_LEAF_PANE.get(), applyExplosionCondition(KoratioBlocks.VARESO_LEAF_PANE, LootItem.lootTableItem(Items.STICK))));
 		dropSelf(KoratioBlocks.VARESO_FENCE.get());
 		dropSelf(KoratioBlocks.VARESO_FENCE_GATE.get());
 		add(KoratioBlocks.VARESO_DOOR.get(), createSinglePropConditionTable(KoratioBlocks.VARESO_DOOR.get(), DoorBlock.HALF, DoubleBlockHalf.LOWER));
@@ -519,7 +519,7 @@ public class BlockLootTables extends net.minecraft.data.loot.BlockLootSubProvide
 		add(KoratioBlocks.CHOCOLATE_OAK_SLAB.get(), this::createSlabItemTable);
 		dropSelf(KoratioBlocks.CHOCOLATE_OAK_STAIRS.get());
 		add(KoratioBlocks.CHOCOLATE_OAK_LEAVES.get(), (block) -> createLeavesDrops(block, KoratioBlocks.CHOCOLATE_OAK_SAPLING.get(), DEFAULT_SAPLING_DROP_RATES).withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(2.0F)).when(doesNotHaveShearsOrSilkTouch()).add(applyExplosionCondition(block, LootItem.lootTableItem(Items.COCOA_BEANS)).when(BonusLevelTableCondition.bonusLevelFlatChance(enchantmentRegistryLookup.getOrThrow(Enchantments.FORTUNE), 0.25F, 0.255555557F, 0.3125F, 0.08333334F, 1.25F)))));
-		add(KoratioBlocks.CHOCOLATE_OAK_LEAF_PANE.get(), createSilkTouchOrShearsDispatchTable(KoratioBlocks.CHOCOLATE_OAK_LEAF_PANE.get(), applyExplosionCondition(KoratioBlocks.CHOCOLATE_OAK_LEAF_PANE, LootItem.lootTableItem(Items.AIR))));
+		add(KoratioBlocks.CHOCOLATE_OAK_LEAF_PANE.get(), createSilkTouchOrShearsDispatchTable(KoratioBlocks.CHOCOLATE_OAK_LEAF_PANE.get(), applyExplosionCondition(KoratioBlocks.CHOCOLATE_OAK_LEAF_PANE, LootItem.lootTableItem(Items.STICK))));
 		dropSelf(KoratioBlocks.CHOCOLATE_OAK_FENCE.get());
 		dropSelf(KoratioBlocks.CHOCOLATE_OAK_FENCE_GATE.get());
 		add(KoratioBlocks.CHOCOLATE_OAK_DOOR.get(), createSinglePropConditionTable(KoratioBlocks.CHOCOLATE_OAK_DOOR.get(), DoorBlock.HALF, DoubleBlockHalf.LOWER));
@@ -559,7 +559,7 @@ public class BlockLootTables extends net.minecraft.data.loot.BlockLootSubProvide
 		dropSelf(KoratioBlocks.CYAN_ELVEN_STAIRS.get());
 		dropSelf(KoratioBlocks.GREEN_ELVEN_STAIRS.get());
 		add(KoratioBlocks.ELVEN_LEAVES.get(), (block) -> createLeavesDrops(block, KoratioBlocks.ELVEN_SAPLING.get(), DEFAULT_SAPLING_DROP_RATES));
-		add(KoratioBlocks.ELVEN_LEAF_PANE.get(), createSilkTouchOrShearsDispatchTable(KoratioBlocks.ELVEN_LEAF_PANE.get(), applyExplosionCondition(KoratioBlocks.ELVEN_LEAF_PANE, LootItem.lootTableItem(Items.AIR))));
+		add(KoratioBlocks.ELVEN_LEAF_PANE.get(), createSilkTouchOrShearsDispatchTable(KoratioBlocks.ELVEN_LEAF_PANE.get(), applyExplosionCondition(KoratioBlocks.ELVEN_LEAF_PANE, LootItem.lootTableItem(Items.STICK))));
 		dropSelf(KoratioBlocks.ELVEN_FENCE.get());
 		dropSelf(KoratioBlocks.BLUE_ELVEN_FENCE.get());
 		dropSelf(KoratioBlocks.CYAN_ELVEN_FENCE.get());
@@ -671,16 +671,16 @@ public class BlockLootTables extends net.minecraft.data.loot.BlockLootSubProvide
 		add(KoratioBlocks.FANTASIA_PORTAL.get(), noDrop());
 
 		//Vanilla Variants
-		add(KoratioBlocks.OAK_LEAF_PANE.get(), createSilkTouchOrShearsDispatchTable(KoratioBlocks.OAK_LEAF_PANE.get(), applyExplosionCondition(KoratioBlocks.OAK_LEAF_PANE.get(), LootItem.lootTableItem(Items.AIR))));
-		add(KoratioBlocks.SPRUCE_LEAF_PANE.get(), createSilkTouchOrShearsDispatchTable(KoratioBlocks.SPRUCE_LEAF_PANE.get(), applyExplosionCondition(KoratioBlocks.SPRUCE_LEAF_PANE, LootItem.lootTableItem(Items.AIR))));
-		add(KoratioBlocks.BIRCH_LEAF_PANE.get(), createSilkTouchOrShearsDispatchTable(KoratioBlocks.BIRCH_LEAF_PANE.get(), applyExplosionCondition(KoratioBlocks.BIRCH_LEAF_PANE, LootItem.lootTableItem(Items.AIR))));
-		add(KoratioBlocks.JUNGLE_LEAF_PANE.get(), createSilkTouchOrShearsDispatchTable(KoratioBlocks.JUNGLE_LEAF_PANE.get(), applyExplosionCondition(KoratioBlocks.JUNGLE_LEAF_PANE, LootItem.lootTableItem(Items.AIR))));
-		add(KoratioBlocks.ACACIA_LEAF_PANE.get(), createSilkTouchOrShearsDispatchTable(KoratioBlocks.ACACIA_LEAF_PANE.get(), applyExplosionCondition(KoratioBlocks.ACACIA_LEAF_PANE, LootItem.lootTableItem(Items.AIR))));
-		add(KoratioBlocks.DARK_OAK_LEAF_PANE.get(), createSilkTouchOrShearsDispatchTable(KoratioBlocks.DARK_OAK_LEAF_PANE.get(), applyExplosionCondition(KoratioBlocks.DARK_OAK_LEAF_PANE, LootItem.lootTableItem(Items.AIR))));
-		add(KoratioBlocks.MANGROVE_LEAF_PANE.get(), createSilkTouchOrShearsDispatchTable(KoratioBlocks.MANGROVE_LEAF_PANE.get(), applyExplosionCondition(KoratioBlocks.MANGROVE_LEAF_PANE, LootItem.lootTableItem(Items.AIR))));
-		add(KoratioBlocks.AZALEA_LEAF_PANE.get(), createSilkTouchOrShearsDispatchTable(KoratioBlocks.AZALEA_LEAF_PANE.get(), applyExplosionCondition(KoratioBlocks.AZALEA_LEAF_PANE, LootItem.lootTableItem(Items.AIR))));
-		add(KoratioBlocks.FLOWERING_AZALEA_LEAF_PANE.get(), createSilkTouchOrShearsDispatchTable(KoratioBlocks.FLOWERING_AZALEA_LEAF_PANE.get(), applyExplosionCondition(KoratioBlocks.FLOWERING_AZALEA_LEAF_PANE, LootItem.lootTableItem(Items.AIR))));
-		add(KoratioBlocks.CHERRY_LEAF_PANE.get(), createSilkTouchOrShearsDispatchTable(KoratioBlocks.CHERRY_LEAF_PANE.get(), applyExplosionCondition(KoratioBlocks.CHERRY_LEAF_PANE, LootItem.lootTableItem(Items.AIR))));
+		add(KoratioBlocks.OAK_LEAF_PANE.get(), createSilkTouchOrShearsDispatchTable(KoratioBlocks.OAK_LEAF_PANE.get(), applyExplosionCondition(KoratioBlocks.OAK_LEAF_PANE.get(), LootItem.lootTableItem(Items.STICK))));
+		add(KoratioBlocks.SPRUCE_LEAF_PANE.get(), createSilkTouchOrShearsDispatchTable(KoratioBlocks.SPRUCE_LEAF_PANE.get(), applyExplosionCondition(KoratioBlocks.SPRUCE_LEAF_PANE, LootItem.lootTableItem(Items.STICK))));
+		add(KoratioBlocks.BIRCH_LEAF_PANE.get(), createSilkTouchOrShearsDispatchTable(KoratioBlocks.BIRCH_LEAF_PANE.get(), applyExplosionCondition(KoratioBlocks.BIRCH_LEAF_PANE, LootItem.lootTableItem(Items.STICK))));
+		add(KoratioBlocks.JUNGLE_LEAF_PANE.get(), createSilkTouchOrShearsDispatchTable(KoratioBlocks.JUNGLE_LEAF_PANE.get(), applyExplosionCondition(KoratioBlocks.JUNGLE_LEAF_PANE, LootItem.lootTableItem(Items.STICK))));
+		add(KoratioBlocks.ACACIA_LEAF_PANE.get(), createSilkTouchOrShearsDispatchTable(KoratioBlocks.ACACIA_LEAF_PANE.get(), applyExplosionCondition(KoratioBlocks.ACACIA_LEAF_PANE, LootItem.lootTableItem(Items.STICK))));
+		add(KoratioBlocks.DARK_OAK_LEAF_PANE.get(), createSilkTouchOrShearsDispatchTable(KoratioBlocks.DARK_OAK_LEAF_PANE.get(), applyExplosionCondition(KoratioBlocks.DARK_OAK_LEAF_PANE, LootItem.lootTableItem(Items.STICK))));
+		add(KoratioBlocks.MANGROVE_LEAF_PANE.get(), createSilkTouchOrShearsDispatchTable(KoratioBlocks.MANGROVE_LEAF_PANE.get(), applyExplosionCondition(KoratioBlocks.MANGROVE_LEAF_PANE, LootItem.lootTableItem(Items.STICK))));
+		add(KoratioBlocks.AZALEA_LEAF_PANE.get(), createSilkTouchOrShearsDispatchTable(KoratioBlocks.AZALEA_LEAF_PANE.get(), applyExplosionCondition(KoratioBlocks.AZALEA_LEAF_PANE, LootItem.lootTableItem(Items.STICK))));
+		add(KoratioBlocks.FLOWERING_AZALEA_LEAF_PANE.get(), createSilkTouchOrShearsDispatchTable(KoratioBlocks.FLOWERING_AZALEA_LEAF_PANE.get(), applyExplosionCondition(KoratioBlocks.FLOWERING_AZALEA_LEAF_PANE, LootItem.lootTableItem(Items.STICK))));
+		add(KoratioBlocks.CHERRY_LEAF_PANE.get(), createSilkTouchOrShearsDispatchTable(KoratioBlocks.CHERRY_LEAF_PANE.get(), applyExplosionCondition(KoratioBlocks.CHERRY_LEAF_PANE, LootItem.lootTableItem(Items.STICK))));
 
 		add(KoratioBlocks.TALL_OAK_DOOR.get(), this::createTallDoorTable);
 		add(KoratioBlocks.TALL_SPRUCE_DOOR.get(), this::createTallDoorTable);

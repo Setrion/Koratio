@@ -4,7 +4,6 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.animal.CatVariant;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Block;
@@ -31,6 +30,14 @@ public class KoratioTags {
 		public static final TagKey<Item> MOLTEN_SUGAR_BUCKETS = createItemKey(Koratio.prefix("molten_sugar_buckets"));
 
 		public static final TagKey<Item> TELEKINESIS_ENCHANTABLE = createItemKey(Koratio.prefix("telekinesis_enchantable"));
+
+		public static final TagKey<Item> BONE_TOOL_MATERIALS = createItemKey(Koratio.prefix("bone_tool_materials"));
+		public static final TagKey<Item> WITHER_BONE_TOOL_MATERIALS = createItemKey(Koratio.prefix("wither_bone_tool_materials"));
+		public static final TagKey<Item> VARYNIUM_TOOL_MATERIALS = createItemKey(Koratio.prefix("varynium_tool_materials"));
+
+		public static final TagKey<Item> REPAIRS_BONE_ARMOR = createItemKey(Koratio.prefix("repairs_bone_armor"));
+		public static final TagKey<Item> REPAIRS_WITHER_BONE_ARMOR = createItemKey(Koratio.prefix("repairs_wither_bone_armor"));
+		public static final TagKey<Item> REPAIRS_VARYNIUM_ARMOR = createItemKey(Koratio.prefix("repairs_varynium_armor"));
 
 		//Block-Item Tags
 		public static final TagKey<Item> PANGO_LOGS = createItemKey(Koratio.prefix("pango_logs"));
@@ -126,7 +133,7 @@ public class KoratioTags {
 		public static final TagKey<MagicalCatVariant> DEFAULT_SPAWNS = create(Koratio.prefix("default_spawns"));
 
 		private static TagKey<MagicalCatVariant> create(ResourceLocation name) {
-			return TagKey.create(KoratioRegistries.MAGICAL_CAT_VARIANT, name);
+			return TagKey.create(KoratioRegistries.MAGICAL_CAT_VARIANT_KEY, name);
 		}
 	}
 	

@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_blue_elven_planks": {
+      "conditions": {
+        "items": [
+          {
+            "items": "koratio:blue_elven_planks"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "minecraft:blue_elven_slab_from_blue_elven_planks_woodcutting"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_blue_elven_planks"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "minecraft:blue_elven_slab_from_blue_elven_planks_woodcutting"
+    ]
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "minecraft:vareso_planks_from_vareso_log_woodcutting"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "has_vareso_log": {
+      "conditions": {
+        "items": [
+          {
+            "items": "koratio:vareso_log"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_vareso_log"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "minecraft:vareso_planks_from_vareso_log_woodcutting"
+    ]
+  }
+}

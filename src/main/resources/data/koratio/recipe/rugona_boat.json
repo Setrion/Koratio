@@ -3,9 +3,7 @@
   "category": "misc",
   "group": "boat",
   "key": {
-    "#": {
-      "item": "koratio:rugona_planks"
-    }
+    "#": "koratio:rugona_planks"
   },
   "pattern": [
     "# #",

@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_elven_log": {
+      "conditions": {
+        "items": [
+          {
+            "items": "koratio:elven_log"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "minecraft:elven_slab_from_elven_log_woodcutting"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_elven_log"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "minecraft:elven_slab_from_elven_log_woodcutting"
+    ]
+  }
+}

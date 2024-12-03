@@ -2,12 +2,8 @@
   "type": "minecraft:crafting_shaped",
   "category": "redstone",
   "key": {
-    "#": {
-      "item": "minecraft:waxed_weathered_copper_door"
-    },
-    "x": {
-      "item": "minecraft:waxed_weathered_copper"
-    }
+    "#": "minecraft:waxed_weathered_copper_door",
+    "x": "minecraft:waxed_weathered_copper"
   },
   "pattern": [
     "x",

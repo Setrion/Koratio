@@ -1,0 +1,8 @@
+{
+  "type": "koratio:woodcutter",
+  "ingredient": "minecraft:warped_hyphae",
+  "result": {
+    "count": 8,
+    "id": "minecraft:warped_stairs"
+  }
+}

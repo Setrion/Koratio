@@ -1,0 +1,8 @@
+{
+  "type": "koratio:woodcutter",
+  "ingredient": "minecraft:birch_wood",
+  "result": {
+    "count": 6,
+    "id": "minecraft:birch_planks"
+  }
+}

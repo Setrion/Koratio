@@ -3,9 +3,7 @@
   "category": "misc",
   "group": "leaf_pane",
   "key": {
-    "x": {
-      "item": "koratio:pango_leaves"
-    }
+    "x": "koratio:pango_leaves"
   },
   "pattern": [
     "xxx",

@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "koratio:yellow_sugar_block"
+  ],
+  "result": {
+    "count": 9,
+    "id": "koratio:yellow_sugar"
+  }
+}

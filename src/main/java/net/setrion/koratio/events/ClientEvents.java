@@ -28,6 +28,7 @@ import net.setrion.koratio.Koratio;
 import net.setrion.koratio.client.ItemStackBlockEntityRenderer;
 import net.setrion.koratio.client.gui.screens.inventory.ScrollScreen;
 import net.setrion.koratio.client.model.block.GlazedModelLoader;
+import net.setrion.koratio.client.model.item.ConvertibleItemModel;
 import net.setrion.koratio.client.particle.DripParticle;
 import net.setrion.koratio.client.particle.ElvenLeafParticle;
 import net.setrion.koratio.client.particle.TeleporterAscendParticle;
@@ -48,6 +49,7 @@ public class ClientEvents {
 	@SubscribeEvent
 	public static void onModelRegistry(ModelEvent.RegisterGeometryLoaders event) {
 		event.register(Koratio.prefix("glazed"), GlazedModelLoader.INSTANCE);
+		event.register(Koratio.prefix("convertible_item"), ConvertibleItemModel.Loader.INSTANCE);
 	}
 
 	@SubscribeEvent

@@ -3,9 +3,7 @@
   "category": "building",
   "group": "wooden_stairs",
   "key": {
-    "x": {
-      "item": "koratio:rugona_planks"
-    }
+    "x": "koratio:rugona_planks"
   },
   "pattern": [
     "x  ",

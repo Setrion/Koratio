@@ -3,6 +3,7 @@ package net.setrion.koratio.events;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
 import net.neoforged.bus.api.IEventBus;
@@ -13,6 +14,7 @@ import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
 import net.neoforged.neoforge.fluids.FluidType;
 import net.neoforged.neoforge.fluids.RegisterCauldronFluidContentEvent;
+import net.neoforged.neoforge.registries.NewRegistryEvent;
 import net.neoforged.neoforge.registries.RegisterEvent;
 import net.setrion.koratio.Koratio;
 import net.setrion.koratio.data.*;
@@ -21,17 +23,15 @@ import net.setrion.koratio.registry.*;
 import net.setrion.koratio.world.level.biome.FantasiaBiomeProvider;
 
 import java.util.List;
-import java.util.Objects;
 import java.util.concurrent.CompletableFuture;
 
 @EventBusSubscriber(bus=EventBusSubscriber.Bus.MOD)
 public class RegistryEvents {
 
     @SubscribeEvent
-    public static void registerSerializers(RegisterEvent evt) {
-        if (Objects.equals(evt.getRegistry(), BuiltInRegistries.RECIPE_SERIALIZER)) {
+    public static void registerSerializers(RegisterEvent event) {
+        if (event.getRegistryKey().equals(Registries.BIOME_SOURCE)) {
             Registry.register(BuiltInRegistries.BIOME_SOURCE, Koratio.prefix("fantasia_biomes"), FantasiaBiomeProvider.CODEC);
-
             //Registry.register(BuiltInRegistries.CHUNK_GENERATOR, Koratio.prefix("fantasia_chunk_generator"), FantasiaChunkGenerator.CODEC);
         }
     }
@@ -53,6 +53,8 @@ public class RegistryEvents {
         KoratioItems.SPAWN_EGGS.register(modEventBus);
         KoratioLootItemFunctions.LOOT_FUNCTION_TYPES.register(modEventBus);
         KoratioLootModifiers.LOOT_MODIFIERS.register(modEventBus);
+        KoratioDataSerializers.DATA_SERIALIZERS.register(modEventBus);
+        MagicalCatVariants.MAGICAL_CAT_VARIANTS.register(modEventBus);
         KoratioEntityType.ENTITY_TYPES.register(modEventBus);
         KoratioRecipeType.RECIPE_TYPES.register(modEventBus);
         KoratioRecipeSerializer.RECIPE_SERIALIZERS.register(modEventBus);
@@ -63,6 +65,11 @@ public class RegistryEvents {
         KoratioTreeDecoratorTypes.DECORATOR_TYPES.register(modEventBus);
         KoratioVillagerTypes.PROFESSIONS.register(modEventBus);
 	}
+
+    @SubscribeEvent
+    static void registerRegistries(NewRegistryEvent event) {
+        event.register(KoratioRegistries.MAGICAL_CAT_VARIANT_REGISTRY);
+    }
 	
 	@SubscribeEvent
     public static void gatherData(GatherDataEvent event) {
@@ -75,6 +82,7 @@ public class RegistryEvents {
         generator.addProvider(event.includeServer(), new net.neoforged.neoforge.common.data.AdvancementProvider(output, newLookup, helper, List.of(new AdvancementGenerator())));
         generator.addProvider(event.includeClient(), new BlockStateGenerator(output, helper));
         generator.addProvider(event.includeClient(), new ItemModelGenerator(output, helper));
+        generator.addProvider(event.includeClient(), new KoratioEquipmentModels(output));
         generator.addProvider(event.includeClient(), new ParticleGenerator(output, helper));
         generator.addProvider(event.includeServer(), new DataMapGenerator(output, newLookup));
         KoratioTagsGenerator.BlockTagGenerator blockTags = new KoratioTagsGenerator.BlockTagGenerator(output, newLookup, helper);
@@ -82,6 +90,7 @@ public class RegistryEvents {
         generator.addProvider(event.includeServer(), new KoratioTagsGenerator.ItemTagGenerator(output, newLookup, blockTags.contentsGetter(), helper));
         generator.addProvider(event.includeServer(), new KoratioTagsGenerator.EnchantmentTagGenerator(output, newLookup, helper));
         generator.addProvider(event.includeServer(), new KoratioTagsGenerator.EntityTagGenerator(output, newLookup, helper));
+        generator.addProvider(event.includeServer(), new KoratioTagsGenerator.MagicalCatTagGenerator(output, newLookup, helper));
         generator.addProvider(event.includeServer(), new KoratioTagsGenerator.FluidTagGenerator(output, newLookup, helper));
         generator.addProvider(event.includeServer(), new KoratioCompatTagGenerator(output, newLookup, blockTags.contentsGetter(), helper));
         generator.addProvider(event.includeServer(), new KoratioTagsGenerator.PoiTypeTagGenerator(output, newLookup, helper));

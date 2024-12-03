@@ -3,12 +3,8 @@
   "category": "misc",
   "group": "chests",
   "key": {
-    "#": {
-      "item": "koratio:cyan_elven_planks"
-    },
-    "x": {
-      "tag": "c:chests/wooden"
-    }
+    "#": "koratio:cyan_elven_planks",
+    "x": "#c:chests/wooden"
   },
   "pattern": [
     "###",

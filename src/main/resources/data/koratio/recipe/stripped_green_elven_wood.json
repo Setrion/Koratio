@@ -3,9 +3,7 @@
   "category": "building",
   "group": "bark",
   "key": {
-    "#": {
-      "item": "koratio:stripped_green_elven_log"
-    }
+    "#": "koratio:stripped_green_elven_log"
   },
   "pattern": [
     "##",

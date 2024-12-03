@@ -3,7 +3,9 @@ package net.setrion.koratio.client.model.block;
 import com.google.gson.*;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.BlockModel;
-import net.minecraft.client.resources.model.SpecialModels;
+import net.minecraft.client.resources.model.ModelDiscovery;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.FileToIdConverter;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.resources.ResourceManager;
 import net.neoforged.neoforge.client.model.generators.BlockModelBuilder;
@@ -82,7 +84,8 @@ public enum GlazedModelLoader implements IGeometryLoader<GlazedBlockGeometry> {
 
     private static BlockModel loadModel(ResourceLocation location) {
         ResourceManager manager = Minecraft.getInstance().getResourceManager();
-        try (InputStream stream = manager.getResourceOrThrow(SpecialModels.builtinModelId(location.getPath())).open()) {
+        FileToIdConverter converter = new FileToIdConverter("models", ".json");
+        try (InputStream stream = manager.getResourceOrThrow(converter.idToFile(location)).open()) {
             return BlockModel.fromStream(new InputStreamReader(stream));
         } catch (IOException e) {
             throw new JsonParseException("Failed to load part model '" + location + "'", e);

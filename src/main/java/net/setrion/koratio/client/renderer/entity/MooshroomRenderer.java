@@ -23,13 +23,19 @@ public class MooshroomRenderer extends AgeableMobRenderer<Mooshroom, MooshroomRe
     });
 
     public MooshroomRenderer(EntityRendererProvider.Context context) {
-        super(context, new CowModel(context.bakeLayer(ModelLayers.MOOSHROOM)), new CowModel(context.bakeLayer(ModelLayers.MOOSHROOM)), 0.7F);
+        super(context, new CowModel(context.bakeLayer(ModelLayers.MOOSHROOM)), new CowModel(context.bakeLayer(ModelLayers.BABY_MOOSHROOM)), 0.7F);
         this.addLayer(new MooshroomMushroomLayer(this, context.getBlockRenderDispatcher()));
     }
 
     @Override
     public MooshroomRenderState createRenderState() {
         return new MooshroomRenderState();
+    }
+
+    @Override
+    public void extractRenderState(Mooshroom mooshroom, MooshroomRenderState state, float f) {
+        super.extractRenderState(mooshroom, state, f);
+        state.variant = mooshroom.getVariant();
     }
 
     public ResourceLocation getTextureLocation(MooshroomRenderState state) {

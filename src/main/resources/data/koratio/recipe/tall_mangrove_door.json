@@ -3,12 +3,8 @@
   "category": "redstone",
   "group": "tall_wooden_door",
   "key": {
-    "#": {
-      "item": "minecraft:mangrove_door"
-    },
-    "x": {
-      "item": "minecraft:mangrove_planks"
-    }
+    "#": "minecraft:mangrove_door",
+    "x": "minecraft:mangrove_planks"
   },
   "pattern": [
     "x",

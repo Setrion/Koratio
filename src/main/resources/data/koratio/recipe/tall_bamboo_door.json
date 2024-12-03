@@ -3,12 +3,8 @@
   "category": "redstone",
   "group": "tall_wooden_door",
   "key": {
-    "#": {
-      "item": "minecraft:bamboo_door"
-    },
-    "x": {
-      "item": "minecraft:bamboo_planks"
-    }
+    "#": "minecraft:bamboo_door",
+    "x": "minecraft:bamboo_planks"
   },
   "pattern": [
     "x",

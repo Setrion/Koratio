@@ -6,11 +6,15 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.BoatItem;
 import net.minecraft.world.item.equipment.ArmorType;
+import net.minecraft.world.level.dimension.BuiltinDimensionTypes;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.setrion.koratio.Koratio;
+import net.setrion.koratio.util.ConversionUtils;
 import net.setrion.koratio.world.item.*;
 
+import java.awt.*;
+import java.util.Map;
 import java.util.function.Function;
 
 public class KoratioItems {
@@ -80,6 +84,10 @@ public class KoratioItems {
 	public static final DeferredItem<BucketItem> BLOOD_BUCKET = registerItem("blood_bucket", properties -> new BucketItem(KoratioFluids.BLOOD.get(), properties), new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1));
 	public static final DeferredItem<Item> DEMONIC_HEART = registerItem("demonic_heart", Item::new, new Item.Properties());
 
+	public static final DeferredItem<Item> VARYNIUM_INGOT = registerItem("varynium_ingot", properties -> new ConvertibleItem(Map.of(BuiltinDimensionTypes.OVERWORLD, new ConversionUtils.ConversionItem(Items.IRON_INGOT, new Color(0, 0, 0)), BuiltinDimensionTypes.NETHER, new ConversionUtils.ConversionItem(Items.GOLD_INGOT, new Color(255, 255, 0)), BuiltinDimensionTypes.END, new ConversionUtils.ConversionItem(Items.DIAMOND, new Color(0, 0, 0))), 600, properties), new Item.Properties());
+	public static final DeferredItem<Item> VARYNIUM_NUGGET = registerItem("varynium_nugget", properties -> new ConvertibleItem(Map.of(BuiltinDimensionTypes.OVERWORLD, new ConversionUtils.ConversionItem(Items.IRON_HELMET, new Color(0, 0, 0)), BuiltinDimensionTypes.NETHER, new ConversionUtils.ConversionItem(Items.GOLDEN_HELMET, new Color(0, 0, 0)), BuiltinDimensionTypes.END, new ConversionUtils.ConversionItem(Items.DIAMOND_HELMET, new Color(0, 0, 0))), 600, properties), new Item.Properties());
+	public static final DeferredItem<Item> RAW_VARYNIUM = registerItem("raw_varynium", properties -> new ConvertibleItem(Map.of(BuiltinDimensionTypes.OVERWORLD, new ConversionUtils.ConversionItem(Items.IRON_HELMET, new Color(0, 0, 0)), BuiltinDimensionTypes.NETHER, new ConversionUtils.ConversionItem(Items.GOLDEN_HELMET, new Color(0, 0, 0)), BuiltinDimensionTypes.END, new ConversionUtils.ConversionItem(Items.DIAMOND_HELMET, new Color(0, 0, 0))), 600, properties), new Item.Properties());
+
 	//Gems
 	public static final DeferredItem<Item> RAINBOW_CRYSTAL_SHARD = registerItem("rainbow_crystal_shard", Item::new, new Item.Properties());
 	public static final DeferredItem<Item> RAINBOW_GEM = registerItem("rainbow_gem", Item::new, new Item.Properties().fireResistant().rarity(Rarity.EPIC));
@@ -93,6 +101,7 @@ public class KoratioItems {
 	//Weapons
 	public static final DeferredItem<Item> BONE_SWORD = registerItem("bone_sword", properties -> new SwordItem(KoratioToolMaterials.BONE, 3, -2.4F, properties), new Item.Properties());
 	public static final DeferredItem<Item> WITHER_BONE_SWORD = registerItem("wither_bone_sword", properties -> new SwordItem(KoratioToolMaterials.WITHER_BONE, 3, -2.4F, properties), new Item.Properties().fireResistant());
+	public static final DeferredItem<Item> VARYNIUM_SWORD = registerItem("varynium_sword", properties -> new ConvertibleSwordItem(Map.of(BuiltinDimensionTypes.OVERWORLD, new ConversionUtils.ConversionItem(Items.IRON_HELMET, new Color(0, 0, 0)), BuiltinDimensionTypes.NETHER, new ConversionUtils.ConversionItem(Items.GOLDEN_HELMET, new Color(0, 0, 0)), BuiltinDimensionTypes.END, new ConversionUtils.ConversionItem(Items.DIAMOND_HELMET, new Color(0, 0, 0))), 600, KoratioToolMaterials.VARYNIUM, 3, -2.4F, properties), new Item.Properties());
 	
 	//Tools
 	public static final DeferredItem<PipingBagItem> PIPING_BAG = registerItem("piping_bag", PipingBagItem::new, new Item.Properties().stacksTo(1));
@@ -114,18 +123,31 @@ public class KoratioItems {
 	public static final DeferredItem<Item> WITHER_BONE_PICKAXE = registerItem("wither_bone_pickaxe", properties -> new PickaxeItem(KoratioToolMaterials.WITHER_BONE, 1.0F, -2.8F, properties), new Item.Properties().fireResistant());
 	public static final DeferredItem<Item> WITHER_BONE_AXE = registerItem("wither_bone_axe", properties -> new AxeItem(KoratioToolMaterials.WITHER_BONE, 5.0F, -3.0F, properties), new Item.Properties().fireResistant());
 	public static final DeferredItem<Item> WITHER_BONE_HOE = registerItem("wither_bone_hoe", properties -> new HoeItem(KoratioToolMaterials.WITHER_BONE, -4.0F, 0.0F, properties), new Item.Properties().fireResistant());
-	public static final DeferredItem<Item> WITHER_BONE_ICING_SPATULA = registerItem("wither_bone_icing_spatula", properties -> new SpatulaItem(KoratioToolMaterials.WITHER_BONE, properties), new Item.Properties().attributes(SpatulaItem.createAttributes(KoratioToolMaterials.WITHER_BONE, 0.5F, 0.0F)));
+	public static final DeferredItem<Item> WITHER_BONE_ICING_SPATULA = registerItem("wither_bone_icing_spatula", properties -> new SpatulaItem(KoratioToolMaterials.WITHER_BONE, properties), new Item.Properties().fireResistant().attributes(SpatulaItem.createAttributes(KoratioToolMaterials.WITHER_BONE, 0.5F, 0.0F)));
+
+	public static final DeferredItem<Item> VARYNIUM_SHOVEL = registerItem("varynium_shovel", properties -> new ConvertibleShovelItem(Map.of(BuiltinDimensionTypes.OVERWORLD, new ConversionUtils.ConversionItem(Items.IRON_HELMET, new Color(0, 0, 0)), BuiltinDimensionTypes.NETHER, new ConversionUtils.ConversionItem(Items.GOLDEN_HELMET, new Color(0, 0, 0)), BuiltinDimensionTypes.END, new ConversionUtils.ConversionItem(Items.DIAMOND_HELMET, new Color(0, 0, 0))), 600, KoratioToolMaterials.VARYNIUM, 1.5F, -3.0F, properties), new Item.Properties());
+	public static final DeferredItem<Item> VARYNIUM_PICKAXE = registerItem("varynium_pickaxe", properties -> new ConvertiblePickaxeItem(Map.of(BuiltinDimensionTypes.OVERWORLD, new ConversionUtils.ConversionItem(Items.IRON_HELMET, new Color(0, 0, 0)), BuiltinDimensionTypes.NETHER, new ConversionUtils.ConversionItem(Items.GOLDEN_HELMET, new Color(0, 0, 0)), BuiltinDimensionTypes.END, new ConversionUtils.ConversionItem(Items.DIAMOND_HELMET, new Color(0, 0, 0))), 600, KoratioToolMaterials.VARYNIUM, 1.0F, -2.8F, properties), new Item.Properties());
+	public static final DeferredItem<Item> VARYNIUM_AXE = registerItem("varynium_axe", properties -> new ConvertibleAxeItem(Map.of(BuiltinDimensionTypes.OVERWORLD, new ConversionUtils.ConversionItem(Items.IRON_HELMET, new Color(0, 0, 0)), BuiltinDimensionTypes.NETHER, new ConversionUtils.ConversionItem(Items.GOLDEN_HELMET, new Color(0, 0, 0)), BuiltinDimensionTypes.END, new ConversionUtils.ConversionItem(Items.DIAMOND_HELMET, new Color(0, 0, 0))), 600, KoratioToolMaterials.VARYNIUM, 5.0F, -3.0F, properties), new Item.Properties());
+	public static final DeferredItem<Item> VARYNIUM_HOE = registerItem("varynium_hoe", properties -> new ConvertibleHoeItem(Map.of(BuiltinDimensionTypes.OVERWORLD, new ConversionUtils.ConversionItem(Items.IRON_HELMET, new Color(0, 0, 0)), BuiltinDimensionTypes.NETHER, new ConversionUtils.ConversionItem(Items.GOLDEN_HELMET, new Color(0, 0, 0)), BuiltinDimensionTypes.END, new ConversionUtils.ConversionItem(Items.DIAMOND_HELMET, new Color(0, 0, 0))), 600, KoratioToolMaterials.VARYNIUM, -4.0F, 0.0F, properties), new Item.Properties());
+	public static final DeferredItem<Item> VARYNIUM_ICING_SPATULA = registerItem("varynium_icing_spatula", properties -> new ConvertibleSpatulaItem(Map.of(BuiltinDimensionTypes.OVERWORLD, new ConversionUtils.ConversionItem(Items.IRON_HELMET, new Color(0, 0, 0)), BuiltinDimensionTypes.NETHER, new ConversionUtils.ConversionItem(Items.GOLDEN_HELMET, new Color(0, 0, 0)), BuiltinDimensionTypes.END, new ConversionUtils.ConversionItem(Items.DIAMOND_HELMET, new Color(0, 0, 0))), 600, KoratioToolMaterials.VARYNIUM, properties), new Item.Properties().attributes(SpatulaItem.createAttributes(KoratioToolMaterials.VARYNIUM, 0.5F, 0.0F)));
 
 	//Armor
 	public static final DeferredItem<Item> BONE_HELMET = registerItem("bone_helmet", properties -> new ArmorItem(KoratioArmorMaterials.BONE, ArmorType.HELMET, properties), new Item.Properties());
 	public static final DeferredItem<Item> BONE_CHESTPLATE = registerItem("bone_chestplate", properties -> new ArmorItem(KoratioArmorMaterials.BONE, ArmorType.CHESTPLATE, properties), new Item.Properties());
 	public static final DeferredItem<Item> BONE_LEGGINGS = registerItem("bone_leggings", properties -> new ArmorItem(KoratioArmorMaterials.BONE, ArmorType.LEGGINGS, properties), new Item.Properties());
 	public static final DeferredItem<Item> BONE_BOOTS = registerItem("bone_boots", properties -> new ArmorItem(KoratioArmorMaterials.BONE, ArmorType.BOOTS, properties), new Item.Properties());
+
 	public static final DeferredItem<Item> WITHER_BONE_HELMET = registerItem("wither_bone_helmet", properties -> new ArmorItem(KoratioArmorMaterials.WITHER_BONE, ArmorType.HELMET, properties), new Item.Properties().fireResistant());
 	public static final DeferredItem<Item> WITHER_BONE_CHESTPLATE = registerItem("wither_bone_chestplate", properties -> new ArmorItem(KoratioArmorMaterials.WITHER_BONE, ArmorType.CHESTPLATE, properties), new Item.Properties().fireResistant());
 	public static final DeferredItem<Item> WITHER_BONE_LEGGINGS = registerItem("wither_bone_leggings", properties -> new ArmorItem(KoratioArmorMaterials.WITHER_BONE, ArmorType.LEGGINGS, properties), new Item.Properties().fireResistant());
 	public static final DeferredItem<Item> WITHER_BONE_BOOTS = registerItem("wither_bone_boots", properties -> new ArmorItem(KoratioArmorMaterials.WITHER_BONE, ArmorType.BOOTS, properties), new Item.Properties().fireResistant());
-	
+
+	public static final DeferredItem<Item> VARYNIUM_HELMET = registerItem("varynium_helmet", properties -> new ConvertibleArmorItem(Map.of(BuiltinDimensionTypes.OVERWORLD, new ConversionUtils.ConversionItem(Items.IRON_HELMET, new Color(0, 0, 0)), BuiltinDimensionTypes.NETHER, new ConversionUtils.ConversionItem(Items.GOLDEN_HELMET, new Color(0, 0, 0)), BuiltinDimensionTypes.END, new ConversionUtils.ConversionItem(Items.DIAMOND_HELMET, new Color(0, 0, 0))), 600, KoratioArmorMaterials.VARYNIUM, ArmorType.HELMET, properties), new Item.Properties());
+	public static final DeferredItem<Item> VARYNIUM_CHESTPLATE = registerItem("varynium_chestplate", properties -> new ConvertibleArmorItem(Map.of(BuiltinDimensionTypes.OVERWORLD, new ConversionUtils.ConversionItem(Items.IRON_HELMET, new Color(0, 0, 0)), BuiltinDimensionTypes.NETHER, new ConversionUtils.ConversionItem(Items.GOLDEN_HELMET, new Color(0, 0, 0)), BuiltinDimensionTypes.END, new ConversionUtils.ConversionItem(Items.DIAMOND_HELMET, new Color(0, 0, 0))), 600, KoratioArmorMaterials.VARYNIUM, ArmorType.CHESTPLATE, properties), new Item.Properties());
+	public static final DeferredItem<Item> VARYNIUM_LEGGINGS = registerItem("varynium_leggings", properties -> new ConvertibleArmorItem(Map.of(BuiltinDimensionTypes.OVERWORLD, new ConversionUtils.ConversionItem(Items.IRON_HELMET, new Color(0, 0, 0)), BuiltinDimensionTypes.NETHER, new ConversionUtils.ConversionItem(Items.GOLDEN_HELMET, new Color(0, 0, 0)), BuiltinDimensionTypes.END, new ConversionUtils.ConversionItem(Items.DIAMOND_HELMET, new Color(0, 0, 0))), 600, KoratioArmorMaterials.VARYNIUM, ArmorType.LEGGINGS, properties), new Item.Properties());
+	public static final DeferredItem<Item> VARYNIUM_BOOTS = registerItem("varynium_boots", properties -> new ConvertibleArmorItem(Map.of(BuiltinDimensionTypes.OVERWORLD, new ConversionUtils.ConversionItem(Items.IRON_HELMET, new Color(0, 0, 0)), BuiltinDimensionTypes.NETHER, new ConversionUtils.ConversionItem(Items.GOLDEN_HELMET, new Color(0, 0, 0)), BuiltinDimensionTypes.END, new ConversionUtils.ConversionItem(Items.DIAMOND_HELMET, new Color(0, 0, 0))), 600, KoratioArmorMaterials.VARYNIUM, ArmorType.BOOTS, properties), new Item.Properties());
+	public static final DeferredItem<Item> VARYNIUM_HORSE_ARMOR = registerItem("varynium_horse_armor", properties -> new ConvertibleArmorItem(Map.of(BuiltinDimensionTypes.OVERWORLD, new ConversionUtils.ConversionItem(Items.IRON_HELMET, new Color(0, 0, 0)), BuiltinDimensionTypes.NETHER, new ConversionUtils.ConversionItem(Items.GOLDEN_HELMET, new Color(0, 0, 0)), BuiltinDimensionTypes.END, new ConversionUtils.ConversionItem(Items.DIAMOND_HELMET, new Color(0, 0, 0))), 600, KoratioArmorMaterials.VARYNIUM, ArmorType.BODY, properties), new Item.Properties());
+
 	//FoodItems
 	public static final DeferredItem<Item> RAW_PANGO = registerItem("raw_pango", Item::new, new Item.Properties().food(KoratioFoods.RAW_PANGO));
 	public static final DeferredItem<Item> CRACKED_PANGO = registerItem("cracked_pango", Item::new, new Item.Properties().food(KoratioFoods.CRACKED_PANGO));

@@ -3,12 +3,8 @@
   "category": "redstone",
   "group": "tall_wooden_door",
   "key": {
-    "#": {
-      "item": "minecraft:spruce_door"
-    },
-    "x": {
-      "item": "minecraft:spruce_planks"
-    }
+    "#": "minecraft:spruce_door",
+    "x": "minecraft:spruce_planks"
   },
   "pattern": [
     "x",

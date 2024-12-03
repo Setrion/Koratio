@@ -3,9 +3,7 @@
   "category": "redstone",
   "group": "wooden_door",
   "key": {
-    "x": {
-      "item": "koratio:vareso_planks"
-    }
+    "x": "koratio:vareso_planks"
   },
   "pattern": [
     "xx",

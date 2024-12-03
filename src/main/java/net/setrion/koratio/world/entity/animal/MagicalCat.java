@@ -30,10 +30,7 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.neoforged.neoforge.event.EventHooks;
-import net.setrion.koratio.registry.KoratioDataSerializers;
-import net.setrion.koratio.registry.KoratioEntityType;
-import net.setrion.koratio.registry.KoratioRegistries;
-import net.setrion.koratio.registry.KoratioTags;
+import net.setrion.koratio.registry.*;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Optional;
@@ -54,7 +51,7 @@ public class MagicalCat extends TamableAnimal implements VariantHolder<Holder<Ma
 	}
 	
 	public static AttributeSupplier.Builder createAttributes() {
-		return Mob.createMobAttributes().add(Attributes.MOVEMENT_SPEED, 0.25D).add(Attributes.MAX_HEALTH, 15.0D);
+		return Animal.createAnimalAttributes().add(Attributes.MOVEMENT_SPEED, 0.25D).add(Attributes.MAX_HEALTH, 15.0D);
 	}
 	
 	protected void registerGoals() {
@@ -72,21 +69,21 @@ public class MagicalCat extends TamableAnimal implements VariantHolder<Holder<Ma
 	@Override
 	protected void defineSynchedData(SynchedEntityData.Builder builder) {
 		super.defineSynchedData(builder);
-		builder.define(DATA_TYPE_ID, this.registryAccess().lookupOrThrow(KoratioRegistries.MAGICAL_CAT_VARIANT).getOrThrow(MagicalCatVariant.AKUMA));
+		builder.define(DATA_TYPE_ID, this.registryAccess().lookupOrThrow(KoratioRegistries.MAGICAL_CAT_VARIANT_KEY).getOrThrow(MagicalCatVariants.AKUMA.getKey()));
 		builder.define(DATA_COLLAR_COLOR, DyeColor.RED.getId());
 	}
 
 	public void addAdditionalSaveData(CompoundTag tag) {
 		super.addAdditionalSaveData(tag);
-		tag.putString("variant", this.getVariant().unwrapKey().orElse(MagicalCatVariant.AKUMA).location().toString());
+		tag.putString("variant", this.getVariant().unwrapKey().orElse(MagicalCatVariants.AKUMA.getKey()).location().toString());
 		tag.putByte("CollarColor", (byte)this.getCollarColor().getId());
 	}
 
 	public void readAdditionalSaveData(CompoundTag tag) {
 		super.readAdditionalSaveData(tag);
 		Optional.ofNullable(ResourceLocation.tryParse(tag.getString("variant")))
-				.map(location -> ResourceKey.create(KoratioRegistries.MAGICAL_CAT_VARIANT, location))
-				.flatMap(key -> this.registryAccess().lookupOrThrow(KoratioRegistries.MAGICAL_CAT_VARIANT).get(key))
+				.map(location -> ResourceKey.create(KoratioRegistries.MAGICAL_CAT_VARIANT_KEY, location))
+				.flatMap(key -> this.registryAccess().lookupOrThrow(KoratioRegistries.MAGICAL_CAT_VARIANT_KEY).get(key))
 				.ifPresent(this::setVariant);
 		if (tag.contains("CollarColor", 99)) {
 			this.setCollarColor(DyeColor.byId(tag.getInt("CollarColor")));
@@ -111,7 +108,8 @@ public class MagicalCat extends TamableAnimal implements VariantHolder<Holder<Ma
 
 	@Override
 	public SpawnGroupData finalizeSpawn(ServerLevelAccessor level, DifficultyInstance difficulty, EntitySpawnReason spawnType, @Nullable SpawnGroupData spawnGroupData) {
-		level.registryAccess().lookupOrThrow(KoratioRegistries.MAGICAL_CAT_VARIANT).getRandomElementOf(KoratioTags.MagicalCatVariants.DEFAULT_SPAWNS, level.getRandom()).ifPresent(this::setVariant);
+		level.registryAccess().lookupOrThrow(KoratioRegistries.MAGICAL_CAT_VARIANT_KEY).getRandomElementOf(KoratioTags.MagicalCatVariants.DEFAULT_SPAWNS, level.getRandom()).ifPresent(this::setVariant);
+		System.out.println(getVariant());
 		return super.finalizeSpawn(level, difficulty, spawnType, spawnGroupData);
 	}
 

@@ -3,12 +3,8 @@
   "category": "redstone",
   "group": "tall_wooden_door",
   "key": {
-    "#": {
-      "item": "koratio:rugona_door"
-    },
-    "x": {
-      "item": "koratio:rugona_planks"
-    }
+    "#": "koratio:rugona_door",
+    "x": "koratio:rugona_planks"
   },
   "pattern": [
     "x",

@@ -26,6 +26,13 @@ public class FlufferRenderer extends MobRenderer<Fluffer, FlufferRenderState, Fl
         return new FlufferRenderState();
     }
 
+    @Override
+    public void extractRenderState(Fluffer entity, FlufferRenderState state, float f) {
+        super.extractRenderState(entity, state, f);
+        state.isSheared = entity.isSheared();
+        state.woolColor = entity.getColor();
+    }
+
     public ResourceLocation getTextureLocation(FlufferRenderState state) {
         return FLUFFER_LOCATION;
     }

@@ -16,7 +16,6 @@ import net.setrion.koratio.client.gui.screens.inventory.DecryptingScreen;
 import net.setrion.koratio.client.gui.screens.inventory.WoodcutterScreen;
 import net.setrion.koratio.core.cauldron.CauldronInteraction;
 import net.setrion.koratio.core.cauldron.EmptyCauldronInteraction;
-//import net.setrion.koratio.data.compat.KoratioCuriosCompat;
 import net.setrion.koratio.events.RegistryEvents;
 import net.setrion.koratio.registry.*;
 

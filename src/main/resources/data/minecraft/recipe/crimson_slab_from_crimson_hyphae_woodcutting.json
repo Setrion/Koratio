@@ -1,0 +1,8 @@
+{
+  "type": "koratio:woodcutter",
+  "ingredient": "minecraft:crimson_hyphae",
+  "result": {
+    "count": 12,
+    "id": "minecraft:crimson_slab"
+  }
+}

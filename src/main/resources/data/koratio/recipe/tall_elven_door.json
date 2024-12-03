@@ -3,12 +3,8 @@
   "category": "redstone",
   "group": "tall_wooden_door",
   "key": {
-    "#": {
-      "item": "koratio:elven_door"
-    },
-    "x": {
-      "item": "koratio:elven_planks"
-    }
+    "#": "koratio:elven_door",
+    "x": "koratio:elven_planks"
   },
   "pattern": [
     "x",

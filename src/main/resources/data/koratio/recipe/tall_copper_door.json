@@ -2,12 +2,8 @@
   "type": "minecraft:crafting_shaped",
   "category": "redstone",
   "key": {
-    "#": {
-      "item": "minecraft:copper_door"
-    },
-    "x": {
-      "item": "minecraft:copper_block"
-    }
+    "#": "minecraft:copper_door",
+    "x": "minecraft:copper_block"
   },
   "pattern": [
     "x",

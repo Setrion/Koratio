@@ -3,12 +3,8 @@
   "category": "redstone",
   "group": "tall_wooden_door",
   "key": {
-    "#": {
-      "item": "minecraft:jungle_door"
-    },
-    "x": {
-      "item": "minecraft:jungle_planks"
-    }
+    "#": "minecraft:jungle_door",
+    "x": "minecraft:jungle_planks"
   },
   "pattern": [
     "x",

@@ -3,9 +3,7 @@
   "fluid_ingredients": [
     {
       "amount": 400,
-      "ingredient": {
-        "fluid": "koratio:molten_light_gray_sugar"
-      }
+      "ingredient": "koratio:molten_light_gray_sugar"
     }
   ],
   "result": {

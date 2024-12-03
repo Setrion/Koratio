@@ -3,9 +3,7 @@
   "category": "building",
   "group": "planks",
   "ingredients": [
-    {
-      "tag": "koratio:elven_logs"
-    }
+    "#koratio:elven_logs"
   ],
   "result": {
     "count": 4,

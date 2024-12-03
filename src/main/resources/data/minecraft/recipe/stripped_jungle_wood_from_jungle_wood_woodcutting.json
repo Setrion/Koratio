@@ -1,0 +1,8 @@
+{
+  "type": "koratio:woodcutter",
+  "ingredient": "minecraft:jungle_wood",
+  "result": {
+    "count": 1,
+    "id": "minecraft:stripped_jungle_wood"
+  }
+}

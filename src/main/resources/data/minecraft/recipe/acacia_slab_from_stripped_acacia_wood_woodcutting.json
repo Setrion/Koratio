@@ -1,0 +1,8 @@
+{
+  "type": "koratio:woodcutter",
+  "ingredient": "minecraft:stripped_acacia_wood",
+  "result": {
+    "count": 12,
+    "id": "minecraft:acacia_slab"
+  }
+}

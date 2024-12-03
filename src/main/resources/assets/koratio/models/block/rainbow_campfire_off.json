@@ -9,8 +9,8 @@
         }
     },
     "textures": {
-        "particle": "koratio:block/rainbow_campfire_log",
-        "log": "koratio:block/rainbow_campfire_log"
+        "particle": "block/campfire_log",
+        "log": "block/campfire_log"
     },
     "elements": [
         {

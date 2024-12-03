@@ -2,15 +2,9 @@
   "type": "minecraft:crafting_shaped",
   "category": "building",
   "key": {
-    "b": {
-      "item": "minecraft:book"
-    },
-    "p": {
-      "item": "minecraft:paper"
-    },
-    "w": {
-      "tag": "minecraft:planks"
-    }
+    "b": "minecraft:book",
+    "p": "minecraft:paper",
+    "w": "#minecraft:planks"
   },
   "pattern": [
     "pb",

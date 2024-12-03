@@ -3,12 +3,8 @@
   "category": "misc",
   "group": "wooden_hanging_sign",
   "key": {
-    "#": {
-      "item": "minecraft:chain"
-    },
-    "x": {
-      "item": "koratio:stripped_rugona_log"
-    }
+    "#": "minecraft:chain",
+    "x": "koratio:stripped_rugona_log"
   },
   "pattern": [
     "# #",

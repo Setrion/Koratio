@@ -3,9 +3,7 @@
   "category": "building",
   "group": "wooden_stairs",
   "key": {
-    "x": {
-      "item": "koratio:vareso_planks"
-    }
+    "x": "koratio:vareso_planks"
   },
   "pattern": [
     "x  ",

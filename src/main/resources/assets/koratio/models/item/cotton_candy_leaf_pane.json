@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:item/generated",
-  "textures": {
-    "layer0": "koratio:block/cotton_candy_leaves"
-  }
-}

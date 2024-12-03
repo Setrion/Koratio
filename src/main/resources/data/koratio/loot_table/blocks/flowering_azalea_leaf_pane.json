@@ -46,7 +46,7 @@
                   "condition": "minecraft:survives_explosion"
                 }
               ],
-              "name": "minecraft:air"
+              "name": "minecraft:stick"
             }
           ]
         }

@@ -13,6 +13,6 @@ public class KoratioDataSerializers {
 
     public static final DeferredRegister<EntityDataSerializer<?>> DATA_SERIALIZERS = DeferredRegister.create(NeoForgeRegistries.ENTITY_DATA_SERIALIZERS, Koratio.MOD_ID);
 
-    public static final DeferredHolder<EntityDataSerializer<?>, EntityDataSerializer<Holder<MagicalCatVariant>>> MAGICAL_CAT_VARIANT = DATA_SERIALIZERS.register("magical_cat_variant", () -> EntityDataSerializer.forValueType(ByteBufCodecs.holderRegistry(KoratioRegistries.MAGICAL_CAT_VARIANT)));
+    public static final DeferredHolder<EntityDataSerializer<?>, EntityDataSerializer<Holder<MagicalCatVariant>>> MAGICAL_CAT_VARIANT = DATA_SERIALIZERS.register("magical_cat_variant", () -> EntityDataSerializer.forValueType(ByteBufCodecs.holderRegistry(KoratioRegistries.MAGICAL_CAT_VARIANT_KEY)));
 
 }

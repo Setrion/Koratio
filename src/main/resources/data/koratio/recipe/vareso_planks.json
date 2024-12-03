@@ -3,9 +3,7 @@
   "category": "building",
   "group": "planks",
   "ingredients": [
-    {
-      "tag": "koratio:vareso_logs"
-    }
+    "#koratio:vareso_logs"
   ],
   "result": {
     "count": 4,

@@ -3,9 +3,7 @@
   "category": "misc",
   "group": "leaf_pane",
   "key": {
-    "x": {
-      "item": "koratio:lime_cotton_candy_leaves"
-    }
+    "x": "koratio:lime_cotton_candy_leaves"
   },
   "pattern": [
     "xxx",

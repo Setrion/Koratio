@@ -2,9 +2,7 @@
   "type": "minecraft:crafting_shaped",
   "category": "building",
   "key": {
-    "#": {
-      "item": "koratio:raw_gingerbread_bricks"
-    }
+    "#": "koratio:raw_gingerbread_bricks"
   },
   "pattern": [
     "##",

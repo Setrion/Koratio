@@ -1,7 +1,0 @@
-{
-  "parent": "koratio:block/template_glass_pane_noside",
-  "render_type": "minecraft:cutout_mipped",
-  "textures": {
-    "pane": "koratio:block/cotton_candy_leaves"
-  }
-}
