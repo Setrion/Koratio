@@ -17,7 +17,6 @@ import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.internal.versions.neoforge.NeoForgeVersion;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.setrion.koratio.Koratio;
-import net.setrion.koratio.client.model.item.ConvertibleItemModelBuilder;
 import net.setrion.koratio.registry.KoratioBlocks;
 import net.setrion.koratio.registry.KoratioItems;
 import net.setrion.koratio.world.item.CandyItem;
@@ -52,7 +51,7 @@ public class ItemModelGenerator extends ItemModelProvider {
 			}
 		}
 
-		convertibleItem(KoratioItems.VARYNIUM_INGOT);
+		basicItem(KoratioItems.VARYNIUM_INGOT.get());
 
 		blockModel(KoratioBlocks.DECRYPTING_TABLE.get());
 		blockModel(KoratioBlocks.CANDY_SHAPER.get());
@@ -343,6 +342,7 @@ public class ItemModelGenerator extends ItemModelProvider {
 		plantItem(KoratioBlocks.AZALEA_LEAF_PANE.asItem(), Blocks.AZALEA_LEAVES.asItem());
 		plantItem(KoratioBlocks.FLOWERING_AZALEA_LEAF_PANE.asItem(), Blocks.FLOWERING_AZALEA_LEAVES.asItem());
 		plantItem(KoratioBlocks.CHERRY_LEAF_PANE.asItem(), Blocks.CHERRY_LEAVES.asItem());
+		plantItem(KoratioBlocks.PALE_OAK_LEAF_PANE.asItem(), Blocks.PALE_OAK_LEAVES.asItem());
 
 		tallDoorItem(KoratioBlocks.TALL_OAK_DOOR.getId(), BuiltInRegistries.ITEM.getKey(Items.OAK_DOOR));
 		tallDoorItem(KoratioBlocks.TALL_SPRUCE_DOOR.getId(), BuiltInRegistries.ITEM.getKey(Items.SPRUCE_DOOR));
@@ -352,6 +352,7 @@ public class ItemModelGenerator extends ItemModelProvider {
 		tallDoorItem(KoratioBlocks.TALL_DARK_OAK_DOOR.getId(), BuiltInRegistries.ITEM.getKey(Items.DARK_OAK_DOOR));
 		tallDoorItem(KoratioBlocks.TALL_MANGROVE_DOOR.getId(), BuiltInRegistries.ITEM.getKey(Items.MANGROVE_DOOR));
 		tallDoorItem(KoratioBlocks.TALL_CHERRY_DOOR.getId(), BuiltInRegistries.ITEM.getKey(Items.CHERRY_DOOR));
+		tallDoorItem(KoratioBlocks.TALL_PALE_OAK_DOOR.getId(), BuiltInRegistries.ITEM.getKey(Items.PALE_OAK_DOOR));
 		tallDoorItem(KoratioBlocks.TALL_BAMBOO_DOOR.getId(), BuiltInRegistries.ITEM.getKey(Items.BAMBOO_DOOR));
 		tallDoorItem(KoratioBlocks.TALL_CRIMSON_DOOR.getId(), BuiltInRegistries.ITEM.getKey(Items.CRIMSON_DOOR));
 		tallDoorItem(KoratioBlocks.TALL_WARPED_DOOR.getId(), BuiltInRegistries.ITEM.getKey(Items.WARPED_DOOR));
@@ -618,12 +619,6 @@ public class ItemModelGenerator extends ItemModelProvider {
 		return withExistingParent(bucket.getId().getPath(), ResourceLocation.fromNamespaceAndPath(NeoForgeVersion.MOD_ID, "item/bucket_drip"))
 				.customLoader(DynamicFluidContainerModelBuilder::begin)
 				.fluid(bucket.get().content);
-	}
-
-	private ConvertibleItemModelBuilder<?> convertibleItem(DeferredItem<Item> item) {
-		return withExistingParent(item.getId().getPath(), ResourceLocation.fromNamespaceAndPath("minecraft", "generated"))
-				.customLoader(ConvertibleItemModelBuilder::begin)
-				.item(item);
 	}
 	
 	private ItemModelBuilder basicTool(DeferredItem<Item> item) {

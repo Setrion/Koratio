@@ -8,6 +8,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Style;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.equipment.EquipmentAsset;
 import net.minecraft.world.item.equipment.trim.TrimMaterial;
 import net.setrion.koratio.Koratio;
 
@@ -25,14 +26,18 @@ public class KoratioTrimMaterials {
     }
 
     public static void bootstrap(BootstrapContext<TrimMaterial> context) {
-        register(context, RUBY, KoratioItems.RUBY, Style.EMPTY.withColor(8065056), 0.4F);
-        register(context, SAPPHIRE, KoratioItems.SAPPHIRE, Style.EMPTY.withColor(1056891), 0.9F);
-        register(context, TOPAZ, KoratioItems.TOPAZ, Style.EMPTY.withColor(8088336), 0.6F);
-        register(context, ONYX, KoratioItems.ONYX, Style.EMPTY.withColor(4539717), 0.3F);
+        register(context, RUBY, KoratioItems.RUBY, Style.EMPTY.withColor(8065056));
+        register(context, SAPPHIRE, KoratioItems.SAPPHIRE, Style.EMPTY.withColor(1056891));
+        register(context, TOPAZ, KoratioItems.TOPAZ, Style.EMPTY.withColor(8088336));
+        register(context, ONYX, KoratioItems.ONYX, Style.EMPTY.withColor(4539717));
     }
 
-    private static void register(BootstrapContext<TrimMaterial> context, ResourceKey<TrimMaterial> trimKey, Holder<Item> trimItem, Style color, float itemModelIndex) {
-        TrimMaterial material = new TrimMaterial(trimKey.location().getPath(), trimItem, itemModelIndex, Map.of(), Component.translatable(Util.makeDescriptionId("trim_material", trimKey.location())).withStyle(color));
+    private static void register(BootstrapContext<TrimMaterial> context, ResourceKey<TrimMaterial> trimKey, Holder<Item> trimItem, Style color) {
+        register(context, trimKey, trimItem, color, Map.of());
+    }
+
+    private static void register(BootstrapContext<TrimMaterial> context, ResourceKey<TrimMaterial> trimKey, Holder<Item> trimItem, Style color, Map<ResourceKey<EquipmentAsset>, String> map) {
+        TrimMaterial material = new TrimMaterial(trimKey.location().getPath(), trimItem, map, Component.translatable(Util.makeDescriptionId("trim_material", trimKey.location())).withStyle(color));
         context.register(trimKey, material);
     }
 

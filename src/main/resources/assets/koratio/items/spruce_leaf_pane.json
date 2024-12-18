@@ -1,0 +1,12 @@
+{
+  "model": {
+    "type": "minecraft:model",
+    "model": "koratio:item/spruce_leaf_pane",
+    "tints": [
+      {
+        "type": "minecraft:constant",
+        "value": -10380959
+      }
+    ]
+  }
+}

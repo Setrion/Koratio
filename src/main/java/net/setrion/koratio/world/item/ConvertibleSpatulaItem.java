@@ -3,6 +3,7 @@ package net.setrion.koratio.world.item;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.ToolMaterial;
 import net.minecraft.world.level.Level;
@@ -15,10 +16,10 @@ import java.util.Map;
 
 public class ConvertibleSpatulaItem extends SpatulaItem implements Convertible {
 
-    Map<ResourceKey<DimensionType>, ConversionUtils.ConversionItem> CONVERT_MAP;
+    Map<ResourceKey<DimensionType>, Item> CONVERT_MAP;
     int conversionTime;
 
-    public ConvertibleSpatulaItem(Map<ResourceKey<DimensionType>, ConversionUtils.ConversionItem> convertibles, int convertTime, ToolMaterial material, Properties properties) {
+    public ConvertibleSpatulaItem(Map<ResourceKey<DimensionType>, Item> convertibles, int convertTime, ToolMaterial material, Properties properties) {
         super(material, properties.component(KoratioDataComponents.CONVERTIBLE_DATA, new KoratioDataComponents.ConvertibleRecord(KoratioDimensions.FANTASIA_DIM_TYPE, 0)));
         CONVERT_MAP = convertibles;
         this.conversionTime = convertTime;
@@ -37,7 +38,7 @@ public class ConvertibleSpatulaItem extends SpatulaItem implements Convertible {
     }
 
     @Override
-    public Map<ResourceKey<DimensionType>, ConversionUtils.ConversionItem> getConvertibles() {
+    public Map<ResourceKey<DimensionType>, Item> getConvertibles() {
         return CONVERT_MAP;
     }
 

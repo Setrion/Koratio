@@ -17,10 +17,10 @@ import java.util.Map;
 
 public class ConvertibleBlockItem extends BlockItem implements Convertible {
 
-    Map<ResourceKey<DimensionType>, ConversionUtils.ConversionItem> CONVERT_MAP;
+    Map<ResourceKey<DimensionType>, Item> CONVERT_MAP;
     int conversionTime;
 
-    public ConvertibleBlockItem(Map<ResourceKey<DimensionType>, ConversionUtils.ConversionItem> convertibles, int convertTime, Block block, Properties properties) {
+    public ConvertibleBlockItem(Map<ResourceKey<DimensionType>, Item> convertibles, int convertTime, Block block, Properties properties) {
         super(block, properties.component(KoratioDataComponents.CONVERTIBLE_DATA, new KoratioDataComponents.ConvertibleRecord(KoratioDimensions.FANTASIA_DIM_TYPE, 0)));
         CONVERT_MAP = convertibles;
         this.conversionTime = convertTime;
@@ -39,7 +39,7 @@ public class ConvertibleBlockItem extends BlockItem implements Convertible {
     }
 
     @Override
-    public Map<ResourceKey<DimensionType>, ConversionUtils.ConversionItem> getConvertibles() {
+    public Map<ResourceKey<DimensionType>, Item> getConvertibles() {
         return CONVERT_MAP;
     }
 

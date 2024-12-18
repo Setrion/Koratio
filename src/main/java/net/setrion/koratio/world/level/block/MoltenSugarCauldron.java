@@ -13,7 +13,6 @@ import net.minecraft.world.level.block.AbstractCauldronBlock;
 import net.minecraft.world.level.block.LavaCauldronBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.phys.HitResult;
 
 public class MoltenSugarCauldron extends AbstractCauldronBlock {
 
@@ -28,7 +27,7 @@ public class MoltenSugarCauldron extends AbstractCauldronBlock {
     }
 
     @Override
-    public ItemStack getCloneItemStack(BlockState state, HitResult target, LevelReader level, BlockPos pos, Player player) {
+    public ItemStack getCloneItemStack(LevelReader level, BlockPos pos, BlockState state, boolean includeData, Player player) {
         return Items.CAULDRON.getDefaultInstance();
     }
 

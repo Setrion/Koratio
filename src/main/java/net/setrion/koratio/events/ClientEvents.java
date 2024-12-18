@@ -8,7 +8,6 @@ import net.minecraft.client.renderer.*;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
 import net.minecraft.client.renderer.blockentity.CampfireRenderer;
 import net.minecraft.client.renderer.entity.BoatRenderer;
-import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -22,13 +21,10 @@ import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import net.neoforged.neoforge.client.event.ModelEvent;
 import net.neoforged.neoforge.client.event.RegisterParticleProvidersEvent;
 import net.neoforged.neoforge.client.extensions.common.IClientFluidTypeExtensions;
-import net.neoforged.neoforge.client.extensions.common.IClientItemExtensions;
 import net.neoforged.neoforge.client.extensions.common.RegisterClientExtensionsEvent;
 import net.setrion.koratio.Koratio;
-import net.setrion.koratio.client.ItemStackBlockEntityRenderer;
 import net.setrion.koratio.client.gui.screens.inventory.ScrollScreen;
 import net.setrion.koratio.client.model.block.GlazedModelLoader;
-import net.setrion.koratio.client.model.item.ConvertibleItemModel;
 import net.setrion.koratio.client.particle.DripParticle;
 import net.setrion.koratio.client.particle.ElvenLeafParticle;
 import net.setrion.koratio.client.particle.TeleporterAscendParticle;
@@ -38,19 +34,12 @@ import net.setrion.koratio.client.renderer.blockentity.RemainsBlockRenderer;
 import net.setrion.koratio.client.renderer.entity.*;
 import net.setrion.koratio.registry.*;
 import net.setrion.koratio.scroll.ScrollUtils;
-import net.setrion.koratio.world.item.PipingBagItem;
 import net.setrion.koratio.world.item.ScrollItem;
 import net.setrion.koratio.world.level.material.fluid.MoltenSugarFluid;
 import org.joml.Vector4f;
 
 @EventBusSubscriber(modid = Koratio.MOD_ID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public class ClientEvents {
-
-	@SubscribeEvent
-	public static void onModelRegistry(ModelEvent.RegisterGeometryLoaders event) {
-		event.register(Koratio.prefix("glazed"), GlazedModelLoader.INSTANCE);
-		event.register(Koratio.prefix("convertible_item"), ConvertibleItemModel.Loader.INSTANCE);
-	}
 
 	@SubscribeEvent
 	public static void clientSetup(final FMLClientSetupEvent event) {
@@ -64,16 +53,6 @@ public class ClientEvents {
 			Sheets.addWoodType(KoratioBlocks.VARESO_TYPE);
 			Sheets.addWoodType(KoratioBlocks.CANDY_TYPE);
 			Sheets.addWoodType(KoratioBlocks.CHOCOLATE_OAK_TYPE);
-			ItemProperties.register(KoratioItems.PIPING_BAG.get(),
-					ResourceLocation.fromNamespaceAndPath(Koratio.MOD_ID, "empty"), (itemStack, clientLevel, livingEntity, i) -> {
-						if (itemStack.is(KoratioItems.PIPING_BAG)) {
-							PipingBagItem bag = (PipingBagItem) itemStack.getItem();
-							if (bag.isEmpty(itemStack)) {
-								return 1.0F;
-							}
-						}
-						return 0;
-					});
 		});
 		for (FlowingFluid fluid : MoltenSugarFluid.sugarFluids) {
 			ItemBlockRenderTypes.setRenderLayer(fluid, RenderType.translucent());
@@ -84,6 +63,11 @@ public class ClientEvents {
 		ItemBlockRenderTypes.setRenderLayer(KoratioBlocks.GINGERBREAD_BLOCK.get(), RenderType.CUTOUT_MIPPED);
 		ItemBlockRenderTypes.setRenderLayer(KoratioBlocks.GINGERBREAD_BRICKS.get(), RenderType.CUTOUT_MIPPED);
 		ItemBlockRenderTypes.setRenderLayer(KoratioBlocks.LARGE_GINGERBREAD_BRICKS.get(), RenderType.CUTOUT_MIPPED);
+	}
+
+	@SubscribeEvent
+	public static void registerModelGeometry(ModelEvent.RegisterLoaders event) {
+		event.register(Koratio.prefix("glazed"), GlazedModelLoader.INSTANCE);
 	}
 
 	@SubscribeEvent
@@ -257,13 +241,6 @@ public class ClientEvents {
 		event.registerFluidType(createSugarFluidExtensions("molten_purple_sugar", new Vector4f(151F / 255F, 67F / 255F, 205F / 255F, 1.0F)), KoratioFluids.MOLTEN_PURPLE_SUGAR_TYPE.get());
 		event.registerFluidType(createSugarFluidExtensions("molten_magenta_sugar", new Vector4f(214F / 255F, 96F / 255F, 209F / 255F, 1.0F)), KoratioFluids.MOLTEN_MAGENTA_SUGAR_TYPE.get());
 		event.registerFluidType(createSugarFluidExtensions("molten_pink_sugar", new Vector4f(244F / 255F, 178F / 255F, 201F / 255F, 1.0F)), KoratioFluids.MOLTEN_PINK_SUGAR_TYPE.get());
-
-		event.registerItem(new IClientItemExtensions() {
-			@Override
-			public BlockEntityWithoutLevelRenderer getCustomRenderer() {
-				return new ItemStackBlockEntityRenderer();
-			}
-		}, KoratioBlocks.PANGO_CHEST.asItem(), KoratioBlocks.RUGONA_CHEST.asItem(), KoratioBlocks.VARESO_CHEST.asItem(), KoratioBlocks.CANDY_CHEST.asItem(), KoratioBlocks.CHOCOLATE_OAK_CHEST.asItem(), KoratioBlocks.ELVEN_CHEST.asItem(), KoratioBlocks.BLUE_ELVEN_CHEST.asItem(), KoratioBlocks.CYAN_ELVEN_CHEST.asItem(), KoratioBlocks.GREEN_ELVEN_CHEST.asItem(), KoratioBlocks.TRAPPED_PANGO_CHEST.asItem(), KoratioBlocks.TRAPPED_RUGONA_CHEST.asItem(), KoratioBlocks.TRAPPED_VARESO_CHEST.asItem(), KoratioBlocks.TRAPPED_CANDY_CHEST.asItem(), KoratioBlocks.TRAPPED_CHOCOLATE_OAK_CHEST.asItem(), KoratioBlocks.TRAPPED_ELVEN_CHEST.asItem(), KoratioBlocks.TRAPPED_BLUE_ELVEN_CHEST.asItem(), KoratioBlocks.TRAPPED_CYAN_ELVEN_CHEST.asItem(), KoratioBlocks.TRAPPED_GREEN_ELVEN_CHEST.asItem(), KoratioBlocks.SKELETON_REMAINS.asItem(), KoratioBlocks.WITHER_SKELETON_REMAINS.asItem(), KoratioBlocks.STRAY_REMAINS.asItem(), KoratioBlocks.BOGGED_REMAINS.asItem(), KoratioBlocks.DEMONIC_SKELETON_REMAINS.asItem(), KoratioBlocks.ZOMBIE_REMAINS.asItem(), KoratioBlocks.HUSK_REMAINS.asItem(), KoratioBlocks.DROWNED_REMAINS.asItem(), KoratioBlocks.DEMONIC_ZOMBIE_REMAINS.asItem(), KoratioBlocks.ZOMBIE_VILLAGER_REMAINS.asItem(), KoratioBlocks.PHANTOM_REMAINS.asItem(), KoratioBlocks.ZOMBIFIED_PIGLIN_REMAINS.asItem());
 	}
 
 	private static IClientFluidTypeExtensions createSugarFluidExtensions(String name, Vector4f fogColor) {

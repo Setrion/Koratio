@@ -4,7 +4,7 @@
       "model": "koratio:block/raw_gingerbread_slab"
     },
     "type=double": {
-      "model": "koratio:block/raw_gingerbread_block"
+      "model": "koratio:block/raw_gingerbread_block_base"
     },
     "type=top": {
       "model": "koratio:block/raw_gingerbread_slab_top"

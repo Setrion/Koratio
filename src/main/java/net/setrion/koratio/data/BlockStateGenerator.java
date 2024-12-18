@@ -490,6 +490,7 @@ public class BlockStateGenerator extends BlockStateProvider {
 		leafPaneBlock(KoratioBlocks.AZALEA_LEAF_PANE.get(), Blocks.AZALEA_LEAVES);
 		leafPaneBlock(KoratioBlocks.FLOWERING_AZALEA_LEAF_PANE.get(), Blocks.FLOWERING_AZALEA_LEAVES);
 		leafPaneBlock(KoratioBlocks.CHERRY_LEAF_PANE.get(), Blocks.CHERRY_LEAVES);
+		leafPaneBlock(KoratioBlocks.PALE_OAK_LEAF_PANE.get(), Blocks.PALE_OAK_LEAVES);
 
 		leafPaneBlock(KoratioBlocks.PANGO_LEAF_PANE.get(), KoratioBlocks.PANGO_LEAVES.get());
 		leafPaneBlock(KoratioBlocks.RUGONA_LEAF_PANE.get(), KoratioBlocks.RUGONA_LEAVES.get());
@@ -519,6 +520,7 @@ public class BlockStateGenerator extends BlockStateProvider {
 		tallDoorBlockInternalWithRenderType(KoratioBlocks.TALL_DARK_OAK_DOOR.get(), Koratio.prefix("block/tall_dark_oak_door_bottom"), Koratio.prefix("block/tall_dark_oak_door_middle"), Koratio.prefix("block/tall_dark_oak_door_top"), "cutout");
 		tallDoorBlockInternalWithRenderType(KoratioBlocks.TALL_MANGROVE_DOOR.get(), Koratio.prefix("block/tall_mangrove_door_bottom"), Koratio.prefix("block/tall_mangrove_door_middle"), Koratio.prefix("block/tall_mangrove_door_top"), "cutout");
 		tallDoorBlockInternalWithRenderType(KoratioBlocks.TALL_CHERRY_DOOR.get(), Koratio.prefix("block/tall_cherry_door_bottom"), Koratio.prefix("block/tall_cherry_door_middle"), Koratio.prefix("block/tall_cherry_door_top"), "cutout");
+		tallDoorBlockInternalWithRenderType(KoratioBlocks.TALL_PALE_OAK_DOOR.get(), Koratio.prefix("block/tall_pale_oak_door_bottom"), Koratio.prefix("block/tall_pale_oak_door_middle"), Koratio.prefix("block/tall_pale_oak_door_top"), "cutout");
 		tallDoorBlockInternalWithRenderType(KoratioBlocks.TALL_BAMBOO_DOOR.get(), Koratio.prefix("block/tall_bamboo_door_bottom"), Koratio.prefix("block/tall_bamboo_door_middle"), Koratio.prefix("block/tall_bamboo_door_top"), "cutout");
 		tallDoorBlockInternalWithRenderType(KoratioBlocks.TALL_CRIMSON_DOOR.get(), Koratio.prefix("block/tall_crimson_door_bottom"), Koratio.prefix("block/tall_crimson_door_middle"), Koratio.prefix("block/tall_crimson_door_top"), "cutout");
 		tallDoorBlockInternalWithRenderType(KoratioBlocks.TALL_WARPED_DOOR.get(), Koratio.prefix("block/tall_warped_door_bottom"), Koratio.prefix("block/tall_warped_door_middle"), Koratio.prefix("block/tall_warped_door_top"), "cutout");

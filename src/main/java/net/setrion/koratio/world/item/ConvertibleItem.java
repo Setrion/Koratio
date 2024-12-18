@@ -15,10 +15,10 @@ import java.util.Map;
 
 public class ConvertibleItem extends Item implements Convertible {
 
-    Map<ResourceKey<DimensionType>, ConversionUtils.ConversionItem> CONVERT_MAP;
+    Map<ResourceKey<DimensionType>, Item> CONVERT_MAP;
     int conversionTime;
 
-    public ConvertibleItem(Map<ResourceKey<DimensionType>, ConversionUtils.ConversionItem> convertibles, int convertTime, Properties properties) {
+    public ConvertibleItem(Map<ResourceKey<DimensionType>, Item> convertibles, int convertTime, Properties properties) {
         super(properties.component(KoratioDataComponents.CONVERTIBLE_DATA, new KoratioDataComponents.ConvertibleRecord(KoratioDimensions.FANTASIA_DIM_TYPE, 0)));
         CONVERT_MAP = convertibles;
         this.conversionTime = convertTime;
@@ -37,7 +37,7 @@ public class ConvertibleItem extends Item implements Convertible {
     }
 
     @Override
-    public Map<ResourceKey<DimensionType>, ConversionUtils.ConversionItem> getConvertibles() {
+    public Map<ResourceKey<DimensionType>, Item> getConvertibles() {
         return CONVERT_MAP;
     }
 
@@ -53,13 +53,17 @@ public class ConvertibleItem extends Item implements Convertible {
 
     @Override
     public boolean shouldCauseReequipAnimation(ItemStack oldStack, ItemStack newStack, boolean slotChanged) {
+        System.out.println("1");
         if (oldStack == newStack) {
+            System.out.println("old = new");
             return false;
         }
 
         if (ConversionUtils.getConversionTime(newStack) != ConversionUtils.getConversionTime(oldStack)) {
+            System.out.println("2");
             return false;
         } else {
+            System.out.println("3");
             return super.shouldCauseReequipAnimation(oldStack, newStack, slotChanged);
         }
     }

@@ -4,6 +4,5 @@
     "color": "#7B1020",
     "translate": "trim_material.koratio.ruby"
   },
-  "ingredient": "koratio:ruby",
-  "item_model_index": 0.4
+  "ingredient": "koratio:ruby"
 }

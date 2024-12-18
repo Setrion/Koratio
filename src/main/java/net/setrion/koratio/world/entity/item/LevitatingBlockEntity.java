@@ -314,11 +314,6 @@ public class LevitatingBlockEntity extends Entity {
     }
 
     @Override
-    public boolean onlyOpCanSetNbt() {
-        return true;
-    }
-
-    @Override
     public Packet<ClientGamePacketListener> getAddEntityPacket(ServerEntity entity) {
         return new ClientboundAddEntityPacket(this, entity, Block.getId(getBlockState()));
     }

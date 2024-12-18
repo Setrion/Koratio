@@ -4,6 +4,5 @@
     "color": "#10207B",
     "translate": "trim_material.koratio.sapphire"
   },
-  "ingredient": "koratio:sapphire",
-  "item_model_index": 0.9
+  "ingredient": "koratio:sapphire"
 }

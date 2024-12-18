@@ -681,6 +681,7 @@ public class BlockLootTables extends net.minecraft.data.loot.BlockLootSubProvide
 		add(KoratioBlocks.AZALEA_LEAF_PANE.get(), createSilkTouchOrShearsDispatchTable(KoratioBlocks.AZALEA_LEAF_PANE.get(), applyExplosionCondition(KoratioBlocks.AZALEA_LEAF_PANE, LootItem.lootTableItem(Items.STICK))));
 		add(KoratioBlocks.FLOWERING_AZALEA_LEAF_PANE.get(), createSilkTouchOrShearsDispatchTable(KoratioBlocks.FLOWERING_AZALEA_LEAF_PANE.get(), applyExplosionCondition(KoratioBlocks.FLOWERING_AZALEA_LEAF_PANE, LootItem.lootTableItem(Items.STICK))));
 		add(KoratioBlocks.CHERRY_LEAF_PANE.get(), createSilkTouchOrShearsDispatchTable(KoratioBlocks.CHERRY_LEAF_PANE.get(), applyExplosionCondition(KoratioBlocks.CHERRY_LEAF_PANE, LootItem.lootTableItem(Items.STICK))));
+		add(KoratioBlocks.PALE_OAK_LEAF_PANE.get(), createSilkTouchOrShearsDispatchTable(KoratioBlocks.PALE_OAK_LEAF_PANE.get(), applyExplosionCondition(KoratioBlocks.PALE_OAK_LEAF_PANE, LootItem.lootTableItem(Items.STICK))));
 
 		add(KoratioBlocks.TALL_OAK_DOOR.get(), this::createTallDoorTable);
 		add(KoratioBlocks.TALL_SPRUCE_DOOR.get(), this::createTallDoorTable);
@@ -690,6 +691,7 @@ public class BlockLootTables extends net.minecraft.data.loot.BlockLootSubProvide
 		add(KoratioBlocks.TALL_DARK_OAK_DOOR.get(), this::createTallDoorTable);
 		add(KoratioBlocks.TALL_MANGROVE_DOOR.get(), this::createTallDoorTable);
 		add(KoratioBlocks.TALL_CHERRY_DOOR.get(), this::createTallDoorTable);
+		add(KoratioBlocks.TALL_PALE_OAK_DOOR.get(), this::createTallDoorTable);
 		add(KoratioBlocks.TALL_BAMBOO_DOOR.get(), this::createTallDoorTable);
 		add(KoratioBlocks.TALL_CRIMSON_DOOR.get(), this::createTallDoorTable);
 		add(KoratioBlocks.TALL_WARPED_DOOR.get(), this::createTallDoorTable);

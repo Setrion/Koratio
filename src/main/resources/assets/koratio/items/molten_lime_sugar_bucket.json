@@ -1,0 +1,11 @@
+{
+  "model": {
+    "type": "neoforge:fluid_container",
+    "fluid": "koratio:molten_lime_sugar",
+    "textures": {
+      "base": "item/bucket",
+      "fluid": "neoforge:item/mask/bucket_fluid_drip",
+      "cover": "neoforge:item/mask/bucket_fluid_cover_drip"
+    }
+  }
+}

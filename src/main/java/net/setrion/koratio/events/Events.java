@@ -69,21 +69,14 @@ public class Events {
 
 	@SubscribeEvent
 	public static void onEntityDeath(LivingDeathEvent event) {
-		if (!event.getEntity().level().isClientSide()) {
-			List<Entity> entities = event.getEntity().level().getEntities((Entity) null, event.getEntity().getBoundingBox().inflate(10), entity -> entity.getType() == KoratioEntityType.NECROMANCER.get());
+		Entity dead = event.getEntity();
+		if (!dead.level().isClientSide()) {
+			List<Entity> entities = dead.level().getEntities((Entity) null, dead.getBoundingBox().inflate(10), entity -> entity.getType() == KoratioEntityType.NECROMANCER.get());
 			if (!entities.isEmpty()) {
-				if (!event.isCanceled() && event.getEntity().getType().is(EntityTypeTags.UNDEAD)) {
-					if (event.getEntity() instanceof Zombie zombie) {
-						if (event.getEntity().onGround()) {
-							if (zombie.level().getBlockState(zombie.getOnPos().above()).canBeReplaced()) {
-								zombie.level().setBlock(zombie.getOnPos().above(), getZombieType(zombie).defaultBlockState().rotate(zombie.level(), zombie.getOnPos().above(), Rotation.getRandom(zombie.getRandom())), 3);
-							}
-						}
-					} else if (event.getEntity() instanceof AbstractSkeleton skeleton) {
-						if (event.getEntity().onGround()) {
-							if (skeleton.level().getBlockState(skeleton.getOnPos().above()).canBeReplaced()) {
-								skeleton.level().setBlock(skeleton.getOnPos().above(), getSkeletonType(skeleton).defaultBlockState().rotate(skeleton.level(), skeleton.getOnPos().above(), Rotation.getRandom(skeleton.getRandom())), 3);
-							}
+				if (!event.isCanceled() && dead.getType().is(EntityTypeTags.UNDEAD)) {
+					if (dead.onGround()) {
+						if (dead.level().getBlockState(dead.getOnPos().above()).canBeReplaced()) {
+							dead.level().setBlock(dead.getOnPos().above(), getRemainsFromEntityType(dead).defaultBlockState().rotate(dead.level(), dead.getOnPos().above(), Rotation.getRandom(dead.getRandom())), 3);
 						}
 					}
 				} else {
@@ -96,20 +89,16 @@ public class Events {
 		}
 	}
 
-	public static Block getZombieType(Entity zombie) {
-		if (zombie.getType() == EntityType.ZOMBIE) return KoratioBlocks.ZOMBIE_REMAINS.get();
-		if (zombie.getType() == EntityType.HUSK) return KoratioBlocks.HUSK_REMAINS.get();
-		if (zombie.getType() == EntityType.DROWNED) return KoratioBlocks.DROWNED_REMAINS.get();
-		if (zombie.getType() == KoratioEntityType.DEMONIC_ZOMBIE.get()) return KoratioBlocks.DEMONIC_ZOMBIE_REMAINS.get();
-		return Blocks.AIR;
-	}
-
-	public static Block getSkeletonType(Entity skeleton) {
-		if (skeleton.getType() == EntityType.SKELETON) return KoratioBlocks.SKELETON_REMAINS.get();
-		if (skeleton.getType() == EntityType.WITHER_SKELETON) return KoratioBlocks.WITHER_SKELETON_REMAINS.get();
-		if (skeleton.getType() == EntityType.STRAY) return KoratioBlocks.STRAY_REMAINS.get();
-		if (skeleton.getType() == EntityType.BOGGED) return KoratioBlocks.BOGGED_REMAINS.get();
-		if (skeleton.getType() == KoratioEntityType.DEMONIC_SKELETON.get()) return KoratioBlocks.DEMONIC_SKELETON_REMAINS.get();
+	public static Block getRemainsFromEntityType(Entity entity) {
+		if (entity.getType() == EntityType.ZOMBIE) return KoratioBlocks.ZOMBIE_REMAINS.get();
+		if (entity.getType() == EntityType.HUSK) return KoratioBlocks.HUSK_REMAINS.get();
+		if (entity.getType() == EntityType.DROWNED) return KoratioBlocks.DROWNED_REMAINS.get();
+		if (entity.getType() == KoratioEntityType.DEMONIC_ZOMBIE.get()) return KoratioBlocks.DEMONIC_ZOMBIE_REMAINS.get();
+		if (entity.getType() == EntityType.SKELETON) return KoratioBlocks.SKELETON_REMAINS.get();
+		if (entity.getType() == EntityType.WITHER_SKELETON) return KoratioBlocks.WITHER_SKELETON_REMAINS.get();
+		if (entity.getType() == EntityType.STRAY) return KoratioBlocks.STRAY_REMAINS.get();
+		if (entity.getType() == EntityType.BOGGED) return KoratioBlocks.BOGGED_REMAINS.get();
+		if (entity.getType() == KoratioEntityType.DEMONIC_SKELETON.get()) return KoratioBlocks.DEMONIC_SKELETON_REMAINS.get();
 		return Blocks.AIR;
 	}
 

@@ -2,11 +2,14 @@ package net.setrion.koratio.client.model.block;
 
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.block.model.BakedQuad;
+import net.minecraft.client.renderer.block.model.ItemTransforms;
+import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.resources.model.BakedModel;
 import net.minecraft.core.Direction;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.BlockState;
-import net.neoforged.neoforge.client.model.BakedModelWrapper;
+import net.neoforged.neoforge.client.model.IDynamicBakedModel;
 import net.neoforged.neoforge.client.model.data.ModelData;
 import net.setrion.koratio.world.level.block.entity.GlazedBlockEntity;
 import org.jetbrains.annotations.Nullable;
@@ -16,7 +19,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-public class GlazedModel extends BakedModelWrapper<BakedModel> {
+public class GlazedModel implements IDynamicBakedModel {
     private static final Map<CacheKey, List<BakedQuad>> MODEL_CACHE = new ConcurrentHashMap<>();
 
     private static BakedModel[] northOverlays;
@@ -25,21 +28,25 @@ public class GlazedModel extends BakedModelWrapper<BakedModel> {
     private static BakedModel[] westOverlays;
     private static BakedModel[] topOverlays;
     private static BakedModel[] bottomOverlays;
+    private BakedModel core;
+    private String name;
 
-    public GlazedModel(BakedModel core, BakedModel[] northOverlays, BakedModel[] eastOverlays, BakedModel[] southOverlays, BakedModel[] westOverlays, BakedModel[] topOverlays, BakedModel[] bottomOverlays) {
-        super(core);
+    public GlazedModel(String name, BakedModel core, BakedModel[] northOverlays, BakedModel[] eastOverlays, BakedModel[] southOverlays, BakedModel[] westOverlays, BakedModel[] topOverlays, BakedModel[] bottomOverlays) {
+        super();
         GlazedModel.northOverlays = northOverlays;
         GlazedModel.eastOverlays = eastOverlays;
         GlazedModel.southOverlays = southOverlays;
         GlazedModel.westOverlays = westOverlays;
         GlazedModel.topOverlays = topOverlays;
         GlazedModel.bottomOverlays = bottomOverlays;
+        this.core = core;
+        this.name = name;
     }
 
     @Override
     public List<BakedQuad> getQuads(@Nullable BlockState blockState, @Nullable Direction facing, RandomSource randomSource, ModelData modelData, @Nullable RenderType renderType) {
         if (facing == null) {
-            CacheKey key = cacheModel(modelData);
+            CacheKey key = cacheModel(name, modelData);
             List<BakedQuad> cachedQuads = MODEL_CACHE.get(key);
             if (cachedQuads == null) {
                 cachedQuads = new ArrayList<>();
@@ -205,18 +212,16 @@ public class GlazedModel extends BakedModelWrapper<BakedModel> {
                 if (Boolean.TRUE.equals(modelData.get(GlazedBlockEntity.GLAZED_BOTTOM_RIGHT))) {
                     cachedQuads.addAll(bottomOverlays[8].getQuads(blockState, facing, randomSource, modelData, renderType));
                 }
-                cachedQuads.addAll(this.originalModel.getQuads(blockState, facing, randomSource, modelData, renderType));
+                cachedQuads.addAll(core.getQuads(blockState, facing, randomSource, modelData, renderType));
                 MODEL_CACHE.put(key, cachedQuads);
             }
             return cachedQuads;
         } else {
-            List<BakedQuad> quads = new ArrayList<>();
-            quads.addAll(this.originalModel.getQuads(blockState, facing, randomSource, modelData, renderType));
-            return quads;
+            return new ArrayList<>(core.getQuads(blockState, facing, randomSource, modelData, renderType));
         }
     }
 
-    private CacheKey cacheModel(ModelData modelData) {
+    private CacheKey cacheModel(String name, ModelData modelData) {
         boolean[] boolData = new boolean[54];
         boolData[0] = Boolean.TRUE.equals(modelData.get(GlazedBlockEntity.GLAZED_NORTH_MIDDLE));
         boolData[1] = Boolean.TRUE.equals(modelData.get(GlazedBlockEntity.GLAZED_NORTH_TOP_MIDDLE));
@@ -274,7 +279,12 @@ public class GlazedModel extends BakedModelWrapper<BakedModel> {
         boolData[53] = Boolean.TRUE.equals(modelData.get(GlazedBlockEntity.GLAZED_BOTTOM_RIGHT));
 
         long hash = makeIntKey(boolData);
-        return new CacheKey(hash);
+        return new CacheKey(name, hash);
+    }
+
+    @Override
+    public RenderType getRenderType(ItemStack itemStack) {
+        return RenderType.CUTOUT_MIPPED;
     }
 
     long makeIntKey(boolean[] bools) {
@@ -286,7 +296,32 @@ public class GlazedModel extends BakedModelWrapper<BakedModel> {
         return result;
     }
 
-    private record CacheKey(long modelHash) {
+    @Override
+    public boolean useAmbientOcclusion() {
+        return core.useAmbientOcclusion();
+    }
+
+    @Override
+    public boolean isGui3d() {
+        return core.isGui3d();
+    }
+
+    @Override
+    public boolean usesBlockLight() {
+        return core.usesBlockLight();
+    }
+
+    @Override
+    public TextureAtlasSprite getParticleIcon() {
+        return core.getParticleIcon();
+    }
+
+    @Override
+    public ItemTransforms getTransforms() {
+        return core.getTransforms();
+    }
+
+    private record CacheKey(String name, long modelHash) {
     }
 
     public static BakedModel[] getNorthOverlays() {

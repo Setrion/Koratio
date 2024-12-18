@@ -18,7 +18,7 @@ public class DemonicZombieHorseRenderer extends AbstractHorseRenderer<AbstractHo
     private static final ResourceLocation DEMONIC_ZOMBIE_HORSE_EYES_LOCATION = Koratio.prefix("textures/entity/demonic/zombie_horse_eyes.png");
 
     public DemonicZombieHorseRenderer(EntityRendererProvider.Context context) {
-        super(context, new HorseModel(context.bakeLayer(ModelLayers.DEMONIC_ZOMBIE_HORSE)), new HorseModel(context.bakeLayer(ModelLayers.DEMONIC_ZOMBIE_HORSE_BABY)), 1.0F);
+        super(context, new HorseModel(context.bakeLayer(ModelLayers.DEMONIC_ZOMBIE_HORSE)), new HorseModel(context.bakeLayer(ModelLayers.DEMONIC_ZOMBIE_HORSE_BABY)));
         this.addLayer(new GlowingLayer<>(this, RenderType.eyes(DEMONIC_ZOMBIE_HORSE_EYES_LOCATION)));
     }
 

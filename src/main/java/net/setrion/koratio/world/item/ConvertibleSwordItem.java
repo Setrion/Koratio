@@ -3,6 +3,7 @@ package net.setrion.koratio.world.item;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.SwordItem;
 import net.minecraft.world.item.ToolMaterial;
@@ -16,10 +17,10 @@ import java.util.Map;
 
 public class ConvertibleSwordItem extends SwordItem implements Convertible {
 
-    Map<ResourceKey<DimensionType>, ConversionUtils.ConversionItem> CONVERT_MAP;
+    Map<ResourceKey<DimensionType>, Item> CONVERT_MAP;
     int conversionTime;
 
-    public ConvertibleSwordItem(Map<ResourceKey<DimensionType>, ConversionUtils.ConversionItem> convertibles, int convertTime, ToolMaterial material, float attackDamage, float attackSpeed, Properties properties) {
+    public ConvertibleSwordItem(Map<ResourceKey<DimensionType>, Item> convertibles, int convertTime, ToolMaterial material, float attackDamage, float attackSpeed, Properties properties) {
         super(material, attackDamage, attackSpeed, properties.component(KoratioDataComponents.CONVERTIBLE_DATA, new KoratioDataComponents.ConvertibleRecord(KoratioDimensions.FANTASIA_DIM_TYPE, 0)));
         CONVERT_MAP = convertibles;
         this.conversionTime = convertTime;
@@ -38,7 +39,7 @@ public class ConvertibleSwordItem extends SwordItem implements Convertible {
     }
 
     @Override
-    public Map<ResourceKey<DimensionType>, ConversionUtils.ConversionItem> getConvertibles() {
+    public Map<ResourceKey<DimensionType>, Item> getConvertibles() {
         return CONVERT_MAP;
     }
 

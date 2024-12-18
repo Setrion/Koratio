@@ -1,0 +1,19 @@
+{
+  "layers": {
+    "horse_body": [
+      {
+        "texture": "koratio:varynium"
+      }
+    ],
+    "humanoid": [
+      {
+        "texture": "koratio:varynium"
+      }
+    ],
+    "humanoid_leggings": [
+      {
+        "texture": "koratio:varynium"
+      }
+    ]
+  }
+}

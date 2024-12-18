@@ -6,11 +6,11 @@ import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.gui.screens.inventory.CyclingSlotBackground;
 import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.texture.TextureAtlas;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
-import net.minecraft.world.inventory.InventoryMenu;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.material.Fluid;
 import net.neoforged.api.distmarker.Dist;
@@ -26,6 +26,9 @@ import java.util.Optional;
 
 @OnlyIn(Dist.CLIENT)
 public class CandyShaperScreen extends AbstractContainerScreen<CandyShaperMenu> {
+
+    //TextureAtlas.LOCATION_BLOCKS =
+    //public static final ResourceLocation LOCATION_BLOCKS = ResourceLocation.withDefaultNamespace("textures/atlas/blocks.png");
 
     private static final ResourceLocation BG_LOCATION = ResourceLocation.fromNamespaceAndPath(Koratio.MOD_ID, "textures/gui/container/candy_shaper.png");
 
@@ -148,12 +151,12 @@ public class CandyShaperScreen extends AbstractContainerScreen<CandyShaperMenu> 
         ResourceLocation stillTexture = fluidTypeExtensions.getStillTexture(menu.getFluidSlot(slot).getFluid());
         if(stillTexture == null) return;
 
-        TextureAtlasSprite sprite = minecraft.getTextureAtlas(InventoryMenu.BLOCK_ATLAS).apply(stillTexture);
+        TextureAtlasSprite sprite = minecraft.getTextureAtlas(TextureAtlas.LOCATION_BLOCKS).apply(stillTexture);
         drawTiledSprite(guiGraphics, scale, sprite, posX, posY);
     }
 
     private static void drawTiledSprite(GuiGraphics guiGraphics, long scaledAmount, TextureAtlasSprite sprite, int posX, int posY) {
-        RenderSystem.setShaderTexture(0, InventoryMenu.BLOCK_ATLAS);
+        RenderSystem.setShaderTexture(0, TextureAtlas.LOCATION_BLOCKS);
         Matrix4f matrix = guiGraphics.pose().last().pose();
 
         final int xTileCount = 1;

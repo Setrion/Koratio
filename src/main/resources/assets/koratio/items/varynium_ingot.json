@@ -1,0 +1,20 @@
+{
+  "model": {
+    "type": "minecraft:composite",
+    "models": [
+      {
+        "type": "koratio:convertible"
+      },
+      {
+        "type": "minecraft:model",
+        "model": "koratio:item/varynium_ingot",
+        "tints": [
+          {
+            "type": "koratio:convertible_transparency",
+            "default": -1
+          }
+        ]
+      }
+    ]
+  }
+}

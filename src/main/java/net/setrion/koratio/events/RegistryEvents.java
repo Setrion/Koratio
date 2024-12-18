@@ -72,39 +72,71 @@ public class RegistryEvents {
     }
 	
 	@SubscribeEvent
-    public static void gatherData(GatherDataEvent event) {
-		DataGenerator generator = event.getGenerator();
-		PackOutput output = event.getGenerator().getPackOutput();
-		CompletableFuture<HolderLookup.Provider> provider = event.getLookupProvider();
-		ExistingFileHelper helper = event.getExistingFileHelper();
+    public static void gatherClientData(GatherDataEvent.Client event) {
+        DataGenerator generator = event.getGenerator();
+        PackOutput output = event.getGenerator().getPackOutput();
+        CompletableFuture<HolderLookup.Provider> provider = event.getLookupProvider();
+        ExistingFileHelper helper = event.getExistingFileHelper();
+            
+        generator.addProvider(true, new BlockStateGenerator(output, helper));
+        generator.addProvider(true, new ItemModelGenerator(output, helper));
+        generator.addProvider(true, new KoratioEquipmentAssets(output));
+        generator.addProvider(true, new ParticleGenerator(output, helper));
 
-        CompletableFuture<HolderLookup.Provider> newLookup = RegistryDataGenerator.addProviders(event.includeServer(), generator, output, provider, helper).getRegistryProvider();
-        generator.addProvider(event.includeServer(), new net.neoforged.neoforge.common.data.AdvancementProvider(output, newLookup, helper, List.of(new AdvancementGenerator())));
-        generator.addProvider(event.includeClient(), new BlockStateGenerator(output, helper));
-        generator.addProvider(event.includeClient(), new ItemModelGenerator(output, helper));
-        generator.addProvider(event.includeClient(), new KoratioEquipmentModels(output));
-        generator.addProvider(event.includeClient(), new ParticleGenerator(output, helper));
-        generator.addProvider(event.includeServer(), new DataMapGenerator(output, newLookup));
+        CompletableFuture<HolderLookup.Provider> newLookup = RegistryDataGenerator.addProviders(true, generator, output, provider, helper).getRegistryProvider();
+        generator.addProvider(true, new net.neoforged.neoforge.common.data.AdvancementProvider(output, newLookup, helper, List.of(new AdvancementGenerator())));
+        generator.addProvider(true, new DataMapGenerator(output, newLookup));
         KoratioTagsGenerator.BlockTagGenerator blockTags = new KoratioTagsGenerator.BlockTagGenerator(output, newLookup, helper);
-        generator.addProvider(event.includeServer(), blockTags);
-        generator.addProvider(event.includeServer(), new KoratioTagsGenerator.ItemTagGenerator(output, newLookup, blockTags.contentsGetter(), helper));
-        generator.addProvider(event.includeServer(), new KoratioTagsGenerator.EnchantmentTagGenerator(output, newLookup, helper));
-        generator.addProvider(event.includeServer(), new KoratioTagsGenerator.EntityTagGenerator(output, newLookup, helper));
-        generator.addProvider(event.includeServer(), new KoratioTagsGenerator.MagicalCatTagGenerator(output, newLookup, helper));
-        generator.addProvider(event.includeServer(), new KoratioTagsGenerator.FluidTagGenerator(output, newLookup, helper));
-        generator.addProvider(event.includeServer(), new KoratioCompatTagGenerator(output, newLookup, blockTags.contentsGetter(), helper));
-        generator.addProvider(event.includeServer(), new KoratioTagsGenerator.PoiTypeTagGenerator(output, newLookup, helper));
-        generator.addProvider(event.includeServer(), new KoratioTagsGenerator.BiomeTagGenerator(output, newLookup, helper));
-        generator.addProvider(event.includeServer(), new LootGenerator(output, newLookup));
-        generator.addProvider(event.includeServer(), new LootModifierGenerator(output, newLookup));
-        generator.addProvider(event.includeServer(), new RecipeRunner(output, provider));
-        generator.addProvider(event.includeServer(), new SoundGenerator(output, helper));
-        generator.addProvider(event.includeServer(), new LanguageGenerator.English(output));
-        generator.addProvider(event.includeServer(), new LanguageGenerator.German(output));
+        generator.addProvider(true, blockTags);
+        generator.addProvider(true, new KoratioTagsGenerator.ItemTagGenerator(output, newLookup, blockTags.contentsGetter(), helper));
+        generator.addProvider(true, new KoratioTagsGenerator.EnchantmentTagGenerator(output, newLookup, helper));
+        generator.addProvider(true, new KoratioTagsGenerator.EntityTagGenerator(output, newLookup, helper));
+        generator.addProvider(true, new KoratioTagsGenerator.MagicalCatTagGenerator(output, newLookup, helper));
+        generator.addProvider(true, new KoratioTagsGenerator.FluidTagGenerator(output, newLookup, helper));
+        generator.addProvider(true, new KoratioCompatTagGenerator(output, newLookup, blockTags.contentsGetter(), helper));
+        generator.addProvider(true, new KoratioTagsGenerator.PoiTypeTagGenerator(output, newLookup, helper));
+        generator.addProvider(true, new KoratioTagsGenerator.BiomeTagGenerator(output, newLookup, helper));
+        generator.addProvider(true, new LootGenerator(output, newLookup));
+        generator.addProvider(true, new LootModifierGenerator(output, newLookup));
+        generator.addProvider(true, new RecipeRunner(output, provider));
+        generator.addProvider(true, new SoundGenerator(output, helper));
+        generator.addProvider(true, new LanguageGenerator.English(output));
+        generator.addProvider(true, new LanguageGenerator.German(output));
         if (ModList.get().isLoaded("curios")) {
-            //generator.addProvider(event.includeServer(), new KoratioCuriosCompat.KoratioCuriosProvider(output, helper, newLookup));
+            //generator.addProvider(true, new KoratioCuriosCompat.KoratioCuriosProvider(output, helper, newLookup));
         }
 	}
+
+    @SubscribeEvent
+    public static void gatherServerData(GatherDataEvent.Server event) {
+        DataGenerator generator = event.getGenerator();
+        PackOutput output = event.getGenerator().getPackOutput();
+        CompletableFuture<HolderLookup.Provider> provider = event.getLookupProvider();
+        ExistingFileHelper helper = event.getExistingFileHelper();
+
+        CompletableFuture<HolderLookup.Provider> newLookup = RegistryDataGenerator.addProviders(true, generator, output, provider, helper).getRegistryProvider();
+        generator.addProvider(true, new net.neoforged.neoforge.common.data.AdvancementProvider(output, newLookup, helper, List.of(new AdvancementGenerator())));
+        generator.addProvider(true, new DataMapGenerator(output, newLookup));
+        KoratioTagsGenerator.BlockTagGenerator blockTags = new KoratioTagsGenerator.BlockTagGenerator(output, newLookup, helper);
+        generator.addProvider(true, blockTags);
+        generator.addProvider(true, new KoratioTagsGenerator.ItemTagGenerator(output, newLookup, blockTags.contentsGetter(), helper));
+        generator.addProvider(true, new KoratioTagsGenerator.EnchantmentTagGenerator(output, newLookup, helper));
+        generator.addProvider(true, new KoratioTagsGenerator.EntityTagGenerator(output, newLookup, helper));
+        generator.addProvider(true, new KoratioTagsGenerator.MagicalCatTagGenerator(output, newLookup, helper));
+        generator.addProvider(true, new KoratioTagsGenerator.FluidTagGenerator(output, newLookup, helper));
+        generator.addProvider(true, new KoratioCompatTagGenerator(output, newLookup, blockTags.contentsGetter(), helper));
+        generator.addProvider(true, new KoratioTagsGenerator.PoiTypeTagGenerator(output, newLookup, helper));
+        generator.addProvider(true, new KoratioTagsGenerator.BiomeTagGenerator(output, newLookup, helper));
+        generator.addProvider(true, new LootGenerator(output, newLookup));
+        generator.addProvider(true, new LootModifierGenerator(output, newLookup));
+        generator.addProvider(true, new RecipeRunner(output, provider));
+        generator.addProvider(true, new SoundGenerator(output, helper));
+        generator.addProvider(true, new LanguageGenerator.English(output));
+        generator.addProvider(true, new LanguageGenerator.German(output));
+        if (ModList.get().isLoaded("curios")) {
+            //generator.addProvider(true, new KoratioCuriosCompat.KoratioCuriosProvider(output, helper, newLookup));
+        }
+    }
 
     @SubscribeEvent
     public static void registerCauldronFluidContent(RegisterCauldronFluidContentEvent event) {

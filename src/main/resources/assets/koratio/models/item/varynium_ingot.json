@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
-  "layer0": "koratio:item/varynium_ingot",
-  "base": "koratio:varynium_ingot",
-  "loader": "koratio:convertible_item"
+  "textures": {
+    "layer0": "koratio:item/varynium_ingot"
+  }
 }

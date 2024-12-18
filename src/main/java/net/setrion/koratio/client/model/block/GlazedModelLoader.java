@@ -3,14 +3,13 @@ package net.setrion.koratio.client.model.block;
 import com.google.gson.*;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.BlockModel;
-import net.minecraft.client.resources.model.ModelDiscovery;
-import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.FileToIdConverter;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.resources.ResourceManager;
+import net.minecraft.util.GsonHelper;
+import net.neoforged.neoforge.client.model.UnbakedModelLoader;
 import net.neoforged.neoforge.client.model.generators.BlockModelBuilder;
 import net.neoforged.neoforge.client.model.generators.CustomLoaderBuilder;
-import net.neoforged.neoforge.client.model.geometry.IGeometryLoader;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.setrion.koratio.Koratio;
 
@@ -18,11 +17,12 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
-public enum GlazedModelLoader implements IGeometryLoader<GlazedBlockGeometry> {
+public enum GlazedModelLoader implements UnbakedModelLoader<GlazedBlockGeometry> {
     INSTANCE;
 
     @Override
     public GlazedBlockGeometry read(JsonObject jsonObject, JsonDeserializationContext deserializationContext) throws JsonParseException {
+        String name = jsonObject.get("base").getAsString();
         BlockModel core = loadModel(ResourceLocation.parse(jsonObject.get("base").getAsString()));
         BlockModel topTopMiddleOverlay = loadModel(Koratio.prefix("block/overlay/glaze_top_top_middle"));
         BlockModel topTopLeftOverlay = loadModel(Koratio.prefix("block/overlay/glaze_top_top_left"));
@@ -79,14 +79,14 @@ public enum GlazedModelLoader implements IGeometryLoader<GlazedBlockGeometry> {
         BlockModel westRightOverlay = loadModel(Koratio.prefix("block/overlay/glaze_west_right_middle"));
         BlockModel westMiddleOverlay = loadModel(Koratio.prefix("block/overlay/glaze_west_middle"));
 
-        return new GlazedBlockGeometry("gingerbread", core, topTopMiddleOverlay, topTopLeftOverlay, topTopRightOverlay, topBottomMiddleOverlay, topBottomLeftOverlay, topBottomRightOverlay, topLeftOverlay, topRightOverlay, topMiddleOverlay, bottomTopMiddleOverlay, bottomTopLeftOverlay, bottomTopRightOverlay, bottomBottomMiddleOverlay, bottomBottomLeftOverlay, bottomBottomRightOverlay, bottomLeftOverlay, bottomRightOverlay, bottomMiddleOverlay, northTopMiddleOverlay, northTopLeftOverlay, northTopRightOverlay, northBottomMiddleOverlay,northBottomLeftOverlay, northBottomRightOverlay, northLeftOverlay, northRightOverlay, northMiddleOverlay, eastTopMiddleOverlay, eastTopLeftOverlay, eastTopRightOverlay, eastBottomMiddleOverlay, eastBottomLeftOverlay, eastBottomRightOverlay, eastLeftOverlay, eastRightOverlay, eastMiddleOverlay, southTopMiddleOverlay, southTopLeftOverlay, southTopRightOverlay, southBottomMiddleOverlay, southBottomLeftOverlay, southBottomRightOverlay, southLeftOverlay, southRightOverlay, southMiddleOverlay, westTopMiddleOverlay, westTopLeftOverlay, westTopRightOverlay, westBottomMiddleOverlay, westBottomLeftOverlay, westBottomRightOverlay, westLeftOverlay, westRightOverlay, westMiddleOverlay);
+        return new GlazedBlockGeometry(name, core, topTopMiddleOverlay, topTopLeftOverlay, topTopRightOverlay, topBottomMiddleOverlay, topBottomLeftOverlay, topBottomRightOverlay, topLeftOverlay, topRightOverlay, topMiddleOverlay, bottomTopMiddleOverlay, bottomTopLeftOverlay, bottomTopRightOverlay, bottomBottomMiddleOverlay, bottomBottomLeftOverlay, bottomBottomRightOverlay, bottomLeftOverlay, bottomRightOverlay, bottomMiddleOverlay, northTopMiddleOverlay, northTopLeftOverlay, northTopRightOverlay, northBottomMiddleOverlay,northBottomLeftOverlay, northBottomRightOverlay, northLeftOverlay, northRightOverlay, northMiddleOverlay, eastTopMiddleOverlay, eastTopLeftOverlay, eastTopRightOverlay, eastBottomMiddleOverlay, eastBottomLeftOverlay, eastBottomRightOverlay, eastLeftOverlay, eastRightOverlay, eastMiddleOverlay, southTopMiddleOverlay, southTopLeftOverlay, southTopRightOverlay, southBottomMiddleOverlay, southBottomLeftOverlay, southBottomRightOverlay, southLeftOverlay, southRightOverlay, southMiddleOverlay, westTopMiddleOverlay, westTopLeftOverlay, westTopRightOverlay, westBottomMiddleOverlay, westBottomLeftOverlay, westBottomRightOverlay, westLeftOverlay, westRightOverlay, westMiddleOverlay);
     }
 
     private static BlockModel loadModel(ResourceLocation location) {
         ResourceManager manager = Minecraft.getInstance().getResourceManager();
         FileToIdConverter converter = new FileToIdConverter("models", ".json");
-        try (InputStream stream = manager.getResourceOrThrow(converter.idToFile(location)).open()) {
-            return BlockModel.fromStream(new InputStreamReader(stream));
+        try (InputStream stream = manager.open(converter.idToFile(location))) {
+            return GsonHelper.fromJson(BlockModel.GSON, new InputStreamReader(stream), BlockModel.class);
         } catch (IOException e) {
             throw new JsonParseException("Failed to load part model '" + location + "'", e);
         }

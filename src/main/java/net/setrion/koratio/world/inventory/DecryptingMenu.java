@@ -1,6 +1,5 @@
 package net.setrion.koratio.world.inventory;
 
-import com.mojang.datafixers.util.Pair;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
@@ -25,8 +24,7 @@ import net.setrion.koratio.world.item.DecryptingBookItem;
 import net.setrion.koratio.world.item.ScrollItem;
 
 public class DecryptingMenu extends AbstractContainerMenu {
-	
-	public static final ResourceLocation BLOCK_ATLAS = ResourceLocation.withDefaultNamespace("textures/atlas/blocks.png");
+
 	public static final ResourceLocation EMPTY_SCROLL_SLOT = ResourceLocation.fromNamespaceAndPath(Koratio.MOD_ID, "item/empty_slot_scroll");
 	public static final ResourceLocation EMPTY_BOOK_SLOT = ResourceLocation.fromNamespaceAndPath(Koratio.MOD_ID, "item/empty_slot_book");
 	public static final ResourceLocation EMPTY_PAPER_SLOT = ResourceLocation.fromNamespaceAndPath(Koratio.MOD_ID, "item/empty_slot_paper");
@@ -55,8 +53,8 @@ public class DecryptingMenu extends AbstractContainerMenu {
 			}
 			
 			@Override
-			public Pair<ResourceLocation, ResourceLocation> getNoItemIcon() {
-				return Pair.of(DecryptingMenu.BLOCK_ATLAS, DecryptingMenu.EMPTY_SCROLL_SLOT);
+			public ResourceLocation getNoItemIcon() {
+				return DecryptingMenu.EMPTY_SCROLL_SLOT;
 			}
 			
 			@Override
@@ -74,8 +72,8 @@ public class DecryptingMenu extends AbstractContainerMenu {
 			}
 			
 			@Override
-			public Pair<ResourceLocation, ResourceLocation> getNoItemIcon() {
-				return Pair.of(DecryptingMenu.BLOCK_ATLAS, DecryptingMenu.EMPTY_BOOK_SLOT);
+			public ResourceLocation getNoItemIcon() {
+				return DecryptingMenu.EMPTY_BOOK_SLOT;
 			}
 			
 			@Override
@@ -86,8 +84,8 @@ public class DecryptingMenu extends AbstractContainerMenu {
 		addSlot(new Slot(slot, 2, 152, 54) {
 			
 			@Override
-			public Pair<ResourceLocation, ResourceLocation> getNoItemIcon() {
-				return Pair.of(DecryptingMenu.BLOCK_ATLAS, DecryptingMenu.EMPTY_PAPER_SLOT);
+			public ResourceLocation getNoItemIcon() {
+				return DecryptingMenu.EMPTY_PAPER_SLOT;
 			}
 			
 			@Override

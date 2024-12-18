@@ -4,6 +4,7 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.item.ArmorItem;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.equipment.ArmorMaterial;
 import net.minecraft.world.item.equipment.ArmorType;
@@ -17,10 +18,10 @@ import java.util.Map;
 
 public class ConvertibleArmorItem extends ArmorItem implements Convertible {
 
-    Map<ResourceKey<DimensionType>, ConversionUtils.ConversionItem> CONVERT_MAP;
+    Map<ResourceKey<DimensionType>, Item> CONVERT_MAP;
     int conversionTime;
 
-    public ConvertibleArmorItem(Map<ResourceKey<DimensionType>, ConversionUtils.ConversionItem> convertibles, int conversionTime, ArmorMaterial material, ArmorType type, Properties properties) {
+    public ConvertibleArmorItem(Map<ResourceKey<DimensionType>, Item> convertibles, int conversionTime, ArmorMaterial material, ArmorType type, Properties properties) {
         super(material, type, properties.component(KoratioDataComponents.CONVERTIBLE_DATA, new KoratioDataComponents.ConvertibleRecord(KoratioDimensions.FANTASIA_DIM_TYPE, 0)));
         CONVERT_MAP = convertibles;
         this.conversionTime = conversionTime;
@@ -39,7 +40,7 @@ public class ConvertibleArmorItem extends ArmorItem implements Convertible {
     }
 
     @Override
-    public Map<ResourceKey<DimensionType>, ConversionUtils.ConversionItem> getConvertibles() {
+    public Map<ResourceKey<DimensionType>, Item> getConvertibles() {
         return CONVERT_MAP;
     }
 

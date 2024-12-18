@@ -5,14 +5,6 @@
     "layer0": "koratio:item/piping_bag",
     "layer1": "koratio:item/piping_bag_filling"
   },
-  "overrides": [
-    {
-      "predicate": {
-        "koratio:empty": 1
-      },
-      "model": "koratio:item/empty_piping_bag"
-    }
-  ],
   "display": {
     "thirdperson_righthand": {
       "rotation": [ 0, -90, 55 ],
