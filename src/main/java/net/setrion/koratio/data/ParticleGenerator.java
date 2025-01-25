@@ -2,15 +2,14 @@ package net.setrion.koratio.data;
 
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
-import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.common.data.ParticleDescriptionProvider;
 import net.setrion.koratio.Koratio;
 import net.setrion.koratio.registry.KoratioParticles;
 
 public class ParticleGenerator extends ParticleDescriptionProvider {
 
-    public ParticleGenerator(PackOutput output, ExistingFileHelper fileHelper) {
-        super(output, fileHelper);
+    public ParticleGenerator(PackOutput output) {
+        super(output);
     }
 
     @Override

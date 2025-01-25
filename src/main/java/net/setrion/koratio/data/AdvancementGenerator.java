@@ -5,35 +5,29 @@ import net.minecraft.advancements.AdvancementHolder;
 import net.minecraft.advancements.AdvancementRequirements;
 import net.minecraft.advancements.AdvancementType;
 import net.minecraft.advancements.critereon.ChangeDimensionTrigger;
-import net.minecraft.advancements.critereon.ImpossibleTrigger;
 import net.minecraft.advancements.critereon.LocationPredicate;
 import net.minecraft.advancements.critereon.PlayerTrigger;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.data.advancements.packs.VanillaAdvancementProvider;
+import net.minecraft.data.advancements.AdvancementSubProvider;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.levelgen.structure.BuiltinStructures;
 import net.minecraft.world.level.levelgen.structure.Structure;
-import net.neoforged.neoforge.common.data.AdvancementProvider;
-import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.setrion.koratio.Koratio;
 import net.setrion.koratio.advancements.critereon.DecryptScrollTrigger;
 import net.setrion.koratio.registry.KoratioBlocks;
-import net.setrion.koratio.registry.KoratioItems;
 import net.setrion.koratio.registry.KoratioScrolls;
 import net.setrion.koratio.registry.KoratioStructures;
 import net.setrion.koratio.scroll.ScrollUtils;
 
 import java.util.function.Consumer;
 
-public class AdvancementGenerator implements AdvancementProvider.AdvancementGenerator {
+public class AdvancementGenerator implements AdvancementSubProvider {
 
-	public void generate(HolderLookup.Provider registries, Consumer<AdvancementHolder> consumer, ExistingFileHelper helper) {
+	public void generate(HolderLookup.Provider registries, Consumer<AdvancementHolder> consumer) {
 		HolderGetter<Structure> structures = registries.lookupOrThrow(Registries.STRUCTURE);
 
 		AdvancementHolder koratio_root = Advancement.Builder.advancement()

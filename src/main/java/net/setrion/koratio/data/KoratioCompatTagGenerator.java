@@ -8,7 +8,6 @@ import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
-import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.setrion.koratio.Koratio;
 import net.setrion.koratio.registry.KoratioItems;
 
@@ -23,8 +22,8 @@ public class KoratioCompatTagGenerator extends ItemTagsProvider {
     public static final TagKey<Item> CURIOS_NECKLACE = createTagFor("curios", "necklace");
     public static final TagKey<Item> CURIOS_HEAD = createTagFor("curios", "head");
 
-    public KoratioCompatTagGenerator(PackOutput output, CompletableFuture<HolderLookup.Provider> provider, CompletableFuture<TagLookup<Block>> blockTags, ExistingFileHelper helper) {
-        super(output, provider, blockTags, Koratio.MOD_ID, helper);
+    public KoratioCompatTagGenerator(PackOutput output, CompletableFuture<HolderLookup.Provider> provider, CompletableFuture<TagLookup<Block>> blockTags) {
+        super(output, provider, blockTags, Koratio.MOD_ID);
     }
 
 

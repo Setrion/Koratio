@@ -1,0 +1,10 @@
+{
+  "model": {
+    "type": "minecraft:special",
+    "base": "koratio:block/template/template_remains",
+    "model": {
+      "type": "koratio:remains",
+      "kind": "bogged"
+    }
+  }
+}

@@ -83,6 +83,7 @@ public class KoratioItems {
 	public static final DeferredItem<BucketItem> CHOCOLATE_MILK_BUCKET = registerItem("chocolate_milk_bucket", properties -> new BucketItem(KoratioFluids.CHOCOLATE_MILK.get(), properties), new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1));
 	public static final DeferredItem<BucketItem> BLOOD_BUCKET = registerItem("blood_bucket", properties -> new BucketItem(KoratioFluids.BLOOD.get(), properties), new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1));
 	public static final DeferredItem<Item> DEMONIC_HEART = registerItem("demonic_heart", Item::new, new Item.Properties());
+	public static final DeferredItem<Item> MAGMATIC_BRICK = registerItem("magmatic_brick", Item::new, new Item.Properties());
 
 	public static final DeferredItem<Item> VARYNIUM_INGOT = registerItem("varynium_ingot", properties -> new ConvertibleItem(Map.of(BuiltinDimensionTypes.OVERWORLD, Items.IRON_INGOT, BuiltinDimensionTypes.NETHER, Items.GOLD_INGOT, BuiltinDimensionTypes.END, Items.DIAMOND), 600, properties), new Item.Properties());
 	public static final DeferredItem<Item> VARYNIUM_NUGGET = registerItem("varynium_nugget", properties -> new ConvertibleItem(Map.of(BuiltinDimensionTypes.OVERWORLD, Items.IRON_HELMET, BuiltinDimensionTypes.NETHER, Items.GOLDEN_HELMET, BuiltinDimensionTypes.END, Items.DIAMOND_HELMET), 600, properties), new Item.Properties());

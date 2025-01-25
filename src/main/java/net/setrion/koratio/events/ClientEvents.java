@@ -20,6 +20,7 @@ import net.neoforged.fml.loading.FMLEnvironment;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import net.neoforged.neoforge.client.event.ModelEvent;
 import net.neoforged.neoforge.client.event.RegisterParticleProvidersEvent;
+import net.neoforged.neoforge.client.event.RegisterSpecialModelRendererEvent;
 import net.neoforged.neoforge.client.extensions.common.IClientFluidTypeExtensions;
 import net.neoforged.neoforge.client.extensions.common.RegisterClientExtensionsEvent;
 import net.setrion.koratio.Koratio;
@@ -32,6 +33,7 @@ import net.setrion.koratio.client.particle.TeleporterDescendParticle;
 import net.setrion.koratio.client.renderer.blockentity.KoratioChestRenderer;
 import net.setrion.koratio.client.renderer.blockentity.RemainsBlockRenderer;
 import net.setrion.koratio.client.renderer.entity.*;
+import net.setrion.koratio.client.renderer.special.RemainsSpecialRenderer;
 import net.setrion.koratio.registry.*;
 import net.setrion.koratio.scroll.ScrollUtils;
 import net.setrion.koratio.world.item.ScrollItem;
@@ -68,6 +70,11 @@ public class ClientEvents {
 	@SubscribeEvent
 	public static void registerModelGeometry(ModelEvent.RegisterLoaders event) {
 		event.register(Koratio.prefix("glazed"), GlazedModelLoader.INSTANCE);
+	}
+
+	@SubscribeEvent
+	public static void registerSpecialModelRenderer(RegisterSpecialModelRendererEvent event) {
+		event.register(Koratio.prefix("remains"), RemainsSpecialRenderer.Unbaked.MAP_CODEC);
 	}
 
 	@SubscribeEvent

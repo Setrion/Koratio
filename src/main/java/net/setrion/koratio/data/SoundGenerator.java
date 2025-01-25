@@ -4,7 +4,6 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
-import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.common.data.SoundDefinition;
 import net.neoforged.neoforge.common.data.SoundDefinitionsProvider;
 import net.neoforged.neoforge.registries.DeferredHolder;
@@ -13,8 +12,8 @@ import net.setrion.koratio.registry.KoratioSoundEvents;
 
 public class SoundGenerator extends SoundDefinitionsProvider {
 
-	public SoundGenerator(PackOutput output, ExistingFileHelper helper) {
-		super(output, Koratio.MOD_ID, helper);
+	public SoundGenerator(PackOutput output) {
+		super(output, Koratio.MOD_ID);
 	}
 
 	@Override

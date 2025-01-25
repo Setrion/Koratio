@@ -1,4 +1,4 @@
-package net.setrion.koratio.data;
+/*package net.setrion.koratio.data;
 
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
@@ -8,12 +8,6 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
-import net.neoforged.neoforge.client.model.generators.ItemModelBuilder;
-import net.neoforged.neoforge.client.model.generators.ItemModelProvider;
-import net.neoforged.neoforge.client.model.generators.ModelFile;
-import net.neoforged.neoforge.client.model.generators.loaders.DynamicFluidContainerModelBuilder;
-import net.neoforged.neoforge.client.model.generators.loaders.ItemLayerModelBuilder;
-import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.internal.versions.neoforge.NeoForgeVersion;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.setrion.koratio.Koratio;
@@ -710,4 +704,4 @@ public class ItemModelGenerator extends ItemModelProvider {
 	private ResourceLocation getItemPathInFolder(Item item, String folder) {
 		return getItemPathInFolder(item, folder, "");
 	}
-}
+}*/

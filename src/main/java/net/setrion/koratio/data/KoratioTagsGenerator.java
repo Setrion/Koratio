@@ -9,11 +9,9 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.neoforged.neoforge.common.Tags;
-import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.setrion.koratio.Koratio;
 import net.setrion.koratio.registry.*;
 import net.setrion.koratio.world.entity.animal.MagicalCatVariant;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -21,8 +19,8 @@ public class KoratioTagsGenerator {
 
     public static class ItemTagGenerator extends ItemTagsProvider {
 
-        public ItemTagGenerator(PackOutput output, CompletableFuture<HolderLookup.Provider> future, CompletableFuture<TagLookup<Block>> blockProvider, ExistingFileHelper existingFileHelper) {
-            super(output, future, blockProvider, Koratio.MOD_ID, existingFileHelper);
+        public ItemTagGenerator(PackOutput output, CompletableFuture<HolderLookup.Provider> future, CompletableFuture<TagLookup<Block>> blockProvider) {
+            super(output, future, blockProvider, Koratio.MOD_ID);
         }
 
         @Override
@@ -101,8 +99,8 @@ public class KoratioTagsGenerator {
 
     public static class EnchantmentTagGenerator extends EnchantmentTagsProvider {
 
-        public EnchantmentTagGenerator(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider, @Nullable ExistingFileHelper existingFileHelper) {
-            super(output, lookupProvider, Koratio.MOD_ID, existingFileHelper);
+        public EnchantmentTagGenerator(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider) {
+            super(output, lookupProvider, Koratio.MOD_ID);
         }
 
         @Override
@@ -114,8 +112,8 @@ public class KoratioTagsGenerator {
     public static class BlockTagGenerator extends IntrinsicHolderTagsProvider<Block> {
 
         @SuppressWarnings("deprecation")
-        public BlockTagGenerator(PackOutput output, CompletableFuture<HolderLookup.Provider> future, ExistingFileHelper helper) {
-            super(output, Registries.BLOCK, future, block -> block.builtInRegistryHolder().key(), Koratio.MOD_ID, helper);
+        public BlockTagGenerator(PackOutput output, CompletableFuture<HolderLookup.Provider> future) {
+            super(output, Registries.BLOCK, future, block -> block.builtInRegistryHolder().key(), Koratio.MOD_ID);
         }
 
         @SuppressWarnings("unchecked")
@@ -356,8 +354,8 @@ public class KoratioTagsGenerator {
 
     public static class FluidTagGenerator extends FluidTagsProvider {
 
-        public FluidTagGenerator(PackOutput output, CompletableFuture<HolderLookup.Provider> provider, @org.jetbrains.annotations.Nullable ExistingFileHelper existingFileHelper) {
-            super(output, provider, Koratio.MOD_ID, existingFileHelper);
+        public FluidTagGenerator(PackOutput output, CompletableFuture<HolderLookup.Provider> provider) {
+            super(output, provider, Koratio.MOD_ID);
         }
 
         @Override
@@ -383,8 +381,8 @@ public class KoratioTagsGenerator {
 
     public static class EntityTagGenerator extends EntityTypeTagsProvider {
 
-        public EntityTagGenerator(PackOutput output, CompletableFuture<HolderLookup.Provider> provider, @org.jetbrains.annotations.Nullable ExistingFileHelper existingFileHelper) {
-            super(output, provider, Koratio.MOD_ID, existingFileHelper);
+        public EntityTagGenerator(PackOutput output, CompletableFuture<HolderLookup.Provider> provider) {
+            super(output, provider, Koratio.MOD_ID);
         }
 
         @Override
@@ -400,8 +398,8 @@ public class KoratioTagsGenerator {
 
     public static class MagicalCatTagGenerator extends TagsProvider<MagicalCatVariant> {
 
-        public MagicalCatTagGenerator(PackOutput output, CompletableFuture<HolderLookup.Provider> provider, @org.jetbrains.annotations.Nullable ExistingFileHelper existingFileHelper) {
-            super(output, KoratioRegistries.MAGICAL_CAT_VARIANT_KEY, provider, Koratio.MOD_ID, existingFileHelper);
+        public MagicalCatTagGenerator(PackOutput output, CompletableFuture<HolderLookup.Provider> provider) {
+            super(output, KoratioRegistries.MAGICAL_CAT_VARIANT_KEY, provider, Koratio.MOD_ID);
         }
 
         @Override
@@ -412,8 +410,8 @@ public class KoratioTagsGenerator {
 
     public static class PoiTypeTagGenerator extends PoiTypeTagsProvider {
 
-        public PoiTypeTagGenerator(PackOutput output, CompletableFuture<HolderLookup.Provider> provider, ExistingFileHelper existingFileHelper) {
-            super(output, provider, Koratio.MOD_ID, existingFileHelper);
+        public PoiTypeTagGenerator(PackOutput output, CompletableFuture<HolderLookup.Provider> provider) {
+            super(output, provider, Koratio.MOD_ID);
         }
 
         @Override
@@ -424,8 +422,8 @@ public class KoratioTagsGenerator {
 
     public static class BiomeTagGenerator extends BiomeTagsProvider {
 
-        public BiomeTagGenerator(PackOutput output, CompletableFuture<HolderLookup.Provider> provider, ExistingFileHelper existingFileHelper) {
-            super(output, provider, Koratio.MOD_ID, existingFileHelper);
+        public BiomeTagGenerator(PackOutput output, CompletableFuture<HolderLookup.Provider> provider) {
+            super(output, provider, Koratio.MOD_ID);
         }
 
         @Override

@@ -6,7 +6,6 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
 import net.neoforged.neoforge.common.data.DatapackBuiltinEntriesProvider;
-import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.setrion.koratio.Koratio;
 import net.setrion.koratio.registry.*;
 
@@ -36,7 +35,7 @@ public class RegistryDataGenerator extends DatapackBuiltinEntriesProvider {
 		super(output, provider, BUILDER, Set.of("minecraft", Koratio.MOD_ID));
 	}
 
-	public static RegistryDataGenerator addProviders(boolean isServer, DataGenerator generator, PackOutput output, CompletableFuture<HolderLookup.Provider> provider, ExistingFileHelper helper) {
+	public static RegistryDataGenerator addProviders(boolean isServer, DataGenerator generator, PackOutput output, CompletableFuture<HolderLookup.Provider> provider) {
 		var gen = new RegistryDataGenerator(output, provider);
 		generator.addProvider(isServer, gen);
 		return gen;

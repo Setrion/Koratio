@@ -1,5 +1,6 @@
 package net.setrion.koratio.data;
 
+import net.minecraft.client.data.models.ModelProvider;
 import net.minecraft.core.Direction;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
@@ -7,11 +8,6 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.properties.DoorHingeSide;
 import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
-import net.neoforged.neoforge.client.model.generators.BlockStateProvider;
-import net.neoforged.neoforge.client.model.generators.ConfiguredModel;
-import net.neoforged.neoforge.client.model.generators.ModelFile;
-import net.neoforged.neoforge.client.model.generators.MultiPartBlockStateBuilder;
-import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.setrion.koratio.Koratio;
 import net.setrion.koratio.client.model.block.GlazedModelLoader;
@@ -19,7 +15,7 @@ import net.setrion.koratio.registry.KoratioBlocks;
 import net.setrion.koratio.world.level.block.*;
 import net.setrion.koratio.world.level.block.state.properties.TripleBlockPart;
 
-public class BlockStateGenerator extends BlockStateProvider {
+/*public class BlockStateGenerator extends ModelProvider {
 
 	public BlockStateGenerator(PackOutput output, ExistingFileHelper fileHelper) {
 		super(output, Koratio.MOD_ID, fileHelper);
@@ -27,22 +23,6 @@ public class BlockStateGenerator extends BlockStateProvider {
 
 	@Override
 	protected void registerStatesAndModels() {		
-		ModelFile portal = models().getExistingFile(Koratio.prefix("block/fantasia_portal"));
-		
-		getVariantBuilder(KoratioBlocks.FANTASIA_PORTAL.get())
-        	.partialState().with(FantasiaPortalBlock.FACING, Direction.NORTH)
-            	.modelForState().modelFile(portal).addModel()
-			.partialState().with(FantasiaPortalBlock.FACING, Direction.SOUTH)
-				.modelForState().modelFile(portal).rotationY(90).addModel()
-			.partialState().with(FantasiaPortalBlock.FACING, Direction.EAST)
-				.modelForState().modelFile(portal).rotationY(180).addModel()
-			.partialState().with(FantasiaPortalBlock.FACING, Direction.WEST)
-				.modelForState().modelFile(portal).rotationY(270).addModel();
-		
-		simpleBlock(KoratioBlocks.MINIATURE_FANTASIA_PORTAL.get(), models().getExistingFile(Koratio.prefix("block/miniature/fantasia_portal")));
-
-		simpleBlock(KoratioBlocks.DECRYPTING_TABLE.get(), models().cube(KoratioBlocks.DECRYPTING_TABLE.getKey().location().getPath(), getBlockPathInFolder(KoratioBlocks.DECRYPTING_TABLE.get(), "_bottom"), getBlockPathInFolder(KoratioBlocks.DECRYPTING_TABLE.get(), "_top"), getBlockPathInFolder(KoratioBlocks.DECRYPTING_TABLE.get(), "_front"), getBlockPathInFolder(KoratioBlocks.DECRYPTING_TABLE.get(), "_side"), getBlockPathInFolder(KoratioBlocks.DECRYPTING_TABLE.get(), "_front"), getBlockPathInFolder(KoratioBlocks.DECRYPTING_TABLE.get(), "_side")).texture("particle", getBlockPathInFolder(KoratioBlocks.DECRYPTING_TABLE.get(), "_front")));
-		simpleBlock(KoratioBlocks.CANDY_SHAPER.get(), models().cube(KoratioBlocks.CANDY_SHAPER.getKey().location().getPath(), getBlockPathInFolder(KoratioBlocks.CANDY_PLANKS.get()), getBlockPathInFolder(KoratioBlocks.CANDY_SHAPER.get(), "_top"), getBlockPathInFolder(KoratioBlocks.CANDY_SHAPER.get(), "_front"), getBlockPathInFolder(KoratioBlocks.CANDY_SHAPER.get(), "_side"), getBlockPathInFolder(KoratioBlocks.CANDY_SHAPER.get(), "_back"), getBlockPathInFolder(KoratioBlocks.CANDY_SHAPER.get(), "_side")).texture("particle", getBlockPathInFolder(KoratioBlocks.CANDY_SHAPER.get(), "_front")));
 
 		flippedFarmlandBlock(KoratioBlocks.FLIPPED_FARMLAND.get());
 		tintedCrossBlock(KoratioBlocks.FANTASIA_GRASS.get(), "");
@@ -857,4 +837,4 @@ public class BlockStateGenerator extends BlockStateProvider {
 	private ResourceLocation getBlockPathInFolder(Block block) {
 		return getBlockPathInFolder(block, "");
 	}
-}
+}*/

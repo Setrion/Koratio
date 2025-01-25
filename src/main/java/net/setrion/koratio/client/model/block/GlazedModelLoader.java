@@ -8,9 +8,6 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.util.GsonHelper;
 import net.neoforged.neoforge.client.model.UnbakedModelLoader;
-import net.neoforged.neoforge.client.model.generators.BlockModelBuilder;
-import net.neoforged.neoforge.client.model.generators.CustomLoaderBuilder;
-import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.setrion.koratio.Koratio;
 
 import java.io.IOException;
@@ -89,33 +86,6 @@ public enum GlazedModelLoader implements UnbakedModelLoader<GlazedBlockGeometry>
             return GsonHelper.fromJson(BlockModel.GSON, new InputStreamReader(stream), BlockModel.class);
         } catch (IOException e) {
             throw new JsonParseException("Failed to load part model '" + location + "'", e);
-        }
-    }
-
-    public static class GingerbreadBlockModelLoaderBuilder extends CustomLoaderBuilder<BlockModelBuilder> {
-        public GingerbreadBlockModelLoaderBuilder(BlockModelBuilder parent, ExistingFileHelper existingFileHelper) {
-            super(
-                    Koratio.prefix("glazed"),
-                    parent,
-                    existingFileHelper,
-                    false
-            );
-        }
-
-        private ResourceLocation baseModel;
-
-        public ResourceLocation getBaseModel() {
-            return baseModel;
-        }
-
-        public void setBaseModel(ResourceLocation baseModel) {
-            this.baseModel = baseModel;
-        }
-
-        @Override
-        public JsonObject toJson(JsonObject json) {
-            json.add("base", new JsonPrimitive(baseModel.toString()));
-            return super.toJson(json);
         }
     }
 }
